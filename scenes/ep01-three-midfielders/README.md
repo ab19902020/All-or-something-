@@ -13,10 +13,10 @@ clips in [`audio/`](../../audio/), exactly as scripted; the narrator is heard, n
 | Time | Shot | What happens |
 |---|---|---|
 | 0:00 | Carrington exterior | Slow push on the training ground under a grey Manchester sky with drizzle. **MANCHESTER / TRANSFER DEADLINE DAY**. Narrator (voice only): "Manchester United... transfer deadline day." Overly serious strings and piano. |
-| 0:03 | Boardroom wide | Hard cut on the music hit. Everyone seated in the room's own chairs at true scale: Carrick at the head of the table under the tactics screen, Bruno beside him, Jim apart at the near end, Jason and Omar in the foreground with their backs to camera. Slow push to Carrick: "Right... just two things... Left-back... Striker." |
-| 0:07 | Jason / Carrick / Jason | "Sorted." Carrick, relieved: "Brilliant." Jason, casually: "We bought three midfielders." The music stops dead. |
+| 0:03 | Boardroom wide | Hard cut on a boom; the intro music ends there and the room plays on its own sound. Everyone seated in the room's own chairs at true scale: Carrick at the head of the table under the tactics screen, Bruno beside him, Jim apart at the near end, Jason and Omar in the foreground with their backs to camera. Slow push to Carrick: "Right... just two things... Left-back... Striker." |
+| 0:07 | Jason / Carrick / Jason | "Sorted." Carrick, relieved: "Brilliant." Jason, casually: "We bought three midfielders." A satisfied pen click. |
 | 0:10 | Carrick close-up | One blink, a tiny head move. "Sorry... I said left-back... and striker." |
-| 0:13 | Omar, Jason | Omar, explaining the obvious with both hands: "Yeah... but three midfielders." Jason: "It's three things instead of two... technically... you've won." |
+| 0:13 | Omar, Jason | Omar, explaining the obvious with both hands: "Yeah... but three midfielders." Jason raises three fingers: "It's three things instead of two... technically... you've won." |
 | 0:19 | Carrick | No dialogue: he slowly looks straight down the documentary lens and holds. |
 | 0:20 | Bruno close-up | He looks at Carrick, at Jason, then at the lens: "You bought three midfielders?" Jason nods proudly. |
 | 0:24 | Carrick | Diplomatic: "Look... I'm not complaining... obviously, love the lads, great window." He leans in: "But who's actually scoring the goals?" |
@@ -70,9 +70,14 @@ voices, word-level alignment, characters cut from their sheets, upscaled and ani
    cut, a smash cut, quick punch-ins.
 6. **Graphics** (`graphics.py`): the opening text, the title card, Jim's paperwork, the grey-sky grade and drizzle
    for Carrington, vignette and grain.
-7. **Sound** (`audio.py`): everything synthesised, no sound library: wind, drizzle and traffic outside; boardroom
-   room tone; the documentary score with its hit on the first cut and its dead stop; the Riviera lounge loop in
-   Monaco (hard-cut on the smash); a low drone under Bruno's button; the title boom, cut hard at the end.
+7. **Sound** (`audio.py`): real recorded ambience and foley from BigSoundBank (CC0), trimmed into
+   [`audio/sfx/`](../../audio/sfx/) by `tools/get_sfx.py` from `audio/sfx/manifest.json`: rain, wind and distant
+   traffic outside; air-conditioning and the city muffled through the glass in the boardroom; a marina and gentle
+   sea in Monaco; chair creaks, cloth on every gesture, pen clicks, Jim's paperwork, a mug set down, all keyed to
+   the picture. The intro music (strings and piano) plays over Carrington only and ends on a cinematic boom
+   (bass tom, gong and thunder pitched down) exactly on the cut into the boardroom; the meeting has no music
+   under it. A Riviera lounge loop plays in Monaco (hard-cut on the smash back), and the title gets the same
+   boom, cut hard at the end so the Short loops. No synthetic whooshes or beeps.
 8. **Render** (`render.py chunk`): 1080 × 1920 frames in parallel chunks, muxed with the mix.
 
 Quick checks: `python3 render.py still 5 20.4 64.6` writes single frames to `build/stills/`;

@@ -179,6 +179,9 @@ def render_single(s, t):
         fz2 = fz * p ** 1.1
         s2 = P2.scale(fz2)
         ty = ey + s["table"] * s["ed"] * p + dy * 1.15
+        # never below the drawing's own bottom edge (a body must not end in mid-air above the table)
+        bottom = Ms[1, 1] * (d.oy + d.size(1.0)[1] / d.S) + Ms[1, 2]
+        ty = min(ty, bottom - 10 * RS)
         fcy = edge - (ty - OH / 2) / s2
         fcx2 = fcx - dx * 1.15 / s2
         fimg = P2.render(fcx2, fcy, fz2)
@@ -295,15 +298,18 @@ def render_frame(f):
         img = render_group(s, t)
     else:
         img = render_world(s, t)
-    # whip pan: a horizontal smear across the cut
+    # whip pan: the camera swings across the cut (the outgoing shot leaves to the left, the new one arrives from
+    # the right), with a directional motion blur; the frame edge is extended, never wrapped round
     for tw in D.WHIPS:
         a = 1 - abs(t - tw) * FPS / 3.0
         if a > 0:
-            n = max(3, int(90 * RS * a)) | 1
+            n = max(3, int(110 * RS * a)) | 1
             ker = np.ones((1, n), np.float32) / n
             img = cv2.filter2D(img, -1, ker, borderType=cv2.BORDER_REFLECT)
-            sh = int((t - tw) * FPS * 60 * RS)
-            img = np.roll(img, sh, 1)
+            sh = (t - tw) * FPS * 70 * RS
+            z = 1 + 2.2 * abs(sh) / OW                           # zoom just enough that no edge shows
+            img = cv2.warpAffine(img, np.float32([[z, 0, OW / 2 * (1 - z) + sh], [0, z, OH / 2 * (1 - z)]]),
+                                 (OW, OH), borderMode=cv2.BORDER_REPLICATE)
     if s["kind"] in ("single", "world", "group"):
         img = G.finish(img, f)
     return (np.clip(img, 0, 1) * 255 + 0.5).astype(np.uint8)

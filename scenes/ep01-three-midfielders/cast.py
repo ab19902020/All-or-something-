@@ -20,7 +20,7 @@ OVR = {
     "js_q34l": dict(mouth=None), "js_q34r": dict(mouth=None), "br_q34r": dict(mouth=None),
 }
 FACES = {"ck_front": "R", "ck_q34l": "R", "ck_q34r": "R", "ck_g_explain": "F", "ck_g_crossed": "F",
-         "js_hero": "F", "js_q34l": "L", "js_q34r": "R", "js_g_explain": "F", "js_g_point": "R",
+         "js_hero": "F", "js_q34l": "L", "js_q34r": "R", "js_g_explain": "F", "js_g_three": "F", "js_g_point": "R",
          "om_hero": "F", "om_q34l": "R", "om_q34r": "L", "om_g_explain": "F",
          "br_hero": "F", "br_q34l": "R", "br_q34r": "R", "br_g_shrug": "F", "br_g_talk": "F",
          "jr_hero": "F", "jr_q34l": "R", "jr_q34r": "R"}

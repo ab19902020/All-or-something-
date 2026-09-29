@@ -1,13 +1,15 @@
-"""The soundtrack: the dialogue edit plus room tone, weather, foley, the 'serious documentary' score and the title
-sting. No sound library: every effect and all the music are synthesised here (numpy / scipy), deterministically.
+"""The soundtrack: the dialogue edit, real recorded ambience and foley, the intro music and the title boom.
 
   - dialogue: every line at its timeline position, levelled; a small-room reverb in the boardroom, a more open one
     in Monaco; the narrator dry and close
-  - room tone: grey Manchester outside (wind, drizzle, distant traffic), boardroom HVAC, Monaco sea and gulls
-  - score: brooding strings and piano over Carrington, a hit on the cut into the boardroom, a pulsing underscore
-    that stops dead after "We bought three midfielders"; a cheesy Riviera lounge loop in Monaco (hard-cut on the
-    smash back); a boom + chord for the title that ends hard, so the Short loops
-  - foley: whip whoosh, smash-cut hit, paper, chair creak
+  - music: brooding strings and piano over the Carrington intro only; it ends on a big cinematic boom as the
+    film cuts into the boardroom (no music under the meeting); a smug Riviera lounge loop in Monaco, hard-cut on
+    the smash back; the title boom, cut hard at the very end so the Short loops
+  - ambience and foley: real recordings (BigSoundBank, CC0, trimmed into ../../audio/sfx by tools/get_sfx.py):
+    rain, wind and distant traffic outside; air-conditioning and a muffled city in the boardroom; a marina and
+    gentle sea in Monaco; chair creaks, cloth on every gesture, pen clicks, Jim's paperwork, a mug set down.
+    No synthetic whooshes or beeps: cuts are hard cuts, and the two big moments get a layered boom (bass tom +
+    gong and thunder pitched down)
 python3 audio.py -> build/episode_audio.wav (48 kHz stereo)"""
 import json, math, numpy as np, soundfile as sf
 from scipy import signal
@@ -87,6 +89,64 @@ def convolve_st(x, ir):
     return np.stack([signal.fftconvolve(x[:, 0], ir[:, 0]), signal.fftconvolve(x[:, 1], ir[:, 1])], 1).astype(np.float32)
 
 
+# ---------------------------------------------------------------- recorded clips
+SFX = "../../audio/sfx/"
+_CLIPS = {}
+
+
+def clip(name):
+    """a clip from audio/sfx as float32 (n,) or (n, 2) at 48 kHz"""
+    if name not in _CLIPS:
+        y, sr = sf.read(SFX + name + ".ogg", dtype="float32", always_2d=False)
+        if sr != SR:
+            import librosa
+            y = librosa.resample(y.T, orig_sr=sr, target_sr=SR).T.astype(np.float32)
+        _CLIPS[name] = y
+    return _CLIPS[name].copy()
+
+
+def varispeed(y, semis):
+    """pitch (and length) by resampling, as with tape: + semitones = higher and shorter"""
+    if abs(semis) < 1e-3: return y
+    f = 2 ** (semis / 12)
+    n = int(len(y) / f)
+    x = np.arange(n) * f
+    if y.ndim == 1: return np.interp(x, np.arange(len(y)), y).astype(np.float32)
+    return np.stack([np.interp(x, np.arange(len(y)), y[:, c]) for c in range(y.shape[1])], 1).astype(np.float32)
+
+
+def looped(name, dur, xf=1.5):
+    """an ambience clip looped with crossfades to dur seconds"""
+    y = clip(name)
+    n, k = int(dur * SR), int(xf * SR)
+    out = y[:0]
+    while len(out) < n:
+        if len(out) == 0: out = y.copy(); continue
+        r = np.linspace(0, 1, k)[:, None] if y.ndim == 2 else np.linspace(0, 1, k)
+        out = np.concatenate([out[:-k], out[-k:] * (1 - r) + y[:k] * r, y[k:]])
+    return out[:n]
+
+
+def big_boom(size=1.0, tail=None):
+    """a cinematic impact: bass tom (pitched down) for the punch, gong down an octave and thunder for the body
+    and tail, a touch of hall"""
+    tom = varispeed(clip("tom_hit"), -5 - 2 * size)
+    gong = lp(varispeed(clip("gong_big"), -12), 700, 2).astype(np.float32)
+    thun = lp(clip("thunder_roll"), 380, 2).astype(np.float32)
+    n = int((2.2 + 2.5 * size) * SR)
+    def fit(y):
+        a = np.abs(y); i0 = int(np.argmax(a > 0.25 * a.max()))       # start on the attack, not the lead-in
+        y = y[max(0, i0 - int(0.004 * SR)):][:n]; return np.pad(y, (0, n - len(y)))
+    t = np.arange(n) / SR
+    body = at_level(fit(tom), -12) + at_level(fit(gong), -20) * 0.9 * size + at_level(fit(thun), -22) * size
+    body *= np.exp(-t / (0.9 + 1.2 * size))
+    wet = convolve_st(body, reverb_ir(2.2 + size, 3500, 0.02, 21))[:n]
+    out = np.stack([body, body], 1) * 0.85 + wet * 0.28
+    if tail is not None:                                   # a short tail (reverb included): out of the way
+        out *= np.exp(-np.maximum(0, t - 0.1) / tail)[:, None]     # before the next line starts
+    return out
+
+
 # ---------------------------------------------------------------- instruments
 def note(nm):
     names = {"C": -9, "C#": -8, "D": -7, "D#": -6, "Eb": -6, "E": -5, "F": -4, "F#": -3, "G": -2, "G#": -1, "A": 0,
@@ -117,66 +177,12 @@ def strings(freqs, dur, attack=0.8, release=1.2, bright=1600):
     return (x * np.clip(e, 0, 1)).astype(np.float32)
 
 
-def stab(freqs, dur=0.35):
-    """a short staccato string / brass stab"""
-    n = int(dur * SR); t = np.arange(n) / SR
-    x = strings(freqs, dur, 0.01, 0.05, 2600)
-    return x * np.exp(-t * 7).astype(np.float32)
-
-
-def boom(dur=3.0, f0=42):
-    n = int(dur * SR); t = np.arange(n) / SR
-    x = np.sin(2 * np.pi * (f0 + 38 * np.exp(-t * 7)) * t) * np.exp(-t * 1.6)
-    x += bp(noise(n), 60, 900, 2) * np.exp(-t * 9) * 0.35
-    return x.astype(np.float32)
-
-
-def whoosh(dur=0.45, up=True):
-    n = int(dur * SR); t = np.arange(n) / SR
-    x = noise(n, "pink")
-    f = np.linspace(400, 3800, n) if up else np.linspace(3800, 400, n)
-    out = np.zeros(n, np.float32)
-    for i in range(0, n, 1024):
-        fc = f[i]
-        sos = signal.butter(2, [fc * 0.6, min(SR / 2 - 100, fc * 1.6)], btype="band", fs=SR, output="sos")
-        out[i:i + 1024] = signal.sosfilt(sos, x[i:i + 1024])
-    return out * np.sin(np.pi * t / dur) ** 2 * 0.5
-
-
-def riser(dur=1.2):
-    n = int(dur * SR); t = np.arange(n) / SR
-    x = whoosh(dur, True) * (t / dur) ** 2 * 2.0
-    return x.astype(np.float32)
-
-
-def chair_creak():
-    n = int(0.55 * SR); t = np.arange(n) / SR
-    f = 300 + 110 * np.sin(2 * np.pi * 2.6 * t)
-    x = signal.sawtooth(2 * np.pi * np.cumsum(f) / SR) * (np.sin(np.pi * t / 0.55) ** 2)
-    return (bp(x, 380, 2200, 2) * (0.5 + 0.5 * (noise(n) > 0.4)) * 0.3).astype(np.float32)
-
-
-def paper_rustle(dur=0.45):
-    n = int(dur * SR); t = np.arange(n) / SR
-    env = np.zeros(n, np.float32)
-    for _ in range(14):
-        c = RNG.uniform(0, dur); w = RNG.uniform(0.01, 0.05)
-        env += np.exp(-((t - c) / w) ** 2) * RNG.uniform(0.4, 1)
-    return (bp(noise(n), 1800, 9000, 2) * env * 0.4).astype(np.float32)
-
-
-def gull():
-    n = int(0.6 * SR); t = np.arange(n) / SR
-    f = 1500 + 700 * np.sin(np.pi * t / 0.6) ** 2 - 500 * t
-    x = np.sin(2 * np.pi * np.cumsum(f) / SR) + 0.3 * np.sin(4 * np.pi * np.cumsum(f) / SR)
-    return (x * np.sin(np.pi * t / 0.6) ** 3 * 0.2).astype(np.float32)
-
-
 # ---------------------------------------------------------------- score
 def doc_score():
-    """0 -> the cut into the boardroom: brooding; the cut: a hit; then a pulsing underscore until the stop"""
-    t_hit, t_stop = m("cut_wide"), m("music_stop")
-    n = int((t_stop + 0.01) * SR)
+    """the intro only: low strings swell and a solemn piano under the Carrington exterior and the narrator,
+    ending exactly on the cut into the boardroom (where the boom lands)"""
+    t_hit = m("cut_wide")
+    n = int((t_hit + 0.01) * SR)
     x = np.zeros((n, 2), np.float32)
     def put(y, t, g=1.0, pan=0.0):
         y = np.asarray(y, np.float32)
@@ -185,31 +191,15 @@ def doc_score():
             y = np.stack([y * gl, y * gr], 1)
         i = int(t * SR); j = min(n, i + len(y))
         if i < n: x[i:j] += y[:j - i] * g
-    # exterior: low strings swell, solemn piano, a riser into the cut
-    put(strings([note("D2"), note("A2"), note("D3")], t_hit + 0.2, 1.4, 0.1, 900), 0.0, 0.9)
-    for tn, nm in ((0.35, "A4"), (1.15, "F4"), (1.95, "D4"), (2.6, "E4")):
+    put(strings([note("D2"), note("A2"), note("D3")], t_hit + 0.4, 1.2, 0.1, 900), 0.0, 0.9)
+    put(strings([note("F3"), note("A3")], t_hit - 1.0, 1.0, 0.1, 1300), 1.2, 0.35)       # the swell into the cut
+    for tn, nm in ((0.3, "A4"), (1.1, "F4"), (1.9, "D4"), (2.55, "E4")):
         put(piano_note(note(nm), 2.0, 0.9), tn, 0.8, pan=0.2)
         put(piano_note(note(nm) / 2, 2.0, 0.5), tn, 0.6, pan=-0.2)
-    put(riser(1.1), t_hit - 1.1, 0.35)
-    # the hit on the cut
-    put(boom(2.6), t_hit, 1.3)
-    put(stab([note("D3"), note("F3"), note("A3"), note("D4")], 0.6), t_hit, 1.0)
-    # underscore: staccato low strings in 8ths at 104 bpm over a pad, Dm - Bb - F - C
-    beat = 60 / 104
-    prog = [("D2", ["D3", "F3", "A3"]), ("Bb1", ["D3", "F3", "Bb3"]), ("F2", ["C3", "F3", "A3"]), ("C2", ["C3", "E3", "G3"])]
-    k, t = 0, t_hit + 2 * beat
-    while t < t_stop:
-        bass, chord = prog[(k // 8) % 4]
-        put(stab([note(bass), note(bass) * 2], 0.22) * (1.0 if k % 2 == 0 else 0.7), t, 0.9)
-        if k % 8 == 0:
-            put(strings([note(c) for c in chord], 8 * beat / 2 + 0.6, 0.25, 0.4, 1500), t, 0.55)
-        if k % 4 == 2:                                     # a soft timpani on the off-beat
-            put(boom(0.6, 60) * 0.35, t, 0.6)
-        t += beat / 2; k += 1
     ir = reverb_ir(2.4, 5000, 0.02, 7)
     wet = convolve_st(x, ir)[:n]
     y = x * 0.85 + wet * 0.25
-    y[-int(0.006 * SR):] *= np.linspace(1, 0, int(0.006 * SR))[:, None]      # stops dead
+    y[-int(0.006 * SR):] *= np.linspace(1, 0, int(0.006 * SR))[:, None]      # out on the cut
     return y
 
 
@@ -251,12 +241,11 @@ def lounge(dur):
 
 
 def title_sting(dur):
-    n = int(dur * SR); t = np.arange(n) / SR
-    x = boom(dur, 38) * 1.2
-    x += bp(noise(n), 200, 5000, 2) * np.exp(-t * 7) * 0.25
+    """the chord under the title boom"""
+    n = int(dur * SR)
     ch = strings([note("D2"), note("A2"), note("D3"), note("F3"), note("A3")], dur + 1.0, 0.03, 0.5, 2200)[:n]
-    y = np.stack([x + ch * 0.6, x + ch * 0.6], 1)
-    return y + convolve_st(y.mean(1), reverb_ir(3.0, 4000, 0.03, 3))[:n] * 0.3
+    y = np.stack([ch, ch], 1)
+    return y + convolve_st(ch, reverb_ir(3.0, 4000, 0.03, 3))[:n] * 0.3
 
 
 # ---------------------------------------------------------------- layers
@@ -278,33 +267,33 @@ def dialogue(bus):
             bus.add(wet, v["start"], db(-17 if monaco else -19))
 
 
+def bed(bus, name, a, b, level, lowpass=None, fin=0.004, fout=0.004, gain_fn=None):
+    """an ambience clip looped from a to b at an RMS level (dB), hard cuts by default"""
+    y = looped(name, b - a)
+    if lowpass:
+        y = (lp(y, lowpass, 2) if y.ndim == 1 else np.stack([lp(y[:, 0], lowpass, 2), lp(y[:, 1], lowpass, 2)], 1)).astype(np.float32)
+    y = at_level(y, level)
+    e = fade(len(y), fin, fout)
+    if gain_fn is not None: e = e * gain_fn(a + np.arange(len(y)) / SR)
+    bus.add(y * (e[:, None] if y.ndim == 2 else e), a)
+
+
 def ambience(bus):
-    # grey Manchester: wind, drizzle, distant traffic
+    # outside Carrington: rain on the concrete, wind, traffic in the distance
     t1 = m("cut_wide")
-    n = int((t1 + 0.02) * SR)
-    wind = lp(noise(n, "pink"), 600, 2) * (1 + 0.35 * np.sin(np.arange(n) / SR * 0.9))
-    rain = hp(noise(n), 3500, 2) * (0.6 + 0.4 * (noise(n) > 1.8))
-    traffic = lp(noise(n, "brown"), 180, 2)
-    amb = at_level(wind, -40) + at_level(rain, -46) + at_level(traffic, -44)
-    bus.add(amb * fade(n, 0.6, 0.004), 0.0)
-    # the boardroom: HVAC + a faint office murmur; much quieter behind Bruno's last close-up
+    bed(bus, "rain_concrete", 0.0, t1, -41, fin=0.5)
+    bed(bus, "wind", 0.0, t1, -45, lowpass=1800, fin=0.8)
+    bed(bus, "street_distant", 0.0, t1, -47, lowpass=1500, fin=0.8)
+    # the boardroom: air-conditioning and the city muffled through the glass; it drains away behind Bruno's
+    # last close-up, and stops dead on the cut to black
+    quiet = lambda tt: 1 - 0.85 * np.clip((tt - m("cut_br8") - 0.2) / 1.2, 0, 1)
     for a, b in ((m("cut_wide"), m("cut_monaco")), (m("cut_ck8"), m("cut_black"))):
-        n = int((b - a) * SR)
-        hv = at_level(lp(noise(n, "brown"), 220, 2), -48) + at_level(lp(noise(n, "pink"), 2500, 2), -60)
-        mur = at_level(bp(noise(n, "pink"), 250, 1400, 2) * (1 + 0.5 * np.sin(np.arange(n) / SR * 0.31)), -58)
-        g = np.ones(n, np.float32)
-        tt = a + np.arange(n) / SR
-        q = np.clip((tt - m("cut_br8") - 0.2) / 1.0, 0, 1)
-        g *= (1 - 0.8 * q)
-        bus.add((hv + mur) * g * fade(n, 0.003, 0.003), a)
-    # Monaco: the sea, a breeze, gulls
+        bed(bus, "room_tone_hvac", a, b, -47, lowpass=5000, gain_fn=quiet)
+        bed(bus, "city_through_window", a, b, -55, lowpass=900, gain_fn=quiet)
+    # Monaco: the marina (boats, water against the pontoons) and a gentle sea
     a, b = m("cut_monaco"), m("cut_ck8")
-    n = int((b - a) * SR)
-    tt = np.arange(n) / SR
-    waves = lp(noise(n, "pink"), 900, 2) * (0.55 + 0.45 * np.sin(2 * np.pi * tt / 3.7) ** 2)
-    bus.add(at_level(waves, -40) * fade(n, 0.003, 0.003), a)
-    for tg, pan in ((a + 0.6, -0.5), (a + 2.9, 0.6), (a + 4.4, -0.2)):
-        if tg < b - 0.6: bus.add(at_level(gull(), -40), tg, 1.0, pan)
+    bed(bus, "marina", a, b, -39)
+    bed(bus, "sea_gentle", a, b, -45, lowpass=4000)
 
 
 def music(bus):
@@ -312,25 +301,66 @@ def music(bus):
     a, b = m("cut_monaco"), m("cut_ck8")
     lg = lounge(b - a)
     lg[-int(0.005 * SR):] *= np.linspace(1, 0, int(0.005 * SR))[:, None]           # smash cut: gone
-    bus.add(at_level(lg, -31), a)
-    # Bruno's button: a low, sad drone under him
-    a, b = m("cut_br8"), m("cut_black")
-    d = strings([note("D2"), note("A2")], b - a + 0.05, 1.2, 0.05, 500)
-    bus.add(at_level(d, -40) * fade(len(d), 0.8, 0.01), a)
-    # title: riser, boom and chord, cut hard at the very end (the Short loops)
-    st = title_sting(TOTAL - m("cut_title") + 0.5)
-    bus.add(at_level(st, -20), m("cut_title"))
+    bus.add(at_level(lg, -32), a)
+    # the title: the strings chord under the boom, cut hard at the very end (the Short loops)
+    ch = title_sting(TOTAL - m("cut_title") + 0.5)
+    bus.add(at_level(ch, -27), m("cut_title"))
+
+
+def ev(bus, name, t, level, pan=0.0, semis=0.0, lowpass=None, highpass=None):
+    y = varispeed(clip(name), semis)
+    if y.ndim == 2: y = y.mean(1)
+    if lowpass: y = lp(y, lowpass, 2).astype(np.float32)
+    if highpass: y = hp(y, highpass, 2).astype(np.float32)
+    bus.add(at_level(y, level), t, 1.0, pan)
+
+
+def words(lid):
+    return {w["w"]: TL["lines"][lid]["start"] + w["s"] for w in LINES[lid]["words"]}
 
 
 def foley(bus):
-    for tw in WHIPS:
-        bus.add(at_level(whoosh(0.34, True), -24), tw - 0.18)
-    tsm = m("cut_ck8")                                     # smash cut back to Manchester
-    hit = boom(0.9, 55) * 0.8 + bp(noise(int(0.9 * SR)), 300, 4000, 2) * np.exp(-np.arange(int(0.9 * SR)) / SR * 14) * 0.3
-    bus.add(at_level(hit, -22), tsm)
-    bus.add(at_level(whoosh(0.3, False), -30), m("cut_monaco") - 0.05)
-    bus.add(at_level(chair_creak(), -33), m("cut_br6") + 0.15, 1.0, -0.2)
-    bus.add(at_level(paper_rustle(0.5), -34), ls("jr_bigger_issues") - 0.4, 1.0, 0.1)
+    """every cue is keyed to the picture: who moves, when (see perf.py / direction.py for the same marks)"""
+    # the cut into the boardroom lands on a boom, and the room settles
+    bus.add(at_level(big_boom(0.6, tail=0.12), -19), m("cut_wide"))
+    ev(bus, "creak_small", m("cut_wide") + 1.1, -44, pan=0.3, semis=-2)
+    # Jason, pleased with himself: a pen click right after "we bought three midfielders"
+    ev(bus, "pen_click_a", le("js_bought") + 0.08, -33, pan=0.05)
+    # Carrick's close-up: the tiny head move is his chair
+    ev(bus, "creak_short", m("cut_ck2") + 0.18, -45, semis=-3)
+    # Omar's explaining hands, Jason's three fingers going up
+    ev(bus, "cloth_a", ls("om_yeah_but") + 0.02, -38)
+    ev(bus, "cloth_b", m("cut_js3") - 0.04, -36, pan=-0.1)
+    # Carrick looks into the lens: nothing but the room
+    ev(bus, "creak_small", m("cut_br1") + 0.1, -44, semis=-1)                 # Bruno turning
+    ev(bus, "cloth_e", m("cut_br1") + 0.5, -46)
+    ev(bus, "creak_mid", m("ck_lean") + 0.02, -38, semis=-3)                   # Carrick leans in
+    ev(bus, "cloth_c", m("ck_lean") + 0.08, -41)
+    ev(bus, "cloth_e", m("cut_br2") - 0.03, -35, semis=2)                      # the whip round to Bruno
+    ev(bus, "creak_short", m("cut_br2") + 0.02, -42, semis=-1)
+    ev(bus, "cloth_d", ls("om_efficient") + 0.1, -39, pan=0.1)                 # Omar gestures at Bruno
+    ev(bus, "cloth_a", ls("br_crossing") + 0.18, -36, semis=2)                 # Bruno throws a hand out
+    ev(bus, "cloth_f", le("js_bruno") + 0.04, -41)                             # Jason's pointing arm (after the word)
+    ev(bus, "creak_short", ls("br_me") + 0.05, -42, semis=-2)                  # "ME?"
+    ev(bus, "cloth_e", m("cut_ck6") + 0.05, -46)                               # Carrick's breath
+    ev(bus, "creak_long", m("cut_br6") + 0.12, -38, semis=-4)                  # Bruno sinks back into his chair
+    ev(bus, "cloth_b", m("cut_br6") + 0.2, -44)
+    # Jim's paperwork: handled, then lowered
+    ev(bus, "paper_handle", m("cut_jr1") - 0.05, -42, pan=-0.1)
+    ev(bus, "paper_lower", ls("jr_bigger_issues") - 0.45, -38, pan=-0.1)
+    # everyone turns to look at Jim
+    ev(bus, "creak_small", m("cut_wide2") + 0.05, -42, pan=0.3, semis=-2)
+    ev(bus, "creak_short", m("cut_wide2") + 0.28, -44, pan=-0.2, semis=-4)
+    ev(bus, "cloth_c", m("cut_wide2") + 0.12, -44, pan=0.1)
+    ev(bus, "creak_small", m("cut_br7") + 0.1, -45, semis=-3)                  # Bruno turns slowly
+    # the smash cut back from Monaco: a dull punch, and Carrick puts his mug down
+    ev(bus, "tom_hit", m("cut_ck8"), -27, semis=-6, lowpass=1100)
+    ev(bus, "cup_down", m("cut_ck8") + 0.12, -33, pan=-0.05)
+    ev(bus, "pen_click_b", le("js_no_left_back") + 0.06, -34, pan=0.05)        # Jason, firm
+    ev(bus, "cloth_b", m("cut_execs") + 0.08, -43)                              # the three of them nod
+    ev(bus, "pen_click_c", m("jr_nod") + 0.1, -38, pan=0.2)
+    # the title: the big boom
+    bus.add(at_level(big_boom(1.0), -16), m("cut_title"))
 
 
 def main():

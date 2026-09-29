@@ -21,6 +21,7 @@ P = {
     "js_hero": ("js", 22, 98, 302, 752), "js_q34l": ("js", 478, 132, 604, 470), "js_q34r": ("js", 776, 132, 912, 470),
     "js_g_explain": ("js", 283, 1208, 437, 1372), "js_g_point": ("js", 128, 1208, 287, 1372),
     "js_back": ("js", 942, 132, 1092, 470), "js_hand3": ("js", 1040, 1046, 1106, 1137),
+    "js_g_three": ("js", 283, 1208, 437, 1372),          # explaining pose, right hand swapped for three fingers
     # Omar Berrada
     "om_hero": ("om", 18, 106, 322, 850), "om_q34l": ("om", 506, 138, 628, 472), "om_q34r": ("om", 796, 138, 924, 472),
     "om_g_explain": ("om", 133, 1203, 307, 1382), "om_back": ("om", 946, 138, 1094, 472),
@@ -33,7 +34,7 @@ P = {
 
 # open mouths painted shut so the lip sync can drive them: (cx, cy, rx, ry) of the open mouth (1x sheet px);
 # the gap is inpainted with the surrounding skin and a closed mouth line drawn across its upper third
-CLOSE = {"js_g_explain": (364.5, 1290.5, 10.5, 6.2), "js_g_point": (223.0, 1291.0, 11.5, 6.6),
+CLOSE = {"js_g_explain": (364.5, 1290.5, 10.5, 6.2), "js_g_three": (364.5, 1290.5, 10.5, 6.2), "js_g_point": (223.0, 1291.0, 11.5, 6.6),
          "om_g_explain": (224.0, 1278.5, 8.6, 3.2)}
 # paper enclosed by the drawing (e.g. between arm and body) to clear: seed points (1x sheet px)
 HOLES = {"jr_hero": [(142.0, 704.2)], "js_hero": [(154.7, 664.9)], "ck_front": [(123.9, 469.0)],
@@ -100,6 +101,8 @@ JASON = {
     "js_g_point": dict(dome=(229, 1266, 37.5, 45), stubble=(227, 1285, 1279, 30, 1306), body=1303,
                        creases=[], brows=[(219, 1263, 9, 1.6), (226.5, 1263, 9, 1.6)]),
     "js_back": dict(dome=(1020, 216, 46.5, 68), stubble=None, body=238, creases=[], brows=[], hair_to=250),
+    "js_g_three": dict(dome=(358, 1268, 36, 49), stubble=(364, 1284.5, 1279, 26, 1306), body=1302,
+                       creases=[], brows=[(359, 1264, 9, 1.6), (367, 1262, 9, 1.6)]),
     "js_hand3": dict(dome=None, stubble=None, body=1110, creases=[], brows=[]),
 }
 NAVY = (1.55, 0.85, 0.62)          # BGR gain on the cloth's own brightness -> navy
@@ -210,6 +213,82 @@ def restyle_jason(name, im, a, x0, y0):
     im[:] = np.clip(f, 0, 255).astype(np.uint8)
 
 
+def three_finger_arm(im, a, x0, y0):
+    """js_g_three: paint out the palm-up right hand of the explaining pose and put the three-finger hand (js_hand3)
+    on that wrist, fingers up and tilted out, its cuff tucked into the sleeve"""
+    P = lambda x, y: ((x - x0) * 4.0, (y - y0) * 4.0)
+    H, W = a.shape
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+    # the old hand: everything left of the hoodie's edge between the thumb tip and the top of the sleeve
+    X1 = P(316.5, 0)[0]
+    Ya, Yb = P(0, 1302)[1], P(0, 1343.5)[1]
+    a[(xx < X1) & (yy > Ya) & (yy < Yb)] = 0
+    m = json.load(open("build/parts/meta.json"))["js_hand3"]
+    hp = cv2.imread("build/parts/js_hand3.png", cv2.IMREAD_UNCHANGED).astype(np.float32)
+    K = m.get("scale", 4); hox, hoy = m["off"]
+    s_, ang = 0.6, np.radians(12)                       # hand size relative to the pose, tilt (fingers lean out)
+    ax, ay = 1068.0, 1131.0                             # the hand's cuff, bottom centre (hand-set sheet px)
+    tx, ty = 309.0, 1351.0                              # ... placed on the pose's wrist (pose sheet px)
+    c, sn = np.cos(ang), np.sin(ang)
+    R = np.float64([[c, sn], [-sn, c]]) * s_            # counter-clockwise on screen: the fingertips lean left
+    # hand part px -> hand sheet -> pose sheet -> pose crop px
+    A = np.zeros((2, 3))
+    A[:, :2] = 4 * R / K
+    A[:, 2] = 4 * (R @ (np.float64([hox, hoy]) - [ax, ay]) + [tx, ty] - [x0, y0])
+    w = cv2.warpAffine(hp, A, (W, H), flags=cv2.INTER_AREA, borderValue=0)
+    ha = w[..., 3] / 255.0
+    im[:] = np.clip(im * (1 - ha[..., None]) + w[..., :3] * ha[..., None], 0, 255).astype(np.uint8)
+    a[:] = np.maximum(a, ha)
+
+
+def extend_down(im, a, frac):
+    """continue the body below the cell edge: the torso's lowest wide row (arms and stray bits excluded) is held at
+    its full width and repeated downwards, so the figure reaches behind the table as a solid body"""
+    H, W = a.shape
+    f = im.astype(np.int16)
+    skin = (f[..., 2] > f[..., 1] + 15) & (f[..., 1] > f[..., 0] + 10) & (f[..., 2] > 170) & \
+           ((f[..., 1] - f[..., 0]) > 25)                       # arms / hands are not torso
+    op = (a > 0.5) & ~skin
+    op = cv2.morphologyEx(op.astype(np.uint8), cv2.MORPH_OPEN, np.ones((1, 9), np.uint8)) > 0
+    rows = np.where(op.sum(1) > 0.05 * W)[0]
+    if len(rows) == 0: return im, a
+    r = rows.max()
+    def main_run(y):
+        v = op[y].astype(np.int8)
+        d = np.diff(np.concatenate([[0], v, [0]]))
+        st, en = np.where(d == 1)[0], np.where(d == -1)[0]
+        if len(st) == 0: return None
+        k = int(np.argmax(en - st)); return st[k], en[k]
+    run = main_run(r)
+    if run is None: return im, a
+    # the body tapers into the cell's last rows: use the widest main run in the bottom 8 % instead
+    best = (run[1] - run[0], r, run)
+    for y in range(r, max(0, int(r - 0.08 * H)), -2):
+        rr = main_run(y)
+        if rr and rr[1] - rr[0] > best[0]: best = (rr[1] - rr[0], y, rr)
+    _, ry, (x0, x1) = best
+    inset = 3
+    x0, x1 = x0 + inset, x1 - inset
+    n = int(frac * H)
+    band = im[ry - 2:ry + 1, x0:x1].astype(np.float32).mean(0)
+    ext = np.zeros((n, W, 3), np.uint8); ext[:, x0:x1] = band.astype(np.uint8)
+    ea = np.zeros((n, W), np.float32); ea[:, x0:x1] = 1.0
+    # the ink outline down both sides
+    ext[:, x0:x0 + 4] = INK; ext[:, x1 - 4:x1] = INK
+    # rows between ry and the old bottom: fill the body run so there is no notch where it tapered
+    im = im.copy(); a = a.copy()
+    fill = (slice(ry, r + 1), slice(x0, x1))
+    holes = a[fill] < 0.5
+    blk = im[fill]; blk[holes] = band.astype(np.uint8)[None].repeat(r + 1 - ry, 0)[holes]
+    im[fill] = blk
+    a[fill] = np.maximum(a[fill], 1.0)
+    im[ry:r + 1, x0:x0 + 4][holes[:, :4]] = INK
+    im2 = np.concatenate([im[:r + 1], ext], 0)
+    a2 = np.concatenate([a[:r + 1], ea], 0)
+    # nothing outside the body run continues below the cell edge (drops stray columns)
+    return im2, a2
+
+
 def cut(name, spec):
     sh, x0, y0, x1, y1 = spec[:5]
     big = SHEETS[sh]
@@ -264,6 +343,11 @@ def cut(name, spec):
         three_fingers(im, a, x0, y0)
     if name in JASON:
         restyle_jason(name, im, a, x0, y0)
+    if name == "js_g_three":
+        three_finger_arm(im, a, x0, y0)
+    if name in EXTEND:
+        im, a = extend_down(im, a, EXTEND[name])
+        h, w = a.shape
     ys, xs = np.where(a > 0.02)
     bx0, by0, bx1, by1 = max(0, xs.min() - 8), max(0, ys.min() - 8), min(w, xs.max() + 9), min(h, ys.max() + 9)
     rgba = np.dstack([im, (a * 255).astype(np.uint8)])[by0:by1, bx0:bx1]
@@ -272,7 +356,11 @@ def cut(name, spec):
 
 
 # drawings seen large on screen get a second 4x AI upscale (then halved): 8 part px per sheet px
-X8 = ["ck_front", "ck_g_explain", "js_g_point", "om_g_explain", "br_g_shrug", "br_g_talk", "js_hand3"]
+# waist-up gesture drawings stop at the sheet's cell edge: the torso is continued downwards (last rows repeated)
+# so the body always reaches behind the table instead of ending in mid-air
+EXTEND = {"br_g_shrug": 0.5, "br_g_talk": 0.5, "om_g_explain": 0.35, "js_g_point": 0.4, "js_g_three": 0.4,
+          "js_g_explain": 0.4, "ck_g_explain": 0.4, "ck_g_talk": 0.4, "ck_g_crossed": 0.4}
+X8 = ["js_g_three", "ck_front", "ck_g_explain", "js_g_point", "om_g_explain", "br_g_shrug", "br_g_talk", "js_hand3"]
 
 
 def second_pass(name):

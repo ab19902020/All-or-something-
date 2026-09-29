@@ -115,7 +115,7 @@ SHOTS = [
     single(m("cut_js2"), "js", ed=MCU, push=(1.0, 1.03)),                         # We bought three midfielders.
     single(m("cut_ck2"), "ck", ed=CU, eye=(520, 700), table=4.4, push=(1.0, 1.05)),   # close-up: blink, head move
     single(m("cut_om1"), "om", draw="om_g_explain", ed=128, eye=(560, 620), table=5.0, push=(1.0, 1.03)),
-    dict(single(m("cut_js3"), "js", ed=MCU, eye=(585, 640), push=(1.0, 1.03)), hand3=True),   # three fingers
+    single(m("cut_js3"), "js", draw="js_g_three", ed=130, eye=(600, 620), table=5.0, push=(1.0, 1.03)),  # three
     single(m("cut_ck3"), "ck", ed=190, push=(1.0, 1.09), drift=0.5),              # slowly looks into the lens, holds
     single(m("cut_br1"), "br", ed=CU, eye=(540, 700), table=4.3, push=(1.0, 1.05)),   # Bruno realises
     single(m("cut_js_nod"), "js", ed=MCU),                                        # Jason nods proudly

@@ -11,6 +11,7 @@ import json, sys, numpy as np, cv2
 META = json.load(open("build/parts/meta.json"))
 # approximate head box (1x sheet px) of each drawing that talks / blinks
 HEAD = {
+    "js_g_three": (318, 1212, 402, 1296),
     "ck_front": (68, 118, 196, 245), "ck_q34l": (290, 118, 420, 245), "ck_q34r": (712, 118, 842, 245),
     "ck_g_explain": (160, 1198, 238, 1272), "ck_g_crossed": (38, 1198, 110, 1272),
     "js_hero": (50, 100, 262, 350), "js_q34l": (492, 138, 590, 250), "js_q34r": (792, 138, 900, 250),
@@ -23,7 +24,7 @@ HEAD = {
 }
 # Jason's restyle adds stubble dots that could read as a mouth line: his landmarks are pinned (found on the
 # original drawings)
-OVR = {'js_hero': {'eyes': [[128.2, 242.1, 17.25, 16.62], [178.2, 241.2, 17.25, 16.75]], 'mouth': [136.2, 298.2, 172.0, 297.9, 154.1, 294.5], 'chin': 332.5, 'neck': [154.1, 357.9]}, 'js_g_point': {'eyes': [[212.6, 1268.8, 6.12, 6.25], [231.5, 1269.0, 7.0, 6.5]], 'mouth': [212.0, 1291.6, 233.0, 1292.6, 222.5, 1290.1], 'chin': 1304.5, 'neck': [222.5, 1314.5]}}
+OVR = {'js_g_three': {'eyes': [[354.8, 1269.8, 7.0, 6.5], [373.6, 1267.6, 6.12, 7.12]], 'mouth': [355.8, 1289.8, 373.2, 1289.8, 364.5, 1288.5], 'chin': 1304.5, 'neck': [364.5, 1314.5]}, 'js_hero': {'eyes': [[128.2, 242.1, 17.25, 16.62], [178.2, 241.2, 17.25, 16.75]], 'mouth': [136.2, 298.2, 172.0, 297.9, 154.1, 294.5], 'chin': 332.5, 'neck': [154.1, 357.9]}, 'js_g_point': {'eyes': [[212.6, 1268.8, 6.12, 6.25], [231.5, 1269.0, 7.0, 6.5]], 'mouth': [212.0, 1291.6, 233.0, 1292.6, 222.5, 1290.1], 'chin': 1304.5, 'neck': [222.5, 1314.5]}}
 
 
 def detect(name):
