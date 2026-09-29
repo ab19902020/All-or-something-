@@ -11,6 +11,7 @@ import json, sys, numpy as np, cv2
 META = json.load(open("build/parts/meta.json"))
 # approximate head box (1x sheet px) of each drawing that talks / blinks
 HEAD = {
+    "mg_front": (45, 110, 130, 218),
     "ck_front": (68, 118, 196, 245), "ck_q34l": (290, 118, 420, 245), "ck_q34r": (712, 118, 842, 245),
     "ck_g_explain": (160, 1198, 238, 1272), "ck_g_crossed": (38, 1198, 110, 1272),
     "js_hero": (50, 100, 262, 350), "js_q34l": (492, 138, 590, 250), "js_q34r": (792, 138, 900, 250),
@@ -28,8 +29,9 @@ def detect(name):
     m = META[name]
     img = cv2.imread(f"build/parts/{name}.png", cv2.IMREAD_UNCHANGED)
     ox, oy = m["off"]
-    def P(x, y): return (int(round((x - ox) * 4)), int(round((y - oy) * 4)))
-    def S(px, py): return (px / 4 + ox, py / 4 + oy)
+    K = m.get("scale", 4)
+    def P(x, y): return (int(round((x - ox) * K)), int(round((y - oy) * K)))
+    def S(px, py): return (px / K + ox, py / K + oy)
     hx0, hy0, hx1, hy1 = HEAD[name]
     (X0, Y0), (X1, Y1) = P(hx0, hy0), P(hx1, hy1)
     HB = Y1 - Y0                                   # head box height; the search area reaches below it for the chin
@@ -64,7 +66,7 @@ def detect(name):
     res = dict(eyes=[], head=list(HEAD[name]))
     for cx, cy, rx, ry in E:
         sx, sy = S(cx + X0, cy + Y0)
-        res["eyes"].append([round(sx, 1), round(sy, 1), round(rx / 4, 2), round(ry / 4, 2)])
+        res["eyes"].append([round(sx, 1), round(sy, 1), round(rx / K, 2), round(ry / K, 2)])
     if len(E) >= 1:
         ecy = np.mean([e[1] for e in E])
         ecx = np.mean([e[0] for e in E])
@@ -105,14 +107,15 @@ def draw(name, r, out):
     m = META[name]
     img = cv2.imread(f"build/parts/{name}.png", cv2.IMREAD_UNCHANGED)
     ox, oy = m["off"]
-    def P(x, y): return (int(round((x - ox) * 4)), int(round((y - oy) * 4)))
+    K = m.get("scale", 4)
+    def P(x, y): return (int(round((x - ox) * K)), int(round((y - oy) * K)))
     hx0, hy0, hx1, hy1 = r["head"]
     (X0, Y0), (X1, Y1) = P(hx0, hy0), P(hx1, hy1)
     Y1 += int(0.35 * (Y1 - Y0))
     X0, Y0 = max(0, X0), max(0, Y0)
     c = img[..., :3].copy()
     for cx, cy, rx, ry in r["eyes"]:
-        cv2.ellipse(c, P(cx, cy), (int(rx * 4), int(ry * 4)), 0, 0, 360, (0, 255, 0), 2)
+        cv2.ellipse(c, P(cx, cy), (int(rx * K), int(ry * K)), 0, 0, 360, (0, 255, 0), 2)
     if "mouth" in r:
         mo = r["mouth"]
         for i in range(3): cv2.circle(c, P(mo[2 * i], mo[2 * i + 1]), 5, (0, 0, 255), -1)

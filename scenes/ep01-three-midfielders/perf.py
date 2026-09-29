@@ -17,11 +17,13 @@ from direction import m, ls, le
 FPS = 30
 N = int(math.ceil(TL["total"] * FPS)) + 2
 L = json.load(open("build/lines.json"))
-WHO = ["ck", "js", "om", "br", "jr"]
-SPK = {"carrick": "ck", "jason": "js", "omar": "om", "bruno": "br", "jim": "jr", "narrator": "nar"}
+WHO = ["ck", "js", "om", "br", "jr", "mg"]
+SPK = {"carrick": "ck", "jason": "js", "omar": "om", "bruno": "br", "jim": "jr", "narrator": "mg"}
 
 # delivery tag, who the line is said to, stressed words (small nods)
 META = {
+    "nar_deadline": ("dramatic", "cam", ["deadline"]),
+    "nar_title": ("dry", "cam", ["something"]),
     "ck_two_things": ("calm", "js", ["two", "left", "striker"]),
     "js_sorted": ("confident", "ck", ["sorted"]),
     "ck_brilliant": ("relieved", "js", ["brilliant"]),
@@ -59,13 +61,13 @@ META = {
     "br_saudi": ("resigned", "cam", ["saudi"]),
 }
 # delivery tag -> (brow: + raised / - lowered, smile: + / - frown)
-TAG = dict(calm=(0.05, 0.0), confident=(0.15, 0.35), relieved=(0.5, 0.55), casual=(0.1, 0.3), confused=(0.8, -0.15),
+TAG = dict(dramatic=(-0.35, -0.2), dry=(0.3, 0.12), calm=(0.05, 0.0), confident=(0.15, 0.35), relieved=(0.5, 0.55), casual=(0.1, 0.3), confused=(0.8, -0.15),
            obvious=(0.45, 0.12), explaining=(0.4, 0.2), stunned=(1.0, -0.25), diplomatic=(0.3, 0.1),
            deadpan=(-0.12, -0.05), matter=(0.25, 0.1), frustrated=(-0.55, -0.3), angry=(-0.95, -0.4),
            disbelieving=(0.85, -0.2), deadpan_happy=(0.2, 0.45), concerned=(0.5, -0.3), awkward=(0.4, 0.15),
            detached=(-0.05, 0.0), defensive=(0.4, -0.12), smug=(-0.25, 0.6), sigh=(-0.1, -0.2), firm=(-0.3, 0.0),
            proud=(0.25, 0.5), regretful=(0.35, -0.35), resigned=(0.2, -0.28))
-BASE = dict(ck=(0.1, 0.0), js=(0.05, 0.12), om=(0.0, 0.0), br=(-0.3, -0.1), jr=(-0.1, 0.0))
+BASE = dict(ck=(0.1, 0.0), js=(0.05, 0.12), om=(0.0, 0.0), br=(-0.3, -0.1), jr=(-0.1, 0.0), mg=(-0.3, -0.15))
 
 
 def sm(x):
@@ -111,6 +113,7 @@ FORCED = {
     "om": [m("cut_om2") + 0.1],
     "br": [m("cut_br8") + 0.25, m("br_pause") + 0.1],
     "jr": [m("cut_jr2") + 0.45, m("cut_monaco") + 0.2],
+    "mg": [ls("nar_deadline") + 2.2],
 }
 # no automatic blinks in these holds (a look into the lens, a freeze)
 NOBLINK = {
@@ -119,6 +122,7 @@ NOBLINK = {
     "br": [(m("cut_br1") + 0.8, ls("br_you_bought") + 0.3), (m("cut_br8") + 0.5, m("br_pause"))],
     "jr": [],
     "om": [],
+    "mg": [],
 }
 
 
@@ -190,6 +194,7 @@ GAZE = {
 
 
 def target(w, t):
+    if w == "mg": return "cam"                              # the narrator talks straight down the lens
     for a, b, g in GAZE[w]:
         if a <= t < b: return g
     for lid, v in TL["lines"].items():                     # talking: to the person the line is for

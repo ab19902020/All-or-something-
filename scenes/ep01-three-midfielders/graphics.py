@@ -55,7 +55,7 @@ EXT_TEXT = (("MANCHESTER", BEBAS, 168, None, 10, 560, (255, 255, 255)),
 
 
 def ext_text(img, t, t0, t1):
-    k = sm((t - t0 - 0.25) / 0.45)
+    k = sm((t - t0 - 0.05) / 0.35)
     if k <= 0: return img
     lay = text_layer(EXT_TEXT)
     # a slow drift upwards while it holds

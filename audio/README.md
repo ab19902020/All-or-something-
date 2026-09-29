@@ -10,7 +10,7 @@ its exact word boundaries, so the extra words are simply not used.
 
 | Clip | Length | What's said |
 |---|---|---|
-| **Narrator** | | |
+| **Narrator (Mark Goldbridge, on screen at his desk)** | | |
 | `narrator/narrator_01_deadline-day-intro.mp3` | 14.6 s | Manchester United, transfer deadline day. The manager asked for two players. He got three midfielders. Nobody appears entirely sure why. This is All or Something. |
 | `narrator/narrator_02_everything-except-what-he-asked-for.mp3` | 4.4 s | Everything except what the manager actually asked for. |
 | **Michael Carrick** | | |

@@ -81,7 +81,7 @@ V_EYES = {("js", "ck"): (0.0, -0.05, 0.0), ("om", "ck"): (0.05, -0.05, 0.0), ("j
 
 
 def world_resolver(s, who):
-    tab = W_EYES if s["plate"] == "W" else V_EYES if s["plate"] == "V" else {}
+    tab = W_EYES if s["plate"] == "W" else V_EYES if s["plate"] == "V" else {}     # others: to the lens
     def res(g):
         if g == "cam": return (0.0, 0.0, 0.0)
         if g == "down": return (0.1, 0.85, 0.05)

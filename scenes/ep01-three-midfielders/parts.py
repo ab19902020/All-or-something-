@@ -10,9 +10,11 @@ a sheet coordinate (x, y) maps to part pixel ((x - off_x) * 4, (y - off_y) * 4).
 import json, os, sys, numpy as np, cv2
 
 S = {c: f"build/x4/{n}.png" for c, n in dict(ck="michael-carrick", js="jason-wilcox", om="omar-berrada",
-                                           br="bruno-fernandes", jr="jim-ratcliffe").items()}
+                                           br="bruno-fernandes", jr="jim-ratcliffe", mg="mark-goldbridge").items()}
 # name: (sheet, box x0, y0, x1, y1 in 1x sheet px[, core box to keep components from])
 P = {
+    # Mark Goldbridge (the narrator; his sheet comes from the Pass the Mic repo)
+    "mg_front": ("mg", 22, 104, 148, 404),
     # Michael Carrick (no hero drawing: the front turnaround is his main body)
     "ck_front": ("ck", 30, 112, 228, 522), "ck_q34l": ("ck", 258, 112, 450, 522), "ck_q34r": ("ck", 686, 112, 866, 522),
     "ck_g_explain": ("ck", 120, 1195, 282, 1352), "ck_g_talk": ("ck", 528, 1195, 672, 1352),
@@ -138,6 +140,25 @@ def cut(name, spec):
     return dict(sheet=sh, box=[x0, y0, x1, y1], off=[x0 + int(bx0) / 4, y0 + int(by0) / 4], size=[int(bx1 - bx0), int(by1 - by0)])
 
 
+# drawings seen large on screen get a second 4x AI upscale (then halved): 8 part px per sheet px
+X8 = ["ck_front", "ck_g_explain", "js_g_point", "om_g_explain", "br_g_shrug", "br_g_talk", "js_hand3", "mg_front"]
+
+
+def second_pass(name):
+    """4x part -> 8x: Real-ESRGAN on the colour (over a neutral grey, so the edge isn't pulled towards white),
+    the alpha resized; the 16x result is halved to 8x"""
+    import upscale
+    p = cv2.imread(f"build/parts/{name}.png", cv2.IMREAD_UNCHANGED)
+    a = p[..., 3:4].astype(np.float32) / 255
+    rgb = (p[..., :3].astype(np.float32) * a + 128 * (1 - a)).astype(np.uint8)
+    big = upscale.upscale(rgb[..., ::-1].copy(), "RealESRGAN_x4plus_anime_6B")[..., ::-1]
+    h, w = p.shape[0] * 2, p.shape[1] * 2
+    big = cv2.resize(big, (w, h), interpolation=cv2.INTER_AREA)
+    al = cv2.resize(p[..., 3], (w, h), interpolation=cv2.INTER_CUBIC)
+    al = np.clip((al.astype(np.float32) - 128) * 1.6 + 128, 0, 255).astype(np.uint8)     # keep the edge crisp
+    cv2.imwrite(f"build/parts/{name}.png", np.dstack([big, al]))
+
+
 def check(names, out):
     tiles = []
     for n in names:
@@ -160,6 +181,10 @@ if __name__ == "__main__":
             if not os.path.exists(S[spec[0]]): print("no 4x sheet yet:", S[spec[0]]); continue
             SHEETS[spec[0]] = cv2.imread(S[spec[0]])
         meta[name] = cut(name, spec)
+        if name in X8:
+            second_pass(name)
+            meta[name]["scale"] = 8
+            meta[name]["size"] = [meta[name]["size"][0] * 2, meta[name]["size"][1] * 2]
         print(name, meta[name]["size"])
     json.dump(meta, open("build/parts/meta.json", "w"), indent=1)
     for c in S:

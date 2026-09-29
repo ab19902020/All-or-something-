@@ -9,7 +9,9 @@ Two kinds of shot:
 Eyelines follow the seating in the wide shot (see EYES): Carrick at the head of the table under the tactics screen,
 Bruno beside him, Jim further down the same side, Jason and Omar at the far end opposite Carrick."""
 import math
+import json
 from timeline import TL
+L = json.load(open("build/lines.json"))
 
 T_END = TL["total"]
 
@@ -19,7 +21,7 @@ def ls(k): return TL["lines"][k]["start"]
 def le(k): return TL["lines"][k]["end"]
 
 
-PLATES = {"EXT": "carrington-entrance", "W": "boardroom-wide", "T": "tactics-room-screen",
+PLATES = {"STU": "fan-channel-studio", "EXT": "carrington-entrance", "W": "boardroom-wide", "T": "tactics-room-screen",
           "V": "boardroom-window-view", "S": "boardroom-side-view", "M": "monaco-office"}
 
 # things in front of the actors (1x plate px polygons)
@@ -31,6 +33,10 @@ OCCL = {
           "fgchair": [[(62, 1225), (80, 1188), (130, 1170), (360, 1164), (600, 1166), (640, 1180), (656, 1214),
                        (660, 1672), (58, 1672)],
                       [(878, 1335), (896, 1302), (941, 1298), (941, 1672), (868, 1672)]]},
+    "STU": {"desk": [[(0, 590), (1672, 590), (1672, 941), (0, 941)],
+                      [(385, 497), (612, 497), (632, 606), (400, 606)],
+                      [(612, 522), (597, 500), (660, 447), (689, 454), (691, 479), (628, 530)],
+                      [(644, 544), (722, 544), (724, 613), (647, 613)]]},
     "M": {"coffee": [[(0, 1168), (120, 1172), (205, 1190), (252, 1232), (252, 1310), (205, 1356), (0, 1398)],
                      [(0, 1330), (392, 1330), (396, 1672), (0, 1672)]]},
 }
@@ -45,7 +51,7 @@ SET = {
     "jr": dict(bg=("W", 255, 470, 2.0, 6.0), fg=("V", "table", 300, 760, 3.1, 2.5)),
 }
 # the main drawing for each character's single
-MAIN = {"ck": "ck_front", "js": "js_hero", "om": "om_hero", "br": "br_hero", "jr": "jr_hero"}
+MAIN = {"mg": "mg_front", "ck": "ck_front", "js": "js_hero", "om": "om_hero", "br": "br_hero", "jr": "jr_hero"}
 
 # gaze in each character's single: screen direction (x: -1 left .. 1 right, y: + down) and head turn towards
 # each other character, from the seating (see the module docstring)
@@ -74,10 +80,12 @@ WIDE_FAR = [("ck", "ck_front", (712, 668), 18.0, False),
             ("jr", "jr_q34l", (126, 822), 23.0, False)]
 WIDE_NEAR = [("js", "js_back", (352, 1036), 60.0, False),
              ("om", "om_back", (838, 1050), 60.0, False)]
-EXECS = [("om", "om_hero", (318, 684), 16.5, False),
-         ("js", "js_hero", (478, 682), 16.5, False),
-         ("jr", "jr_q34r", (702, 736), 17.5, True)]
+EXECS = [("om", "om_hero", (352, 684), 16.5, False),
+         ("js", "js_hero", (492, 682), 16.5, False),
+         ("jr", "jr_q34r", (648, 706), 17.5, True)]
 MONACO = [("jr", "jr_hero", (300, 700), 45.0, False)]
+# Mark Goldbridge, the narrator, at his fan-channel desk (behind the desk, mic and mug in front of him)
+MARK = [("mg", "mg_front", (702, 400), 52.0, False)]
 
 
 def world(t, plate, cam0, cam1=None, layers=(), grade="board", drift=0.6, blur=0.0, ease="inout", cams=None):
@@ -91,56 +99,70 @@ def card(t, kind):
     return dict(t=t, kind=kind)
 
 
+def wt(lid, word):
+    """timeline time a word of a line starts"""
+    for w in L[lid]["words"]:
+        if w["w"] == word: return ls(lid) + w["s"]
+    raise KeyError(word)
+
+
 W_LAYERS = [("actors", WIDE_FAR), ("occl", "table"), ("actors", WIDE_NEAR), ("occl", "fgchair")]
 V_LAYERS = [("actors", EXECS), ("occl", "table")]
+S_LAYERS = [("actors", MARK), ("occl", "desk")]
+MARK_IN = wt("nar_deadline", "transfer") - 0.08      # the narrator is seen from "...transfer deadline day"
+LOGO = wt("nar_title", "all") - 0.04                  # "This is..." on Mark, the logo slams in on "ALL"
 
+MCU, CU = 180.0, 222.0          # eye distance of a medium close-up / close-up (screen px)
 SHOTS = [
     # 00:00 Carrington exterior: slow cinematic push, grey Manchester, big white text
     dict(world(0.0, "EXT", (470, 836, 1.0), (470, 800, 1.13), grade="grey", drift=0.3), text="ext"),
+    # Mark Goldbridge, deadly serious at his desk: "...transfer deadline day."
+    world(MARK_IN, "STU", (702, 470, 3.5), (702, 452, 3.75), S_LAYERS, drift=0.4),
     # 00:03 boardroom wide: all at the table, slow push towards Carrick
-    world(m("cut_wide"), "W", (470, 836, 1.0), (690, 712, 1.62), W_LAYERS),
-    single(m("cut_js1"), "js"),                                               # Sorted.
-    single(m("cut_ck1"), "ck", ed=138),                                       # Brilliant. (relieved)
-    single(m("cut_js2"), "js", push=(1.0, 1.03)),                             # We bought three midfielders.
-    single(m("cut_ck2"), "ck", ed=178, eye=(520, 720), table=4.5, push=(1.0, 1.05)),   # close-up: blink, head move
-    single(m("cut_om1"), "om", draw="om_g_explain", ed=118, eye=(560, 640), table=5.0, push=(1.0, 1.03)),
-    dict(single(m("cut_js3"), "js", ed=138, eye=(575, 650), push=(1.0, 1.03)), hand3=True),   # three fingers
-    single(m("cut_ck3"), "ck", ed=150, push=(1.0, 1.09), drift=0.5),          # slowly looks into the lens, holds
-    single(m("cut_br1"), "br", ed=170, eye=(540, 720), table=4.3, push=(1.0, 1.05)),   # Bruno realises
-    single(m("cut_js_nod"), "js", ed=140),                                    # Jason nods proudly
-    single(m("cut_ck4"), "ck", ed=140, push=(1.0, 1.0)),                      # Look, I'm not complaining...
-    single(m("ck_lean"), "ck", ed=150, eye=(520, 690), push=(1.0, 1.08)),     # leans forward: who's scoring the GOALS?
-    single(m("cut_om2"), "om"),                                               # Bruno.
-    dict(single(m("cut_br2"), "br", ed=168, eye=(540, 720), table=4.3), whip=True),   # whip: Sorry... what?
-    single(m("cut_om3"), "om", draw="om_g_explain", ed=118, eye=(560, 640), table=5.0, push=(1.0, 1.04)),
-    single(m("cut_br3"), "br", draw="br_g_shrug", ed=122, eye=(540, 640), table=4.9, push=(1.0, 1.03)),
-    single(m("cut_js4"), "js", draw="js_g_point", ed=120, eye=(640, 640), table=5.0),   # Bruno. (points)
-    single(m("cut_br4"), "br", ed=182, eye=(540, 720), table=4.2, push=(1.02, 1.07)),   # ME? I'm taking the corner!
-    single(m("cut_ck5"), "ck", ed=150),                                       # trying not to react
-    single(m("cut_br5"), "br", draw="br_g_talk", ed=122, eye=(540, 640), table=4.9),    # I'm a MIDFIELDER
-    single(m("cut_js5"), "js", ed=140),                                       # Perfect... loads of midfielders
-    single(m("cut_ck6"), "ck", ed=140),                                       # And the left-back?
-    single(m("cut_js6"), "js", ed=140),                                       # We've got Luke.
-    single(m("cut_ck7"), "ck", ed=145, push=(1.0, 1.14)),                     # Luke? For the WHOLE season?
-    single(m("cut_js7"), "js", ed=150, push=(1.0, 1.05)),                     # freezes... Next question.
-    single(m("cut_br6"), "br", ed=150, eye=(540, 690)),                       # sinks back into his chair
-    dict(single(m("cut_jr1"), "jr", ed=140, push=(1.0, 1.05)), paper=True),   # the bigger issues facing Britain
-    world(m("cut_wide2"), "W", (430, 800, 1.06), (430, 795, 1.1), W_LAYERS), # everyone looks at Jim
-    single(m("cut_br7"), "br", ed=160, eye=(540, 700), push=(1.0, 1.06)),     # Jim... you live in Monaco.
-    single(m("cut_jr2"), "jr", ed=150, push=(1.0, 1.02), drift=0.4),          # silence
-    world(m("cut_monaco"), "M", (330, 860, 1.12), (300, 780, 1.42), [("actors", MONACO), ("occl", "coffee")],
-          grade="monaco", drift=0.4),                                         # HARD CUT TO MONACO
-    single(m("cut_ck8"), "ck", ed=140),                                       # smash cut: Right, so no striker?
-    single(m("cut_om4"), "om"),                                               # No striker.
-    single(m("cut_ck9"), "ck", ed=146),                                       # No left-back?
-    single(m("cut_js8"), "js"),                                               # No left-back.
-    single(m("cut_ck10"), "ck", ed=146, push=(1.0, 1.06)),                    # looks between them: But THREE?
-    world(m("cut_execs"), "V", None, layers=V_LAYERS, drift=0.5,              # the three of them nod
-          cams=[(m("cut_execs"), (505, 700, 1.85)), (ls("js_three_mids") + 0.05, (478, 690, 3.3)),
-                (m("om_line") + 0.1, (318, 692, 3.3)), (m("jr_nod") - 0.05, (505, 700, 1.85))]),
-    single(m("cut_br8"), "br", ed=172, eye=(540, 720), table=4.3, push=(1.0, 1.08), quiet=1.0),   # the button
+    world(m("cut_wide"), "W", (520, 800, 1.12), (700, 700, 2.45), W_LAYERS),
+    single(m("cut_js1"), "js", ed=MCU),                                           # Sorted.
+    single(m("cut_ck1"), "ck", ed=MCU),                                           # Brilliant. (relieved)
+    single(m("cut_js2"), "js", ed=MCU, push=(1.0, 1.03)),                         # We bought three midfielders.
+    single(m("cut_ck2"), "ck", ed=CU, eye=(520, 700), table=4.4, push=(1.0, 1.05)),   # close-up: blink, head move
+    single(m("cut_om1"), "om", draw="om_g_explain", ed=128, eye=(560, 620), table=5.0, push=(1.0, 1.03)),
+    dict(single(m("cut_js3"), "js", ed=MCU, eye=(585, 640), push=(1.0, 1.03)), hand3=True),   # three fingers
+    single(m("cut_ck3"), "ck", ed=190, push=(1.0, 1.09), drift=0.5),              # slowly looks into the lens, holds
+    single(m("cut_br1"), "br", ed=CU, eye=(540, 700), table=4.3, push=(1.0, 1.05)),   # Bruno realises
+    single(m("cut_js_nod"), "js", ed=MCU),                                        # Jason nods proudly
+    single(m("cut_ck4"), "ck", ed=MCU, push=(1.0, 1.0)),                          # Look, I'm not complaining...
+    single(m("ck_lean"), "ck", ed=192, eye=(520, 670), push=(1.0, 1.08)),         # leans forward: who's scoring the GOALS?
+    single(m("cut_om2"), "om", ed=MCU),                                           # Bruno.
+    dict(single(m("cut_br2"), "br", ed=CU, eye=(540, 700), table=4.3), whip=True),    # whip: Sorry... what?
+    single(m("cut_om3"), "om", draw="om_g_explain", ed=128, eye=(560, 620), table=5.0, push=(1.0, 1.04)),
+    single(m("cut_br3"), "br", draw="br_g_shrug", ed=132, eye=(540, 620), table=4.9, push=(1.0, 1.03)),
+    single(m("cut_js4"), "js", draw="js_g_point", ed=134, eye=(660, 620), table=5.0),     # Bruno. (points)
+    single(m("cut_br4"), "br", ed=232, eye=(540, 700), table=4.2, push=(1.02, 1.07)),     # ME? I'm taking the corner!
+    single(m("cut_ck5"), "ck", ed=190),                                           # trying not to react
+    single(m("cut_br5"), "br", draw="br_g_talk", ed=132, eye=(540, 620), table=4.9),      # I'm a MIDFIELDER
+    single(m("cut_js5"), "js", ed=MCU),                                           # Perfect... loads of midfielders
+    single(m("cut_ck6"), "ck", ed=MCU),                                           # And the left-back?
+    single(m("cut_js6"), "js", ed=MCU),                                           # We've got Luke.
+    single(m("cut_ck7"), "ck", ed=185, push=(1.0, 1.16)),                         # Luke? For the WHOLE season?
+    single(m("cut_js7"), "js", ed=192, push=(1.0, 1.05)),                         # freezes... Next question.
+    single(m("cut_br6"), "br", ed=192, eye=(540, 670)),                           # sinks back into his chair
+    dict(single(m("cut_jr1"), "jr", ed=MCU, push=(1.0, 1.05)), paper=True),       # the bigger issues facing Britain
+    world(m("cut_wide2"), "W", (430, 790, 1.28), (430, 786, 1.33), W_LAYERS),     # everyone looks at Jim
+    single(m("cut_br7"), "br", ed=205, eye=(540, 690), push=(1.0, 1.06)),         # Jim... you live in Monaco.
+    single(m("cut_jr2"), "jr", ed=192, push=(1.0, 1.02), drift=0.4),              # silence
+    world(m("cut_monaco"), "M", (320, 830, 1.35), (300, 752, 2.0), [("actors", MONACO), ("occl", "coffee")],
+          grade="monaco", drift=0.4),                                             # HARD CUT TO MONACO
+    single(m("cut_ck8"), "ck", ed=MCU),                                           # smash cut: Right, so no striker?
+    single(m("cut_om4"), "om", ed=MCU),                                           # No striker.
+    single(m("cut_ck9"), "ck", ed=186),                                           # No left-back?
+    single(m("cut_js8"), "js", ed=MCU),                                           # No left-back.
+    single(m("cut_ck10"), "ck", ed=186, push=(1.0, 1.06)),                        # looks between them: But THREE?
+    world(m("cut_execs"), "V", None, layers=V_LAYERS, drift=0.5,                  # the three of them nod
+          cams=[(m("cut_execs"), (500, 700, 2.35)), (ls("js_three_mids") + 0.05, (492, 690, 4.3)),
+                (m("om_line") + 0.1, (352, 692, 4.3)), (m("jr_nod") - 0.05, (500, 700, 2.35))]),
+    single(m("cut_br8"), "br", ed=CU, eye=(540, 700), table=4.3, push=(1.0, 1.08), quiet=1.0),   # the button
     card(m("cut_black"), "black"),
-    card(m("cut_title"), "title"),
+    world(m("cut_title"), "STU", (702, 455, 3.75), (702, 445, 3.95), S_LAYERS, drift=0.3),   # Mark: "This is..."
+    card(LOGO, "title"),                                                          # ALL OR SOMETHING
 ]
 for i, s in enumerate(SHOTS):
     s["end"] = SHOTS[i + 1]["t"] if i + 1 < len(SHOTS) else T_END

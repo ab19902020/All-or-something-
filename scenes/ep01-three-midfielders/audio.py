@@ -12,7 +12,7 @@ python3 audio.py -> build/episode_audio.wav (48 kHz stereo)"""
 import json, math, numpy as np, soundfile as sf
 from scipy import signal
 from timeline import TL
-from direction import m, ls, le, WHIPS
+from direction import m, ls, le, WHIPS, MARK_IN, LOGO
 
 SR = 48000
 TOTAL = TL["total"]
@@ -279,8 +279,13 @@ def dialogue(bus):
 
 
 def ambience(bus):
-    # grey Manchester: wind, drizzle, distant traffic
-    t1 = m("cut_wide")
+    # Mark's fan-channel studio: a quiet room hum under his two shots
+    for a, b in ((MARK_IN, m("cut_wide")), (m("cut_title"), LOGO)):
+        n = int((b - a) * SR)
+        hum = at_level(lp(noise(n, "brown"), 180, 2), -52) + at_level(hp(noise(n), 5000, 2), -66)
+        bus.add(hum * fade(n, 0.003, 0.003), a)
+    # grey Manchester: wind, drizzle, distant traffic (outside only)
+    t1 = MARK_IN
     n = int((t1 + 0.02) * SR)
     wind = lp(noise(n, "pink"), 600, 2) * (1 + 0.35 * np.sin(np.arange(n) / SR * 0.9))
     rain = hp(noise(n), 3500, 2) * (0.6 + 0.4 * (noise(n) > 1.8))
@@ -318,8 +323,8 @@ def music(bus):
     d = strings([note("D2"), note("A2")], b - a + 0.05, 1.2, 0.05, 500)
     bus.add(at_level(d, -40) * fade(len(d), 0.8, 0.01), a)
     # title: riser, boom and chord, cut hard at the very end (the Short loops)
-    st = title_sting(TOTAL - m("cut_title") + 0.5)
-    bus.add(at_level(st, -20), m("cut_title"))
+    st = title_sting(TOTAL - LOGO + 0.5)
+    bus.add(at_level(st, -20), LOGO)
 
 
 def foley(bus):
