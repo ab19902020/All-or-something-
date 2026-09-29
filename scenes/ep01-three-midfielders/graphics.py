@@ -201,3 +201,63 @@ def finish(img, frame):
     g = cv2.resize(g, (OW, OH), interpolation=cv2.INTER_LINEAR)
     img = img + g[..., None] * 0.009
     return np.clip(img, 0, 1)
+
+
+# ---------------------------------------------------------------- documentary captions
+@functools.lru_cache(maxsize=16)
+def caption_layer(kind, a, b):
+    """a caption drawn once (premultiplied RGBA float, full frame)"""
+    im = Image.new("RGBA", (OW, OH), (0, 0, 0, 0))
+    dr = ImageDraw.Draw(im)
+    S = RS
+    if kind == "name":                                    # lower third: red bar, name, role
+        x, y = int(64 * S), int(1262 * S)
+        fn, fr = font(BEBAS, 84 * S), font(INTER, 40 * S, 600)
+        wn = dr.textlength(a, font=fn); wr = dr.textlength(b, font=fr)
+        w = int(max(wn, wr) + 64 * S)
+        dr.rectangle((x - int(22 * S), y - int(14 * S), x + w, y + int(146 * S)), fill=(12, 12, 14, 170))
+        dr.rectangle((x - int(22 * S), y - int(14 * S), x - int(12 * S), y + int(146 * S)), fill=(218, 22, 30, 255))
+        dr.text((x + int(8 * S), y - int(6 * S)), a, font=fn, fill=(255, 255, 255, 255))
+        dr.text((x + int(10 * S), y + int(88 * S)), b, font=fr, fill=(215, 215, 215, 255))
+    elif kind == "place":                                 # location slug, top left
+        x, y = int(64 * S), int(150 * S)
+        fn, fr = font(BEBAS, 76 * S), font(INTER, 36 * S, 600)
+        w = int(max(dr.textlength(a, font=fn), dr.textlength(b, font=fr)) + 48 * S)
+        dr.rectangle((x - int(24 * S), y - int(16 * S), x + w, y + int(160 * S)), fill=(12, 12, 14, 175))
+        dr.text((x, y), a, font=fn, fill=(255, 255, 255, 255))
+        dr.rectangle((x, y + int(88 * S), x + int(96 * S), y + int(94 * S)), fill=(218, 22, 30, 255))
+        dr.text((x, y + int(106 * S)), b, font=fr, fill=(240, 240, 240, 255))
+    elif kind == "stats":                                 # the transfer tally
+        cols = [("STRIKERS", "0"), ("LEFT-BACKS", "0"), ("MIDFIELDERS", "3")]
+        y = int(1440 * S)
+        fh, fl, fnum = font(INTER, 30 * S, 600), font(INTER, 30 * S, 600), font(BEBAS, 150 * S)
+        title = "DEADLINE DAY SIGNINGS"
+        wt = dr.textlength(title, font=fh)
+        dr.rectangle((int(40 * S), y - int(30 * S), OW - int(40 * S), y + int(270 * S)), fill=(12, 12, 14, 185))
+        dr.rectangle((int(40 * S), y - int(30 * S), OW - int(40 * S), y - int(22 * S)), fill=(218, 22, 30, 255))
+        dr.text(((OW - wt) / 2, y), title, font=fh, fill=(200, 200, 200, 255))
+        cw = (OW - 80 * S) / 3
+        for i, (lab, num) in enumerate(cols):
+            cx = 40 * S + cw * (i + 0.5)
+            wn = dr.textlength(num, font=fnum); wl = dr.textlength(lab, font=fl)
+            col = (255, 255, 255, 255) if num != "3" else (240, 200, 60, 255)
+            dr.text((cx - wn / 2, y + int(44 * S)), num, font=fnum, fill=col)
+            dr.text((cx - wl / 2, y + int(206 * S)), lab, font=fl, fill=(230, 230, 230, 255))
+    arr = np.asarray(im).astype(np.float32) / 255.0
+    arr[..., :3] *= arr[..., 3:4]
+    return arr
+
+
+def captions(img, t, caps):
+    for t0, t1, kind, a, b in caps:
+        if not (t0 <= t < t1): continue
+        k = sm((t - t0) / 0.22) * (1 - sm((t - (t1 - 0.2)) / 0.2))
+        lay = caption_layer(kind, a, b)
+        dx = int(round((1 - sm((t - t0) / 0.3)) * -36 * RS)) if kind != "stats" else 0
+        if dx: lay = np.roll(lay, dx, 1) if dx > -OW else lay
+        if kind == "stats":                                # the numbers land one by one
+            pass
+        sh = shadow_of(lay, 8, (0, 4), 0.35)
+        img = img * (1 - sh[..., None] * k)
+        img = img * (1 - lay[..., 3:4] * k) + lay[..., :3] * k
+    return img

@@ -9,7 +9,9 @@ Two kinds of shot:
 Eyelines follow the seating in the wide shot (see EYES): Carrick at the head of the table under the tactics screen,
 Bruno beside him, Jim further down the same side, Jason and Omar at the far end opposite Carrick."""
 import math
+import json
 from timeline import TL
+LN = json.load(open("build/lines.json"))
 
 T_END = TL["total"]
 
@@ -58,13 +60,24 @@ EYES = {
 }
 
 
+def wt(lid, word, k=1):
+    """timeline time of the k-th occurrence of a word in a line"""
+    n = 0
+    for w in LN[lid]["words"]:
+        if w["w"] == word:
+            n += 1
+            if n == k: return ls(lid) + w["s"]
+    raise KeyError(word)
+
+
 def single(t, who, draw=None, ed=140.0, eye=(540, 660), table=4.6, push=(1.0, 1.04), drift=1.0, grade="board",
-           bg=None, fg=None, quiet=0.0, lean=None):
+           bg=None, fg=None, quiet=0.0, lean=None, punch=None):
     """one character on screen: eye = where the point between his eyes goes, ed = his eye distance (screen px),
     table = the table edge's distance below the eyes in eye distances, push = scale at the shot's start / end"""
     s = SET[who]
     return dict(t=t, kind="single", who=who, draw=draw or MAIN[who], ed=ed, eye=eye, table=table, push=push,
-                drift=drift, grade=grade, bg=bg or s["bg"], fg=fg if fg is not None else s["fg"], quiet=quiet)
+                drift=drift, grade=grade, bg=bg or s["bg"], fg=fg if fg is not None else s["fg"], quiet=quiet,
+                punch=punch)
 
 
 # ---------------------------------------------------------------- world shots
@@ -115,8 +128,11 @@ SHOTS = [
     single(m("cut_js2"), "js", ed=MCU, push=(1.0, 1.03)),                         # We bought three midfielders.
     single(m("cut_ck2"), "ck", ed=CU, eye=(520, 700), table=4.4, push=(1.0, 1.05)),   # close-up: blink, head move
     single(m("cut_om1"), "om", draw="om_g_explain", ed=128, eye=(560, 620), table=5.0, push=(1.0, 1.03)),
-    single(m("cut_js3"), "js", draw="js_g_three", ed=130, eye=(600, 620), table=5.0, push=(1.0, 1.03)),  # three
+    single(m("cut_js3"), "js", draw="js_g_three", ed=130, eye=(600, 620), table=5.0, push=(1.0, 1.02),
+           punch=(wt("js_three_things", "technically"), 1.14)),                   # three fingers; snap on "technically"
     single(m("cut_ck3"), "ck", ed=190, push=(1.0, 1.09), drift=0.5),              # slowly looks into the lens, holds
+    single(m("cut_om5"), "om", ed=MCU, push=(1.0, 1.03),
+           punch=(wt("om_positions", "no"), 1.18)),                               # "...No." (snap in on it)
     single(m("cut_br1"), "br", ed=CU, eye=(540, 700), table=4.3, push=(1.0, 1.05)),   # Bruno realises
     single(m("cut_js_nod"), "js", ed=MCU),                                        # Jason nods proudly
     single(m("cut_ck4"), "ck", ed=MCU, push=(1.0, 1.0)),                          # Look, I'm not complaining...
@@ -126,18 +142,21 @@ SHOTS = [
     single(m("cut_om3"), "om", draw="om_g_explain", ed=128, eye=(560, 620), table=5.0, push=(1.0, 1.04)),
     single(m("cut_br3"), "br", draw="br_g_shrug", ed=132, eye=(540, 620), table=4.9, push=(1.0, 1.03)),
     single(m("cut_js4"), "js", draw="js_g_point", ed=134, eye=(660, 620), table=4.22),     # Bruno. (points)
-    single(m("cut_br4"), "br", ed=232, eye=(540, 700), table=4.2, push=(1.02, 1.07)),     # ME? I'm taking the corner!
+    single(m("cut_br4"), "br", ed=205, eye=(540, 700), table=4.2, push=(1.0, 1.04),
+           punch=(ls("br_me") + 0.02, 1.16)),                                     # ME? (snap) I'm taking the corner!
     single(m("cut_ck5"), "ck", ed=190),                                           # trying not to react
     single(m("cut_br5"), "br", draw="br_g_talk", ed=132, eye=(540, 620), table=4.9),      # I'm a MIDFIELDER
     single(m("cut_js5"), "js", ed=MCU),                                           # Perfect... loads of midfielders
+    single(m("cut_br9"), "br", ed=CU, eye=(540, 700), table=4.3, push=(1.0, 1.02), drift=0.4,
+           punch=(wt("br_brilliant", "absolutely"), 1.1)),                        # "Brilliant. Absolutely brilliant."
     single(m("cut_ck6"), "ck", ed=MCU),                                           # And the left-back?
-    single(m("cut_js6"), "js", ed=MCU),                                           # We've got Luke.
+    single(m("cut_js6"), "js", ed=MCU, punch=(wt("js_luke", "luke"), 1.12)),       # We've got... LUKE.
     single(m("cut_ck7"), "ck", ed=185, push=(1.0, 1.16)),                         # Luke? For the WHOLE season?
     single(m("cut_js7"), "js", ed=192, push=(1.0, 1.05)),                         # freezes... Next question.
     single(m("cut_br6"), "br", ed=192, eye=(540, 670)),                           # sinks back into his chair
     dict(single(m("cut_jr1"), "jr", ed=MCU, push=(1.0, 1.05)), paper=True),       # the bigger issues facing Britain
     world(m("cut_wide2"), "W", (430, 800, 1.1), (430, 796, 1.14), W_LAYERS),      # everyone looks at Jim
-    single(m("cut_br7"), "br", ed=205, eye=(540, 690), push=(1.0, 1.06)),         # Jim... you live in Monaco.
+    single(m("cut_br7"), "br", ed=205, eye=(540, 690), push=(1.0, 1.08), drift=0.4),   # Jim... you live in Monaco.
     single(m("cut_jr2"), "jr", ed=192, push=(1.0, 1.02), drift=0.4),              # silence
     world(m("cut_monaco"), "M", (320, 830, 1.35), (300, 752, 2.0), [("actors", MONACO), ("occl", "coffee")],
           grade="monaco", drift=0.4),                                             # HARD CUT TO MONACO
@@ -148,7 +167,7 @@ SHOTS = [
     single(m("cut_ck10"), "ck", ed=186, push=(1.0, 1.06)),                        # looks between them: But THREE?
     group(m("cut_execs"), EXECS, table_y=1232,                                    # the three of them nod
           cams=[(m("cut_execs"), (540, 1010, 1.0)), (ls("js_three_mids") + 0.02, (542, 905, 1.85)),
-                (m("om_line") + 0.08, (206, 915, 1.85)), (m("jr_nod") - 0.12, (876, 920, 1.85))]),
+                (m("om_line") + 0.08, (206, 915, 1.85)), (m("jr_nod") - 0.02, (876, 920, 1.85))]),
     single(m("cut_br8"), "br", ed=CU, eye=(540, 700), table=4.3, push=(1.0, 1.08), quiet=1.0),   # the button
     card(m("cut_black"), "black"),
     card(m("cut_title"), "title"),                                                # ALL OR SOMETHING
@@ -156,6 +175,18 @@ SHOTS = [
 for i, s in enumerate(SHOTS):
     s["end"] = SHOTS[i + 1]["t"] if i + 1 < len(SHOTS) else T_END
     s["i"] = i
+
+# documentary captions: (start, end, kind, text 1, text 2). "name" = lower third on a character's first single,
+# "place" = location slug, "stats" = the transfer tally
+CAPTIONS = [
+    (m("cut_ck2") + 0.25, m("cut_om1") - 0.05, "name", "MICHAEL CARRICK", "Head Coach"),
+    (m("cut_om1") + 0.15, m("cut_js3") - 0.05, "name", "OMAR BERRADA", "Chief Executive"),
+    (m("cut_js3") + 0.15, m("cut_ck3") - 0.05, "name", "JASON WILCOX", "Technical Director"),
+    (m("cut_br1") + 0.2, m("cut_js_nod") - 0.05, "name", "BRUNO FERNANDES", "Club Captain"),
+    (m("cut_jr1") + 0.3, m("cut_wide2") - 0.05, "name", "SIR JIM RATCLIFFE", "Co-Owner"),
+    (m("cut_monaco") + 0.15, m("cut_ck8"), "place", "MONACO", "800 miles from Carrington"),
+    (ls("js_three_mids") - 0.1, m("cut_br8"), "stats", "", ""),
+]
 
 # fast cuts for the whip (Bruno "Sorry... what?") and smash (back from Monaco)
 WHIPS = [m("cut_br2")]

@@ -147,6 +147,8 @@ FEET = {"jr_hero": (163, 783, 250)}
 def render_single(s, t):
     u = (t - s["t"]) / max(1e-3, s["end"] - s["t"])
     p = s["push"][0] + (s["push"][1] - s["push"][0]) * D.ease(u)
+    if s.get("punch") and t >= s["punch"][0]:          # a snap punch-in on the punchline (3 frames)
+        p *= 1 + (s["punch"][1] - 1) * D.ease((t - s["punch"][0]) / 0.1)
     dx, dy = drift(t, s, s["drift"])
     ex, ey = s["eye"]
     F = (ex, ey)
@@ -311,6 +313,7 @@ def render_frame(f):
             img = cv2.warpAffine(img, np.float32([[z, 0, OW / 2 * (1 - z) + sh], [0, z, OH / 2 * (1 - z)]]),
                                  (OW, OH), borderMode=cv2.BORDER_REPLICATE)
     if s["kind"] in ("single", "world", "group"):
+        img = G.captions(img, t, D.CAPTIONS)
         img = G.finish(img, f)
     return (np.clip(img, 0, 1) * 255 + 0.5).astype(np.uint8)
 

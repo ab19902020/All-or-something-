@@ -29,6 +29,7 @@ META = {
     "ck_i_said": ("confused", "js", ["left", "striker"]),
     "om_yeah_but": ("obvious", "ck", ["three"]),
     "js_three_things": ("explaining", "ck", ["three", "two", "technically", "won"]),
+    "om_positions": ("honest", "ck", ["positions", "no"]),
     "br_you_bought": ("stunned", "js", ["three"]),
     "ck_not_complaining": ("diplomatic", "js", ["complaining", "love", "great"]),
     "ck_whos_scoring": ("deadpan", "js", ["actually", "goals"]),
@@ -40,6 +41,7 @@ META = {
     "br_me": ("angry", "js", ["me", "corner"]),
     "br_midfielder": ("disbelieving", "js", ["midfielder"]),
     "js_perfect": ("deadpan_happy", "br", ["perfect", "loads"]),
+    "br_brilliant": ("deadpan", "js", ["brilliant", "absolutely"]),
     "ck_left_back": ("concerned", "js", ["left"]),
     "js_luke": ("casual", "ck", ["luke"]),
     "ck_luke": ("disbelieving", "js", ["luke", "whole"]),
@@ -55,11 +57,12 @@ META = {
     "ck_but_three": ("confused", "js", ["three"]),
     "js_three_mids": ("proud", "ck", ["three"]),
     "om_three_mids": ("proud", "ck", ["three"]),
+    "jr_good_meeting": ("smug", "ck", ["good"]),
     "br_sunshine": ("regretful", "cam", ["sunshine"]),
     "br_saudi": ("resigned", "cam", ["saudi"]),
 }
 # delivery tag -> (brow: + raised / - lowered, smile: + / - frown)
-TAG = dict(calm=(0.05, 0.0), confident=(0.15, 0.35), relieved=(0.5, 0.55), casual=(0.1, 0.3), confused=(0.8, -0.15),
+TAG = dict(honest=(0.35, -0.05), calm=(0.05, 0.0), confident=(0.15, 0.35), relieved=(0.5, 0.55), casual=(0.1, 0.3), confused=(0.8, -0.15),
            obvious=(0.45, 0.12), explaining=(0.4, 0.2), stunned=(1.0, -0.25), diplomatic=(0.3, 0.1),
            deadpan=(-0.12, -0.05), matter=(0.25, 0.1), frustrated=(-0.55, -0.3), angry=(-0.95, -0.4),
            disbelieving=(0.85, -0.2), deadpan_happy=(0.2, 0.45), concerned=(0.5, -0.3), awkward=(0.4, 0.15),
@@ -84,7 +87,7 @@ def _speech():
     talking = {w: np.zeros(N, bool) for w in WHO}
     for lid, v in TL["lines"].items():
         who = SPK[v["speaker"]]
-        if who not in ev: continue
+        if who not in ev or L[lid].get("missing"): continue
         ev[who] += face.viseme_events(L[lid]["phones"], v["start"])
         y, sr = sf.read(f"build/lines/{lid}.wav", dtype="float32")
         if y.ndim > 1: y = y.mean(1)
@@ -177,7 +180,8 @@ GAZE = {
            (m("cut_wide2"), m("cut_br7"), "jr")],
     "js": [(m("cut_js7") + 0.3, m("cut_js7") + 0.58, "om"), (m("cut_js7") + 0.58, ls("js_next_question") + 0.2, "cam"),
            (m("cut_wide2"), m("cut_br7"), "jr")],
-    "om": [(ls("om_efficient"), le("om_efficient"), "br"), (m("cut_wide2"), m("cut_br7"), "jr")],
+    "om": [(ls("om_efficient"), le("om_efficient"), "br"), (m("cut_wide2"), m("cut_br7"), "jr"),
+           (ls("om_positions") + 0.9, ls("om_positions") + 1.35, ("dir", -0.3, 0.55, -0.05))],
     "br": [(m("cut_br1"), m("cut_br1") + 0.42, "ck"), (m("cut_br1") + 0.42, m("cut_br1") + 0.85, "js"),
            (m("cut_br1") + 0.85, ls("br_you_bought") + 0.35, "cam"),
            (m("cut_br6") + 0.1, m("cut_jr1"), ("dir", -0.25, 0.45, -0.05)),
@@ -223,8 +227,11 @@ EXPR = {
            (m("cut_ck10"), ls("ck_but_three"), 0.3, -0.15, 0.2)],
     "js": [(m("cut_js_nod"), m("cut_ck4"), 0.25, 0.55, 0.1), (m("cut_js7"), ls("js_next_question"), 0.35, 0.3, 0.05),
            (m("cut_execs"), m("cut_br8"), 0.2, 0.45, 0.2)],
-    "om": [(m("cut_execs"), m("cut_br8"), 0.15, 0.35, 0.2)],
+    "om": [(m("cut_execs"), m("cut_br8"), 0.15, 0.35, 0.2),
+           (le("om_positions") - 0.1, m("cut_br1"), 0.2, 0.0, 0.2)],
     "br": [(m("cut_br1"), ls("br_you_bought"), 0.4, -0.2, 0.3), (m("cut_br6"), m("cut_jr1"), 0.1, -0.3, 0.3),
+           (m("cut_br7"), m("cut_jr2"), -0.35, -0.12, 0.4),                        # the stare
+           (ls("br_brilliant"), le("br_brilliant") + 0.3, -0.25, -0.18, 0.1),
            (m("cut_br8"), m("cut_black"), -0.12, -0.22, 0.3)],
     "jr": [(m("cut_jr2"), m("cut_monaco"), 0.0, 0.05, 0.3), (m("jr_nod") - 0.1, m("cut_br8"), 0.0, 0.25, 0.2)],
 }
@@ -249,12 +256,13 @@ EMPH = _emph()
 NODS = {"js": [(m("cut_js_nod") + 0.05, 2, 4.5), (ls("js_perfect") + 0.1, 3, 3.5), (ls("js_three_mids"), 1, 3.0),
                (m("cut_execs") + 0.1, 1, 2.5)],
         "om": [(ls("om_three_mids"), 1, 3.0), (m("cut_execs") + 0.12, 1, 2.2)],
-        "jr": [(m("jr_nod"), 1, 2.2), (m("cut_execs") + 0.15, 1, 1.6)],
+        "jr": [(m("jr_nod") + 0.05, 1, 2.6), (m("cut_execs") + 0.15, 1, 1.6)],
         "ck": [(m("cut_ck6") + 0.05, 1, -2.0)],
         "br": []}
 TURN = {   # head moves that aren't eyelines: (t0, t1, turn, tilt deg)
     "ck": [(m("cut_ck2") + 0.1, ls("ck_i_said"), 0.08, -1.2)],
-    "br": [(m("cut_br6") + 0.1, m("cut_jr1"), -0.05, 2.5)],
+    "br": [(m("cut_br6") + 0.1, m("cut_jr1"), -0.05, 2.5),
+           (m("cut_br7") + 0.05, m("cut_jr2"), -0.18, -1.5)],        # the slow turn to Jim
     "om": [(ls("om_yeah_but"), le("om_yeah_but"), 0.0, 3.0)],
     "js": [(m("cut_js7"), m("cut_js7") + 0.3, 0.0, 0.0)],
 }

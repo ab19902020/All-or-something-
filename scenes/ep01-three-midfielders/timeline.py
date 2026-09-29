@@ -7,64 +7,68 @@ import json
 L = json.load(open("build/lines.json"))
 
 # (kind, value[, mark name]): "gap" seconds of room tone before the next item; "line" id; "mark" a named point
+BR_MISSING = L["br_monaco"].get("missing", False)     # Bruno's Monaco line not recorded yet: a silent stare
+
 SEQ = [
-    ("gap", 0.30, "open"),                   # exterior: music starts, slow push
+    ("gap", 0.25, "open"),                   # exterior: music, slow push, big white text
     ("line", "nar_deadline"),
-    ("gap", 0.28, "cut_wide"),               # hard cut on the music beat; the camera pushes towards Carrick
+    ("gap", 0.22, "cut_wide"),               # boom, hard cut: the room plays on its own sound
     ("line", "ck_two_things"),
-    ("gap", 0.14, "cut_js1"), ("line", "js_sorted"),
-    ("gap", 0.10, "cut_ck1"), ("line", "ck_brilliant"),
-    ("gap", 0.14, "cut_js2"), ("line", "js_bought"),
-    ("gap", 0.06, "music_stop"),              # music abruptly stops
-    ("gap", 0.45, "cut_ck2"),                 # close-up Carrick: one blink, tiny head move
+    ("gap", 0.12, "cut_js1"), ("line", "js_sorted"),
+    ("gap", 0.08, "cut_ck1"), ("line", "ck_brilliant"),
+    ("gap", 0.12, "cut_js2"), ("line", "js_bought"),
+    ("gap", 0.05, "music_stop"),
+    ("gap", 0.35, "cut_ck2"),                 # close-up Carrick: one blink, tiny head move
     ("line", "ck_i_said"),
-    ("gap", 0.16, "cut_om1"), ("line", "om_yeah_but"),
-    ("gap", 0.12, "cut_js3"), ("line", "js_three_things"),
-    ("gap", 1.00, "cut_ck3"),                 # no dialogue: Carrick slowly looks into the lens and holds
-    ("gap", 1.30, "cut_br1"),                 # Bruno looks from Carrick to Jason, then at the lens
+    ("gap", 0.12, "cut_om1"), ("line", "om_yeah_but"),
+    ("gap", 0.10, "cut_js3"), ("line", "js_three_things"),
+    ("gap", 0.85, "cut_ck3"),                 # no dialogue: Carrick slowly looks into the lens and holds
+    ("gap", 0.10, "cut_om5"), ("line", "om_positions"),       # Omar, calmly honest: "...No."
+    ("gap", 1.05, "cut_br1"),                 # Bruno looks from Carrick to Jason, then at the lens
     ("line", "br_you_bought"),
-    ("gap", 0.55, "cut_js_nod"),              # Jason nods proudly
-    ("gap", 0.12, "cut_ck4"),                 # Carrick tries to stay diplomatic
+    ("gap", 0.45, "cut_js_nod"),              # Jason nods proudly
+    ("gap", 0.10, "cut_ck4"),                 # Carrick tries to stay diplomatic
     ("line", "ck_not_complaining"),
-    ("gap", 0.34, "ck_lean"),                 # very short pause, leans forward
+    ("gap", 0.28, "ck_lean"),                 # a short pause, he leans forward
     ("line", "ck_whos_scoring"),
-    ("gap", 0.08, "cut_om2"), ("line", "om_bruno"),
-    ("gap", 0.10, "cut_br2"), ("line", "br_sorry_what"),      # whip cut
-    ("gap", 0.12, "cut_om3"), ("line", "om_efficient"),
-    ("gap", 0.10, "cut_br3"), ("line", "br_crossing"),
-    ("gap", 0.08, "cut_js4"), ("line", "js_bruno"),
-    ("gap", 0.06, "cut_br4"), ("line", "br_me"),
-    ("gap", 0.55, "cut_ck5"),                 # Carrick trying not to react
-    ("gap", 0.06, "cut_br5"), ("line", "br_midfielder"),
-    ("gap", 0.10, "cut_js5"), ("line", "js_perfect"),
-    ("gap", 0.46, "cut_ck6"), ("line", "ck_left_back"),       # a small breath first
-    ("gap", 0.08, "cut_js6"), ("line", "js_luke"),
-    ("gap", 0.45, "cut_ck7"), ("line", "ck_luke"),            # a pause, the camera pushes closer
-    ("gap", 0.08, "cut_js7"),
-    ("gap", 0.85, "js_next"),                 # Jason freezes, glances at Omar, then at the lens
+    ("gap", 0.07, "cut_om2"), ("line", "om_bruno"),
+    ("gap", 0.08, "cut_br2"), ("line", "br_sorry_what"),      # whip cut
+    ("gap", 0.10, "cut_om3"), ("line", "om_efficient"),
+    ("gap", 0.08, "cut_br3"), ("line", "br_crossing"),
+    ("gap", 0.07, "cut_js4"), ("line", "js_bruno"),
+    ("gap", 0.05, "cut_br4"), ("line", "br_me"),
+    ("gap", 0.45, "cut_ck5"),                 # Carrick trying not to react
+    ("gap", 0.05, "cut_br5"), ("line", "br_midfielder"),
+    ("gap", 0.08, "cut_js5"), ("line", "js_perfect"),
+    ("gap", 0.10, "cut_br9"), ("line", "br_brilliant"),       # Bruno, dead-eyed: "Brilliant. Absolutely brilliant."
+    ("gap", 0.35, "cut_ck6"), ("line", "ck_left_back"),       # a small breath first
+    ("gap", 0.07, "cut_js6"), ("line", "js_luke"),
+    ("gap", 0.35, "cut_ck7"), ("line", "ck_luke"),            # a pause, the camera pushes closer
+    ("gap", 0.07, "cut_js7"),
+    ("gap", 0.70, "js_next"),                 # Jason freezes, glances at Omar, then at the lens
     ("line", "js_next_question"),
-    ("gap", 0.80, "cut_br6"),                 # Bruno slowly sinks back into his chair
-    ("gap", 0.35, "cut_jr1"), ("line", "jr_bigger_issues"),  # Jim lowers his paperwork
-    ("gap", 0.80, "cut_wide2"),               # everyone looks at Jim
-    ("gap", 0.45, "cut_br7"), ("line", "br_monaco"),         # Bruno turns slowly towards him
-    ("gap", 0.80, "cut_jr2"),                 # silence, hold on Jim
-    ("gap", 0.30, "cut_monaco"), ("line", "jr_yes_monaco"),  # hard cut to Monaco
-    ("gap", 0.45, "jr_beat"), ("line", "jr_perspective"),
-    ("gap", 0.08, "cut_ck8"),                 # smash cut back to Manchester
-    ("gap", 0.12), ("line", "ck_no_striker"),
-    ("gap", 0.08, "cut_om4"), ("line", "om_no_striker"),
-    ("gap", 0.08, "cut_ck9"), ("line", "ck_no_left_back"),
-    ("gap", 0.08, "cut_js8"), ("line", "js_no_left_back"),
-    ("gap", 0.60, "cut_ck10"), ("line", "ck_but_three"),     # looks between all three first
-    ("gap", 0.35, "cut_execs"), ("line", "js_three_mids"),   # all three nod
-    ("gap", 0.10, "om_line"), ("line", "om_three_mids"),
-    ("gap", 0.65, "jr_nod"),                  # Jim's tiny approving nod
-    ("gap", 0.35, "cut_br8"), ("line", "br_sunshine"),       # Bruno button: everything behind him quieter
-    ("gap", 0.45, "br_pause"), ("line", "br_saudi"),
+    ("gap", 0.60, "cut_br6"),                 # Bruno slowly sinks back into his chair
+    ("gap", 0.28, "cut_jr1"), ("line", "jr_bigger_issues"),  # Jim lowers his paperwork
+    ("gap", 0.55, "cut_wide2"),               # everyone looks at Jim
+    ("gap", 0.25, "cut_br7"), ("line", "br_monaco"),         # Bruno turns to him (a silent stare until recorded)
+    ("gap", 0.40 if BR_MISSING else 0.55, "cut_jr2"),        # silence, hold on Jim
+    ("gap", 0.25, "cut_monaco"), ("line", "jr_yes_monaco"),  # hard cut to Monaco
+    ("gap", 0.40, "jr_beat"), ("line", "jr_perspective"),
+    ("gap", 0.07, "cut_ck8"),                 # smash cut back to Manchester
+    ("gap", 0.10), ("line", "ck_no_striker"),
+    ("gap", 0.07, "cut_om4"), ("line", "om_no_striker"),
+    ("gap", 0.07, "cut_ck9"), ("line", "ck_no_left_back"),
+    ("gap", 0.07, "cut_js8"), ("line", "js_no_left_back"),
+    ("gap", 0.50, "cut_ck10"), ("line", "ck_but_three"),     # looks between all three first
+    ("gap", 0.30, "cut_execs"), ("line", "js_three_mids"),   # all three nod
+    ("gap", 0.08, "om_line"), ("line", "om_three_mids"),
+    ("gap", 0.28, "jr_nod"), ("line", "jr_good_meeting"),    # Jim, satisfied: "Good meeting."
+    ("gap", 0.45, "cut_br8"), ("line", "br_sunshine"),       # Bruno button: everything behind him quieter
+    ("gap", 0.40, "br_pause"), ("line", "br_saudi"),
     ("gap", 0.40, "cut_black"),               # cut to black
-    ("gap", 0.25, "cut_title"),               # title sting: boom
-    ("gap", 0.30), ("line", "nar_title"),
-    ("gap", 0.40, "title_end"),               # hard ending (loops back to the exterior)
+    ("gap", 0.25, "cut_title"),               # title: boom
+    ("gap", 0.25), ("line", "nar_title"),
+    ("gap", 0.35, "title_end"),               # hard ending (loops back to the exterior)
 ]
 
 

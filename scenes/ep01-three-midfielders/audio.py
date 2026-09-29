@@ -358,7 +358,9 @@ def foley(bus):
     ev(bus, "cup_down", m("cut_ck8") + 0.12, -33, pan=-0.05)
     ev(bus, "pen_click_b", le("js_no_left_back") + 0.06, -34, pan=0.05)        # Jason, firm
     ev(bus, "cloth_b", m("cut_execs") + 0.08, -43)                              # the three of them nod
-    ev(bus, "pen_click_c", m("jr_nod") + 0.1, -38, pan=0.2)
+    ev(bus, "pen_click_c", le("jr_good_meeting") + 0.12, -36, pan=0.2)          # Jim: meeting over
+    ev(bus, "creak_small", le("om_positions") + 0.1, -44, semis=-2)              # Omar settles after "No."
+    ev(bus, "creak_short", m("cut_br9") + 0.05, -45, semis=-3)                   # Bruno shifts for "Brilliant"
     # the title: the big boom
     bus.add(at_level(big_boom(1.0), -16), m("cut_title"))
 

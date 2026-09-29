@@ -2,8 +2,8 @@
 
 Each scripted line is taken from its clip at the aligned word boundaries (phones.json); nothing is re-ordered
 inside a line. Cuts snap to the quietest point in the gap next to the first / last word, so no breath or
-neighbouring word leaks in. A line whose clip does not exist yet (Bruno's "Jim... you live in Monaco") gets a
-silent slot of the right length, with syllable-timed mouth shapes, until the recording is added.
+neighbouring word leaks in. A line whose clip does not exist yet (Bruno's "Jim... you live in Monaco") plays as a
+short silent reaction beat (mouth closed) until the recording is added; then it is aligned and used automatically.
 
 Output: build/lines/<id>.wav (48 kHz mono) and build/lines.json {id: {speaker, clip, dur, text, words, phones}}
 with word / phone times relative to the start of the cut."""
@@ -24,6 +24,7 @@ CLIP = dict(
     br2="bruno-fernandes/bruno_02_should-have-gone-to-saudi.mp3",
     jr1="jim-ratcliffe/jim_01_bigger-issues-facing-britain.mp3",
     jr2="jim-ratcliffe/jim_02_i-live-in-monaco.mp3",
+    jr3="jim-ratcliffe/jim_03_excellent-business-good-meeting.mp3",
 )
 SPK = dict(nar="narrator", ck="carrick", js="jason", om="omar", br="bruno", jr="jim")
 
@@ -37,6 +38,7 @@ LINES = [
     ("ck_i_said", "ck1", "sorry i said left back and striker", 1),
     ("om_yeah_but", "om1", "yeah but three midfielders", 1),
     ("js_three_things", "js1", "it's three things instead of two technically you've won", 1),
+    ("om_positions", "om1", "were they the positions we needed no", 1),
     ("br_you_bought", "br1", "you bought three midfielders", 1),
     ("ck_not_complaining", "ck2", "look i'm not complaining obviously love the lads great window", 1),
     ("ck_whos_scoring", "ck2", "but who's actually scoring the goals", 1),
@@ -48,6 +50,7 @@ LINES = [
     ("br_me", "br1", "me i'm taking the corner", 1),
     ("br_midfielder", "br1", "i'm a midfielder", 1),
     ("js_perfect", "js2", "perfect we've got loads of midfielders", 1),
+    ("br_brilliant", "br1", "brilliant absolutely brilliant", 1),
     ("ck_left_back", "ck2", "and the left back", 1),
     ("js_luke", "js2", "we've got luke", 1),
     ("ck_luke", "ck2", "luke for the whole season", 1),
@@ -63,17 +66,18 @@ LINES = [
     ("ck_but_three", "ck3", "but three midfielders", 1),
     ("js_three_mids", "js2", "three midfielders", 1),
     ("om_three_mids", "om3", "three midfielders", 1),
+    ("jr_good_meeting", "jr3", "good meeting", 1),
     ("br_sunshine", "br2", "saudi arabia offered me sunshine", 1),
     ("br_saudi", "br2", "i should have gone to saudi", 1),
     ("nar_title", "nar", "this is all or something", 1),
 ]
 SR = 48000
 # pauses inside a line longer than this are shortened to it (Shorts pacing: no dead air); per-line overrides
-MAXGAP, GAP = 0.24, {"ck_two_things": 0.32, "jr_yes_monaco": 0.36, "br_me": 0.30, "ck_luke": 0.30}
+MAXGAP, GAP = 0.20, {"ck_two_things": 0.32, "jr_yes_monaco": 0.36, "br_me": 0.30, "ck_luke": 0.30}
 # every line is played 6 % faster (ffmpeg atempo: pitch unchanged) to keep the Short's pace
-TEMPO = 1.06
+TEMPO = 1.08
 # Bruno's Monaco line is not recorded yet: any clip named like this is used when it appears
-MISSING = {"br3": ("bruno-fernandes/bruno_03_*.mp3", 1.9)}
+MISSING = {"br3": ("bruno-fernandes/bruno_03_*.mp3", 1.25)}
 
 
 def words_of(t):
@@ -100,28 +104,6 @@ def quiet_point(y, sr, a, b):
     return (i0 + int(np.argmin(e)) + w // 2) / sr
 
 
-VOW = set("AA AE AH AO AW AY EH ER EY IH IY OW OY UH UW".split())
-
-
-def fake_phones(text, dur):
-    """syllable-timed phones for a line with no recording (so the mouth still moves in time)"""
-    from pocketsphinx import Decoder
-    d = Decoder(loglevel="FATAL")
-    import align
-    for w, ph in align.EXTRA.items():
-        if d.lookup_word(w) is None: d.add_word(w, ph, True)
-    seq = [(w, (d.lookup_word(w) or "AH").split()) for w in words_of(text)]
-    n = sum(len(p) for _, p in seq)
-    t, step = 0.12, (dur - 0.3) / n
-    words, phones = [], []
-    for w, ps in seq:
-        s = t
-        for p in ps:
-            phones.append(dict(p=p, s=round(t, 3), e=round(t + step, 3))); t += step
-        words.append(dict(w=w, s=round(s, 3), e=round(t, 3)))
-    return words, phones
-
-
 def tempo(seg):
     """speed a cut up by TEMPO without changing its pitch (ffmpeg atempo)"""
     import subprocess, tempfile
@@ -143,11 +125,10 @@ def main():
             pat, dur = MISSING[clip]
             found = sorted(glob.glob(A + pat))
             if not found:
-                dur = round(dur / TEMPO, 3)
+                # no recording yet: the line plays as a silent reaction beat (mouth closed) until it is added
                 sf.write(f"build/lines/{lid}.wav", np.zeros(int(dur * SR), np.float32), SR)
-                words, phones = fake_phones(text, dur)
-                out[lid] = dict(speaker=spk, clip=None, dur=dur, text=text, words=words, phones=phones, missing=True)
-                print(f"{lid:20s} MISSING RECORDING -> {dur:.2f}s silent slot: {text}")
+                out[lid] = dict(speaker=spk, clip=None, dur=dur, text=text, words=[], phones=[], missing=True)
+                print(f"{lid:20s} NO RECORDING -> {dur:.2f}s silent beat: {text}")
                 continue
             import align
             key = found[0][len(A):]

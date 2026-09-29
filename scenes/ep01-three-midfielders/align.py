@@ -1,6 +1,6 @@
 """Word + phone forced alignment (pocketsphinx, en-us model from the PyPI wheel) of every voice clip the episode
 uses, against its corrected transcript. Output: phones.json {clip: {dur, words:[{w,s,e,ph}], phones:[{p,w,s,e}]}}."""
-import json, re, numpy as np, librosa
+import json, re, sys, numpy as np, librosa
 from pocketsphinx import Decoder
 
 A = "../../audio/"
@@ -19,7 +19,11 @@ TEXT = {
  "bruno-fernandes/bruno_02_should-have-gone-to-saudi.mp3": "What am I even doing here? Saudi Arabia offered me sunshine and probably a striker. No left back, no striker. I should have gone to Saudi.",
  "jim-ratcliffe/jim_01_bigger-issues-facing-britain.mp3": "We need to focus on the bigger issues facing Britain. Standards, discipline, efficiency. Everyone always wants more players. Sometimes you have to make do with what you've got.",
  "jim-ratcliffe/jim_02_i-live-in-monaco.mp3": "That's how you build character and save money. Yes. I live in Monaco. That's completely different. It gives me an outside perspective.",
+ "jim-ratcliffe/jim_03_excellent-business-good-meeting.mp3": "Good meeting.",
 }
+# clips aligned from a start time (seconds): the phone pass fails on the whole of Jim's third clip, so only its
+# first "Good meeting." is aligned (times are still clip times)
+CROP = {"jim-ratcliffe/jim_03_excellent-business-good-meeting.mp3": (3.55, 4.75)}
 EXTRA = {"midfielders": "M IH D F IY L D ER Z", "midfielder": "M IH D F IY L D ER", "saudi": "S AW D IY",
          "monaco": "M AA N AH K OW", "carrick": "K AE R IH K"}
 
@@ -28,8 +32,19 @@ def words_of(text):
     return re.sub(r"[^a-z' ]", " ", text.lower().replace("-", " ")).split()
 
 
-def align(f, text):
+def align(f, text, crop=None):
     y, _ = librosa.load(f, sr=16000, mono=True)
+    if crop:
+        t0, t1 = crop
+        r = align_samples(y[int(t0 * 16000):int(t1 * 16000)], text)
+        for w in r["words"]: w["s"] += t0; w["e"] += t0
+        for p in r["phones"]: p["s"] += t0; p["e"] += t0
+        r["dur"] = len(y) / 16000
+        return r
+    return align_samples(y, text)
+
+
+def align_samples(y, text):
     pcm = (np.clip(y, -1, 1) * 32767).astype(np.int16).tobytes()
     d = Decoder(samprate=16000, bestpath=False, loglevel="FATAL")
     for w, ph in EXTRA.items():
@@ -52,8 +67,10 @@ def align(f, text):
 
 
 if __name__ == "__main__":
-    out = {}
+    import os
+    out = json.load(open("phones.json")) if os.path.exists("phones.json") and "--all" not in sys.argv else {}
     for k, t in TEXT.items():
-        out[k] = align(A + k, t)
+        if k in out: continue
+        out[k] = align(A + k, t, CROP.get(k))
         print("==", k); print("  ".join(f"{w['w']}@{w['s']:.2f}-{w['e']:.2f}" for w in out[k]["words"]))
     json.dump(out, open("phones.json", "w"), indent=1)
