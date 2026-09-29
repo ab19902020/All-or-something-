@@ -51,8 +51,9 @@ SEQ = [
     ("gap", 0.28, "cut_jr1"), ("line", "jr_bigger_issues"),  # Jim lowers his paperwork
     ("gap", 0.55, "cut_wide2"),               # everyone looks at Jim
     ("gap", 0.25, "cut_br7"), ("line", "br_monaco"),         # Bruno turns to him (a silent stare until recorded)
-    ("gap", 0.40 if BR_MISSING else 0.55, "cut_jr2"),        # silence, hold on Jim
-    ("gap", 0.25, "cut_monaco"), ("line", "jr_yes_monaco"),  # hard cut to Monaco
+    ("gap", 0.40 if BR_MISSING else 0.55, "cut_jr2"),        # silence on the TV... his virtual background glitches
+    ("gap", 1.05),                                            # and shows the Monaco harbour behind him
+    ("gap", 0.0, "cut_monaco"), ("gap", 0.25), ("line", "jr_yes_monaco"),  # hard cut to Monaco
     ("gap", 0.40, "jr_beat"), ("line", "jr_perspective"),
     ("gap", 0.07, "cut_ck8"),                 # smash cut back to Manchester
     ("gap", 0.10), ("line", "ck_no_striker"),
@@ -65,7 +66,8 @@ SEQ = [
     ("gap", 0.28, "jr_nod"), ("line", "jr_good_meeting"),    # Jim, satisfied: "Good meeting."
     ("gap", 0.45, "cut_br8"), ("line", "br_sunshine"),       # Bruno button: everything behind him quieter
     ("gap", 0.40, "br_pause"), ("line", "br_saudi"),
-    ("gap", 0.40, "cut_black"),               # cut to black
+    ("gap", 0.40, "cut_black"),               # cut to black: the documentary's closing captions
+    ("gap", 2.30),
     ("gap", 0.25, "cut_title"),               # title: boom
     ("gap", 0.25), ("line", "nar_title"),
     ("gap", 0.35, "title_end"),               # hard ending (loops back to the exterior)

@@ -249,6 +249,9 @@ def title_sting(dur):
 
 
 # ---------------------------------------------------------------- layers
+CALL = {"jr_bigger_issues", "jr_good_meeting"}         # lines Jim says on the call (not in Monaco)
+
+
 def dialogue(bus):
     room_s = reverb_ir(0.45, 5200, 0.006, 11)
     room_m = reverb_ir(0.8, 6500, 0.012, 12)
@@ -258,6 +261,9 @@ def dialogue(bus):
         if y.ndim > 1: y = y.mean(1)
         y = hp(y, 75, 2).astype(np.float32)
         nar = v["speaker"] == "narrator"
+        if lid in CALL:                                   # Jim on the video call: through the TV's speakers
+            y = bp(y, 260, 6000, 4).astype(np.float32) * 1.3
+            y = (np.tanh(y * 2.0) / 2.0).astype(np.float32)
         y = at_level(y, -18.5 if nar else -20.0)
         y = np.clip(y, -0.95, 0.95)
         bus.add(y, v["start"], 1.0)
@@ -346,8 +352,8 @@ def foley(bus):
     ev(bus, "creak_long", m("cut_br6") + 0.12, -38, semis=-4)                  # Bruno sinks back into his chair
     ev(bus, "cloth_b", m("cut_br6") + 0.2, -44)
     # Jim's paperwork: handled, then lowered
-    ev(bus, "paper_handle", m("cut_jr1") - 0.05, -42, pan=-0.1)
-    ev(bus, "paper_lower", ls("jr_bigger_issues") - 0.45, -38, pan=-0.1)
+    ev(bus, "paper_handle", m("cut_jr1") - 0.05, -46, highpass=300, lowpass=5500)       # through the call
+    ev(bus, "paper_lower", ls("jr_bigger_issues") - 0.45, -42, highpass=300, lowpass=5500)
     # everyone turns to look at Jim
     ev(bus, "creak_small", m("cut_wide2") + 0.05, -42, pan=0.3, semis=-2)
     ev(bus, "creak_short", m("cut_wide2") + 0.28, -44, pan=-0.2, semis=-4)

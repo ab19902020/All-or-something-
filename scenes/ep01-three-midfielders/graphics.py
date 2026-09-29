@@ -243,6 +243,12 @@ def caption_layer(kind, a, b):
             col = (255, 255, 255, 255) if num != "3" else (240, 200, 60, 255)
             dr.text((cx - wn / 2, y + int(44 * S)), num, font=fnum, fill=col)
             dr.text((cx - wl / 2, y + int(206 * S)), lab, font=fl, fill=(230, 230, 230, 255))
+    elif kind in ("epilogue", "epilogue2"):             # the documentary's closing captions, centred on black
+        f = font(INTER, 56 * S, 500)
+        txt = a or b
+        tw = dr.textlength(txt, font=f)
+        y = int((860 if kind == "epilogue" else 960) * S)
+        dr.text(((OW - tw) / 2, y), txt, font=f, fill=(236, 236, 236, 255))
     arr = np.asarray(im).astype(np.float32) / 255.0
     arr[..., :3] *= arr[..., 3:4]
     return arr
@@ -253,11 +259,13 @@ def captions(img, t, caps):
         if not (t0 <= t < t1): continue
         k = sm((t - t0) / 0.22) * (1 - sm((t - (t1 - 0.2)) / 0.2))
         lay = caption_layer(kind, a, b)
-        dx = int(round((1 - sm((t - t0) / 0.3)) * -36 * RS)) if kind != "stats" else 0
+        dx = int(round((1 - sm((t - t0) / 0.3)) * -36 * RS)) if kind in ("name", "place") else 0
+        if kind.startswith("epilogue"): k = sm((t - t0) / 0.45)            # held until the cut
         if dx: lay = np.roll(lay, dx, 1) if dx > -OW else lay
         if kind == "stats":                                # the numbers land one by one
             pass
-        sh = shadow_of(lay, 8, (0, 4), 0.35)
-        img = img * (1 - sh[..., None] * k)
+        if not kind.startswith("epilogue"):
+            sh = shadow_of(lay, 8, (0, 4), 0.35)
+            img = img * (1 - sh[..., None] * k)
         img = img * (1 - lay[..., 3:4] * k) + lay[..., :3] * k
     return img

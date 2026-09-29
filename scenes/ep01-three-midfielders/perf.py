@@ -113,7 +113,7 @@ FORCED = {
     "js": [m("cut_js_nod") + 0.3, ls("js_next_question") - 0.12],
     "om": [m("cut_om2") + 0.1],
     "br": [m("cut_br8") + 0.25, m("br_pause") + 0.1],
-    "jr": [m("cut_jr2") + 0.45, m("cut_monaco") + 0.2],
+    "jr": [m("cut_jr2") + 0.12, m("cut_monaco") + 0.2],
 }
 # no automatic blinks in these holds (a look into the lens, a freeze)
 NOBLINK = {
@@ -189,6 +189,8 @@ GAZE = {
            (m("cut_br8"), m("cut_black"), "cam")],
     "jr": [(m("cut_wide") - 0.1, m("cut_js1"), "down"), (m("cut_jr1"), ls("jr_bigger_issues") + 0.05, "down"),
            (m("cut_wide2"), m("cut_br7"), ("dir", 0.2, 0.2, 0.05)),
+           (m("cut_jr2") + 1.05, m("cut_jr2") + 1.32, ("dir", -0.75, 0.1, -0.12)),   # the glitch: busted
+           (m("cut_jr2") + 1.32, m("cut_monaco"), "cam"),
            (m("cut_jr2"), m("cut_monaco"), "br")],
 }
 

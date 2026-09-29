@@ -52,10 +52,10 @@ MAIN = {"ck": "ck_front", "js": "js_hero", "om": "om_hero", "br": "br_hero", "jr
 # gaze in each character's single: screen direction (x: -1 left .. 1 right, y: + down) and head turn towards
 # each other character, from the seating (see the module docstring)
 EYES = {
-    "ck": dict(br=(-1.0, 0.05, -0.45), jr=(-0.75, 0.12, -0.25), js=(-0.3, 0.1, -0.08), om=(0.45, 0.1, 0.15)),
-    "br": dict(ck=(0.95, 0.0, 0.45), js=(-0.7, 0.08, -0.2), om=(-0.35, 0.08, -0.1), jr=(-0.95, 0.12, -0.45)),
-    "js": dict(ck=(0.05, -0.05, 0.0), om=(-1.0, 0.05, -0.45), br=(0.4, 0.0, 0.12), jr=(0.9, 0.1, 0.35)),
-    "om": dict(ck=(0.15, -0.05, 0.05), js=(1.0, 0.05, 0.45), br=(0.45, 0.0, 0.15), jr=(0.8, 0.1, 0.3)),
+    "ck": dict(br=(-1.0, 0.05, -0.45), jr=(0.2, -0.95, 0.1), js=(-0.3, 0.1, -0.08), om=(0.45, 0.1, 0.15)),
+    "br": dict(ck=(0.95, 0.0, 0.45), js=(-0.7, 0.08, -0.2), om=(-0.35, 0.08, -0.1), jr=(0.85, -0.6, 0.35)),
+    "js": dict(ck=(0.05, -0.05, 0.0), om=(-1.0, 0.05, -0.45), br=(0.4, 0.0, 0.12), jr=(0.2, -0.7, 0.05)),
+    "om": dict(ck=(0.15, -0.05, 0.05), js=(1.0, 0.05, 0.45), br=(0.45, 0.0, 0.15), jr=(0.1, -0.7, 0.05)),
     "jr": dict(ck=(0.8, 0.0, 0.3), br=(1.0, 0.05, 0.4), js=(-0.5, 0.05, -0.15), om=(-0.3, 0.05, -0.1)),
 }
 
@@ -86,14 +86,13 @@ def single(t, who, draw=None, ed=140.0, eye=(540, 660), table=4.6, push=(1.0, 1.
 # nearer chairs get bigger people (Carrick in the chair at the head of the table, 153 px wide; Bruno in the next
 # chair along the left side; Jim in the near-left chair; Jason and Omar with their backs to camera at the near end)
 WIDE_FAR = [("ck", "ck_front", (712, 664), 25.0, False),
-            ("br", "br_q34l", (420, 700), 26.0, False),
-            ("jr", "jr_q34l", (112, 792), 37.0, False)]
+            ("br", "br_q34l", (420, 700), 26.0, False)]          # Jim's chair is empty: he is on the TV
 WIDE_NEAR = [("js", "js_back", (330, 1030), 72.0, False),
              ("om", "om_back", (842, 1046), 72.0, False)]
 # the three-shot is a portrait lineup (stage px at zoom 1): Omar, Jason, Jim side by side behind the table
 EXECS = [("om", "om_hero", (196, 912), 71.0, False),
-         ("jr", "jr_hero", (886, 916), 71.0, False),
          ("js", "js_hero", (542, 900), 74.0, False)]
+EXEC_MONITOR = ((880, 905), 372)            # Jim on a monitor on the table: screen centre and width (stage px)
 MONACO = [("jr", "jr_hero", (312, 688), 49.0, False)]
 
 
@@ -108,14 +107,16 @@ def group(t, actors, cams, table_y, bg=("V", 505, 430, 1.55, 5.0), fg=("V", "tab
           grade="board", drift=0.5):
     """several characters composited like a single (blurred set behind, table edge in front); cams: [(t, (stage x,
     stage y, zoom))] - the stage point at the centre of the frame; table_y: the table edge in stage px"""
-    return dict(t=t, kind="group", actors=actors, cams=cams, table_y=table_y, bg=bg, fg=fg, grade=grade, drift=drift)
+    return dict(t=t, kind="group", actors=actors, cams=cams, table_y=table_y, bg=bg, fg=fg, grade=grade, drift=drift,
+                monitor=None)
 
 
 def card(t, kind):
     return dict(t=t, kind=kind)
 
 
-W_LAYERS = [("actors", WIDE_FAR), ("occl", "table"), ("actors", WIDE_NEAR), ("occl", "fgchair")]
+W_LAYERS = [("screen", "tv"), ("actors", WIDE_FAR), ("occl", "table"), ("actors", WIDE_NEAR), ("occl", "fgchair")]
+TV_SHOT = [("screen", "tv")]                # a close shot of the boardroom TV (Jim on the call)
 
 MCU, CU = 180.0, 222.0          # eye distance of a medium close-up / close-up (screen px)
 SHOTS = [
@@ -154,10 +155,10 @@ SHOTS = [
     single(m("cut_ck7"), "ck", ed=185, push=(1.0, 1.16)),                         # Luke? For the WHOLE season?
     single(m("cut_js7"), "js", ed=192, push=(1.0, 1.05)),                         # freezes... Next question.
     single(m("cut_br6"), "br", ed=192, eye=(540, 670)),                           # sinks back into his chair
-    dict(single(m("cut_jr1"), "jr", ed=MCU, push=(1.0, 1.05)), paper=True),       # the bigger issues facing Britain
-    world(m("cut_wide2"), "W", (430, 800, 1.1), (430, 796, 1.14), W_LAYERS),      # everyone looks at Jim
+    world(m("cut_jr1"), "W", (724, 425, 3.75), (724, 425, 3.95), TV_SHOT, drift=0.5),   # on the TV: bigger issues
+    world(m("cut_wide2"), "W", (560, 640, 1.35), (560, 636, 1.42), W_LAYERS),     # everyone turns to the TV
     single(m("cut_br7"), "br", ed=205, eye=(540, 690), push=(1.0, 1.08), drift=0.4),   # Jim... you live in Monaco.
-    single(m("cut_jr2"), "jr", ed=192, push=(1.0, 1.02), drift=0.4),              # silence
+    world(m("cut_jr2"), "W", (724, 425, 3.8), (724, 425, 4.3), TV_SHOT, drift=0.3),    # silence... the glitch
     world(m("cut_monaco"), "M", (320, 830, 1.35), (300, 752, 2.0), [("actors", MONACO), ("occl", "coffee")],
           grade="monaco", drift=0.4),                                             # HARD CUT TO MONACO
     single(m("cut_ck8"), "ck", ed=MCU),                                           # smash cut: Right, so no striker?
@@ -165,9 +166,10 @@ SHOTS = [
     single(m("cut_ck9"), "ck", ed=186),                                           # No left-back?
     single(m("cut_js8"), "js", ed=MCU),                                           # No left-back.
     single(m("cut_ck10"), "ck", ed=186, push=(1.0, 1.06)),                        # looks between them: But THREE?
-    group(m("cut_execs"), EXECS, table_y=1232,                                    # the three of them nod
+    dict(group(m("cut_execs"), EXECS, table_y=1232,                               # the three of them nod
           cams=[(m("cut_execs"), (540, 1010, 1.0)), (ls("js_three_mids") + 0.02, (542, 905, 1.85)),
-                (m("om_line") + 0.08, (206, 915, 1.85)), (m("jr_nod") - 0.02, (876, 920, 1.85))]),
+                (m("om_line") + 0.08, (206, 915, 1.85)), (m("jr_nod") - 0.02, (880, 905, 1.95))]),
+         monitor=EXEC_MONITOR),
     single(m("cut_br8"), "br", ed=CU, eye=(540, 700), table=4.3, push=(1.0, 1.08), quiet=1.0),   # the button
     card(m("cut_black"), "black"),
     card(m("cut_title"), "title"),                                                # ALL OR SOMETHING
@@ -179,14 +181,19 @@ for i, s in enumerate(SHOTS):
 # documentary captions: (start, end, kind, text 1, text 2). "name" = lower third on a character's first single,
 # "place" = location slug, "stats" = the transfer tally
 CAPTIONS = [
+    (m("cut_wide") + 0.2, m("cut_js1") - 0.05, "place", "THE BOARDROOM", "Carrington, 10:47pm"),
     (m("cut_ck2") + 0.25, m("cut_om1") - 0.05, "name", "MICHAEL CARRICK", "Head Coach"),
     (m("cut_om1") + 0.15, m("cut_js3") - 0.05, "name", "OMAR BERRADA", "Chief Executive"),
     (m("cut_js3") + 0.15, m("cut_ck3") - 0.05, "name", "JASON WILCOX", "Technical Director"),
     (m("cut_br1") + 0.2, m("cut_js_nod") - 0.05, "name", "BRUNO FERNANDES", "Club Captain"),
-    (m("cut_jr1") + 0.3, m("cut_wide2") - 0.05, "name", "SIR JIM RATCLIFFE", "Co-Owner"),
+    (m("cut_jr1") + 0.3, m("cut_wide2") - 0.05, "name", "SIR JIM RATCLIFFE", "Co-Owner. Joining remotely."),
     (m("cut_monaco") + 0.15, m("cut_ck8"), "place", "MONACO", "800 miles from Carrington"),
     (ls("js_three_mids") - 0.1, m("cut_br8"), "stats", "", ""),
+    (m("cut_black") + 0.3, m("cut_title"), "epilogue", "The transfer window closed at 11pm.", ""),
+    (m("cut_black") + 1.25, m("cut_title"), "epilogue2", "", "No striker was signed."),
 ]
+# Jim's virtual background breaks up, then shows Monaco, in the last second before the cut to Monaco
+GLITCH = (m("cut_jr2") + 0.35, m("cut_monaco"))
 
 # fast cuts for the whip (Bruno "Sorry... what?") and smash (back from Monaco)
 WHIPS = [m("cut_br2")]

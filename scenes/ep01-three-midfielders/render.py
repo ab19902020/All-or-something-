@@ -5,7 +5,7 @@
   EP_RES=540x960 python3 render.py ...       -> quick low-res previews
 Each frame: the shot at that time (direction.py) -> the set, the characters with their face / body state
 (perf.py) and the furniture in front of them -> grade -> graphics -> vignette and grain."""
-import os, sys, math, subprocess, numpy as np, cv2
+import os, sys, math, subprocess, functools, numpy as np, cv2
 import engine as E
 from engine import OW, OH, FPS, RS
 import direction as D, perf, graphics as G
@@ -72,7 +72,7 @@ def single_resolver(s):
 
 # eyelines inside the world shots: (viewer, target) -> (lookx, looky, turn) on screen
 W_EYES = {("ck", "js"): (-0.25, 0.15, -0.05), ("ck", "om"): (0.35, 0.15, 0.1), ("ck", "br"): (-0.95, 0.1, -0.45),
-          ("ck", "jr"): (-0.85, 0.25, -0.4), ("br", "ck"): (0.8, -0.05, 0.3), ("br", "jr"): (-0.9, 0.3, -0.5),
+          ("ck", "jr"): (0.25, -0.95, 0.12),                  # Jim is on the TV above and behind Carrick ("br", "ck"): (0.8, -0.05, 0.3), ("br", "jr"): (0.75, -0.55, 0.3),
           ("br", "js"): (-0.35, 0.3, -0.1), ("br", "om"): (0.1, 0.3, 0.05), ("jr", "ck"): (0.8, -0.1, 0.25),
           ("jr", "br"): (0.9, -0.1, 0.3), ("jr", "js"): (0.4, 0.2, 0.1), ("jr", "om"): (0.6, 0.2, 0.15)}
 V_EYES = {("js", "ck"): (0.0, -0.05, 0.0), ("om", "ck"): (0.05, -0.05, 0.0), ("jr", "ck"): (-0.6, 0.0, -0.2),
@@ -141,6 +141,139 @@ def hand3(lay, s, t, ex, ey, ed, ty):
 
 # standing drawings: feet centre (sheet px) and the shadow's width
 FEET = {"jr_hero": (163, 783, 250)}
+
+
+
+# ---------------------------------------------------------------- Jim's video call
+# Jim is never in the room: he joins from Monaco on a video call, in front of a fake "Manchester" virtual
+# background (the Carrington exterior); just before the cut to Monaco the virtual background glitches and shows the
+# harbour behind him. The feed is drawn at the size it appears on screen and mapped onto the boardroom TV or the
+# monitor on the table.
+TV_QUAD = np.float32([[493, 288], [955, 279], [955, 566], [493, 562]])     # the boardroom TV (W plate px)
+FEED_AR = 462 / 280.0
+
+
+def plate_view(P, cx, cy, s, W, H):
+    """a plate view of any size: (cx, cy) 1x plate px at the centre, s output px per plate px"""
+    L = next((l for l in (1, 2, 4) if l >= s * 0.95), 4)
+    A = np.float32([[s / L, 0, W / 2 - s * cx], [0, s / L, H / 2 - s * cy]])
+    return cv2.warpAffine(P.lv[L], A, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT).astype(np.float32) / 255
+
+
+def glitch_amount(t):
+    """0 = virtual background, 1 = the real Monaco office; flickering bands in between"""
+    g0, g1 = D.GLITCH
+    if not (g0 <= t < g1): return 0.0, None
+    u = (t - g0) / (g1 - g0)
+    if u > 0.42: return 1.0, None
+    rng = np.random.default_rng(int(t * FPS))
+    return float(rng.uniform(0.2, 1.0)), rng
+
+
+def feed_resolver(g):
+    if g == "cam": return (0.0, 0.0, 0.0)
+    if g == "down": return (0.05, 0.9, 0.0)
+    if isinstance(g, tuple) and g[0] == "dir": return g[1:]
+    return (0.0, 0.3, 0.0)                              # looking at the meeting on his own screen
+
+
+@functools.lru_cache(maxsize=8)
+def name_tag(W, H):
+    from PIL import Image, ImageDraw
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dr = ImageDraw.Draw(im)
+    f = G.font(G.INTER, max(10, H * 0.052), 600)
+    txt = "Jim Ratcliffe"
+    tw = dr.textlength(txt, font=f)
+    x0, y0 = int(W * 0.025), int(H * 0.88)
+    dr.rounded_rectangle((x0, y0, x0 + tw + H * 0.06, y0 + H * 0.085), radius=int(H * 0.02), fill=(20, 20, 24, 170))
+    dr.text((x0 + H * 0.03, y0 + H * 0.012), txt, font=f, fill=(255, 255, 255, 255))
+    a = np.asarray(im).astype(np.float32) / 255
+    a[..., :3] *= a[..., 3:4]
+    return a
+
+
+def render_feed(t, FW, FH):
+    """Jim's webcam picture, (FH, FW, 3) float RGB"""
+    g, rng = glitch_amount(t)
+    virt = plate_view(plate("EXT"), 470, 760, FW / 640.0, FW, FH)
+    virt = G.grey_sky(virt)
+    real = plate_view(plate("M"), 330, 560, FW / 700.0, FW, FH)
+    if g <= 0:
+        bg = virt
+    elif rng is None:
+        bg = real
+    else:                                               # the virtual background breaking up in bands
+        bg = virt.copy()
+        y = 0
+        while y < FH:
+            h = int(rng.integers(max(2, FH // 40), max(3, FH // 8)))
+            if rng.uniform() < g:
+                sh = int(rng.integers(-FW // 12, FW // 12))
+                bg[y:y + h] = np.roll(real[y:y + h], sh, 1)
+            y += h
+    # Jim, head and shoulders, into his webcam
+    d, info = CAST.get("jr_hero")
+    st = perf.state("jr", t, feed_resolver, 0.0)
+    lay = np.zeros((FH, FW, 4), np.float32)
+    ed = 0.094 * FW
+    k = ed / info["ed"]
+    Ms = actor_matrix(info, 0.5 * FW, 0.43 * FH, k)
+    E.place(lay, d, face_state(st, info, False), Ms)
+    a = lay[..., 3:4]
+    if g < 1:                                           # a virtual background's soft halo round his outline
+        blur = cv2.GaussianBlur(a[..., 0], (0, 0), max(1.0, FW * 0.006))
+        ring = np.clip(blur - a[..., 0], 0, 1)[..., None]
+        bg = bg * (1 - ring * 0.55) + (bg * 0.4 + 0.55) * ring * 0.55
+    img = bg * (1 - a) + lay[..., :3]
+    # his paperwork, until he lowers it
+    tl = perf.ls("jr_bigger_issues") - 0.32
+    u = G.sm((t - tl) / 0.4)
+    if u < 1:
+        sp = G.paper_sprite()
+        sc = 0.46 * FW / sp.shape[1]
+        ang = -4 + 3 * u
+        M = cv2.getRotationMatrix2D((sp.shape[1] / 2, sp.shape[0] / 2), ang, sc)
+        M[0, 2] += 0.5 * FW - sp.shape[1] / 2; M[1, 2] += (0.86 + 0.7 * u) * FH - sp.shape[0] / 2
+        pl = cv2.warpAffine(sp, M, (FW, FH), flags=cv2.INTER_AREA)
+        img = img * (1 - pl[..., 3:4]) + pl[..., :3]
+    # webcam look: a little soft, a little flat; the call's name tag
+    img = cv2.GaussianBlur(img, (0, 0), max(0.5, FW / 1400))
+    l = img.mean(2, keepdims=True)
+    img = (l + (img - l) * 0.9) * 0.96 + 0.02
+    tag = name_tag(FW, FH)
+    return img * (1 - tag[..., 3:4]) + tag[..., :3]
+
+
+def put_feed(img, t, quad, glass=True):
+    """render the feed at the size the quad appears and map it onto the quad (screen px)"""
+    q = np.float32(quad)
+    w = max(np.linalg.norm(q[1] - q[0]), np.linalg.norm(q[2] - q[3]))
+    FW = int(np.clip(w, 64, 1800)); FH = int(FW / FEED_AR)
+    fe = render_feed(t, FW, FH)
+    Hm = cv2.getPerspectiveTransform(np.float32([[0, 0], [FW, 0], [FW, FH], [0, FH]]), q)
+    warped = cv2.warpPerspective(fe, Hm, (OW, OH), flags=cv2.INTER_LINEAR)
+    m = cv2.warpPerspective(np.ones((FH, FW), np.float32), Hm, (OW, OH), flags=cv2.INTER_LINEAR)[..., None]
+    if glass:                                           # the screen's glass: a soft diagonal sheen, faint lines
+        yy, xx = np.mgrid[0:OH, 0:OW].astype(np.float32)
+        c = q.mean(0)
+        sheen = np.clip(1 - np.abs((xx - c[0]) * 0.55 + (yy - c[1]) - w * 0.1) / (w * 0.22), 0, 1) ** 2
+        lines = 0.97 + 0.03 * np.cos(yy * np.pi / max(1.5, 2.2 * RS))
+        warped = warped * lines[..., None] + sheen[..., None] * 0.06
+    return img * (1 - m) + warped * m
+
+
+def draw_monitor(lay_rgb, t, rect):
+    """a desk monitor on a stand (screen rect in screen px: x0, y0, x1, y1) with the feed, into an RGB image"""
+    x0, y0, x1, y1 = rect
+    bz = max(3, int((x1 - x0) * 0.022))
+    img = lay_rgb
+    # stand, then bezel
+    cx = (x0 + x1) / 2; sw = (x1 - x0) * 0.08
+    cv2.rectangle(img, (int(cx - sw / 2), int(y1)), (int(cx + sw / 2), int(y1 + (y1 - y0) * 0.9)), (0.09, 0.09, 0.10), -1)
+    cv2.rectangle(img, (int(x0 - bz), int(y0 - bz)), (int(x1 + bz), int(y1 + bz * 1.6)), (0.07, 0.07, 0.08), -1)
+    cv2.rectangle(img, (int(x0 - bz), int(y0 - bz)), (int(x1 + bz), int(y1 + bz * 1.6)), (0.02, 0.02, 0.02), max(1, bz // 3))
+    return put_feed(img, t, [[x0, y0], [x1, y0], [x1, y1], [x0, y1]])
 
 
 # ---------------------------------------------------------------- shots
@@ -220,6 +353,11 @@ def render_world(s, t):
     M = P.M(cx, cy, z)
     img = bg.copy()
     for kind, val in s["layers"]:
+        if kind == "screen":                               # Jim on the boardroom TV
+            q = np.float32([[M[0, 0] * x + M[0, 2], M[1, 1] * y + M[1, 2]] for x, y in TV_QUAD])
+            img = put_feed(img, t, q)
+            bg = img.copy()                                # things in front (table, chairs) cover the new screen too
+            continue
         if kind == "occl":
             msk = P.mask(val, cx, cy, z)[..., None]
             img = img * (1 - msk) + bg * msk
@@ -270,6 +408,11 @@ def render_group(s, t):
         Ms = actor_matrix(info, ex, ey, ed * z / info["ed"], mirror)
         E.place(lay, d, face_state(st, info, mirror), Ms)
     img = img * (1 - lay[..., 3:4]) + lay[..., :3]
+    if s.get("monitor"):                                   # Jim on a monitor on the table
+        (mx, my), mw = s["monitor"]
+        mh = mw / FEED_AR
+        (a0, b0), (a1, b1) = S(mx - mw / 2, my - mh / 2), S(mx + mw / 2, my + mh / 2)
+        img = draw_monitor(img, t, (a0, b0, a1, b1))
     # the table in front of them
     fk, mname, fcx, edge, fz, fblur = s["fg"]
     P2 = plate(fk)
@@ -291,7 +434,7 @@ def render_frame(f):
     t = f / FPS
     s = D.shot_at(t)
     if s["kind"] == "black":
-        img = np.zeros((OH, OW, 3), np.float32)
+        img = G.captions(np.zeros((OH, OW, 3), np.float32), t, D.CAPTIONS)
     elif s["kind"] == "title":
         img = G.title_card(t, s["t"])
     elif s["kind"] == "single":

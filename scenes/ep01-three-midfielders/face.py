@@ -288,7 +288,7 @@ class Face:
             res[..., :3] = res[..., :3] * (1 - m) + lidc[None, None, :] * m
             if amount > 0.35:
                 ln = np.zeros(X.shape, np.float32)
-                th = max(2, int(round(ry * 0.30 * min(1.0, (amount - 0.35) * 2.5))))
+                th = max(2, int(round(min(ry * 0.22, rx * 0.12) * min(1.0, (amount - 0.35) * 2.5))))
                 cv2.ellipse(ln, (int(round((cx - x0) * 4)), int(round((bot - ry * 0.55 - y0) * 4))),
                             (int(rx * 1.02 * 4), int(ry * 0.5 * 4)), 0, 10, 170, 1, th, cv2.LINE_AA, 2)
                 ln = cv2.GaussianBlur(ln, (0, 0), 0.6)[..., None]
