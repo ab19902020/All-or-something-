@@ -35,6 +35,6 @@ done
 wait
 for k in $(seq 0 $((J - 1))); do echo "file 'part$k.mp4'"; done > build/parts.txt
 ffmpeg -y -loglevel error -f concat -safe 0 -i build/parts.txt -i build/episode_audio.wav \
-  -map 0:v -map 1:a -c:v libx264 -preset slow -crf 19 -pix_fmt yuv420p -c:a aac -b:a 256k -shortest \
+  -map 0:v -map 1:a -c:v libx264 -preset slow -crf 21 -pix_fmt yuv420p -c:a aac -b:a 256k -shortest \
   -movflags +faststart all_or_something_ep01_three_midfielders.mp4
 echo "done -> all_or_something_ep01_three_midfielders.mp4"

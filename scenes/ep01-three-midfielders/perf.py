@@ -65,7 +65,7 @@ TAG = dict(calm=(0.05, 0.0), confident=(0.15, 0.35), relieved=(0.5, 0.55), casua
            disbelieving=(0.85, -0.2), deadpan_happy=(0.2, 0.45), concerned=(0.5, -0.3), awkward=(0.4, 0.15),
            detached=(-0.05, 0.0), defensive=(0.4, -0.12), smug=(-0.25, 0.6), sigh=(-0.1, -0.2), firm=(-0.3, 0.0),
            proud=(0.25, 0.5), regretful=(0.35, -0.35), resigned=(0.2, -0.28))
-BASE = dict(ck=(0.1, 0.0), js=(0.05, 0.12), om=(0.0, 0.0), br=(-0.3, -0.1), jr=(-0.1, 0.0))
+BASE = dict(ck=(0.1, 0.0), js=(0.22, 0.32), om=(0.0, 0.0), br=(-0.3, -0.1), jr=(-0.1, 0.0))
 
 
 def sm(x):

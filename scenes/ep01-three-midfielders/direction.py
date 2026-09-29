@@ -125,7 +125,7 @@ SHOTS = [
     dict(single(m("cut_br2"), "br", ed=CU, eye=(540, 700), table=4.3), whip=True),    # whip: Sorry... what?
     single(m("cut_om3"), "om", draw="om_g_explain", ed=128, eye=(560, 620), table=5.0, push=(1.0, 1.04)),
     single(m("cut_br3"), "br", draw="br_g_shrug", ed=132, eye=(540, 620), table=4.9, push=(1.0, 1.03)),
-    single(m("cut_js4"), "js", draw="js_g_point", ed=134, eye=(660, 620), table=5.0),     # Bruno. (points)
+    single(m("cut_js4"), "js", draw="js_g_point", ed=134, eye=(660, 620), table=4.5),     # Bruno. (points)
     single(m("cut_br4"), "br", ed=232, eye=(540, 700), table=4.2, push=(1.02, 1.07)),     # ME? I'm taking the corner!
     single(m("cut_ck5"), "ck", ed=190),                                           # trying not to react
     single(m("cut_br5"), "br", draw="br_g_talk", ed=132, eye=(540, 620), table=4.9),      # I'm a MIDFIELDER

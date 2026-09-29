@@ -51,7 +51,9 @@ voices, word-level alignment, characters cut from their sheets, upscaled and ani
    Real-ESRGAN (anime model); drawings seen large (Carrick, the gesture poses, the hand) get a second pass
    to 8x. Each drawing used is cut out with a flood fill of the paper (so white eyes, shirts and
    shoes stay solid, checked on magenta). The open mouths on the gesture poses are painted shut so the lip sync can
-   drive them. Paper trapped between the legs by the sheet's floor shadow is cleared (`HOLES`). Eyes, mouth and chin are found automatically; Bruno's beard needed hand-measured mouth points.
+   drive them. Jason's sheet is drawn so like Mark Goldbridge (swept-up brown hair, scowl, hoodie) that he is restyled
+   from it into the Jason Wilcox of his *Clear Plan* sheet: short silver hair trimmed to a neat dome, grey stubble,
+   a navy club tracksuit and a softer brow (`restyle_jason`). Paper trapped between the legs by the sheet's floor shadow is cleared (`HOLES`). Eyes, mouth and chin are found automatically; Bruno's beard needed hand-measured mouth points.
 3. **Faces** (`face.py`, `cast.py`): each character keeps the head drawn on its own body (no head swaps, no seams).
    The jaw drops per phone with a painted mouth interior; the pupils are lifted out and re-placed for every look
    (to the speaker, to the lens); lids blink (never in sync); brows, smile, tilt, nod and turn are warps.

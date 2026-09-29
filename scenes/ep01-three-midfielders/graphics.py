@@ -199,5 +199,5 @@ def finish(img, frame):
     rng = np.random.default_rng(frame)
     g = rng.standard_normal((OH // 2, OW // 2)).astype(np.float32)
     g = cv2.resize(g, (OW, OH), interpolation=cv2.INTER_LINEAR)
-    img = img + g[..., None] * 0.012
+    img = img + g[..., None] * 0.009
     return np.clip(img, 0, 1)

@@ -125,7 +125,7 @@ def hand3(lay, s, t, ex, ey, ed, ty):
         p0 = poly[0] + (poly[1] - poly[0]) * f; p1 = poly[3] + (poly[2] - poly[3]) * f
         cv2.line(red, tuple(np.int32(np.round(p0 * 8))), tuple(np.int32(np.round(p1 * 8))), 1.0,
                  max(2, int(4 * RS * ed / 138)), cv2.LINE_AA, 3)
-    col = np.float32([0.15, 0.15, 0.16])
+    col = np.float32([0.10, 0.13, 0.24])                    # his navy club tracksuit
     rgb = col * sl[..., None]
     rgb = rgb * (1 - red[..., None] * sl[..., None]) + np.float32([0.78, 0.07, 0.10]) * (red * sl)[..., None]
     a_ = np.clip(sl + ink, 0, 1)

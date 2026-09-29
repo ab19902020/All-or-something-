@@ -88,6 +88,128 @@ def three_fingers(im, a, ox, oy):
     a[:] = np.maximum(a, lay)
 
 
+# Jason Wilcox restyle. His sheet reads as Mark Goldbridge (the same swept-up brown hair, scowl and hoodie), so he
+# gets the look from his Clear Plan sheet: short silver hair trimmed to a neat dome, grey stubble, a navy club
+# tracksuit and a less angry brow. All in sheet px: dome = (cx, cy, a, b) of the new skull outline; stubble =
+# (centre x, upper lip y, y at the jaw sides, half width, chin y); body = y below which dark cloth turns navy;
+# creases = boxes whose dark lines are painted out; brows = (inner end x, y, radius, lift) warps
+JASON = {
+    "js_hero": dict(dome=(157, 236, 88, 119), stubble=(154, 284, 270, 64, 338), body=330,
+                    creases=[(144.5, 206, 150.5, 219.5), (154.5, 206, 160.5, 219.5)],
+                    brows=[(146.5, 222, 20, 3.0), (159.5, 222, 20, 3.0)]),
+    "js_g_point": dict(dome=(229, 1266, 37.5, 45), stubble=(227, 1285, 1279, 30, 1306), body=1303,
+                       creases=[], brows=[(219, 1263, 9, 1.6), (226.5, 1263, 9, 1.6)]),
+    "js_back": dict(dome=(1020, 216, 46.5, 68), stubble=None, body=238, creases=[], brows=[], hair_to=250),
+    "js_hand3": dict(dome=None, stubble=None, body=1110, creases=[], brows=[]),
+}
+NAVY = (1.55, 0.85, 0.62)          # BGR gain on the cloth's own brightness -> navy
+
+
+def restyle_jason(name, im, a, x0, y0):
+    J = JASON[name]
+    H, W = a.shape
+    P = lambda x, y: ((x - x0) * 4.0, (y - y0) * 4.0)
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+    f = im.astype(np.float32)
+    hsv = cv2.cvtColor(im, cv2.COLOR_BGR2HSV)
+    S, V = hsv[..., 1].astype(np.float32), hsv[..., 2].astype(np.float32)
+    b_, g_, r_ = f[..., 0], f[..., 1], f[..., 2]
+    skin = (r_ > g_ + 15) & (g_ > b_ + 10) & (S > 105) & (V > 165)        # light-brown hair stays out of it
+    # 1. navy tracksuit: dark neutral cloth below the collar
+    by = P(0, J["body"])[1]
+    dark = (a > 0.05) & (S < 70) & (V < 125) & (yy > by)
+    lum = f.mean(2)
+    f[dark] = np.clip(np.stack([lum * NAVY[0], lum * NAVY[1], lum * NAVY[2]], -1)[dark], 0, 255)
+    # 2. the scowl: crease lines painted out, inner brow ends lifted
+    for bx0, by0, bx1, by1 in J["creases"]:
+        (X0, Y0), (X1, Y1) = P(bx0, by0), P(bx1, by1)
+        m = np.zeros((H, W), np.uint8)
+        box = (slice(int(Y0), int(Y1)), slice(int(X0), int(X1)))
+        m[box] = (V[box] < 150).astype(np.uint8)
+        m = cv2.dilate(m, np.ones((3, 3), np.uint8))
+        f = cv2.inpaint(np.clip(f, 0, 255).astype(np.uint8), m, 5, cv2.INPAINT_TELEA).astype(np.float32)
+    if J["brows"]:
+        mx, my = xx.copy(), yy.copy()
+        for bx, byy, r, lift in J["brows"]:
+            X, Y = P(bx, byy)
+            R = r * 4
+            w = np.clip(1 - ((xx - X) / R) ** 2 - ((yy - Y) / (R * 0.45)) ** 2, 0, 1) ** 1.5
+            my = my + lift * 4 * w
+        f = cv2.remap(f, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
+    # 3. hair: silver, trimmed to a neat dome
+    if J["dome"]:
+        cx, cy, ax, bx = J["dome"]
+        CX, CY = P(cx, cy); AX, BX = ax * 4, bx * 4
+        hy = P(0, J["hair_to"])[1] if "hair_to" in J else CY + 0.15 * BX
+        hairc = (a > 0.3) & (S < 118) & (V > 55) & (V < 205) & ~skin & (yy < hy)
+        # the strand lines split the hair into pieces: join them, keep the blob that reaches the top of the head
+        # (not the brows), then take back the hair-coloured pixels inside it
+        joined = cv2.morphologyEx(hairc.astype(np.uint8), cv2.MORPH_CLOSE, np.ones((13, 13), np.uint8))
+        n, lab, st, _ = cv2.connectedComponentsWithStats(joined, 8)
+        keep = [k for k in range(1, n) if st[k, cv2.CC_STAT_TOP] < CY - 0.72 * BX and st[k, cv2.CC_STAT_AREA] > 2000]
+        blob = cv2.dilate(np.isin(lab, keep).astype(np.uint8), np.ones((9, 9), np.uint8)) > 0
+        hair = blob & ~skin & (a > 0.3) & (V > 45) & (S < 160) & (yy < hy + 12)
+        v = V[hair]
+        sil = 98 + np.clip((v - 60) / 150, 0, 1) * 132
+        f[hair] = np.stack([sil * 1.03, sil * 0.99, sil * 0.95], -1)
+        # fit the dome's width to the head itself where the trim starts, so its outline joins the head's sides
+        yt = int(CY - 0.18 * BX)
+        if 0 <= yt < H:
+            row = a[yt] > 0.5
+            c0 = int(np.clip(CX, 0, W - 1))
+            if row[c0]:
+                l_ = c0
+                while l_ > 0 and row[l_ - 1]: l_ -= 1
+                r_ = c0
+                while r_ < W - 1 and row[r_ + 1]: r_ += 1
+                if r_ - l_ > 0.6 * AX:
+                    CX, AX = (l_ + r_) / 2, (r_ - l_) / 2 / np.sqrt(1 - 0.18 ** 2)
+        e = ((xx - CX) / AX) ** 2 + ((yy - CY) / BX) ** 2
+        top = yy < CY - 0.18 * BX
+        band = np.abs(xx - CX) < 1.14 * AX                 # the head's own columns (not a raised hand beside it)
+        a[(e > 1.0) & top & band] = 0
+        # gaps between the old tufts that are now inside the dome become hair
+        fill = (e <= 1.0) & top & band & (a < 0.6) & ~skin
+        f[fill] = np.median(f[hair], 0) if hair.any() else f[fill]
+        a[fill] = 1.0
+        # the new outline along the dome
+        ts = np.linspace(np.pi * 1.02, np.pi * 1.98, 400)
+        px, py = CX + AX * np.cos(ts), CY + BX * np.sin(ts)
+        # only where the dome actually borders the hair (just inside it), never floating beside the head
+        nx, ny = np.cos(ts) / AX, np.sin(ts) / BX
+        nl = np.sqrt(nx ** 2 + ny ** 2); nx, ny = nx / nl, ny / nl
+        qx, qy = px - nx * 14, py - ny * 14
+        on = [(0 <= int(x) < W and 0 <= int(y) < H and y < CY - 0.12 * BX and 0 <= int(u_) < W and 0 <= int(v_) < H
+               and a[int(v_), int(u_)] > 0.5) for x, y, u_, v_ in zip(px, py, qx, qy)]
+        ink = np.zeros((H, W), np.float32)
+        run = []
+        for ok, x, y in zip(on + [False], list(px) + [0], list(py) + [0]):
+            if ok: run.append((x, y)); continue
+            if len(run) > 3:
+                cv2.polylines(ink, [np.int32(np.round(np.float32(run) * 8))], False, 1.0, 11, cv2.LINE_AA, 3)
+            run = []
+        ink = cv2.GaussianBlur(ink, (0, 0), 0.8)
+        f = f * (1 - ink[..., None]) + np.float32(INK) * ink[..., None]
+        a[:] = np.maximum(a, ink)
+    # 4. grey stubble on the jaw, chin and upper lip
+    if J["stubble"]:
+        scx, ylip, yside, hw, ychin = J["stubble"]
+        SCX, YL = P(scx, ylip); YS = P(0, yside)[1]; HW = hw * 4; YC = P(0, ychin)[1]
+        u = (xx - SCX) / HW
+        ytop = YL - (YL - YS) * np.clip(u * u, 0, 1)
+        sk = skin & (a > 0.5)
+        m = np.clip((yy - ytop) / 20, 0, 1) * np.clip((1.12 - np.abs(u)) / 0.2, 0, 1) * (yy < YC + 10)
+        m = cv2.GaussianBlur(m.astype(np.float32), (0, 0), 1.5) * sk
+        rng = np.random.default_rng(3)
+        dots = cv2.GaussianBlur((rng.random((H, W)) > 0.8).astype(np.float32), (0, 0), 0.8)
+        dots = np.clip((dots - 0.16) * 3, 0, 1)
+        t = (m * 0.30)[..., None]
+        f = f * (1 - t) + np.float32([150, 150, 158]) * t
+        dd = (dots * m * 0.28)[..., None]
+        f = f * (1 - dd) + np.float32([96, 98, 106]) * dd
+    im[:] = np.clip(f, 0, 255).astype(np.uint8)
+
+
 def cut(name, spec):
     sh, x0, y0, x1, y1 = spec[:5]
     big = SHEETS[sh]
@@ -140,6 +262,8 @@ def cut(name, spec):
         close_mouth(im, a, x0, y0, *CLOSE[name])
     if name == "js_hand3":
         three_fingers(im, a, x0, y0)
+    if name in JASON:
+        restyle_jason(name, im, a, x0, y0)
     ys, xs = np.where(a > 0.02)
     bx0, by0, bx1, by1 = max(0, xs.min() - 8), max(0, ys.min() - 8), min(w, xs.max() + 9), min(h, ys.max() + 9)
     rgba = np.dstack([im, (a * 255).astype(np.uint8)])[by0:by1, bx0:bx1]

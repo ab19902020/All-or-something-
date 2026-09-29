@@ -10,7 +10,7 @@ facial expressions, a mouth / phoneme set for lip sync, hand poses, upper-body g
 | File | Who | Notes |
 |---|---|---|
 | `michael-carrick.png` | Michael Carrick | Black tracksuit. 9 mouths; gestures: arms crossed, explaining, pointing, thinking, talking. |
-| `jason-wilcox.png` | Jason Wilcox | Black tracksuit. 10 mouths; gestures: arms crossed, pointing, explaining, holding tablet, thinking. |
+| `jason-wilcox.png` | Jason Wilcox | Black tracksuit. 10 mouths; gestures: arms crossed, pointing, explaining, holding tablet, thinking. Drawn very like Mark Goldbridge, so Episode 1 restyles him (silver short hair, stubble, navy tracksuit): see `restyle_jason` in the episode's `parts.py`. |
 | `omar-berrada.png` | Omar Berrada | Dark suit, red tie. 9 mouths; gestures: arms crossed, explaining, pointing, clipboard, phone. |
 | `bruno-fernandes.png` | Bruno Fernandes | Home kit, captain's armband. 10 mouths; gestures: pointing, celebrate, talking, shrug. |
 | `jim-ratcliffe.png` | Jim Ratcliffe | Dark suit, maroon tie. 9 mouths; gestures: neutral, pointing, explaining, thinking. **Main Jim sheet.** |

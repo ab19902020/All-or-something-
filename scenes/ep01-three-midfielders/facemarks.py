@@ -21,7 +21,9 @@ HEAD = {
     "br_g_shrug": (996, 1090, 1066, 1160), "br_g_talk": (866, 1090, 940, 1160),
     "jr_hero": (35, 110, 275, 365), "jr_q34l": (500, 155, 612, 272), "jr_q34r": (800, 155, 912, 272),
 }
-OVR = {}
+# Jason's restyle adds stubble dots that could read as a mouth line: his landmarks are pinned (found on the
+# original drawings)
+OVR = {'js_hero': {'eyes': [[128.2, 242.1, 17.25, 16.62], [178.2, 241.2, 17.25, 16.75]], 'mouth': [136.2, 298.2, 172.0, 297.9, 154.1, 294.5], 'chin': 332.5, 'neck': [154.1, 357.9]}, 'js_g_point': {'eyes': [[212.6, 1268.8, 6.12, 6.25], [231.5, 1269.0, 7.0, 6.5]], 'mouth': [212.0, 1291.6, 233.0, 1292.6, 222.5, 1290.1], 'chin': 1304.5, 'neck': [222.5, 1314.5]}}
 
 
 def detect(name):
