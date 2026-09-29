@@ -1,0 +1,12 @@
+# Everything the scene pipelines in pipeline/ need (ffmpeg must also be on PATH).
+numpy
+scipy
+pillow
+opencv-python-headless
+scikit-image
+librosa
+soundfile
+torch
+spandrel
+sherpa-onnx
+pocketsphinx
