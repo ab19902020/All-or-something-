@@ -121,7 +121,7 @@ class Drawing:
                 a[..., 3] *= np.clip(1 - (yy - yc) / max(2.0, 24 * L), 0, 1)
             a[..., :3] *= a[..., 3:4]
             self._base[k] = a
-            if len(self._base) > 4: self._base.pop(next(iter(self._base)))
+            if len(self._base) > 2: self._base.pop(next(iter(self._base)))
         return self._base[k]
 
     def _face_at(self, L):
@@ -189,7 +189,7 @@ class Drawing:
             img[..., 3] *= np.clip(1 - (yy - yc) / max(2.0, 24 * L), 0, 1)
         pm = img.copy(); pm[..., :3] *= pm[..., 3:4]
         out = (x0, y0, pm)
-        if len(self._patch) > 24: self._patch.pop(next(iter(self._patch)))
+        if len(self._patch) > 6: self._patch.pop(next(iter(self._patch)))      # memory: big 8x faces
         self._patch[key] = out
         return out
 
