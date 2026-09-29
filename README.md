@@ -10,7 +10,7 @@ sync, and characters cut from their model sheets, upscaled and animated in Pytho
 |---|---|
 | [`audio/`](audio/) | The voice-overs, one folder per voice (narrator, Carrick, Jason, Omar, Bruno, Jim), labelled by what's said. [`audio/README.md`](audio/README.md) has every clip's words. |
 | [`images/`](images/) | `characters/` (model sheets) and `backgrounds/` (portrait sets). [`images/README.md`](images/README.md) lists them. |
-| [`scenes/`](scenes/) | One folder per finished episode / scene: its code, its `src/` art and audio, README and video. |
+| [`scenes/`](scenes/) | One folder per episode: its code, README and video. Episode 1: [`ep01-three-midfielders/`](scenes/ep01-three-midfielders/). |
 | [`pipeline/`](pipeline/) | The proven pipeline code (templates) new scenes are copied from. |
 | [`tools/`](tools/) | `new_scene.sh` (start a scene), `stills.py` / `joins.py` / `walkcheck.py` (review), `render.sh`, `preview.sh`. |
 | `.claude/` | The `new-scene` workflow Claude follows, and the start-up hook that installs ffmpeg + Python packages. |
@@ -28,5 +28,5 @@ By hand:
 
 ```bash
 pip install -r requirements.txt                  # plus ffmpeg on PATH (automatic in Claude Code web sessions)
-tools/new_scene.sh ep02-some-title               # copies the multi-character pipeline into scenes/ep02-some-title
+tools/new_scene.sh ep02-some-title               # copies Episode 1's pipeline into scenes/ep02-some-title
 ```
