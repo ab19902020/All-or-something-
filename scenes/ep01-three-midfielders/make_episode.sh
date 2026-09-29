@@ -2,7 +2,7 @@
 # Build Episode 1, "Three Midfielders", from the sheets / backgrounds in ../../images and the voice clips in
 # ../../audio. Needs ffmpeg and python3 with ../../requirements.txt. Models come from GitHub releases only.
 #   ./make_episode.sh              full build -> all_or_something_ep01_three_midfielders.mp4
-#   JOBS=n ./make_episode.sh       parallel render chunks (default 4)
+#   JOBS=n ./make_episode.sh       parallel render chunks (default 3: ~3.5 GB of memory each)
 set -euo pipefail
 cd "$(dirname "$0")"
 mkdir -p models build
@@ -25,7 +25,7 @@ python3 facemarks.py > /dev/null
 python3 audio.py
 
 # 4. picture: parallel chunks, then muxed with the mix
-J="${JOBS:-4}"
+J="${JOBS:-3}"       # each render process needs ~3.5 GB; 4 at once can exceed a cloud session's memory
 N=$(python3 -c "import math, timeline; print(int(math.ceil(timeline.TL['total'] * 30)))")
 Q=$(( (N + J - 1) / J ))
 for k in $(seq 0 $((J - 1))); do
