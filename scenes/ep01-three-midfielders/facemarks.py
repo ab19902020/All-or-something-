@@ -11,7 +11,6 @@ import json, sys, numpy as np, cv2
 META = json.load(open("build/parts/meta.json"))
 # approximate head box (1x sheet px) of each drawing that talks / blinks
 HEAD = {
-    "mg_front": (45, 110, 130, 218),
     "ck_front": (68, 118, 196, 245), "ck_q34l": (290, 118, 420, 245), "ck_q34r": (712, 118, 842, 245),
     "ck_g_explain": (160, 1198, 238, 1272), "ck_g_crossed": (38, 1198, 110, 1272),
     "js_hero": (50, 100, 262, 350), "js_q34l": (492, 138, 590, 250), "js_q34r": (792, 138, 900, 250),

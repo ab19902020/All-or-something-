@@ -14,12 +14,11 @@ facial expressions, a mouth / phoneme set for lip sync, hand poses, upper-body g
 | `omar-berrada.png` | Omar Berrada | Dark suit, red tie. 9 mouths; gestures: arms crossed, explaining, pointing, clipboard, phone. |
 | `bruno-fernandes.png` | Bruno Fernandes | Home kit, captain's armband. 10 mouths; gestures: pointing, celebrate, talking, shrug. |
 | `jim-ratcliffe.png` | Jim Ratcliffe | Dark suit, maroon tie. 9 mouths; gestures: neutral, pointing, explaining, thinking. **Main Jim sheet.** |
-| `mark-goldbridge.png` | Mark Goldbridge | The narrator. 1672 × 941 sheet from the Pass the Mic series: red hoodie, 9 mouths, expressions, desk / mic / phone poses. |
 | `jim-ratcliffe-alt.png` | Jim Ratcliffe | Older, softer sheet (1024 × 1136) with extra poses in a red training top. Spare / reference. |
 
 ## Backgrounds (`backgrounds/`)
 
-Portrait 941 × 1672 (9:16), for Shorts / TikTok, except the fan-channel studio (1672 × 941, cropped to portrait).
+All portrait 941 × 1672 (9:16), for Shorts / TikTok.
 
 | File | What it shows |
 |---|---|
@@ -29,4 +28,3 @@ Portrait 941 × 1672 (9:16), for Shorts / TikTok, except the fan-channel studio 
 | `boardroom-window-view.png` | Boardroom towards the corner windows onto the pitches; club crest on the wall. |
 | `tactics-room-screen.png` | Close on the end of the table and the tactics screen (good for singles / close-ups). |
 | `monaco-office.png` | Luxury office with the Monaco harbour view (Jim's cutaway). |
-| `fan-channel-studio.png` | Mark Goldbridge's fan-channel studio at night: desk, mic, gaming chairs, city and stadium through the window (from the Pass the Mic series). |

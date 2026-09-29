@@ -6,14 +6,13 @@
 A mock-serious football documentary Short: dramatic *All or Nothing* production with sitcom pacing. The characters
 stay visually simple (small head turns, gestures, blinks, lip sync, fast reaction shots); the comedy comes from the
 edit and the faces. Built from the character sheets and backgrounds in [`images/`](../../images/) and the voice
-clips in [`audio/`](../../audio/), as scripted, with Mark Goldbridge on screen as the narrator.
+clips in [`audio/`](../../audio/), exactly as scripted; the narrator is heard, not seen.
 
 ## What's in it
 
 | Time | Shot | What happens |
 |---|---|---|
-| 0:00 | Carrington exterior | Slow push on the training ground under a grey Manchester sky with drizzle. **MANCHESTER / TRANSFER DEADLINE DAY**. Narrator: "Manchester United..." Overly serious strings and piano. |
-| 0:01 | Mark Goldbridge | The narrator, deadly serious at his fan-channel desk (mic, mug, laptop, the city at night behind him): "...transfer deadline day." |
+| 0:00 | Carrington exterior | Slow push on the training ground under a grey Manchester sky with drizzle. **MANCHESTER / TRANSFER DEADLINE DAY**. Narrator (voice only): "Manchester United... transfer deadline day." Overly serious strings and piano. |
 | 0:03 | Boardroom wide | Hard cut on the music hit. Carrick at the head of the table under the tactics screen, Bruno beside him, Jim apart down the table with his paperwork, Jason and Omar in the foreground with their backs to camera. Slow push to Carrick: "Right... just two things... Left-back... Striker." |
 | 0:07 | Jason / Carrick / Jason | "Sorted." Carrick, relieved: "Brilliant." Jason, casually: "We bought three midfielders." The music stops dead. |
 | 0:10 | Carrick close-up | One blink, a tiny head move. "Sorry... I said left-back... and striker." |
@@ -27,7 +26,7 @@ clips in [`audio/`](../../audio/), as scripted, with Mark Goldbridge on screen a
 | 1:03 | Monaco | Hard cut to Jim in his Monaco office, the harbour behind him, lounge music: "Yes... I live in Monaco." Beat. Smug: "It gives me... an outside perspective." |
 | 1:08 | The final review | Smash cut back. Carrick: "Right... so no striker?" Omar: "No striker." "No left-back?" Jason: "No left-back." Carrick looks between the three of them: "But three midfielders?" Jason, Omar and Jim nod; quick punch-ins: "Three midfielders." "Three midfielders." Jim's tiny approving nod. |
 | 1:19 | Bruno's button | Close-up; the room goes quiet and grey behind him. Dead expression, straight down the lens: "Saudi Arabia offered me sunshine... I should've gone to Saudi." Cut to black. |
-| 1:23 | Title | Mark at his desk: "This is..." The logo slams in on the boom: **ALL OR SOMETHING**, *Everything except what the manager actually asked for.* "...All or Something." Hard ending, so it loops into the opening shot. |
+| 1:23 | Title sting | Boom. **ALL OR SOMETHING**, *Everything except what the manager actually asked for.* Narrator: "This is All or Something." Hard ending, so it loops into the opening shot. |
 
 **Not recorded yet:** Bruno's "Jim... you live in Monaco." None of Bruno's clips contain it, so the line has a
 silent slot of the right length and Bruno mouths it in time. Record it (same voice), save it as
@@ -49,7 +48,7 @@ voices, word-level alignment, characters cut from their sheets, upscaled and ani
    way. `timeline.py` lays the lines out in script order with the beats between them and names the marks that the
    shots and the acting hang off. `check_audio.py --words` re-transcribes every line from the finished mix.
 2. **Art** (`upscale_all.sh`, `parts.py`, `facemarks.py`): the sheets and backgrounds are upscaled 4x with
-   Real-ESRGAN (anime model); drawings seen large (Carrick, the gesture poses, Mark, the hand) get a second pass
+   Real-ESRGAN (anime model); drawings seen large (Carrick, the gesture poses, the hand) get a second pass
    to 8x. Each drawing used is cut out with a flood fill of the paper (so white eyes, shirts and
    shoes stay solid, checked on magenta). The open mouths on the gesture poses are painted shut so the lip sync can
    drive them. Eyes, mouth and chin are found automatically; Bruno's beard needed hand-measured mouth points.

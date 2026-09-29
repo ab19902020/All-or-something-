@@ -9,9 +9,7 @@ Two kinds of shot:
 Eyelines follow the seating in the wide shot (see EYES): Carrick at the head of the table under the tactics screen,
 Bruno beside him, Jim further down the same side, Jason and Omar at the far end opposite Carrick."""
 import math
-import json
 from timeline import TL
-L = json.load(open("build/lines.json"))
 
 T_END = TL["total"]
 
@@ -21,7 +19,7 @@ def ls(k): return TL["lines"][k]["start"]
 def le(k): return TL["lines"][k]["end"]
 
 
-PLATES = {"STU": "fan-channel-studio", "EXT": "carrington-entrance", "W": "boardroom-wide", "T": "tactics-room-screen",
+PLATES = {"EXT": "carrington-entrance", "W": "boardroom-wide", "T": "tactics-room-screen",
           "V": "boardroom-window-view", "S": "boardroom-side-view", "M": "monaco-office"}
 
 # things in front of the actors (1x plate px polygons)
@@ -33,10 +31,6 @@ OCCL = {
           "fgchair": [[(62, 1225), (80, 1188), (130, 1170), (360, 1164), (600, 1166), (640, 1180), (656, 1214),
                        (660, 1672), (58, 1672)],
                       [(878, 1335), (896, 1302), (941, 1298), (941, 1672), (868, 1672)]]},
-    "STU": {"desk": [[(0, 590), (1672, 590), (1672, 941), (0, 941)],
-                      [(385, 497), (612, 497), (632, 606), (400, 606)],
-                      [(612, 522), (597, 500), (660, 447), (689, 454), (691, 479), (628, 530)],
-                      [(644, 544), (722, 544), (724, 613), (647, 613)]]},
     "M": {"coffee": [[(0, 1168), (120, 1172), (205, 1190), (252, 1232), (252, 1310), (205, 1356), (0, 1398)],
                      [(0, 1330), (392, 1330), (396, 1672), (0, 1672)]]},
 }
@@ -51,7 +45,7 @@ SET = {
     "jr": dict(bg=("W", 255, 470, 2.0, 6.0), fg=("V", "table", 300, 760, 3.1, 2.5)),
 }
 # the main drawing for each character's single
-MAIN = {"mg": "mg_front", "ck": "ck_front", "js": "js_hero", "om": "om_hero", "br": "br_hero", "jr": "jr_hero"}
+MAIN = {"ck": "ck_front", "js": "js_hero", "om": "om_hero", "br": "br_hero", "jr": "jr_hero"}
 
 # gaze in each character's single: screen direction (x: -1 left .. 1 right, y: + down) and head turn towards
 # each other character, from the seating (see the module docstring)
@@ -84,8 +78,6 @@ EXECS = [("om", "om_hero", (352, 684), 16.5, False),
          ("js", "js_hero", (492, 682), 16.5, False),
          ("jr", "jr_q34r", (648, 706), 17.5, True)]
 MONACO = [("jr", "jr_hero", (300, 700), 45.0, False)]
-# Mark Goldbridge, the narrator, at his fan-channel desk (behind the desk, mic and mug in front of him)
-MARK = [("mg", "mg_front", (702, 400), 52.0, False)]
 
 
 def world(t, plate, cam0, cam1=None, layers=(), grade="board", drift=0.6, blur=0.0, ease="inout", cams=None):
@@ -99,25 +91,13 @@ def card(t, kind):
     return dict(t=t, kind=kind)
 
 
-def wt(lid, word):
-    """timeline time a word of a line starts"""
-    for w in L[lid]["words"]:
-        if w["w"] == word: return ls(lid) + w["s"]
-    raise KeyError(word)
-
-
 W_LAYERS = [("actors", WIDE_FAR), ("occl", "table"), ("actors", WIDE_NEAR), ("occl", "fgchair")]
 V_LAYERS = [("actors", EXECS), ("occl", "table")]
-S_LAYERS = [("actors", MARK), ("occl", "desk")]
-MARK_IN = wt("nar_deadline", "transfer") - 0.08      # the narrator is seen from "...transfer deadline day"
-LOGO = wt("nar_title", "all") - 0.04                  # "This is..." on Mark, the logo slams in on "ALL"
 
 MCU, CU = 180.0, 222.0          # eye distance of a medium close-up / close-up (screen px)
 SHOTS = [
     # 00:00 Carrington exterior: slow cinematic push, grey Manchester, big white text
     dict(world(0.0, "EXT", (470, 836, 1.0), (470, 800, 1.13), grade="grey", drift=0.3), text="ext"),
-    # Mark Goldbridge, deadly serious at his desk: "...transfer deadline day."
-    world(MARK_IN, "STU", (702, 470, 3.5), (702, 452, 3.75), S_LAYERS, drift=0.4),
     # 00:03 boardroom wide: all at the table, slow push towards Carrick
     world(m("cut_wide"), "W", (520, 800, 1.12), (700, 700, 2.45), W_LAYERS),
     single(m("cut_js1"), "js", ed=MCU),                                           # Sorted.
@@ -161,8 +141,7 @@ SHOTS = [
                 (m("om_line") + 0.1, (352, 692, 4.3)), (m("jr_nod") - 0.05, (500, 700, 2.35))]),
     single(m("cut_br8"), "br", ed=CU, eye=(540, 700), table=4.3, push=(1.0, 1.08), quiet=1.0),   # the button
     card(m("cut_black"), "black"),
-    world(m("cut_title"), "STU", (702, 455, 3.75), (702, 445, 3.95), S_LAYERS, drift=0.3),   # Mark: "This is..."
-    card(LOGO, "title"),                                                          # ALL OR SOMETHING
+    card(m("cut_title"), "title"),                                                # ALL OR SOMETHING
 ]
 for i, s in enumerate(SHOTS):
     s["end"] = SHOTS[i + 1]["t"] if i + 1 < len(SHOTS) else T_END

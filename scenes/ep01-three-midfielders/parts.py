@@ -10,11 +10,9 @@ a sheet coordinate (x, y) maps to part pixel ((x - off_x) * 4, (y - off_y) * 4).
 import json, os, sys, numpy as np, cv2
 
 S = {c: f"build/x4/{n}.png" for c, n in dict(ck="michael-carrick", js="jason-wilcox", om="omar-berrada",
-                                           br="bruno-fernandes", jr="jim-ratcliffe", mg="mark-goldbridge").items()}
+                                           br="bruno-fernandes", jr="jim-ratcliffe").items()}
 # name: (sheet, box x0, y0, x1, y1 in 1x sheet px[, core box to keep components from])
 P = {
-    # Mark Goldbridge (the narrator; his sheet comes from the Pass the Mic repo)
-    "mg_front": ("mg", 22, 104, 148, 404),
     # Michael Carrick (no hero drawing: the front turnaround is his main body)
     "ck_front": ("ck", 30, 112, 228, 522), "ck_q34l": ("ck", 258, 112, 450, 522), "ck_q34r": ("ck", 686, 112, 866, 522),
     "ck_g_explain": ("ck", 120, 1195, 282, 1352), "ck_g_talk": ("ck", 528, 1195, 672, 1352),
@@ -141,7 +139,7 @@ def cut(name, spec):
 
 
 # drawings seen large on screen get a second 4x AI upscale (then halved): 8 part px per sheet px
-X8 = ["ck_front", "ck_g_explain", "js_g_point", "om_g_explain", "br_g_shrug", "br_g_talk", "js_hand3", "mg_front"]
+X8 = ["ck_front", "ck_g_explain", "js_g_point", "om_g_explain", "br_g_shrug", "br_g_talk", "js_hand3"]
 
 
 def second_pass(name):
