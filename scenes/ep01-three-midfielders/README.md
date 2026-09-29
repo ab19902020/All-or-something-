@@ -1,7 +1,7 @@
 # All or Something, Episode 1: "Three Midfielders"
 
 **Video:** [`all_or_something_ep01_three_midfielders.mp4`](all_or_something_ep01_three_midfielders.mp4)
-(1080 × 1920, 9:16, 30 fps, 1 min 26 s, with the soundtrack). A 720p preview is made with `tools/preview.sh`.
+(1080 × 1920, 9:16, 30 fps, 1 min 30 s, with the soundtrack). A 720p preview is made with `tools/preview.sh`.
 
 A mock-serious football documentary Short: dramatic *All or Nothing* production with sitcom pacing. The characters
 stay visually simple (small head turns, gestures, blinks, lip sync, fast reaction shots); the comedy comes from the
@@ -13,7 +13,7 @@ clips in [`audio/`](../../audio/), exactly as scripted; the narrator is heard, n
 | Time | Shot | What happens |
 |---|---|---|
 | 0:00 | Carrington exterior | Slow push on the training ground under a grey Manchester sky with drizzle. **MANCHESTER / TRANSFER DEADLINE DAY**. Narrator (voice only): "Manchester United... transfer deadline day." Overly serious strings and piano. |
-| 0:03 | Boardroom wide | Hard cut on a boom; the intro music ends there and the room plays on its own sound. Everyone seated in the room's own chairs at true scale: Carrick at the head of the table under the tactics screen, Bruno beside him, Jim apart at the near end, Jason and Omar in the foreground with their backs to camera. Slow push to Carrick: "Right... just two things... Left-back... Striker." |
+| 0:03 | Boardroom wide | Hard cut on a boom; the intro music ends there and the room plays on its own sound. A slug: THE BOARDROOM, Carrington, 10:47pm. Everyone seated in the room's own chairs at true scale: Carrick at the head of the table, Bruno beside him, Jason and Omar in the foreground with their backs to camera, Jim's chair empty: he is on the big screen above Carrick, on a video call, reading his paperwork. Slow push to Carrick: "Right... just two things... Left-back... Striker." |
 | 0:07 | Jason / Carrick / Jason | "Sorted." Carrick, relieved: "Brilliant." Jason, casually: "We bought three midfielders." A satisfied pen click. |
 | 0:10 | Carrick close-up | One blink, a tiny head move. "Sorry... I said left-back... and striker." |
 | 0:13 | Omar, Jason | Omar, explaining the obvious with both hands: "Yeah... but three midfielders." Jason raises three fingers: "It's three things instead of two... technically... you've won." |
@@ -23,10 +23,10 @@ clips in [`audio/`](../../audio/), exactly as scripted; the narrator is heard, n
 | 0:24 | Carrick | Diplomatic: "Look... I'm not complaining... obviously, love the lads, great window." He leans in: "But who's actually scoring the goals?" |
 | 0:32 | The meltdown | Omar: "Bruno." Whip cut to Bruno: "Sorry... what?" Omar, gesturing at him: "He's already here, so technically that's efficient recruitment." Bruno throws his hands out: "So who am I crossing the ball to?" Jason points: "Bruno." Bruno: "Me? I'm taking the corner!" Carrick tries not to react. Bruno: "I'm a midfielder." Jason, nodding happily: "Perfect, we've got loads of midfielders." Bruno, dead-eyed: "Brilliant. Absolutely brilliant." |
 | 0:47 | The left-back | Carrick: "And the left-back?" Jason: "We've got Luke." Slow push on Carrick: "Luke? For the whole season?" Jason freezes, glances at Omar, then at the lens: "Next question." Bruno sinks back into his chair. |
-| 0:55 | Jim | Jim lowers his paperwork: "We need to focus on the bigger issues facing Britain." Everyone looks at him. Bruno turns slowly and stares at him (his line "Jim... you live in Monaco." goes here once it is recorded). Silence. |
-| 1:03 | Monaco | Hard cut to Jim in his Monaco office, the harbour behind him, lounge music, a slug: MONACO, 800 miles from Carrington. "Yes... I live in Monaco." Beat. Smug: "It gives me... an outside perspective." |
-| 1:08 | The final review | Smash cut back. Carrick: "Right... so no striker?" Omar: "No striker." "No left-back?" Jason: "No left-back." Carrick looks between the three of them: "But three midfielders?" Cut to Omar, Jason and Jim in a deadpan lineup, all nodding; punch-ins: Jason "Three midfielders.", Omar "Three midfielders.", Jim with a satisfied nod: "Good meeting." A documentary tally fills the screen: STRIKERS 0 · LEFT-BACKS 0 · MIDFIELDERS 3. |
-| 1:19 | Bruno's button | Close-up; the room goes quiet and grey behind him. Dead expression, straight down the lens: "Saudi Arabia offered me sunshine... I should've gone to Saudi." Cut to black. |
+| 0:55 | Jim, on the TV | Close on the boardroom screen: Jim, joining remotely in front of a "Manchester" virtual background, lowers his paperwork ("INEOS: Britain, the bigger issues"): "We need to focus on the bigger issues facing Britain." The room turns to the screen. Bruno turns slowly and stares at him (his line "Jim... you live in Monaco." goes here once it is recorded). Silence on the screen... Jim's virtual background glitches and shows the Monaco harbour behind him. He glances away. |
+| 1:04 | Monaco | Hard cut to Jim in his Monaco office, the harbour behind him, lounge music, a slug: MONACO, 800 miles from Carrington. "Yes... I live in Monaco." Beat. Smug: "It gives me... an outside perspective." |
+| 1:08 | The final review | Smash cut back. Carrick: "Right... so no striker?" Omar: "No striker." "No left-back?" Jason: "No left-back." Carrick looks between the three of them: "But three midfielders?" Cut to Omar, Jason and Jim (on a monitor on the table) in a deadpan lineup, all nodding; punch-ins: Jason "Three midfielders.", Omar "Three midfielders.", Jim with a satisfied nod: "Good meeting." A documentary tally fills the screen: STRIKERS 0 · LEFT-BACKS 0 · MIDFIELDERS 3. |
+| 1:19 | Bruno's button | Close-up; the room goes quiet and grey behind him. Dead expression, straight down the lens: "Saudi Arabia offered me sunshine... I should've gone to Saudi." Cut to black: "The transfer window closed at 11pm." "No striker was signed." |
 | 1:23 | Title sting | Boom. **ALL OR SOMETHING**, *Everything except what the manager actually asked for.* Narrator: "This is All or Something." Hard ending, so it loops into the opening shot. |
 
 **Not recorded yet:** Bruno's "Jim... you live in Monaco." None of Bruno's clips contain it, so for now Bruno just
@@ -34,12 +34,13 @@ turns and stares at Jim (mouth closed) and Jim answers the look. Record it (same
 about 2 s), save it as `audio/bruno-fernandes/bruno_03_jim-you-live-in-monaco.mp3` and rebuild: `lines.py` picks it
 up automatically, aligns it and the stare becomes the line.
 
-**Beyond the script** (all from the supplied clips): Omar's "Were they the positions we needed? No.", Bruno's
+**Beyond the script:** Jim is never in the room (he is in Monaco): he joins by video call, and the Monaco
+reveal comes through his glitching virtual background. From the supplied clips: Omar's "Were they the positions we needed? No.", Bruno's
 "Brilliant. Absolutely brilliant." and Jim's "Good meeting."; documentary name captions for each character's first
-close-up, the Monaco slug and the signings tally.
+close-up, the boardroom and Monaco slugs, the signings tally and the closing captions.
 
 The recorded delivery runs longer than the script's 65-70 s guide, so pauses inside lines are trimmed to 0.20 s and
-every line plays 8 % faster (pitch unchanged); with the three extra punchlines the episode is 86.3 s.
+every line plays 8 % faster (pitch unchanged); with the extra punchlines, the glitch and the closing captions the episode is 89.6 s.
 
 ## How it's made
 
