@@ -53,7 +53,8 @@ Dependencies are installed by the session-start hook (`requirements.txt` + ffmpe
 
 - `parts.py`: one box per drawing used, on the 1x sheet (grid them first: a coordinate grid over the sheet). The
   matte is a paper flood fill; check every `build/parts/check_*.jpg` on magenta. Open mouths on gesture poses are
-  painted shut (`CLOSE`) so the lip sync can drive them; enclosed paper gaps are cleared with `HOLES`.
+  painted shut (`CLOSE`) so the lip sync can drive them. Paper trapped between the legs (the sheet's floor
+  shadow closes the gap) stays solid white: find it on magenta and add the gap to `HOLES`.
 - `facemarks.py`: a head box per talking drawing; eyes, mouth and chin are found automatically. Check
   `build/parts/marks_*.jpg`; beards and faint mouth lines need hand points in `cast.py` `OVR`.
 - `cast.py`: which way each drawing faces. Characters are sized by eye distance, so every drawing of a character
@@ -99,6 +100,9 @@ dialogue; "music stops" means a hard stop), foley, the title sting cut hard at t
 - **Nothing see-through**: shirts, collars, eye whites, shoes. Check cut-outs on magenta; no paper fringe.
 - **Faces**: lip sync matches the audio at full size; mouths closed when not speaking; natural blinks, never in
   sync; eyes on the speaker or where the script sends them (the lens), never drifting.
+- **Scale against the room**: in any shot that shows the set's furniture, size people by the chairs: a seated
+  character's shoulders fill the chair back and the head rises above it; nearer chairs mean bigger people. The
+  user checks this. Group shots in portrait work best as a lineup (`group`) rather than small figures in a wide.
 - **Staging**: the table in front of seated characters, furniture in front / behind correctly, consistent sizes,
   feet on the floor with a contact shadow when standing.
 - **Restrained acting**: small head turns, gestures on the words the script names; the comedy comes from the edit

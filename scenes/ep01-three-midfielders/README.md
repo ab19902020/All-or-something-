@@ -13,7 +13,7 @@ clips in [`audio/`](../../audio/), exactly as scripted; the narrator is heard, n
 | Time | Shot | What happens |
 |---|---|---|
 | 0:00 | Carrington exterior | Slow push on the training ground under a grey Manchester sky with drizzle. **MANCHESTER / TRANSFER DEADLINE DAY**. Narrator (voice only): "Manchester United... transfer deadline day." Overly serious strings and piano. |
-| 0:03 | Boardroom wide | Hard cut on the music hit. Carrick at the head of the table under the tactics screen, Bruno beside him, Jim apart down the table with his paperwork, Jason and Omar in the foreground with their backs to camera. Slow push to Carrick: "Right... just two things... Left-back... Striker." |
+| 0:03 | Boardroom wide | Hard cut on the music hit. Everyone seated in the room's own chairs at true scale: Carrick at the head of the table under the tactics screen, Bruno beside him, Jim apart at the near end, Jason and Omar in the foreground with their backs to camera. Slow push to Carrick: "Right... just two things... Left-back... Striker." |
 | 0:07 | Jason / Carrick / Jason | "Sorted." Carrick, relieved: "Brilliant." Jason, casually: "We bought three midfielders." The music stops dead. |
 | 0:10 | Carrick close-up | One blink, a tiny head move. "Sorry... I said left-back... and striker." |
 | 0:13 | Omar, Jason | Omar, explaining the obvious with both hands: "Yeah... but three midfielders." Jason: "It's three things instead of two... technically... you've won." |
@@ -24,7 +24,7 @@ clips in [`audio/`](../../audio/), exactly as scripted; the narrator is heard, n
 | 0:47 | The left-back | Carrick: "And the left-back?" Jason: "We've got Luke." Slow push on Carrick: "Luke? For the whole season?" Jason freezes, glances at Omar, then at the lens: "Next question." Bruno sinks back into his chair. |
 | 0:55 | Jim | Jim lowers his paperwork: "We need to focus on the bigger issues facing Britain." Everyone looks at him. Bruno turns slowly: "Jim... you live in Monaco." Silence. |
 | 1:03 | Monaco | Hard cut to Jim in his Monaco office, the harbour behind him, lounge music: "Yes... I live in Monaco." Beat. Smug: "It gives me... an outside perspective." |
-| 1:08 | The final review | Smash cut back. Carrick: "Right... so no striker?" Omar: "No striker." "No left-back?" Jason: "No left-back." Carrick looks between the three of them: "But three midfielders?" Jason, Omar and Jim nod; quick punch-ins: "Three midfielders." "Three midfielders." Jim's tiny approving nod. |
+| 1:08 | The final review | Smash cut back. Carrick: "Right... so no striker?" Omar: "No striker." "No left-back?" Jason: "No left-back." Carrick looks between the three of them: "But three midfielders?" Cut to Omar, Jason and Jim in a deadpan lineup, all nodding; punch-ins: Jason "Three midfielders.", Omar "Three midfielders.", Jim's tiny approving nod. |
 | 1:19 | Bruno's button | Close-up; the room goes quiet and grey behind him. Dead expression, straight down the lens: "Saudi Arabia offered me sunshine... I should've gone to Saudi." Cut to black. |
 | 1:23 | Title sting | Boom. **ALL OR SOMETHING**, *Everything except what the manager actually asked for.* Narrator: "This is All or Something." Hard ending, so it loops into the opening shot. |
 
@@ -51,7 +51,7 @@ voices, word-level alignment, characters cut from their sheets, upscaled and ani
    Real-ESRGAN (anime model); drawings seen large (Carrick, the gesture poses, the hand) get a second pass
    to 8x. Each drawing used is cut out with a flood fill of the paper (so white eyes, shirts and
    shoes stay solid, checked on magenta). The open mouths on the gesture poses are painted shut so the lip sync can
-   drive them. Eyes, mouth and chin are found automatically; Bruno's beard needed hand-measured mouth points.
+   drive them. Paper trapped between the legs by the sheet's floor shadow is cleared (`HOLES`). Eyes, mouth and chin are found automatically; Bruno's beard needed hand-measured mouth points.
 3. **Faces** (`face.py`, `cast.py`): each character keeps the head drawn on its own body (no head swaps, no seams).
    The jaw drops per phone with a painted mouth interior; the pupils are lifted out and re-placed for every look
    (to the speaker, to the lens); lids blink (never in sync); brows, smile, tilt, nod and turn are warps.
@@ -59,9 +59,11 @@ voices, word-level alignment, characters cut from their sheets, upscaled and ani
    (a beat late) or to the person being spoken to; small nods land on the stressed words; the script's beats are
    cues: Carrick's look into the lens, Bruno's look Carrick -> Jason -> lens, Jason's freeze and glance, Carrick
    leaning in, Bruno sinking back, the nods.
-5. **Shots** (`direction.py`, `render.py`): singles are three layers: the set behind (a boardroom plate, blurred
+5. **Shots** (`direction.py`, `render.py`): in the wide shots every character is sized to sit in the plate's
+   own chairs (shoulders fill the chair, head above the backrest, nearer chairs mean bigger people). Singles are
+   three layers: the set behind (a boardroom plate, blurred
    for shallow depth of field), the character, and the table edge in front (cut from a plate's own table, so
-   everyone sits at the same table). The wide, the three-shot and Monaco place characters in the plate with the
+   everyone sits at the same table). The three-shot is a lineup built the same way (`group`). The wides and Monaco place characters in the plate with the
    plate's furniture in front of them. Eyelines follow the seating in the wide. Slow pushes, handheld drift, a whip
    cut, a smash cut, quick punch-ins.
 6. **Graphics** (`graphics.py`): the opening text, the title card, Jim's paperwork, the grey-sky grade and drizzle

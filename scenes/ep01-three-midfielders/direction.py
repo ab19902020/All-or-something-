@@ -69,15 +69,19 @@ def single(t, who, draw=None, ed=140.0, eye=(540, 660), table=4.6, push=(1.0, 1.
 
 # ---------------------------------------------------------------- world shots
 # actors: (who, drawing, (x, y) 1x plate px of the eyes / head centre, eye distance in plate px, mirror)
-WIDE_FAR = [("ck", "ck_front", (712, 668), 18.0, False),
-            ("br", "br_q34l", (424, 702), 17.5, False),
-            ("jr", "jr_q34l", (126, 822), 23.0, False)]
-WIDE_NEAR = [("js", "js_back", (352, 1036), 60.0, False),
-             ("om", "om_back", (838, 1050), 60.0, False)]
-EXECS = [("om", "om_hero", (352, 684), 16.5, False),
-         ("js", "js_hero", (492, 682), 16.5, False),
-         ("jr", "jr_q34r", (648, 706), 17.5, True)]
-MONACO = [("jr", "jr_hero", (300, 700), 45.0, False)]
+# sized to sit in the plate's own chairs: shoulders fill the chair, the head rises above the backrest, and
+# nearer chairs get bigger people (Carrick in the chair at the head of the table, 153 px wide; Bruno in the next
+# chair along the left side; Jim in the near-left chair; Jason and Omar with their backs to camera at the near end)
+WIDE_FAR = [("ck", "ck_front", (712, 664), 25.0, False),
+            ("br", "br_q34l", (420, 700), 26.0, False),
+            ("jr", "jr_q34l", (112, 792), 37.0, False)]
+WIDE_NEAR = [("js", "js_back", (330, 1030), 72.0, False),
+             ("om", "om_back", (842, 1046), 72.0, False)]
+# the three-shot is a portrait lineup (stage px at zoom 1): Omar, Jason, Jim side by side behind the table
+EXECS = [("om", "om_hero", (196, 912), 71.0, False),
+         ("jr", "jr_hero", (886, 916), 71.0, False),
+         ("js", "js_hero", (542, 900), 74.0, False)]
+MONACO = [("jr", "jr_hero", (312, 688), 49.0, False)]
 
 
 def world(t, plate, cam0, cam1=None, layers=(), grade="board", drift=0.6, blur=0.0, ease="inout", cams=None):
@@ -87,19 +91,25 @@ def world(t, plate, cam0, cam1=None, layers=(), grade="board", drift=0.6, blur=0
                 drift=drift, blur=blur, ease=ease, cams=cams)
 
 
+def group(t, actors, cams, table_y, bg=("V", 505, 430, 1.55, 5.0), fg=("V", "table", 420, 758, 2.4, 2.0),
+          grade="board", drift=0.5):
+    """several characters composited like a single (blurred set behind, table edge in front); cams: [(t, (stage x,
+    stage y, zoom))] - the stage point at the centre of the frame; table_y: the table edge in stage px"""
+    return dict(t=t, kind="group", actors=actors, cams=cams, table_y=table_y, bg=bg, fg=fg, grade=grade, drift=drift)
+
+
 def card(t, kind):
     return dict(t=t, kind=kind)
 
 
 W_LAYERS = [("actors", WIDE_FAR), ("occl", "table"), ("actors", WIDE_NEAR), ("occl", "fgchair")]
-V_LAYERS = [("actors", EXECS), ("occl", "table")]
 
 MCU, CU = 180.0, 222.0          # eye distance of a medium close-up / close-up (screen px)
 SHOTS = [
     # 00:00 Carrington exterior: slow cinematic push, grey Manchester, big white text
     dict(world(0.0, "EXT", (470, 836, 1.0), (470, 800, 1.13), grade="grey", drift=0.3), text="ext"),
     # 00:03 boardroom wide: all at the table, slow push towards Carrick
-    world(m("cut_wide"), "W", (520, 800, 1.12), (700, 700, 2.45), W_LAYERS),
+    world(m("cut_wide"), "W", (470, 800, 1.0), (706, 734, 2.0), W_LAYERS),
     single(m("cut_js1"), "js", ed=MCU),                                           # Sorted.
     single(m("cut_ck1"), "ck", ed=MCU),                                           # Brilliant. (relieved)
     single(m("cut_js2"), "js", ed=MCU, push=(1.0, 1.03)),                         # We bought three midfielders.
@@ -126,7 +136,7 @@ SHOTS = [
     single(m("cut_js7"), "js", ed=192, push=(1.0, 1.05)),                         # freezes... Next question.
     single(m("cut_br6"), "br", ed=192, eye=(540, 670)),                           # sinks back into his chair
     dict(single(m("cut_jr1"), "jr", ed=MCU, push=(1.0, 1.05)), paper=True),       # the bigger issues facing Britain
-    world(m("cut_wide2"), "W", (430, 790, 1.28), (430, 786, 1.33), W_LAYERS),     # everyone looks at Jim
+    world(m("cut_wide2"), "W", (430, 800, 1.1), (430, 796, 1.14), W_LAYERS),      # everyone looks at Jim
     single(m("cut_br7"), "br", ed=205, eye=(540, 690), push=(1.0, 1.06)),         # Jim... you live in Monaco.
     single(m("cut_jr2"), "jr", ed=192, push=(1.0, 1.02), drift=0.4),              # silence
     world(m("cut_monaco"), "M", (320, 830, 1.35), (300, 752, 2.0), [("actors", MONACO), ("occl", "coffee")],
@@ -136,9 +146,9 @@ SHOTS = [
     single(m("cut_ck9"), "ck", ed=186),                                           # No left-back?
     single(m("cut_js8"), "js", ed=MCU),                                           # No left-back.
     single(m("cut_ck10"), "ck", ed=186, push=(1.0, 1.06)),                        # looks between them: But THREE?
-    world(m("cut_execs"), "V", None, layers=V_LAYERS, drift=0.5,                  # the three of them nod
-          cams=[(m("cut_execs"), (500, 700, 2.35)), (ls("js_three_mids") + 0.05, (492, 690, 4.3)),
-                (m("om_line") + 0.1, (352, 692, 4.3)), (m("jr_nod") - 0.05, (500, 700, 2.35))]),
+    group(m("cut_execs"), EXECS, table_y=1232,                                    # the three of them nod
+          cams=[(m("cut_execs"), (540, 1010, 1.0)), (ls("js_three_mids") + 0.02, (542, 905, 1.85)),
+                (m("om_line") + 0.08, (206, 915, 1.85)), (m("jr_nod") - 0.12, (876, 920, 1.85))]),
     single(m("cut_br8"), "br", ed=CU, eye=(540, 700), table=4.3, push=(1.0, 1.08), quiet=1.0),   # the button
     card(m("cut_black"), "black"),
     card(m("cut_title"), "title"),                                                # ALL OR SOMETHING

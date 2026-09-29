@@ -36,7 +36,8 @@ P = {
 CLOSE = {"js_g_explain": (364.5, 1290.5, 10.5, 6.2), "js_g_point": (223.0, 1291.0, 11.5, 6.6),
          "om_g_explain": (224.0, 1278.5, 8.6, 3.2)}
 # paper enclosed by the drawing (e.g. between arm and body) to clear: seed points (1x sheet px)
-HOLES = {}
+HOLES = {"jr_hero": [(142.0, 704.2)], "js_hero": [(154.7, 664.9)], "ck_front": [(123.9, 469.0)],
+         "jr_q34l": [(554.1, 443.9)]}       # the gap between the legs (closed off by the sheet's floor shadow)
 INK = (22, 28, 45)          # BGR of the sheets' dark brown line work
 
 
@@ -123,9 +124,17 @@ def cut(name, spec):
     a = cv2.GaussianBlur(keep8.astype(np.float32), (0, 0), 0.9)
     a = np.clip((a - 0.25) / 0.5, 0, 1)
     for hx, hy in HOLES.get(name, []):
+        # start from the nearest paper-coloured pixel, so a seed that lands on the drawing never floods it
+        sx, sy = int((hx - x0) * 4), int((hy - y0) * 4)
+        r = 60
+        win = g[max(0, sy - r):sy + r, max(0, sx - r):sx + r]
+        ys_, xs_ = np.nonzero(win > 222)
+        if len(ys_) == 0: continue
+        k = int(np.argmin((ys_ + max(0, sy - r) - sy) ** 2 + (xs_ + max(0, sx - r) - sx) ** 2))
+        sx, sy = int(xs_[k] + max(0, sx - r)), int(ys_[k] + max(0, sy - r))
         hole = np.zeros((h + 2, w + 2), np.uint8)
-        cv2.floodFill(ff, hole, (int((hx - x0) * 4), int((hy - y0) * 4)), 0, (4, 4, 4), (4, 4, 4), flags)
-        hm = cv2.dilate(hole[1:-1, 1:-1], np.ones((3, 3), np.uint8)) > 0
+        cv2.floodFill(ff, hole, (sx, sy), 0, (6, 6, 6), (6, 6, 6), flags)
+        hm = (cv2.dilate(hole[1:-1, 1:-1], np.ones((3, 3), np.uint8)) > 0) & (g > 150)   # light pixels only
         a[hm] = 0
     if name in CLOSE:
         close_mouth(im, a, x0, y0, *CLOSE[name])

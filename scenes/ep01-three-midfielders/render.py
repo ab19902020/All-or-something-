@@ -242,6 +242,46 @@ def render_world(s, t):
     return img
 
 
+def render_group(s, t):
+    fx, fy, z = cam_at(s, t)
+    dx, dy = drift(t, s, s["drift"])
+    def S(x, y): return ((x - fx) * z + OW / 2 + dx, (y - fy) * z + OH / 2 + dy)
+    # the set behind: blurred, moving less than the characters (parallax)
+    pk, cx, cy, zz, blur = s["bg"]
+    P = plate(pk)
+    s0 = P.scale(zz)
+    zb = zz * z ** 0.35
+    cxb = cx + (fx - OW / 2) * 0.35 / s0 - dx * 0.6 / P.scale(zb)
+    cyb = cy + (fy - OH / 2) * 0.35 / s0 - dy * 0.6 / P.scale(zb)
+    cxb, cyb = P.clamp(cxb, cyb, zb)
+    img = P.render(cxb, cyb, zb)
+    if blur > 0: img = cv2.GaussianBlur(img, (0, 0), blur * RS)
+    # the characters, back to front
+    lay = np.zeros((OH, OW, 4), np.float32)
+    for who, draw, (px, py), ed, mirror in s["actors"]:
+        d, info = CAST.get(draw)
+        ex, ey = S(px, py)
+        st = perf.state(who, t, world_resolver(dict(plate="V"), who), s["t"])
+        Ms = actor_matrix(info, ex, ey, ed * z / info["ed"], mirror)
+        E.place(lay, d, face_state(st, info, mirror), Ms)
+    img = img * (1 - lay[..., 3:4]) + lay[..., :3]
+    # the table in front of them
+    fk, mname, fcx, edge, fz, fblur = s["fg"]
+    P2 = plate(fk)
+    fz2 = fz * z ** 1.1
+    s2 = P2.scale(fz2)
+    ty = S(0, s["table_y"])[1] + dy * 0.15
+    fcy = edge - (ty - OH / 2) / s2
+    fcx2 = fcx + (fx - OW / 2) * 1.1 / P2.scale(fz) - dx * 1.15 / s2
+    fimg = P2.render(fcx2, fcy, fz2)
+    msk = P2.mask(mname, fcx2, fcy, fz2)
+    if fblur > 0:
+        fimg = cv2.GaussianBlur(fimg, (0, 0), fblur * RS)
+        msk = cv2.GaussianBlur(msk, (0, 0), max(0.8, fblur * 0.5) * RS)
+    img = img * (1 - msk[..., None]) + fimg * msk[..., None]
+    return G.grade(img, s["grade"], t)
+
+
 def render_frame(f):
     t = f / FPS
     s = D.shot_at(t)
@@ -251,6 +291,8 @@ def render_frame(f):
         img = G.title_card(t, s["t"])
     elif s["kind"] == "single":
         img = render_single(s, t)
+    elif s["kind"] == "group":
+        img = render_group(s, t)
     else:
         img = render_world(s, t)
     # whip pan: a horizontal smear across the cut
@@ -262,7 +304,7 @@ def render_frame(f):
             img = cv2.filter2D(img, -1, ker, borderType=cv2.BORDER_REFLECT)
             sh = int((t - tw) * FPS * 60 * RS)
             img = np.roll(img, sh, 1)
-    if s["kind"] in ("single", "world"):
+    if s["kind"] in ("single", "world", "group"):
         img = G.finish(img, f)
     return (np.clip(img, 0, 1) * 255 + 0.5).astype(np.uint8)
 
