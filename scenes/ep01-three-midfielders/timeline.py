@@ -7,7 +7,6 @@ import json
 L = json.load(open("build/lines.json"))
 
 # (kind, value[, mark name]): "gap" seconds of room tone before the next item; "line" id; "mark" a named point
-BR_MISSING = L["br_monaco"].get("missing", False)     # Bruno's Monaco line not recorded yet: a silent stare
 
 SEQ = [
     ("gap", 0.25, "open"),                   # exterior: music, slow push, big white text
@@ -50,8 +49,8 @@ SEQ = [
     ("gap", 0.60, "cut_br6"),                 # Bruno slowly sinks back into his chair
     ("gap", 0.28, "cut_jr1"), ("line", "jr_bigger_issues"),  # Jim lowers his paperwork
     ("gap", 0.55, "cut_wide2"),               # everyone looks at Jim
-    ("gap", 0.25, "cut_br7"), ("line", "br_monaco"),         # Bruno turns to him (a silent stare until recorded)
-    ("gap", 0.40 if BR_MISSING else 0.55, "cut_jr2"),        # silence on the TV... his virtual background glitches
+    ("gap", 0.25, "cut_br7"), ("line", "br_doing_here"),     # Bruno looks at the screen, then at us: "What am I even doing here?"
+    ("gap", 0.45, "cut_jr2"),                                 # silence on the TV... his virtual background glitches
     ("gap", 1.05),                                            # and shows the Monaco harbour behind him
     ("gap", 0.0, "cut_monaco"), ("gap", 0.25), ("line", "jr_yes_monaco"),  # hard cut to Monaco
     ("gap", 0.40, "jr_beat"), ("line", "jr_perspective"),

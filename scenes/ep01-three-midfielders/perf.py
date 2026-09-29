@@ -47,7 +47,7 @@ META = {
     "ck_luke": ("disbelieving", "js", ["luke", "whole"]),
     "js_next_question": ("awkward", "ck", ["next"]),
     "jr_bigger_issues": ("detached", "ck", ["bigger", "britain"]),
-    "br_monaco": ("deadpan", "jr", ["monaco"]),
+    "br_doing_here": ("deadpan", "cam", ["even", "here"]),
     "jr_yes_monaco": ("defensive", "cam", ["yes", "monaco"]),
     "jr_perspective": ("smug", "cam", ["outside", "perspective"]),
     "ck_no_striker": ("sigh", "om", ["striker"]),
@@ -185,7 +185,8 @@ GAZE = {
     "br": [(m("cut_br1"), m("cut_br1") + 0.42, "ck"), (m("cut_br1") + 0.42, m("cut_br1") + 0.85, "js"),
            (m("cut_br1") + 0.85, ls("br_you_bought") + 0.35, "cam"),
            (m("cut_br6") + 0.1, m("cut_jr1"), ("dir", -0.25, 0.45, -0.05)),
-           (m("cut_wide2"), le("br_monaco") + 0.5, "jr"),
+           (m("cut_wide2"), ls("br_doing_here") + 0.15, "jr"),
+           (ls("br_doing_here") + 0.15, m("cut_jr2"), "cam"),
            (m("cut_br8"), m("cut_black"), "cam")],
     "jr": [(m("cut_wide") - 0.1, m("cut_js1"), "down"), (m("cut_jr1"), ls("jr_bigger_issues") + 0.05, "down"),
            (m("cut_wide2"), m("cut_br7"), ("dir", 0.2, 0.2, 0.05)),
@@ -232,7 +233,7 @@ EXPR = {
     "om": [(m("cut_execs"), m("cut_br8"), 0.15, 0.35, 0.2),
            (le("om_positions") - 0.1, m("cut_br1"), 0.2, 0.0, 0.2)],
     "br": [(m("cut_br1"), ls("br_you_bought"), 0.4, -0.2, 0.3), (m("cut_br6"), m("cut_jr1"), 0.1, -0.3, 0.3),
-           (m("cut_br7"), m("cut_jr2"), -0.35, -0.12, 0.4),                        # the stare
+           (m("cut_br7"), m("cut_jr2"), -0.35, -0.12, 0.4),                        # dead-eyed
            (ls("br_brilliant"), le("br_brilliant") + 0.3, -0.25, -0.18, 0.1),
            (m("cut_br8"), m("cut_black"), -0.12, -0.22, 0.3)],
     "jr": [(m("cut_jr2"), m("cut_monaco"), 0.0, 0.05, 0.3), (m("jr_nod") - 0.1, m("cut_br8"), 0.0, 0.25, 0.2)],

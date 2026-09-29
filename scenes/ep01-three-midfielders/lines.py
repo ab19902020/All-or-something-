@@ -2,8 +2,8 @@
 
 Each scripted line is taken from its clip at the aligned word boundaries (phones.json); nothing is re-ordered
 inside a line. Cuts snap to the quietest point in the gap next to the first / last word, so no breath or
-neighbouring word leaks in. A line whose clip does not exist yet (Bruno's "Jim... you live in Monaco") plays as a
-short silent reaction beat (mouth closed) until the recording is added; then it is aligned and used automatically.
+neighbouring word leaks in. A line whose clip does not exist yet (listed in MISSING) plays as a short silent reaction
+beat (mouth closed) until the recording is added; then it is aligned and used automatically.
 
 Output: build/lines/<id>.wav (48 kHz mono) and build/lines.json {id: {speaker, clip, dur, text, words, phones}}
 with word / phone times relative to the start of the cut."""
@@ -56,7 +56,7 @@ LINES = [
     ("ck_luke", "ck2", "luke for the whole season", 1),
     ("js_next_question", "js2", "next question", 1),
     ("jr_bigger_issues", "jr1", "we need to focus on the bigger issues facing britain", 1),
-    ("br_monaco", "br3", "jim you live in monaco", 1),
+    ("br_doing_here", "br2", "what am i even doing here", 1),
     ("jr_yes_monaco", "jr2", "yes i live in monaco", 1),
     ("jr_perspective", "jr2", "it gives me an outside perspective", 1),
     ("ck_no_striker", "ck3", "right so no striker", 1),
@@ -76,8 +76,8 @@ SR = 48000
 MAXGAP, GAP = 0.20, {"ck_two_things": 0.32, "jr_yes_monaco": 0.36, "br_me": 0.30, "ck_luke": 0.30}
 # every line is played 6 % faster (ffmpeg atempo: pitch unchanged) to keep the Short's pace
 TEMPO = 1.08
-# Bruno's Monaco line is not recorded yet: any clip named like this is used when it appears
-MISSING = {"br3": ("bruno-fernandes/bruno_03_*.mp3", 1.25)}
+# lines whose clip may not exist yet: {clip key: (glob under ../../audio, silent-beat length)}
+MISSING = {}
 
 
 def words_of(t):
