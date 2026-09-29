@@ -14,7 +14,7 @@ python3 audio.py -> build/episode_audio.wav (48 kHz stereo)"""
 import json, math, numpy as np, soundfile as sf
 from scipy import signal
 from timeline import TL
-from direction import m, ls, le, WHIPS
+from direction import m, ls, le
 
 SR = 48000
 TOTAL = TL["total"]

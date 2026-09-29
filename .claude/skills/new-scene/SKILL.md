@@ -57,6 +57,12 @@ Dependencies are installed by the session-start hook (`requirements.txt` + ffmpe
   shadow closes the gap) stays solid white: find it on magenta and add the gap to `HOLES`.
 - `facemarks.py`: a head box per talking drawing; eyes, mouth and chin are found automatically. Check
   `build/parts/marks_*.jpg`; beards and faint mouth lines need hand points in `cast.py` `OVR`.
+- Gestures come from the character's own drawn arm poses on the sheet. To change a hand (three fingers, a point),
+  swap the hand on the pose's own wrist inside `parts.py` (see `three_finger_arm`); never stick a hand and a
+  drawn sleeve onto a body: it looks wrong.
+- Waist-up gesture poses stop at the sheet's cell edge: list them in `EXTEND` so the torso continues behind the
+  table (the renderer also never puts the table edge below a drawing's bottom). Check every single at the end of
+  its push for bodies ending in mid-air.
 - `cast.py`: which way each drawing faces. Characters are sized by eye distance, so every drawing of a character
   comes out the same size.
 
@@ -73,9 +79,20 @@ Dependencies are installed by the session-start hook (`requirements.txt` + ffmpe
 
 ## 6. Sound
 
-`audio.py`: dialogue at its timeline positions, room tone per location, the synthesised score (it ducks under
-dialogue; "music stops" means a hard stop), foley, the title sting cut hard at the end so the Short loops.
-`python3 check_audio.py --words` must hear every line correctly in the finished mix.
+The user wants it to sound like a real production: **no synthetic whooshes, beeps or sci-fi hits.**
+
+- Ambience and foley are real recordings: BigSoundBank.com (CC0, reachable from cloud sessions; files at
+  `https://bigsoundbank.com/UPLOAD/mp3/<id>.mp3`, search at `/search?q=`). Add a clip to
+  `audio/sfx/manifest.json` (id, title, start, end) and run `python3 tools/get_sfx.py`; it trims it into
+  `audio/sfx/<name>.ogg`. Freesound / Kenney are also reachable if something is missing.
+- Every location has its bed (outside: rain / wind / traffic; boardroom: air-con + muffled city; Monaco: marina),
+  and every visible action gets its foley on the frame it happens (chair creaks on leans and turns, cloth on
+  gestures, paper, pen clicks, cups). Keep foley off the dialogue's words.
+- Music: the intro music plays over the intro only and ends on the cut into the first scene (a layered boom:
+  bass tom + gong + thunder pitched down, `big_boom`); no music under dialogue scenes unless the script asks.
+  Big moments (title) get the same boom; cuts are hard cuts.
+- `python3 check_audio.py --words` must hear every line correctly in the finished mix (foley on a one-word line
+  can mask it: move the cue after the word).
 
 ## 7. Review before rendering
 

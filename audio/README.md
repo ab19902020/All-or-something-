@@ -37,3 +37,10 @@ its exact word boundaries, so the extra words are simply not used.
 
 Add new voices the same way: a folder per character, clips renamed by what's said, and a line in the table and
 in `transcripts.json`.
+
+## Sound effects (`sfx/`)
+
+Real recordings from [BigSoundBank](https://bigsoundbank.com) (CC0: free for any use; credit appreciated:
+"Additional sounds: Joseph SARDIN - BigSoundBank.com"). `sfx/manifest.json` lists each clip's source id and the
+part used; `python3 tools/get_sfx.py` downloads and trims them into `sfx/<name>.ogg`. Add new effects the same
+way.
