@@ -4,8 +4,10 @@ All art for the show. Scenes copy what they use from here into their own `src/` 
 
 ## Characters (`characters/`)
 
-Character model sheets, 1122 × 1402, "Style 1 (2.5D animation)": full-body turnaround, head close-up views,
+Character model sheets, 1122 × 1402 unless noted: a hero drawing, full-body turnaround, head close-up views,
 facial expressions, a mouth / phoneme set for lip sync, hand poses, upper-body gesture poses and leg/walk poses.
+The episode pipeline cuts drawings from these by box (`parts.py`), so a new sheet needs its boxes measured once
+(grid it, as in the new-scene skill). Characters used so far: Carrick, Jason, Omar, Bruno, Jim (Episode 1).
 
 | File | Who | Notes |
 |---|---|---|
@@ -14,6 +16,13 @@ facial expressions, a mouth / phoneme set for lip sync, hand poses, upper-body g
 | `omar-berrada.png` | Omar Berrada | Dark suit, red tie. 9 mouths; gestures: arms crossed, explaining, pointing, clipboard, phone. |
 | `bruno-fernandes.png` | Bruno Fernandes | Home kit, captain's armband. 10 mouths; gestures: pointing, celebrate, talking, shrug. |
 | `jim-ratcliffe.png` | Jim Ratcliffe | Dark suit, maroon tie. 9 mouths; gestures: neutral, pointing, explaining, thinking. **Main Jim sheet.** |
+| `yuri-tielemans.png` | Yuri Tielemans | Midfielder, #8, home kit. 6 mouths (A E I O U closed), 8 expressions, eye positions; poses: talking 1 & 2, pointing, arms crossed, shrug, thinking; 4-frame walk and run cycles. |
+| `senne-lammens.png` | Senne Lammens | Goalkeeper, #1, black keeper kit and gloves. Same layout as Tielemans (6 mouths, 8 expressions, eye positions, 6 speaking poses, walk and run cycles). |
+| `benjamin-sesko.png` | Benjamin Šeško | Forward, #30, home kit, sleeve tattoos. Same layout as Tielemans. |
+| `kobbie-mainoo.png` | Kobbie Mainoo | Midfielder, #37, home kit. Same layout as Tielemans. 1121 × 1403. |
+| `luke-shaw.png` | Luke Shaw | Left-back, #23, home kit, beard. 10 mouths (rest, A, E, I, O, U, smile, frown, wide shout), 6 expressions; poses: pointing, celebrate, talking, shrug; 3-pose walk and run. 1086 × 1448. |
+| `harry-maguire.png` | Harry Maguire | Defender, #5, home kit. Same layout as Shaw (10 mouths, 6 expressions, 4 gesture poses, walk and run). |
+| `steve-holland.png` | Steve Holland | Coach, black club tracksuit, shaved head, stubble. Same layout as Shaw. |
 | `jim-ratcliffe-alt.png` | Jim Ratcliffe | Older, softer sheet (1024 × 1136) with extra poses in a red training top. Spare / reference. |
 
 ## Backgrounds (`backgrounds/`)
