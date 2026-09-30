@@ -37,3 +37,9 @@ All portrait 941 × 1672 (9:16), for Shorts / TikTok.
 | `boardroom-window-view.png` | Boardroom towards the corner windows onto the pitches; club crest on the wall. |
 | `tactics-room-screen.png` | Close on the end of the table and the tactics screen (good for singles / close-ups). |
 | `monaco-office.png` | Luxury office with the Monaco harbour view (Jim's cutaway). |
+| `hull-stadium-exterior.png` | MKM Stadium, Hull: sunny exterior, tiger flags and banners (Episode 2 opening). |
+| `hull-away-dressing-room-pre-match.png` | Hull away dressing room before the game: United kits hanging, tactics board on a stand, central table with bottles, tiger rug. |
+| `hull-away-dressing-room-post-match.png` | The same room after the game: towels, bottles, muddy boots and kit bags everywhere, the tactics board on the wall, the door open to the tunnel. |
+| `hull-tunnel.png` | The players' tunnel, amber and black tiger murals, the pitch at the end. |
+| `hull-pitch-corner.png` | Corner flag with the "HULL" stand behind (set-piece flashes, the Tigers song ending). |
+| `hull-stadium-strip.png` | Five landscape panels in one image: exterior with the tiger statue, the home dressing room ("TO THE PITCH" door), the tunnel ("TIGERS TOGETHER"), the pitch wide with the dugout, the home dressing room after the game. |
