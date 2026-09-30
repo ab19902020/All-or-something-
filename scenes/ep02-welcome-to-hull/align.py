@@ -11,13 +11,13 @@ TEXT = {
  "bruno-fernandes/bruno_03_nine-of-us-seventy-percent-saudi.mp3": "We've got about nine of us now. Can any of them actually play striker though? So we know they're dangerous from set pieces and the plan is hope they don't get one. Brilliant, absolutely brilliant. We had seventy percent possession, we lost two zero. Two set pieces, two goals. The exact thing we talked about before the game. So, newly promoted Hull, two set pieces, no goals. Harry, you're a centre back. And somehow you were the one having shots. What are we actually doing here? Saudi Arabia offered me sunshine, they probably had a striker as well. Can somebody check if Saudi are still calling? I should have went to Saudi.",
  "kobbie-mainoo/mainoo_01_again-came-on-after-67-ipswich.mp3": "Again? I noticed. I came on after sixty seven minutes, two nil down. What exactly was the plan? We didn't score. Didn't Ipswich just get promoted as well? So that's two newly promoted teams in a row then. Lovely. Good start to the season. This",
  "harry-maguire/maguire_01_play-striker-set-pieces-shooting.mp3": "Can any of them play striker? Both goals were set pieces. The thing you warned us about before the game. Twice. I had to start shooting. Nobody else was doing it. I'm a centre back and somehow I'm the goal threat. That's probably not ideal. Still, could have been three.",
+ "steve-holland/steve_01_practise-defending-wrong-door-ipswich.mp3": "Should we practise defending those then? That was attacking corners. Michael, wrong door. Excellent. Less excellent. Good news, we've got Ipswich next.",
 }
-# clips aligned from a start time (seconds): the phone pass fails on the whole of Jim's third clip, so only its
-# first "Good meeting." is aligned (times are still clip times)
+# clips aligned inside a time window (seconds), for a clip the phone pass fails on as a whole (times stay clip times)
 CROP = {}
 EXTRA = {"midfielders": "M IH D F IY L D ER Z", "midfielder": "M IH D F IY L D ER", "saudi": "S AW D IY",
          "monaco": "M AA N AH K OW", "carrick": "K AE R IH K", "kobbie": "K AA B IY", "ipswich": "IH P S W IH CH",
-         "maguire": "M AH G W AY ER"}
+         "maguire": "M AH G W AY ER", "practise": "P R AE K T IH S"}
 
 
 def words_of(text):

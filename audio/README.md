@@ -42,6 +42,8 @@ its exact word boundaries, so the extra words are simply not used.
 | `kobbie-mainoo/mainoo_01_again-came-on-after-67-ipswich.mp3` | 24.4 s | Again? I noticed. I came on after 67 minutes, 2-0 down. What exactly was the plan? We didn't score. Didn't Ipswich just get promoted as well? So that's two newly promoted teams in a row then. Lovely. Good start to the season. This... |
 | **Harry Maguire** | | |
 | `harry-maguire/maguire_01_play-striker-set-pieces-shooting.mp3` | 20.4 s | Can any of them play striker? Both goals were set pieces. The thing you warned us about before the game. Twice. I had to start shooting. Nobody else was doing it. I'm a centre-back and somehow I'm the goal threat. That's probably not ideal. Still, could have been three. |
+| **Steve Holland** | | |
+| `steve-holland/steve_01_practise-defending-wrong-door-ipswich.mp3` | 11.8 s | Ep2: Should we practise defending those then? That was attacking corners. Michael, wrong door. Excellent. Less excellent. Good news, we've got Ipswich next. |
 | **Jim Ratcliffe** | | |
 | `jim-ratcliffe/jim_01_bigger-issues-facing-britain.mp3` | 18.6 s | We need to focus on the bigger issues facing Britain. Standards, discipline, efficiency. Everyone always wants more players. Sometimes you have to make do with what you've got. |
 | `jim-ratcliffe/jim_02_i-live-in-monaco.mp3` | 12.0 s | That's how you build character and save money. Yes. I live in Monaco. That's completely different. It gives me an outside perspective. |
@@ -58,7 +60,8 @@ in `transcripts.json`.
 
 Voices are checked with speaker fingerprints (wespeaker / TitaNet via sherpa-onnx) before use: a clip whose voice
 doesn't match its character is not used (Episode 2's 57-second "Bruno" take was in Jason's voice, so the 45-second
-take is used).
+take is used). Steve Holland's voice is the same generated voice as Jason Wilcox's in Episode 1, so an episode
+with both of them needs a new voice for one of them.
 
 ## Sound effects (`sfx/`)
 

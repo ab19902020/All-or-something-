@@ -1,9 +1,10 @@
-"""Every line of Episode 1, cut word-exact from the voice clips in ../../audio.
+"""Every line of Episode 2, cut word-exact from the voice clips in ../../audio.
 
 Each scripted line is taken from its clip at the aligned word boundaries (phones.json); nothing is re-ordered
 inside a line. Cuts snap to the quietest point in the gap next to the first / last word, so no breath or
-neighbouring word leaks in. A line whose clip does not exist yet (listed in MISSING) plays as a short silent reaction
-beat (mouth closed) until the recording is added; then it is aligned and used automatically.
+neighbouring word leaks in. A line whose voice has not been recorded yet (see MISSING) gets a silent slot sized
+from its syllables (mouth closed) until its clip is filed in ../../audio/ and added to align.py's TEXT; then it is
+cut like every other line.
 
 Output: build/lines/<id>.wav (48 kHz mono) and build/lines.json {id: {speaker, clip, dur, text, words, phones}}
 with word / phone times relative to the start of the cut."""
@@ -11,73 +12,82 @@ import json, os, re, glob, numpy as np, librosa, soundfile as sf
 
 A = "../../audio/"
 CLIP = dict(
-    nar="narrator/narrator_01_deadline-day-intro.mp3",
-    ck1="michael-carrick/carrick_01_two-things-left-back-striker.mp3",
-    ck2="michael-carrick/carrick_02_not-complaining-whos-scoring.mp3",
-    ck3="michael-carrick/carrick_03_no-striker-brilliant_take1.mp3",
-    js1="jason-wilcox/jason_01_sorted-three-midfielders.mp3",
-    js2="jason-wilcox/jason_02_perfect-loads-of-midfielders.mp3",
-    om1="omar-berrada/omar_01_market-presented-opportunities.mp3",
-    om2="omar-berrada/omar_02_efficient-recruitment.mp3",
-    om3="omar-berrada/omar_03_no-striker-three-midfielders.mp3",
-    br1="bruno-fernandes/bruno_01_sorry-what-three-midfielders.mp3",
-    br2="bruno-fernandes/bruno_02_should-have-gone-to-saudi.mp3",
-    jr1="jim-ratcliffe/jim_01_bigger-issues-facing-britain.mp3",
-    jr2="jim-ratcliffe/jim_02_i-live-in-monaco.mp3",
-    jr3="jim-ratcliffe/jim_03_excellent-business-good-meeting.mp3",
+    nar3="narrator/narrator_03_new-season-hull-same-corners.mp3",
+    ck10="michael-carrick/carrick_10_fresh-season-same-corner-impact.mp3",
+    br3="bruno-fernandes/bruno_03_nine-of-us-seventy-percent-saudi.mp3",
+    mn1="kobbie-mainoo/mainoo_01_again-came-on-after-67-ipswich.mp3",
+    mg1="harry-maguire/maguire_01_play-striker-set-pieces-shooting.mp3",
+    sh1="steve-holland/steve_01_practise-defending-wrong-door-ipswich.mp3",
 )
-SPK = dict(nar="narrator", ck="carrick", js="jason", om="omar", br="bruno", jr="jim")
+SPK = dict(nar="narrator", ck="carrick", sh="steve", mn="mainoo", br="bruno", mg="maguire")
 
 # (id, clip, words, occurrence) in script order
 LINES = [
-    ("nar_deadline", "nar", "manchester united transfer deadline day", 1),
-    ("ck_two_things", "ck1", "right just two things left back striker", 1),
-    ("js_sorted", "js1", "sorted", 1),
-    ("ck_brilliant", "ck1", "brilliant", 1),
-    ("js_bought", "js1", "we bought three midfielders", 1),
-    ("ck_i_said", "ck1", "sorry i said left back and striker", 1),
-    ("om_yeah_but", "om1", "yeah but three midfielders", 1),
-    ("js_three_things", "js1", "it's three things instead of two technically you've won", 1),
-    ("om_positions", "om1", "were they the positions we needed no", 1),
-    ("br_you_bought", "br1", "you bought three midfielders", 1),
-    ("ck_not_complaining", "ck2", "look i'm not complaining obviously love the lads great window", 1),
-    ("ck_whos_scoring", "ck2", "but who's actually scoring the goals", 1),
-    ("om_bruno", "om2", "bruno", 1),
-    ("br_sorry_what", "br1", "sorry what", 1),
-    ("om_efficient", "om2", "he's already here so technically that's efficient recruitment", 1),
-    ("br_crossing", "br1", "so who am i crossing the ball to", 1),
-    ("js_bruno", "js1", "bruno", 1),
-    ("br_me", "br1", "me i'm taking the corner", 1),
-    ("br_midfielder", "br1", "i'm a midfielder", 1),
-    ("js_perfect", "js2", "perfect we've got loads of midfielders", 1),
-    ("br_brilliant", "br1", "brilliant absolutely brilliant", 1),
-    ("ck_left_back", "ck2", "and the left back", 1),
-    ("js_luke", "js2", "we've got luke", 1),
-    ("ck_luke", "ck2", "luke for the whole season", 1),
-    ("js_next_question", "js2", "next question", 1),
-    ("jr_bigger_issues", "jr1", "we need to focus on the bigger issues facing britain", 1),
-    ("br_doing_here", "br2", "what am i even doing here", 1),
-    ("jr_yes_monaco", "jr2", "yes i live in monaco", 1),
-    ("jr_perspective", "jr2", "it gives me an outside perspective", 1),
-    ("ck_no_striker", "ck3", "right so no striker", 1),
-    ("om_no_striker", "om3", "no striker", 1),
-    ("ck_no_left_back", "ck3", "no left back", 1),
-    ("js_no_left_back", "js2", "no left back", 1),
-    ("ck_but_three", "ck3", "but three midfielders", 1),
-    ("js_three_mids", "js2", "three midfielders", 1),
-    ("om_three_mids", "om3", "three midfielders", 1),
-    ("jr_good_meeting", "jr3", "good meeting", 1),
-    ("br_sunshine", "br2", "saudi arabia offered me sunshine", 1),
-    ("br_saudi", "br2", "i should have gone to saudi", 1),
-    ("nar_title", "nar", "this is all or something", 1),
+    # ---- opening: MKM Stadium
+    ("nar_new_season", "nar3", "new season new manchester united", 1),
+    ("nar_probably", "nar3", "probably", 1),
+    # ---- pre-match dressing room
+    ("ck_right_lads", "ck10", "right lads fresh season clean slate", 1),
+    ("ck_hull_come_up", "ck10", "hull have just come up so they'll be aggressive physical dangerous from set pieces", 1),
+    ("sh_practise", "sh1", "should we practise defending those then", 1),
+    ("ck_already", "ck10", "already did thursday", 1),
+    ("sh_attacking", "sh1", "that was attacking corners", 1),
+    ("ck_same_corner", "ck10", "same corner though isn't it", 1),
+    ("ck_kobbie", "ck10", "kobbie you're on the bench", 1),
+    ("mn_again", "mn1", "again", 1),
+    ("ck_bought", "ck10", "we've bought midfielders", 1),
+    ("mn_noticed", "mn1", "i noticed", 1),
+    ("br_nine", "br3", "we've got about nine of us now", 1),
+    ("mg_striker", "mg1", "can any of them play striker", 1),
+    ("ck_come_on", "ck10", "right hull city come on", 1),
+    ("sh_wrong_door", "sh1", "michael wrong door", 1),
+    # ---- the match: the score, the narrator's verdict, the Hull fans' chant
+    ("nar_knew", "nar3", "manchester united knew exactly what was coming", 1),
+    ("nar_did_not_help", "nar3", "it did not help", 1),
+    # ---- post-match dressing room
+    ("ck_positives", "ck10", "right positives", 1),
+    ("br_possession", "br3", "we had seventy percent possession", 1),
+    ("sh_excellent", "sh1", "excellent", 1),
+    ("br_lost", "br3", "we lost two zero", 1),
+    ("sh_less_excellent", "sh1", "less excellent", 1),
+    ("mg_both_goals", "mg1", "both goals were set pieces", 1),
+    ("ck_yep1", "ck10", "yep", 1),
+    ("mg_warned", "mg1", "the thing you warned us about before the game", 1),
+    ("ck_yep2", "ck10", "yep", 2),
+    ("mg_twice", "mg1", "twice", 1),
+    ("ck_aware", "ck10", "harry i'm aware", 1),
+    ("mn_came_on", "mn1", "i came on after sixty seven minutes two nil down", 1),
+    ("mn_plan", "mn1", "what exactly was the plan", 1),
+    ("ck_impact", "ck10", "impact", 1),
+    ("mn_didnt_score", "mn1", "we didn't score", 1),
+    ("ck_nearly", "ck10", "nearly impact", 1),
+    ("br_newly", "br3", "so newly promoted hull two set pieces no goals", 1),
+    ("mg_shooting", "mg1", "i had to start shooting", 1),
+    ("br_centre_back", "br3", "harry you're a centre back", 1),
+    ("mg_nobody", "mg1", "nobody else was doing it", 1),
+    ("sh_good_news", "sh1", "good news", 1),
+    ("sh_ipswich", "sh1", "we've got ipswich next", 1),
+    ("mn_ipswich", "mn1", "didn't ipswich just get promoted as well", 1),
+    ("ck_good_meeting", "ck10", "good meeting", 1),
+    ("br_saudi", "br3", "can somebody check if saudi are still calling", 1),
+    # ---- title
+    ("nar_title", "nar3", "new season same corners this is all or something", 1),
 ]
 SR = 48000
 # pauses inside a line longer than this are shortened to it (Shorts pacing: no dead air); per-line overrides
-MAXGAP, GAP = 0.20, {"ck_two_things": 0.32, "jr_yes_monaco": 0.36, "br_me": 0.30, "ck_luke": 0.30}
-# every line is played 6 % faster (ffmpeg atempo: pitch unchanged) to keep the Short's pace
+MAXGAP, GAP = 0.20, {"nar_new_season": 0.42, "ck_right_lads": 0.28, "ck_hull_come_up": 0.21, "ck_come_on": 0.22,
+                     "nar_title": 0.30, "mn_came_on": 0.24, "sh_wrong_door": 0.30}
+# every line is played a little faster (ffmpeg atempo: pitch unchanged) to keep the Short's pace
 TEMPO = 1.08
-# lines whose clip may not exist yet: {clip key: (glob under ../../audio, silent-beat length)}
+# voices not recorded yet: {clip key: glob under ../../audio}. Once the file exists, add its transcript to
+# align.py's TEXT and run align.py; until then each of its lines is a silent slot sized from its syllables.
 MISSING = {}
+
+
+def est_dur(text):
+    """a deadpan delivery's length for a line nobody has recorded yet"""
+    syl = sum(max(1, len(re.findall(r"[aeiouy]+", w))) for w in words_of(text))
+    return round((0.18 + 0.19 * syl) / TEMPO, 2)
 
 
 def words_of(t):
@@ -122,18 +132,16 @@ def main():
     for lid, clip, text, occ in LINES:
         spk = SPK[lid.split("_")[0]]
         if clip in MISSING:
-            pat, dur = MISSING[clip]
-            found = sorted(glob.glob(A + pat))
-            if not found:
-                # no recording yet: the line plays as a silent reaction beat (mouth closed) until it is added
+            found = sorted(glob.glob(A + MISSING[clip]))
+            key = found[0][len(A):] if found else None
+            if key is None or key not in ph:
+                dur = est_dur(text)
                 sf.write(f"build/lines/{lid}.wav", np.zeros(int(dur * SR), np.float32), SR)
                 out[lid] = dict(speaker=spk, clip=None, dur=dur, text=text, words=[], phones=[], missing=True)
-                print(f"{lid:20s} NO RECORDING -> {dur:.2f}s silent beat: {text}")
+                why = "not aligned yet (add it to align.py TEXT)" if key else "NO RECORDING"
+                print(f"{lid:20s} {why} -> {dur:.2f}s silent slot: {text}")
                 continue
-            import align
-            key = found[0][len(A):]
-            ph[key] = align.align(found[0], text)
-            path = found[0]
+            path = A + key
         else:
             key = CLIP[clip]; path = A + key
         if key not in cache: cache[key] = librosa.load(path, sr=SR, mono=True)[0]

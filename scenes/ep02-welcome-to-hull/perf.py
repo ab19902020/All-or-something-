@@ -2,73 +2,76 @@
 
 state(who, t, resolve) -> dict(vis, amp, blink, lookx, looky, brow, smile, tilt, nod, turn, lean, sink)
   * lip sync  - phones -> the mouth shapes (face.py), a frame early, closures held >= 2 frames; the jaw opens with
-                the loudness of the line
+                the loudness of the line; nobody's mouth moves without their voice
   * blinks    - every 2.2-4.8 s, never in sync between characters, plus the blinks the script asks for
   * eyes      - on whoever is talking (a beat late), on the person being talked to while talking, or where a cue
-                sends them (the lens, the paperwork); `resolve` turns a target into a screen direction for the shot
+                sends them (the lens, the board, the clipboard); `resolve` turns a target into a screen direction
   * face      - brows / smile from each line's delivery tag, easing in and out
-  * head      - small nods on the stressed words, slow idle drift, the nods and turns the script names
-  * body      - Carrick leans in, Bruno sinks back"""
+  * head      - small nods on the stressed words, slow idle drift, the nods and turns the script names"""
 import json, math, numpy as np, soundfile as sf
 import face
 from timeline import TL
-from direction import m, ls, le
+from direction import m, ls, le, wt
 
 FPS = 30
 N = int(math.ceil(TL["total"] * FPS)) + 2
 L = json.load(open("build/lines.json"))
-WHO = ["ck", "js", "om", "br", "jr"]
-SPK = {"carrick": "ck", "jason": "js", "omar": "om", "bruno": "br", "jim": "jr", "narrator": "nar"}
+WHO = ["ck", "sh", "br", "mg", "mn", "bs", "sl"]
+SPK = {"carrick": "ck", "steve": "sh", "bruno": "br", "maguire": "mg", "mainoo": "mn", "narrator": "nar"}
 
 # delivery tag, who the line is said to, stressed words (small nods)
 META = {
-    "ck_two_things": ("calm", "js", ["two", "left", "striker"]),
-    "js_sorted": ("confident", "ck", ["sorted"]),
-    "ck_brilliant": ("relieved", "js", ["brilliant"]),
-    "js_bought": ("casual", "ck", ["three"]),
-    "ck_i_said": ("confused", "js", ["left", "striker"]),
-    "om_yeah_but": ("obvious", "ck", ["three"]),
-    "js_three_things": ("explaining", "ck", ["three", "two", "technically", "won"]),
-    "om_positions": ("honest", "ck", ["positions", "no"]),
-    "br_you_bought": ("stunned", "js", ["three"]),
-    "ck_not_complaining": ("diplomatic", "js", ["complaining", "love", "great"]),
-    "ck_whos_scoring": ("deadpan", "js", ["actually", "goals"]),
-    "om_bruno": ("calm", "ck", []),
-    "br_sorry_what": ("confused", "om", ["what"]),
-    "om_efficient": ("matter", "ck", ["here", "technically", "efficient"]),
-    "br_crossing": ("frustrated", "om", ["crossing", "ball"]),
-    "js_bruno": ("confident", "br", ["bruno"]),
-    "br_me": ("angry", "js", ["me", "corner"]),
-    "br_midfielder": ("disbelieving", "js", ["midfielder"]),
-    "js_perfect": ("deadpan_happy", "br", ["perfect", "loads"]),
-    "br_brilliant": ("deadpan", "js", ["brilliant", "absolutely"]),
-    "ck_left_back": ("concerned", "js", ["left"]),
-    "js_luke": ("casual", "ck", ["luke"]),
-    "ck_luke": ("disbelieving", "js", ["luke", "whole"]),
-    "js_next_question": ("awkward", "ck", ["next"]),
-    "jr_bigger_issues": ("detached", "ck", ["bigger", "britain"]),
-    "br_doing_here": ("deadpan", "cam", ["even", "here"]),
-    "jr_yes_monaco": ("defensive", "cam", ["yes", "monaco"]),
-    "jr_perspective": ("smug", "cam", ["outside", "perspective"]),
-    "ck_no_striker": ("sigh", "om", ["striker"]),
-    "om_no_striker": ("confident", "ck", ["striker"]),
-    "ck_no_left_back": ("deadpan", "js", ["left"]),
-    "js_no_left_back": ("firm", "ck", ["left"]),
-    "ck_but_three": ("confused", "js", ["three"]),
-    "js_three_mids": ("proud", "ck", ["three"]),
-    "om_three_mids": ("proud", "ck", ["three"]),
-    "jr_good_meeting": ("smug", "ck", ["good"]),
-    "br_sunshine": ("regretful", "cam", ["sunshine"]),
-    "br_saudi": ("resigned", "cam", ["saudi"]),
+    "ck_right_lads": ("motivational", "br", ["fresh", "clean"]),
+    "ck_hull_come_up": ("serious", "br", ["aggressive", "physical", "set"]),
+    "sh_practise": ("deadpan", "ck", ["practise", "defending"]),
+    "ck_already": ("confident", "sh", ["already", "thursday"]),
+    "sh_attacking": ("confused", "ck", ["attacking"]),
+    "ck_same_corner": ("deadpan", "sh", ["same"]),
+    "ck_kobbie": ("casual", "mn", ["bench"]),
+    "mn_again": ("disbelieving", "ck", ["again"]),
+    "ck_bought": ("awkward", "mn", ["bought"]),
+    "mn_noticed": ("deadpan", "ck", ["noticed"]),
+    "br_nine": ("frustrated", "ck", ["nine"]),
+    "mg_striker": ("innocent", "ck", ["striker"]),
+    "ck_come_on": ("energised", "br", ["hull", "come"]),
+    "sh_wrong_door": ("deadpan", "ck", ["wrong"]),
+    "ck_positives": ("positive", "br", ["positives"]),
+    "br_possession": ("deadpan", "ck", ["seventy"]),
+    "sh_excellent": ("encouraging", "br", ["excellent"]),
+    "br_lost": ("flat", "sh", ["lost"]),
+    "sh_less_excellent": ("deadpan", "br", ["less"]),
+    "mg_both_goals": ("serious", "ck", ["both", "set"]),
+    "ck_yep1": ("restrained", "mg", []),
+    "mg_warned": ("helpful", "ck", ["warned", "before"]),
+    "ck_yep2": ("quiet", "mg", []),
+    "mg_twice": ("innocent", "ck", ["twice"]),
+    "ck_aware": ("irritated", "mg", ["aware"]),
+    "mn_came_on": ("annoyed", "ck", ["sixty", "two"]),
+    "mn_plan": ("confused", "ck", ["exactly", "plan"]),
+    "ck_impact": ("confident", "mn", ["impact"]),
+    "mn_didnt_score": ("deadpan", "ck", ["score"]),
+    "ck_nearly": ("awkward", "mn", ["nearly"]),
+    "br_newly": ("frustrated", "ck", ["newly", "two", "no"]),
+    "mg_shooting": ("defensive", "br", ["shooting"]),
+    "br_centre_back": ("disbelieving", "mg", ["centre"]),
+    "mg_nobody": ("matter", "br", ["nobody"]),
+    "sh_good_news": ("positive", "br", ["good"]),
+    "sh_ipswich": ("calm", "br", ["ipswich"]),
+    "mn_ipswich": ("concerned", "sh", ["promoted", "well"]),
+    "ck_good_meeting": ("deadpan", "cam", ["good"]),
+    "br_saudi": ("exhausted", "cam", ["saudi", "still"]),
 }
 # delivery tag -> (brow: + raised / - lowered, smile: + / - frown)
-TAG = dict(honest=(0.35, -0.05), calm=(0.05, 0.0), confident=(0.15, 0.35), relieved=(0.5, 0.55), casual=(0.1, 0.3), confused=(0.8, -0.15),
-           obvious=(0.45, 0.12), explaining=(0.4, 0.2), stunned=(1.0, -0.25), diplomatic=(0.3, 0.1),
-           deadpan=(-0.12, -0.05), matter=(0.25, 0.1), frustrated=(-0.55, -0.3), angry=(-0.95, -0.4),
-           disbelieving=(0.85, -0.2), deadpan_happy=(0.2, 0.45), concerned=(0.5, -0.3), awkward=(0.4, 0.15),
-           detached=(-0.05, 0.0), defensive=(0.4, -0.12), smug=(-0.25, 0.6), sigh=(-0.1, -0.2), firm=(-0.3, 0.0),
-           proud=(0.25, 0.5), regretful=(0.35, -0.35), resigned=(0.2, -0.28))
-BASE = dict(ck=(0.1, 0.0), js=(0.22, 0.32), om=(0.0, 0.0), br=(-0.3, -0.1), jr=(-0.1, 0.0))
+TAG = dict(motivational=(0.3, 0.2), serious=(-0.3, -0.1), deadpan=(-0.12, -0.05), confident=(0.15, 0.3),
+           confused=(0.8, -0.15), casual=(0.1, 0.25), disbelieving=(0.85, -0.2), awkward=(0.4, 0.15),
+           frustrated=(-0.55, -0.3), innocent=(0.55, 0.1), energised=(0.45, 0.35), positive=(0.35, 0.3),
+           encouraging=(0.45, 0.45), flat=(-0.2, -0.15), restrained=(-0.05, -0.1), helpful=(0.45, 0.15),
+           quiet=(-0.35, -0.2), irritated=(-0.6, -0.25), annoyed=(-0.4, -0.25), defensive=(0.4, -0.12),
+           matter=(0.25, 0.05), calm=(0.05, 0.05), concerned=(0.5, -0.3), exhausted=(0.2, -0.3))
+BASE = dict(ck=(0.1, 0.0), sh=(-0.15, -0.05), br=(-0.3, -0.1), mg=(0.0, -0.05), mn=(0.05, 0.05), bs=(0.0, 0.1),
+            sl=(0.0, 0.1))
+# a drawing's own mouth: Kobbie's sheet has him smiling, so everything he does is played a notch straighter
+SMILE_BIAS = dict(mn=-0.7)
 
 
 def sm(x):
@@ -93,7 +96,6 @@ def _speech():
         if y.ndim > 1: y = y.mean(1)
         hop = sr // FPS
         rms = np.array([np.sqrt(np.mean(y[i:i + hop] ** 2) + 1e-12) for i in range(0, len(y), hop)])
-        if L[lid].get("missing"): rms = np.full(len(rms), 0.08)
         ref = np.percentile(rms, 90) + 1e-6
         a = np.clip(0.55 + 0.55 * rms / ref, 0.5, 1.15)
         f0 = int(round(v["start"] * FPS))
@@ -109,26 +111,26 @@ VIS, AMP, TALK = _speech()
 
 # ---------------------------------------------------------------- blinks
 FORCED = {
-    "ck": [m("cut_ck2") + 0.14, m("cut_ck5") + 0.2, m("cut_ck7") + 0.12, m("cut_ck10") + 0.22],
-    "js": [m("cut_js_nod") + 0.3, ls("js_next_question") - 0.12],
-    "om": [m("cut_om2") + 0.1],
-    "br": [m("cut_br8") + 0.25, m("br_pause") + 0.1],
-    "jr": [m("cut_jr2") + 0.12, m("cut_monaco") + 0.2],
+    "ck": [m("cut_ck3") + 0.62, m("cut_ck5") + 0.05, m("cut_ck9") + 0.1, m("cut_ck13") + 0.75, m("cut_ck11") + 0.12],
+    "sh": [m("cut_sh1") + 0.3, m("cut_sh5") + 0.08, m("cut_sh7") + 0.3],
+    "br": [m("cut_br3") + 0.05, m("cut_br7") + 0.55],
+    "mg": [m("cut_mg5") + 0.3, m("cut_mg1") + 0.1],
+    "mn": [m("cut_mn2") + 0.1, m("cut_mn6") + 0.1],
+    "bs": [], "sl": [],
 }
-# no automatic blinks in these holds (a look into the lens, a freeze)
+# no automatic blinks in these holds (looks into the lens, stares)
 NOBLINK = {
-    "ck": [(m("cut_ck3") + 0.2, m("cut_br1"))],
-    "js": [(m("cut_js7"), ls("js_next_question") - 0.2)],
-    "br": [(m("cut_br1") + 0.8, ls("br_you_bought") + 0.3), (m("cut_br8") + 0.5, m("br_pause"))],
-    "jr": [],
-    "om": [],
+    "ck": [(m("cut_ck14"), le("ck_good_meeting")), (m("cut_ck3"), m("cut_ck3") + 0.5)],
+    "br": [(m("cut_br1") + 0.3, m("cut_ck4")), (ls("br_saudi") - 0.3, m("cut_black"))],
+    "mn": [(m("cut_mn5"), m("cut_br5"))],
+    "sh": [], "mg": [(m("cut_mg4"), m("cut_ck10"))], "bs": [], "sl": [],
 }
 
 
 def _blinks():
     out = {}
     for k, w in enumerate(WHO):
-        rng = np.random.default_rng(100 + k)
+        rng = np.random.default_rng(200 + k)
         t, ts = rng.uniform(0.4, 2.5), []
         while t < TL["total"]:
             if not any(a <= t <= b for a, b in NOBLINK[w]): ts.append(t)
@@ -171,29 +173,52 @@ def speaker_at(t, lag=0.2):
     return best
 
 
-# explicit gaze cues: (t0, t1, target); targets: a character, "cam", "down", "downleft", ("dir", lx, ly, turn)
+# explicit gaze cues: (t0, t1, target); targets: a character, "cam", "down", "board", ("dir", lx, ly, turn)
+AWAY = ("dir", 0.55, 0.35, 0.15)          # Carrick pretending not to notice / looking away
 GAZE = {
-    "ck": [(m("cut_ck3") + 0.05, m("cut_br1"), "cam"),
-           (m("cut_ck5"), m("cut_br5"), ("dir", 0.35, 0.35, 0.08)),
-           (m("cut_ck10"), m("cut_ck10") + 0.22, "jr"), (m("cut_ck10") + 0.22, m("cut_ck10") + 0.42, "js"),
-           (m("cut_ck10") + 0.42, ls("ck_but_three") + 0.1, "om"),
-           (m("cut_wide2"), m("cut_br7"), "jr")],
-    "js": [(m("cut_js7") + 0.3, m("cut_js7") + 0.58, "om"), (m("cut_js7") + 0.58, ls("js_next_question") + 0.2, "cam"),
-           (m("cut_wide2"), m("cut_br7"), "jr")],
-    "om": [(ls("om_efficient"), le("om_efficient"), "br"), (m("cut_wide2"), m("cut_br7"), "jr"),
-           (ls("om_positions") + 0.9, ls("om_positions") + 1.35, ("dir", -0.3, 0.55, -0.05))],
-    "br": [(m("cut_br1"), m("cut_br1") + 0.42, "ck"), (m("cut_br1") + 0.42, m("cut_br1") + 0.85, "js"),
-           (m("cut_br1") + 0.85, ls("br_you_bought") + 0.35, "cam"),
-           (m("cut_br6") + 0.1, m("cut_jr1"), ("dir", -0.25, 0.45, -0.05)),
-           (m("cut_wide2"), ls("br_doing_here") + 0.15, "jr"),
-           (ls("br_doing_here") + 0.15, m("cut_jr2"), "cam"),
-           (m("cut_br8"), m("cut_black"), "cam")],
-    "jr": [(m("cut_wide") - 0.1, m("cut_js1"), "down"), (m("cut_jr1"), ls("jr_bigger_issues") + 0.05, "down"),
-           (m("cut_wide2"), m("cut_br7"), ("dir", 0.2, 0.2, 0.05)),
-           (m("cut_jr2") + 1.05, m("cut_jr2") + 1.32, ("dir", -0.75, 0.1, -0.12)),   # the glitch: busted
-           (m("cut_jr2") + 1.32, m("cut_monaco"), "cam"),
-           (m("cut_jr2"), m("cut_monaco"), "br")],
+    "ck": [(m("cut_ck3"), m("cut_ck3") + 0.5, "board"), (m("cut_ck3") + 0.5, ls("ck_same_corner"), "sh"),
+           (m("cut_ck4"), m("cut_ck4") + 0.1, "sh"),
+           (m("cut_ck6"), m("clap") - 0.12, AWAY),
+           (m("cut_ck11"), ls("ck_impact") - 0.08, ("dir", 0.45, -0.55, 0.12)),      # thinks it through, seriously
+           (m("cut_ck13") + 0.72, m("cut_sh6"), ("dir", -0.6, 0.45, -0.2)),          # ...looks away
+           (m("cut_ck14") + 0.15, m("ck_exit"), "cam"),
+           (m("cut_ck7") + 0.68, m("cut_ck7") + 0.92, ("dir", 0.85, 0.05, 0.3)),        # at the door: everyone...
+           (m("cut_ck7") + 0.92, m("cut_ck7") + 1.14, ("dir", 0.2, 0.05, 0.05)),
+           (m("cut_post_wide"), ls("ck_positives"), ("dir", 0.0, 0.25, 0.0)),
+           (m("chant") + 1.15, m("chant") + 2.55, ("dir", 0.25, 0.1, 0.05))],       # staring at the pitch
+    "sh": [(m("cut_sh1"), m("cut_sh1") + 0.3, "down"),                                # clipboard -> Carrick
+           (m("cut_sh3"), m("cut_sh3") + 0.35, ("dir", 0.95, 0.0, 0.4)),               # watching him go
+           (m("cut_sh5"), m("cut_sh5") + 0.3, "down"),
+           (m("cut_sh6"), ls("sh_good_news") + 0.1, "down"),
+           (ls("sh_ipswich") - 0.1, le("sh_ipswich") - 0.3, "down")],                   # reads it off the clipboard
+    "br": [(m("cut_br1"), m("cut_br1") + 0.35, "ck"), (m("cut_br1") + 0.35, m("cut_ck4"), "cam"),
+           (m("cut_br3"), m("cut_br3") + 0.22, "down"),
+           (m("cut_br7"), m("cut_br7") + 0.45, ("dir", 0.95, -0.1, 0.4)),             # watches Carrick go
+           (m("cut_br7") + 0.45, m("cut_black"), "cam"),
+           (m("cut_silence"), m("cut_br3"), "down"),
+           (m("chant") + 3.85, m("cut_post_wide"), ("dir", 0.6, -0.2, 0.2))],          # shouting at the ref
+    "mg": [(m("cut_mg5") + 0.25, m("cut_mn3"), ("dir", -0.35, 0.5, -0.1)),
+           (m("cut_silence"), m("cut_br3"), ("dir", 0.1, 0.4, 0.0)),
+           (m("chant") + 2.55, m("chant") + 3.0, ("dir", -0.6, -0.15, -0.15)),          # lost: which way...
+           (m("chant") + 3.0, m("chant") + 3.45, ("dir", 0.6, -0.1, 0.15)),
+           (m("chant") + 3.45, m("chant") + 3.85, ("dir", -0.2, 0.2, -0.05))],
+    "mn": [(m("cut_mn3"), m("mn_look"), ("dir", -0.2, 0.3, -0.05)),                   # arms folded, not looking
+           (m("cut_mn5"), m("cut_br5"), "cam"),
+           (m("cut_silence"), m("cut_br3"), ("dir", -0.3, 0.3, -0.1))],
+    "bs": [], "sl": [],
 }
+# the lineups: everyone turns to Carrick, slowly and not together (t0 offsets per character)
+for w, dt in (("mn", 0.05), ("br", 0.28), ("mg", 0.45), ("bs", 0.6), ("sl", 0.7)):
+    GAZE[w] += [(m("cut_wide2") + dt, m("cut_ck6"), "ck")]
+for w, dt in (("mg", 0.0), ("br", 0.1), ("mn", 0.18)):
+    GAZE[w] += [(m("cut_hope"), m("cut_hope") + dt, "down"), (m("cut_hope") + dt, m("cut_sh7"), "sh"),
+                (m("cut_turn"), m("cut_turn") + 0.12 + 1.5 * dt, "sh"), (m("cut_turn") + 0.12 + 1.5 * dt, m("cut_ck14"), "ck")]
+# the Tigers ending's reactions
+T0 = m("cut_tigers")
+GAZE["mg"] += [(T0, T0 + 3.3, "cam")]
+GAZE["mn"] += [(T0, T0 + 3.3, ("dir", 0.5, 0.1, 0.15))]
+GAZE["sh"] += [(T0, T0 + 3.3, "down")]
+GAZE["br"] += [(T0, T0 + 3.3, ("dir", -0.2, 0.55, -0.05))]
 
 
 def target(w, t):
@@ -205,7 +230,7 @@ def target(w, t):
     sp = speaker_at(t)
     if sp and sp[0] != w:
         return sp[0]
-    return "ck" if w != "ck" else "js"
+    return "ck" if w != "ck" else "sh"
 
 
 # ---------------------------------------------------------------- brows / smile
@@ -220,23 +245,30 @@ def expression(w, t):
     for a, bb, cb, cs, fin in EXPR.get(w, []):
         k = ramp(t, a, bb, fin, 0.3)
         if k > 0: b, s = b + (cb - b) * k, s + (cs - s) * k
-    return b, s
+    return b, s + SMILE_BIAS.get(w, 0.0)
 
 
 # reactions outside their own lines: (t0, t1, brow, smile, ease-in)
 EXPR = {
-    "ck": [(m("cut_ck3"), m("cut_br1"), 0.25, -0.05, 0.5), (m("cut_ck5"), m("cut_br5"), 0.05, -0.35, 0.1),
-           (m("cut_ck7"), ls("ck_luke"), 0.35, -0.1, 0.3), (m("cut_wide2"), m("cut_br7"), 0.3, -0.1, 0.2),
-           (m("cut_ck10"), ls("ck_but_three"), 0.3, -0.15, 0.2)],
-    "js": [(m("cut_js_nod"), m("cut_ck4"), 0.25, 0.55, 0.1), (m("cut_js7"), ls("js_next_question"), 0.35, 0.3, 0.05),
-           (m("cut_execs"), m("cut_br8"), 0.2, 0.45, 0.2)],
-    "om": [(m("cut_execs"), m("cut_br8"), 0.15, 0.35, 0.2),
-           (le("om_positions") - 0.1, m("cut_br1"), 0.2, 0.0, 0.2)],
-    "br": [(m("cut_br1"), ls("br_you_bought"), 0.4, -0.2, 0.3), (m("cut_br6"), m("cut_jr1"), 0.1, -0.3, 0.3),
-           (m("cut_br7"), m("cut_jr2"), -0.35, -0.12, 0.4),                        # dead-eyed
-           (ls("br_brilliant"), le("br_brilliant") + 0.3, -0.25, -0.18, 0.1),
-           (m("cut_br8"), m("cut_black"), -0.12, -0.22, 0.3)],
-    "jr": [(m("cut_jr2"), m("cut_monaco"), 0.0, 0.05, 0.3), (m("jr_nod") - 0.1, m("cut_br8"), 0.0, 0.25, 0.2)],
+    "ck": [(m("cut_ck2"), ls("ck_already"), 0.35, -0.2, 0.15),                       # slightly offended
+           (m("cut_ck3"), ls("ck_same_corner"), 0.2, -0.05, 0.3),
+           (m("cut_ck6"), m("clap"), 0.1, -0.1, 0.1),
+           (m("cut_ck9"), le("ck_yep2") + 0.2, -0.45, -0.3, 0.25),                   # his expression tightens
+           (m("cut_ck13"), m("cut_ck13") + 0.45, 0.55, 0.0, 0.12),                    # about to say something...
+           (m("cut_ck13") + 0.45, m("cut_sh6"), -0.1, -0.25, 0.3),                    # ...no
+           (m("cut_ck14"), ls("ck_good_meeting"), -0.05, -0.08, 0.3),
+           (m("chant") + 1.15, m("chant") + 2.55, 0.2, -0.3, 0.2)],
+    "sh": [(m("cut_sh3"), ls("sh_wrong_door"), -0.2, -0.05, 0.2)],
+    "br": [(m("cut_br1"), m("cut_ck4"), 0.25, -0.2, 0.3),
+           (m("cut_br7"), m("cut_black"), 0.1, -0.3, 0.4),
+           (m("chant") + 3.85, m("cut_post_wide"), -0.9, -0.4, 0.1),
+           (T0, T0 + 3.3, 0.3, -0.35, 0.1)],
+    "mg": [(m("cut_mg2") - 0.1, ls("mg_both_goals"), 0.4, 0.0, 0.2),
+           (m("cut_mg5"), m("cut_mn3"), 0.35, -0.12, 0.2),
+           (T0, T0 + 3.3, -0.05, -0.05, 0.1),
+           (m("chant") + 2.55, m("chant") + 3.85, 0.85, -0.2, 0.1)],
+    "mn": [(m("cut_mn5"), m("cut_br5"), -0.1, -0.12, 0.3),
+           (m("cut_mn1") - 0.1, ls("mn_again"), 0.5, -0.1, 0.1)],
 }
 
 
@@ -255,19 +287,15 @@ def _emph():
 
 
 EMPH = _emph()
-# explicit nods: (t, count, amplitude %), head shakes: (t, count, amplitude)
-NODS = {"js": [(m("cut_js_nod") + 0.05, 2, 4.5), (ls("js_perfect") + 0.1, 3, 3.5), (ls("js_three_mids"), 1, 3.0),
-               (m("cut_execs") + 0.1, 1, 2.5)],
-        "om": [(ls("om_three_mids"), 1, 3.0), (m("cut_execs") + 0.12, 1, 2.2)],
-        "jr": [(m("jr_nod") + 0.05, 1, 2.6), (m("cut_execs") + 0.15, 1, 1.6)],
-        "ck": [(m("cut_ck6") + 0.05, 1, -2.0)],
-        "br": []}
+# explicit nods: (t, count, amplitude %)
+NODS = {"ck": [(m("cut_ck8") + 0.02, 1, 3.5), (m("cut_ck12") + 0.02, 1, 3.0), (m("cut_ck13") + 0.05, 1, -3.0)],
+        "sh": [], "br": [], "mg": [(m("cut_mg4") + 0.05, 1, 1.5)], "mn": [], "bs": [], "sl": []}
 TURN = {   # head moves that aren't eyelines: (t0, t1, turn, tilt deg)
-    "ck": [(m("cut_ck2") + 0.1, ls("ck_i_said"), 0.08, -1.2)],
-    "br": [(m("cut_br6") + 0.1, m("cut_jr1"), -0.05, 2.5),
-           (m("cut_br7") + 0.05, m("cut_jr2"), -0.18, -1.5)],        # the slow turn to Jim
-    "om": [(ls("om_yeah_but"), le("om_yeah_but"), 0.0, 3.0)],
-    "js": [(m("cut_js7"), m("cut_js7") + 0.3, 0.0, 0.0)],
+    "ck": [(m("cut_ck4"), le("ck_kobbie"), -0.1, 0.0), (m("cut_ck13") + 0.6, m("cut_sh6"), -0.12, -1.5)],
+    "br": [(m("cut_br1") + 0.3, m("cut_ck4"), 0.0, -1.5), (m("cut_br7") + 0.4, m("cut_black"), 0.0, -2.0)],
+    "mn": [(m("cut_mn1"), le("mn_again"), 0.0, 3.0), (m("cut_mn6"), le("mn_ipswich"), 0.0, -3.0)],
+    "mg": [(m("cut_mg1"), le("mg_striker"), 0.0, 2.5), (m("cut_mg4"), le("mg_twice"), 0.0, 3.0)],
+    "sh": [],
 }
 
 
@@ -295,12 +323,7 @@ def head(w, t):
 
 
 def body(w, t):
-    lean = sink = 0.0
-    if w == "ck":
-        lean = ramp(t, m("ck_lean") + 0.02, m("cut_om2"), 0.32, 0.01)
-    if w == "br":
-        sink = ramp(t, m("cut_br6") + 0.12, m("cut_jr1") + 5, 0.62, 0.01)
-    return lean, sink
+    return 0.0, 0.0
 
 
 def state(w, t, resolve, t0=0.0):
@@ -320,6 +343,5 @@ def state(w, t, resolve, t0=0.0):
     tilt, nod, turn = head(w, t)
     lean, sink = body(w, t)
     b = blink(w, t)
-    if w == "br" and sink > 0: b = max(b, 0.35 * sink)          # sinking back: heavy lids
     return dict(vis=VIS[w][f], amp=float(AMP[w][f]), blink=b, lookx=lx, looky=ly, brow=brow, smile=smile,
                 tilt=tilt, nod=nod, turn=turn + tu, lean=lean, sink=sink)
