@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Build Episode 1, "Three Midfielders", from the sheets / backgrounds in ../../images and the voice clips in
+# Build Episode 2, "Welcome to Hull", from the sheets / backgrounds in ../../images and the voice clips in
 # ../../audio. Needs ffmpeg and python3 with ../../requirements.txt. Models come from GitHub releases only.
-#   ./make_episode.sh              full build -> all_or_something_ep01_three_midfielders.mp4
+#   ./make_episode.sh              full build -> all_or_something_ep02_welcome_to_hull.mp4
 #   JOBS=n ./make_episode.sh       parallel render chunks (default 3: ~3.5 GB of memory each)
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -19,6 +19,7 @@ python3 timeline.py > /dev/null
 # 2. art: 4x upscale of the sheets and backgrounds, the drawings cut out, face landmarks found
 ./upscale_all.sh
 python3 parts.py > /dev/null
+python3 props.py > /dev/null
 python3 facemarks.py > /dev/null
 
 # 3. sound -> build/episode_audio.wav
@@ -36,5 +37,5 @@ wait
 for k in $(seq 0 $((J - 1))); do echo "file 'part$k.mp4'"; done > build/parts.txt
 ffmpeg -y -loglevel error -f concat -safe 0 -i build/parts.txt -i build/episode_audio.wav \
   -map 0:v -map 1:a -c:v libx264 -preset slow -crf 21 -pix_fmt yuv420p -c:a aac -b:a 256k -shortest \
-  -movflags +faststart all_or_something_ep01_three_midfielders.mp4
-echo "done -> all_or_something_ep01_three_midfielders.mp4"
+  -movflags +faststart all_or_something_ep02_welcome_to_hull.mp4
+echo "done -> all_or_something_ep02_welcome_to_hull.mp4"

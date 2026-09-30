@@ -204,11 +204,11 @@ SHOTS = [
     card(we("nar_knew", "coming") - 0.35, "goal", n=1),
     card(m("flash2") - 0.02, "corner", n=2),
     card(m("chant"), "goal", n=2),
-    single(m("chant") + 1.15, "ck", ed=150, eye=(560, 660), set_="pitch", push=(1.0, 1.05), grade="pitch",
+    single(m("chant") + 0.8, "ck", ed=150, eye=(560, 660), set_="pitch", push=(1.0, 1.05), grade="pitch",
            drift=0.3),                                                                            # Carrick on the touchline
-    single(m("chant") + 2.55, "mg", ed=190, eye=(540, 760), set_="pitch", push=(1.0, 1.04), grade="pitch",
+    single(m("chant") + 1.6, "mg", ed=190, eye=(540, 760), set_="pitch", push=(1.0, 1.04), grade="pitch",
            table=0),                                                                              # Harry: lost
-    single(m("chant") + 3.85, "br", draw="br_g_celebrate", ed=180, eye=(540, 1010), set_="pitch", push=(1.0, 1.06),
+    single(m("chant") + 2.4, "br", draw="br_g_celebrate", ed=180, eye=(540, 1010), set_="pitch", push=(1.0, 1.06),
            grade="pitch", table=0, shake=True),                                                   # Bruno shouting
     # 00:48 hard cut back inside: total silence, the room wrecked, nobody moves
     world(m("cut_post_wide"), "POST", (470, 700, 1.02), (420, 560, 1.35), POST_LAYERS, drift=0.25),

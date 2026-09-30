@@ -374,11 +374,11 @@ def crowd_burst(dur, roar=False):
 
 
 def fans(bus):
-    """the Hull fans' chant: the first two lines on the second goal, cut dead on the cut back inside; the last line
+    """the Hull fans' chant: its first line on the second goal, cut dead on the cut back inside; the last line
     over the Tigers ending, cut hard at the very end"""
     y = chant()
     a, b = m("chant"), m("cut_post_wide")
-    c1 = y[:int(min(5.55, b - a) * SR)].copy()
+    c1 = y[:int(min(2.95, b - a) * SR)].copy()          # just: you're getting mauled by the tigers
     c1[-int(0.004 * SR):] *= np.linspace(1, 0, int(0.004 * SR))[:, None]
     bus.add(at_level(c1, -19), a)
     c2 = y[int(5.2 * SR):].copy()

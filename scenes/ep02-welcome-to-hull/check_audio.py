@@ -21,7 +21,7 @@ for name, a, b in [("exterior, music", 0.3, 2.8), ("just before the stop", M["mu
                    ("after the stop", M["music_stop"] + 0.02, M["music_stop"] + 0.4),
                    ("dressing room, no one talking", M["cut_br1"] + 0.1, M["cut_ck4"] - 0.05),
                    ("full-time burst", M["cut_score"] + 0.05, M["cut_score"] + 0.5),
-                   ("silence after it", M["cut_score"] + 0.75, L0["nar_knew"]["start"] - 0.1),
+                   ("silence after it", M["cut_score"] + 0.5, L0["nar_knew"]["start"] - 0.1),
                    ("the chant", M["chant"] + 0.3, M["cut_post_wide"] - 0.1),
                    ("post-match silence", M["cut_post_wide"] + 0.1, L0["ck_positives"]["start"] - 0.05),
                    ("hopeful music", L0["sh_good_news"]["end"] + 0.2, M["cut_sh7"]),

@@ -185,7 +185,7 @@ GAZE = {
            (m("cut_ck7") + 0.68, m("cut_ck7") + 0.92, ("dir", 0.85, 0.05, 0.3)),        # at the door: everyone...
            (m("cut_ck7") + 0.92, m("cut_ck7") + 1.14, ("dir", 0.2, 0.05, 0.05)),
            (m("cut_post_wide"), ls("ck_positives"), ("dir", 0.0, 0.25, 0.0)),
-           (m("chant") + 1.15, m("chant") + 2.55, ("dir", 0.25, 0.1, 0.05))],       # staring at the pitch
+           (m("chant") + 0.8, m("chant") + 1.6, ("dir", 0.25, 0.1, 0.05))],       # staring at the pitch
     "sh": [(m("cut_sh1"), m("cut_sh1") + 0.3, "down"),                                # clipboard -> Carrick
            (m("cut_sh3"), m("cut_sh3") + 0.35, ("dir", 0.95, 0.0, 0.4)),               # watching him go
            (m("cut_sh5"), m("cut_sh5") + 0.3, "down"),
@@ -196,12 +196,12 @@ GAZE = {
            (m("cut_br7"), m("cut_br7") + 0.45, ("dir", 0.95, -0.1, 0.4)),             # watches Carrick go
            (m("cut_br7") + 0.45, m("cut_black"), "cam"),
            (m("cut_silence"), m("cut_br3"), "down"),
-           (m("chant") + 3.85, m("cut_post_wide"), ("dir", 0.6, -0.2, 0.2))],          # shouting at the ref
+           (m("chant") + 2.4, m("cut_post_wide"), ("dir", 0.6, -0.2, 0.2))],          # shouting at the ref
     "mg": [(m("cut_mg5") + 0.25, m("cut_mn3"), ("dir", -0.35, 0.5, -0.1)),
            (m("cut_silence"), m("cut_br3"), ("dir", 0.1, 0.4, 0.0)),
-           (m("chant") + 2.55, m("chant") + 3.0, ("dir", -0.6, -0.15, -0.15)),          # lost: which way...
-           (m("chant") + 3.0, m("chant") + 3.45, ("dir", 0.6, -0.1, 0.15)),
-           (m("chant") + 3.45, m("chant") + 3.85, ("dir", -0.2, 0.2, -0.05))],
+           (m("chant") + 1.6, m("chant") + 1.9, ("dir", -0.6, -0.15, -0.15)),          # lost: which way...
+           (m("chant") + 1.9, m("chant") + 2.2, ("dir", 0.6, -0.1, 0.15)),
+           (m("chant") + 2.2, m("chant") + 2.4, ("dir", -0.2, 0.2, -0.05))],
     "mn": [(m("cut_mn3"), m("mn_look"), ("dir", -0.2, 0.3, -0.05)),                   # arms folded, not looking
            (m("cut_mn5"), m("cut_br5"), "cam"),
            (m("cut_silence"), m("cut_br3"), ("dir", -0.3, 0.3, -0.1))],
@@ -257,16 +257,16 @@ EXPR = {
            (m("cut_ck13"), m("cut_ck13") + 0.45, 0.55, 0.0, 0.12),                    # about to say something...
            (m("cut_ck13") + 0.45, m("cut_sh6"), -0.1, -0.25, 0.3),                    # ...no
            (m("cut_ck14"), ls("ck_good_meeting"), -0.05, -0.08, 0.3),
-           (m("chant") + 1.15, m("chant") + 2.55, 0.2, -0.3, 0.2)],
+           (m("chant") + 0.8, m("chant") + 1.6, 0.2, -0.3, 0.2)],
     "sh": [(m("cut_sh3"), ls("sh_wrong_door"), -0.2, -0.05, 0.2)],
     "br": [(m("cut_br1"), m("cut_ck4"), 0.25, -0.2, 0.3),
            (m("cut_br7"), m("cut_black"), 0.1, -0.3, 0.4),
-           (m("chant") + 3.85, m("cut_post_wide"), -0.9, -0.4, 0.1),
+           (m("chant") + 2.4, m("cut_post_wide"), -0.9, -0.4, 0.1),
            (T0, T0 + 3.3, 0.3, -0.35, 0.1)],
     "mg": [(m("cut_mg2") - 0.1, ls("mg_both_goals"), 0.4, 0.0, 0.2),
            (m("cut_mg5"), m("cut_mn3"), 0.35, -0.12, 0.2),
            (T0, T0 + 3.3, -0.05, -0.05, 0.1),
-           (m("chant") + 2.55, m("chant") + 3.85, 0.85, -0.2, 0.1)],
+           (m("chant") + 1.6, m("chant") + 2.4, 0.85, -0.2, 0.1)],
     "mn": [(m("cut_mn5"), m("cut_br5"), -0.1, -0.12, 0.3),
            (m("cut_mn1") - 0.1, ls("mn_again"), 0.5, -0.1, 0.1)],
 }

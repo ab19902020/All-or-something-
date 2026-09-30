@@ -75,10 +75,10 @@ LINES = [
 ]
 SR = 48000
 # pauses inside a line longer than this are shortened to it (Shorts pacing: no dead air); per-line overrides
-MAXGAP, GAP = 0.20, {"nar_new_season": 0.42, "ck_right_lads": 0.28, "ck_hull_come_up": 0.21, "ck_come_on": 0.22,
-                     "nar_title": 0.30, "mn_came_on": 0.24, "sh_wrong_door": 0.30}
+MAXGAP, GAP = 0.14, {"nar_new_season": 0.34, "ck_right_lads": 0.2, "ck_hull_come_up": 0.16, "ck_come_on": 0.18,
+                     "nar_title": 0.24, "mn_came_on": 0.18, "sh_wrong_door": 0.26}
 # every line is played a little faster (ffmpeg atempo: pitch unchanged) to keep the Short's pace
-TEMPO = 1.08
+TEMPO = 1.12
 # voices not recorded yet: {clip key: glob under ../../audio}. Once the file exists, add its transcript to
 # align.py's TEXT and run align.py; until then each of its lines is a silent slot sized from its syllables.
 MISSING = {}
