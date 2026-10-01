@@ -73,6 +73,29 @@ class StudioPipeline:
             return 3.0
 
     @staticmethod
+    def _audio_envelope(path: Path, fps: int) -> np.ndarray:
+        """Speech-energy envelope used for subtle speech-synced motion."""
+        try:
+            raw = subprocess.check_output([
+                "ffmpeg", "-v", "error", "-i", str(path),
+                "-f", "s16le", "-ac", "1", "-ar", "8000", "-"
+            ])
+            samples = np.frombuffer(raw, dtype=np.int16).astype(np.float32) / 32768.0
+            hop = max(1, int(8000 / max(fps, 1)))
+            n = max(1, math.ceil(len(samples) / hop))
+            env = np.zeros(n, np.float32)
+            for i in range(n):
+                seg = samples[i * hop:(i + 1) * hop]
+                if len(seg):
+                    env[i] = float(np.sqrt(np.mean(seg * seg)))
+            peak = float(np.percentile(env, 95)) if len(env) else 0.0
+            if peak > 1e-6:
+                env = np.clip(env / peak, 0.0, 1.0)
+            return env
+        except Exception:
+            return np.zeros(max(1, int(3 * fps)), np.float32)
+
+    @staticmethod
     def _fit_cover(img: np.ndarray, width: int, height: int) -> np.ndarray:
         h, w = img.shape[:2]
         scale = max(width / max(w, 1), height / max(h, 1))
@@ -118,7 +141,10 @@ class StudioPipeline:
             raise PipelineError("Upload at least one voiceover before rendering.")
 
         durations = [self._duration(p) for p in audios]
+        envelopes = [self._audio_envelope(p, fps) for p in audios]
         total = sum(durations)
+        plan = self.store.read_json(project_id, "plans/scene_plan.json", {}) or {}
+        plan_scenes = plan.get("scenes", [])
 
         audio_list = pdir / "renders" / "_audio_concat.txt"
         with audio_list.open("w", encoding="utf-8") as fh:
@@ -164,28 +190,41 @@ class StudioPipeline:
                     ci = i
             local_t = max(0.0, t - clip_starts[ci])
             duration = durations[ci]
+            scene = plan_scenes[ci] if ci < len(plan_scenes) else {}
+            shot = str(scene.get("shot", "medium")).lower()
+            energy = str(scene.get("energy", "medium")).lower()
+            camera = str(scene.get("camera", "gentle push")).lower()
             if bg_cache:
                 frame = bg_cache[ci % len(bg_cache)].copy()
             else:
                 frame = np.full((H, W, 3), (28, 28, 32), np.uint8)
 
-            # restrained camera push on background
-            push = 1.0 + 0.025 * min(local_t / max(duration, 0.1), 1.0)
+            # restrained camera direction from the generated scene plan
+            push_amount = 0.0 if "locked" in camera else (0.04 if shot == "close" else 0.025)
+            push = 1.0 + push_amount * min(local_t / max(duration, 0.1), 1.0)
             if push > 1.001:
                 crop_w, crop_h = int(W / push), int(H / push)
                 x0, y0 = (W - crop_w)//2, (H - crop_h)//2
                 frame = cv2.resize(frame[y0:y0+crop_h, x0:x0+crop_w], (W,H), interpolation=cv2.INTER_LINEAR)
 
             if char_cache:
-                rgba = char_cache[ci % len(char_cache)]
-                target_h = int(H * 0.78)
-                scale = target_h / max(rgba.shape[0], 1)
-                # subtle talking motion; intentionally small to preserve source art
-                bob = int(math.sin(t * 7.2) * 2.5)
+                # Hold poses long enough to read; cycle uploaded poses on dialogue phrases.
+                phrase = int(local_t / (1.8 if energy == "low" else 1.35))
+                rgba = char_cache[(ci + phrase) % len(char_cache)]
+                target_fraction = {"wide": 0.62, "medium": 0.78, "close": 1.02}.get(shot, 0.78)
+                target_h = int(H * target_fraction)
+                base_scale = target_h / max(rgba.shape[0], 1)
+                env = envelopes[ci]
+                local_frame = min(len(env) - 1, max(0, int(local_t * fps)))
+                speech = float(env[local_frame]) if len(env) else 0.0
+                motion = {"low": 0.9, "medium": 2.2, "high": 4.4}.get(energy, 2.2)
+                bob = int(math.sin(t * 6.8) * motion + speech * motion * -1.6)
+                scale = base_scale * (1.0 + speech * 0.012)
                 rw = max(1, int(rgba.shape[1] * scale))
                 rh = max(1, int(rgba.shape[0] * scale))
                 actor = cv2.resize(rgba, (rw, rh), interpolation=cv2.INTER_AREA if scale < 1 else cv2.INTER_CUBIC)
-                self._over(frame, actor, (W-rw)//2, H-rh-12+bob)
+                x_shift = int(math.sin(t * 0.65) * (6 if shot != "close" else 3))
+                self._over(frame, actor, (W-rw)//2 + x_shift, H-rh-12+bob)
 
             proc.stdin.write(frame.tobytes())
 
@@ -235,6 +274,10 @@ class StudioPipeline:
         return dest
 
     def render(self, project_id: str, profile_name: str = "preview_review") -> Path:
+        project = self.store.load(project_id)
+        if project.voiceovers and not self.store.read_json(project_id, "plans/scene_plan.json", None):
+            # One-button workflow: transcription + direction happen automatically when needed.
+            self.plan(project_id)
         settings = self.store.read_settings(project_id)
         renderer = settings.get("renderer", "auto")
         if renderer == "legacy" or (renderer == "auto" and settings.get("legacy_root") and settings.get("legacy_scene")):
