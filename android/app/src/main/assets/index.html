@@ -66,6 +66,9 @@
     <button id="playPreview" class="secondary">Play</button>
     <button id="stopPreview" class="secondary">Stop</button>
   </div>
+  <div class="row">
+    <button id="exportPreview" class="secondary">Export 720p Review</button>
+  </div>
   <div class="card compact">
     <strong>Preview engine</strong>
     <p id="previewInfo">Upload at least one character and one voiceover.</p>
@@ -79,10 +82,14 @@
     <button id="runReview" class="primary">Run Self Review</button>
     <button id="approve" class="secondary" disabled>Approve Episode</button>
   </div>
+  <div class="row">
+    <button id="renderMaster" class="primary" disabled>Render 4K Master on Phone</button>
+  </div>
+  <div id="renderProgress" class="card compact"><strong>Renderer</strong><p>Ready.</p></div>
   <div class="card">
     <h2>Current standalone engine</h2>
     <p>The APK now works without a PC. Project storage, uploads, notes, asset management, audio-driven animation preview, review and approval all run on-device.</p>
-    <p><strong>Next engine layer:</strong> embedded Whisper transcription/visemes, production renderer/export, stronger visual QA and local image generation.</p>
+    <p><strong>Still being upgraded:</strong> embedded Whisper transcription/visemes, stronger visual QA and local image generation. Preview and master video export now run on the phone.</p>
   </div>
 </section>
 </main>
