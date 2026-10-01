@@ -118,7 +118,7 @@ class StudioPipeline:
             raise PipelineError("Upload at least one voiceover before rendering.")
 
         durations = [self._duration(p) for p in audios]
-        total = sum(durations) + max(0, len(durations) - 1) * 0.25
+        total = sum(durations)
 
         audio_list = pdir / "renders" / "_audio_concat.txt"
         with audio_list.open("w", encoding="utf-8") as fh:
@@ -153,7 +153,7 @@ class StudioPipeline:
         t = 0.0
         for d in durations:
             clip_starts.append(t)
-            t += d + 0.25
+            t += d
 
         frames = max(1, math.ceil(total * fps))
         for f in range(frames):
