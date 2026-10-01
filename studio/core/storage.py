@@ -99,6 +99,19 @@ class ProjectStore:
         path = self.settings_path(project_id)
         path.write_text(json.dumps(settings, indent=2), encoding="utf-8")
 
+    def invalidate(self, project_id: str, *, plan: bool = True, transcripts: bool = False) -> None:
+        """Invalidate stale derived state while leaving the last preview available for comparison."""
+        pdir = self.project_dir(project_id)
+        for relative in ("qa/latest.json", "renders/master_4k.mp4"):
+            (pdir / relative).unlink(missing_ok=True)
+        if plan:
+            (pdir / "plans" / "scene_plan.json").unlink(missing_ok=True)
+        if transcripts:
+            tdir = pdir / "transcripts"
+            if tdir.exists():
+                for path in tdir.glob("*.json"):
+                    path.unlink(missing_ok=True)
+
     def add_asset(self, project_id: str, kind: str, source: str | Path, original_name: str) -> str:
         if kind not in ASSET_KINDS:
             raise ValueError(f"Unsupported asset kind: {kind}")
@@ -124,6 +137,8 @@ class ProjectStore:
         values = list(getattr(project, attr))
         values.append(str(dest.relative_to(self.project_dir(project_id))))
         setattr(project, attr, values)
+        project.mark_draft()
+        self.invalidate(project_id, plan=True, transcripts=(kind == "voiceover"))
         self.save(project_id, project)
         return str(dest.relative_to(self.project_dir(project_id)))
 
