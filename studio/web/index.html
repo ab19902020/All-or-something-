@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>United Road Studio</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">UR</div>
+        <div><strong>United Road</strong><span>Animation Studio</span></div>
+      </div>
+      <button id="newProjectBtn" class="primary full">+ New Episode</button>
+      <div class="section-label">Episodes</div>
+      <div id="projectList" class="project-list"></div>
+      <div class="sidebar-foot">
+        <div class="service-line"><span id="ollamaDot" class="dot"></span> Local Director</div>
+        <div class="service-line"><span id="comfyDot" class="dot"></span> Local Image Lab</div>
+        <small>Runs on your machine. Cloud AI is not required.</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">CURRENT PRODUCTION</div>
+          <h1 id="projectTitle">Create an episode to begin</h1>
+        </div>
+        <div class="top-actions">
+          <span id="statusPill" class="pill">NO PROJECT</span>
+          <button id="saveNotesBtn" class="secondary" disabled>Save</button>
+        </div>
+      </header>
+
+      <section id="emptyState" class="empty-state">
+        <div class="empty-icon">🎬</div>
+        <h2>Your local animation studio</h2>
+        <p>Upload your artwork and voiceovers, give the director your notes, build a review render, let the studio inspect its own work, then approve the 4K master.</p>
+        <button id="emptyNewBtn" class="primary">Create your first episode</button>
+      </section>
+
+      <div id="workspace" class="workspace hidden">
+        <nav class="steps">
+          <button data-target="brief" class="step active"><span>1</span>Brief</button>
+          <button data-target="assets" class="step"><span>2</span>Assets</button>
+          <button data-target="audio" class="step"><span>3</span>Voice</button>
+          <button data-target="direction" class="step"><span>4</span>Direction</button>
+          <button data-target="build" class="step"><span>5</span>Build</button>
+          <button data-target="review" class="step"><span>6</span>Review</button>
+          <button data-target="master" class="step"><span>7</span>Master</button>
+        </nav>
+
+        <section id="brief" class="panel active-panel">
+          <div class="panel-head">
+            <div><div class="eyebrow">EPISODE BRIEF</div><h2>Tell the studio what you want</h2></div>
+            <div class="badge">Autosaved locally</div>
+          </div>
+          <div class="grid two">
+            <label class="field">
+              <span>Director notes</span>
+              <textarea id="directorNotes" rows="12" placeholder="Performance, comedy timing, camera direction, reactions, pacing, important moments..."></textarea>
+            </label>
+            <label class="field">
+              <span>Production notes</span>
+              <textarea id="productionNotes" rows="12" placeholder="Continuity, props, exact characters, locations, things that must never change..."></textarea>
+            </label>
+          </div>
+          <div class="callout">
+            <strong>Style-only reference rule</strong>
+            <span>Images uploaded as style references teach linework, color, shading and visual language. They are not treated as pose or composition references.</span>
+          </div>
+        </section>
+
+        <section id="assets" class="panel">
+          <div class="panel-head">
+            <div><div class="eyebrow">ART DEPARTMENT</div><h2>Artwork & visual references</h2></div>
+          </div>
+          <div class="grid three">
+            <div class="upload-card">
+              <h3>Characters</h3><p>Character sheets, poses, mouths, expressions and props.</p>
+              <input id="characterFiles" type="file" accept="image/*" multiple />
+              <button data-upload="character" class="secondary uploadBtn">Upload characters</button>
+              <div id="characterList" class="asset-list"></div>
+            </div>
+            <div class="upload-card">
+              <h3>Backgrounds</h3><p>Rooms, sets, plates and location art.</p>
+              <input id="backgroundFiles" type="file" accept="image/*" multiple />
+              <button data-upload="background" class="secondary uploadBtn">Upload backgrounds</button>
+              <div id="backgroundList" class="asset-list"></div>
+            </div>
+            <div class="upload-card">
+              <h3>Style references</h3><p>Visual language only. Never copied as composition.</p>
+              <input id="styleFiles" type="file" accept="image/*" multiple />
+              <button data-upload="style" class="secondary uploadBtn">Upload style refs</button>
+              <div id="styleList" class="asset-list"></div>
+            </div>
+          </div>
+
+          <div class="subpanel">
+            <div class="subpanel-head"><div><h3>Local Image Lab</h3><p>Optional image generation through ComfyUI on your own machine.</p></div><span class="badge">No ChatGPT/Claude usage</span></div>
+            <div class="grid two">
+              <label class="field"><span>Image prompt</span><textarea id="imagePrompt" rows="4" placeholder="A new Old Trafford tunnel background in the established cut-out cartoon style..."></textarea></label>
+              <label class="field"><span>Style description</span><textarea id="styleDescription" rows="4" placeholder="Flat 2D cut-out shapes, heavy ink outlines, limited shading..."></textarea></label>
+            </div>
+            <button id="generateImageBtn" class="secondary">Generate locally</button>
+            <div id="generatedImage"></div>
+          </div>
+        </section>
+
+        <section id="audio" class="panel">
+          <div class="panel-head">
+            <div><div class="eyebrow">VOICE DEPARTMENT</div><h2>Voiceovers & timing</h2></div>
+          </div>
+          <div class="upload-card wide">
+            <input id="voiceoverFiles" type="file" accept="audio/*" multiple />
+            <button data-upload="voiceover" class="secondary uploadBtn">Upload voiceovers</button>
+            <div id="voiceoverList" class="asset-list"></div>
+          </div>
+          <div class="action-row">
+            <button id="transcribeBtn" class="primary">Analyze with local Whisper</button>
+            <span>Word timestamps drive lip sync, cuts and reactions.</span>
+          </div>
+          <pre id="transcriptOutput" class="console">No transcription run yet.</pre>
+        </section>
+
+        <section id="direction" class="panel">
+          <div class="panel-head">
+            <div><div class="eyebrow">DIRECTOR</div><h2>Turn notes + dialogue into a shot plan</h2></div>
+          </div>
+          <div class="callout">
+            <strong>Local director</strong>
+            <span>If Ollama is available, a local model builds the shot plan. If it is not, Studio uses its deterministic offline director so the pipeline still works.</span>
+          </div>
+          <button id="planBtn" class="primary">Build direction plan</button>
+          <pre id="planOutput" class="console">No direction plan built yet.</pre>
+        </section>
+
+        <section id="build" class="panel">
+          <div class="panel-head">
+            <div><div class="eyebrow">RENDER ROOM</div><h2>Build a proper review copy</h2></div>
+          </div>
+          <div class="render-options">
+            <label><input type="radio" name="previewProfile" value="preview_review" checked /> <strong>Director Review</strong><span>720p · 30fps · high-quality review</span></label>
+            <label><input type="radio" name="previewProfile" value="preview_motion" /> <strong>Motion Review</strong><span>720p · 60fps · animation timing check</span></label>
+            <label><input type="radio" name="previewProfile" value="preview_fast" /> <strong>Quick Draft</strong><span>540p · 24fps · fastest iteration</span></label>
+          </div>
+          <button id="renderBtn" class="primary large">Render Preview</button>
+          <div id="jobBox" class="job-box hidden">
+            <div class="job-line"><strong id="jobTitle">Working…</strong><span id="jobPercent">0%</span></div>
+            <div class="progress"><div id="jobProgress"></div></div>
+            <div id="jobMessage" class="job-message"></div>
+          </div>
+        </section>
+
+        <section id="review" class="panel">
+          <div class="panel-head">
+            <div><div class="eyebrow">DIRECTOR REVIEW</div><h2>Watch it, then let Studio inspect itself</h2></div>
+          </div>
+          <div class="preview-wrap">
+            <video id="previewVideo" controls playsinline></video>
+            <div id="previewMissing" class="preview-missing">Render a preview to watch it here.</div>
+          </div>
+          <div class="review-actions">
+            <button id="reviewBtn" class="primary">Run self-review</button>
+            <button id="refreshPreviewBtn" class="secondary">Refresh preview</button>
+          </div>
+          <div id="qaBox" class="qa-box"><p>No QA report yet.</p></div>
+        </section>
+
+        <section id="master" class="panel">
+          <div class="panel-head">
+            <div><div class="eyebrow">FINAL MASTER</div><h2>Approve once. Render once.</h2></div>
+            <span class="badge danger">4K locked until approval</span>
+          </div>
+          <div class="master-card">
+            <div>
+              <h3>3840 × 2160 · 60fps</h3>
+              <p>The final master is deliberately gated. The latest preview must pass self-review, then you approve the episode before the 4K button becomes available.</p>
+            </div>
+            <div class="master-actions">
+              <button id="approveBtn" class="secondary">Approve Final Master</button>
+              <button id="masterBtn" class="primary" disabled>Render 4K Master</button>
+            </div>
+          </div>
+          <a id="masterLink" class="master-link hidden" target="_blank">Open finished 4K master</a>
+        </section>
+
+        <section id="settingsPanel" class="panel settings-panel">
+          <div class="panel-head"><div><div class="eyebrow">SETTINGS</div><h2>Local engines</h2></div></div>
+          <div class="grid two">
+            <label class="field"><span>Ollama URL</span><input id="ollamaUrl" value="http://127.0.0.1:11434" /></label>
+            <label class="field"><span>Director model</span><input id="directorModel" value="qwen2.5:7b" /></label>
+            <label class="field"><span>Vision model</span><input id="visionModel" value="qwen2.5vl:7b" /></label>
+            <label class="field"><span>Whisper model</span><input id="whisperModel" value="small.en" /></label>
+            <label class="field"><span>ComfyUI URL</span><input id="comfyUrl" value="http://127.0.0.1:8188" /></label>
+            <label class="field"><span>ComfyUI checkpoint</span><input id="comfyCheckpoint" placeholder="your_model.safetensors" /></label>
+            <label class="field"><span>Renderer</span><select id="rendererMode"><option value="auto">Auto</option><option value="generic">Studio generic</option><option value="legacy">Existing episode engine</option></select></label>
+            <label class="field"><span>Existing engine repo path</span><input id="legacyRoot" placeholder="/path/to/Passmic" /></label>
+            <label class="field full-span"><span>Existing scene path</span><input id="legacyScene" placeholder="episode/scenes/cartman_room.py" /></label>
+          </div>
+          <button id="saveSettingsBtn" class="secondary">Save settings</button>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
