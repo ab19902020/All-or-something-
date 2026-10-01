@@ -83,6 +83,7 @@ def update_project(project_id: str, payload: dict = Body(...)):
         if key in payload:
             setattr(project, key, str(payload[key]))
     project.mark_draft()
+    store.invalidate(project_id, plan=True, transcripts=False)
     store.save(project_id, project)
     return project_payload(project_id)
 
@@ -102,6 +103,10 @@ def update_settings(project_id: str, payload: dict = Body(...)):
         if key in allowed:
             current[key] = value
     store.write_settings(project_id, current)
+    project = store.load(project_id)
+    project.mark_draft()
+    store.invalidate(project_id, plan=True, transcripts=False)
+    store.save(project_id, project)
     return current
 
 
