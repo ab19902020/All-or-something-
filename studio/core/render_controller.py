@@ -63,7 +63,7 @@ class RenderController:
         env: dict[str, str] | None = None,
     ) -> subprocess.CompletedProcess:
         profile = self.profile_for(project, profile_name)
-        merged_env = dict(env or {})
+        merged_env = os.environ.copy()\n        merged_env.update(env or {})
         merged_env.update({
             "URS_PROFILE": profile_name,
             "URS_WIDTH": str(profile["width"]),
