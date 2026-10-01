@@ -245,3 +245,40 @@ Return one concise paragraph suitable as a generation style prompt."""
         return response.get("message", {}).get("content", "").strip()
     except Exception:
         return ""
+
+
+def local_repair_plan(
+    plan: dict,
+    qa_report: dict,
+    base_url: str,
+    model: str,
+) -> dict:
+    """Revise a scene plan locally using visual-QA findings."""
+    if not ollama_available(base_url):
+        return plan
+    prompt = f"""You are repairing a 2.5D cut-out animation direction plan after visual QA.
+Return ONLY the full revised plan as valid JSON.
+
+You may change shot size, camera movement, energy, pose/character_action timing and cut reasons.
+Do not change dialogue text or clip order. Do not invent new characters. Keep style references style-only.
+Specifically address every blocking QA finding where a direction/timing change can help.
+
+CURRENT PLAN:
+{json.dumps(plan, indent=2)}
+
+QA REPORT:
+{json.dumps(qa_report, indent=2)}
+"""
+    payload = {
+        "model": model,
+        "stream": False,
+        "format": "json",
+        "messages": [{"role": "user", "content": prompt}],
+        "options": {"temperature": 0.2},
+    }
+    try:
+        response = _post_json(base_url.rstrip("/") + "/api/chat", payload, timeout=180)
+        revised = json.loads(response.get("message", {}).get("content", "{}"))
+        return revised if revised.get("scenes") else plan
+    except Exception:
+        return plan
