@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
@@ -39,7 +40,7 @@ class RenderController:
         p = self.profile_for(project, profile_name)
         fps = str(p["fps"])
         size = f'{p["width"]}x{p["height"]}'
-        cmd = [
+        return [
             "ffmpeg", "-y", "-v", "error",
             "-f", "rawvideo", "-pix_fmt", "bgr24",
             "-s", size, "-r", fps, "-i", raw_video,
@@ -53,7 +54,6 @@ class RenderController:
             "-shortest", "-movflags", "+faststart",
             output_file,
         ]
-        return cmd
 
     def run_existing_render_command(
         self,
@@ -63,7 +63,8 @@ class RenderController:
         env: dict[str, str] | None = None,
     ) -> subprocess.CompletedProcess:
         profile = self.profile_for(project, profile_name)
-        merged_env = os.environ.copy()\n        merged_env.update(env or {})
+        merged_env = os.environ.copy()
+        merged_env.update(env or {})
         merged_env.update({
             "URS_PROFILE": profile_name,
             "URS_WIDTH": str(profile["width"]),
