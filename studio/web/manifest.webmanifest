@@ -1,0 +1,19 @@
+{
+  "name": "United Road Studio",
+  "short_name": "UR Studio",
+  "description": "Mobile control surface for the United Road animation engine.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b0c0f",
+  "theme_color": "#0b0c0f",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
