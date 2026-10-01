@@ -20,3 +20,7 @@ jobs:
         run: python -m compileall studio
       - name: Run core tests
         run: python -m unittest studio.tests.test_core -v
+      - name: Check mobile JavaScript
+        run: node --check studio/web/app.js
+      - name: Check PWA manifest
+        run: python -m json.tool studio/web/manifest.webmanifest > /dev/null
