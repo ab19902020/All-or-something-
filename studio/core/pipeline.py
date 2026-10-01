@@ -12,7 +12,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-from .local_ai import local_director_plan, local_visual_review, transcribe_file
+from .local_ai import local_director_plan, local_repair_plan, local_visual_review, ollama_available, transcribe_file
 from .project import EpisodeProject
 from .render_policy import RenderPolicy, RenderRequest
 from .self_review import SelfReview
@@ -283,6 +283,39 @@ class StudioPipeline:
         if renderer == "legacy" or (renderer == "auto" and settings.get("legacy_root") and settings.get("legacy_scene")):
             return self._legacy_render(project_id, profile_name, settings)
         return self._generic_preview(project_id, profile_name)
+
+    def render_review_loop(self, project_id: str, profile_name: str = "preview_review", max_repairs: int = 2) -> dict:
+        """Render, inspect, and locally repair direction before handing the preview to the director."""
+        path = self.render(project_id, profile_name)
+        if profile_name == "final_master_4k":
+            return {"path": path, "qa": None, "repair_attempts": 0}
+
+        report = self.review(project_id)
+        attempts = 0
+        settings = self.store.read_settings(project_id)
+        renderer = settings.get("renderer", "auto")
+        using_generic = renderer == "generic" or (
+            renderer == "auto" and not (settings.get("legacy_root") and settings.get("legacy_scene"))
+        )
+        base_url = settings.get("ollama_url", "http://127.0.0.1:11434")
+        model = settings.get("director_model", "qwen2.5:7b")
+
+        while (
+            not report.get("passed")
+            and using_generic
+            and attempts < max_repairs
+            and ollama_available(base_url)
+        ):
+            current = self.store.read_json(project_id, "plans/scene_plan.json", {}) or {}
+            revised = local_repair_plan(current, report, base_url, model)
+            if revised == current:
+                break
+            attempts += 1
+            self.store.write_json(project_id, "plans/scene_plan.json", revised)
+            path = self._generic_preview(project_id, profile_name)
+            report = self.review(project_id)
+
+        return {"path": path, "qa": report, "repair_attempts": attempts}
 
     def review(self, project_id: str) -> dict:
         pdir = self.store.project_dir(project_id)
