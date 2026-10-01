@@ -217,3 +217,31 @@ Project brief:
         return json.loads(response.get("message", {}).get("content", "{}"))
     except Exception:
         return None
+
+
+def describe_style(
+    style_refs: Iterable[Path],
+    base_url: str,
+    model: str,
+) -> str:
+    """Create a style-only description locally from reference images."""
+    refs = [p for p in style_refs if p.exists()][:6]
+    if not refs or not ollama_available(base_url):
+        return ""
+    images = [_encode_image(p) for p in refs]
+    prompt = """These images are STYLE REFERENCES ONLY for an animation studio.
+Describe only the reusable visual language: line weight, outline character, shape design, palette behavior,
+shading, texture, proportions, background treatment, lighting, and compositing feel.
+Do NOT describe identities, poses, exact objects, scene layout, framing, or composition.
+Return one concise paragraph suitable as a generation style prompt."""
+    payload = {
+        "model": model,
+        "stream": False,
+        "messages": [{"role": "user", "content": prompt, "images": images}],
+        "options": {"temperature": 0.1},
+    }
+    try:
+        response = _post_json(base_url.rstrip("/") + "/api/chat", payload, timeout=180)
+        return response.get("message", {}).get("content", "").strip()
+    except Exception:
+        return ""
