@@ -1,0 +1,31 @@
+{
+  "preview_fast": {
+    "label": "Fast Preview",
+    "width": 1280,
+    "height": 720,
+    "fps": 24,
+    "crf": 24,
+    "preset": "veryfast",
+    "final_only": false
+  },
+  "preview_review": {
+    "label": "Director Review",
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "crf": 19,
+    "preset": "medium",
+    "final_only": false
+  },
+  "final_master_4k": {
+    "label": "Final Master 4K",
+    "width": 3840,
+    "height": 2160,
+    "fps": 60,
+    "crf": 14,
+    "preset": "slow",
+    "audio_bitrate": "320k",
+    "final_only": true,
+    "requires_approval": true
+  }
+}
