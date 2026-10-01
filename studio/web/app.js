@@ -1,6 +1,7 @@
 const state={project:null,projects:[],activeJob:null,installPrompt:null,engineBase:""};
 const $=id=>document.getElementById(id);
 const isFileMode=location.protocol==="file:";
+const isAndroidShell=new URLSearchParams(location.search).get("android")==="1";
 const cleanBase=v=>(v||"").trim().replace(/\/$/,"");
 state.engineBase=isFileMode?cleanBase(localStorage.getItem("urs_engine_url")||""):"";
 
@@ -32,7 +33,7 @@ function hideEngineOverlay(){$("engineOverlay").classList.add("hidden")}
 function setEngineConnected(ok){
   $("engineDot").classList.toggle("on",!!ok);
   $("engineAddress").textContent=ok?(state.engineBase||location.origin):"Engine disconnected";
-  $("changeEngineBtn").classList.toggle("hidden",!isFileMode);
+  $("changeEngineBtn").classList.toggle("hidden",!(isFileMode||isAndroidShell));
 }
 async function connectEngine(){
   let url=cleanBase($("engineUrlInput").value);
@@ -200,7 +201,10 @@ function bindUI(){
   $("saveNotesBtn").onclick=()=>saveNotes(false);
   $("connectEngineBtn").onclick=connectEngine;
   $("retryEngineBtn").onclick=()=>state.engineBase?testCurrentEngine().then(ok=>ok&&bootWorkspace()):connectEngine();
-  $("changeEngineBtn").onclick=()=>showEngineOverlay("");
+  $("changeEngineBtn").onclick=()=>{
+    if(isAndroidShell && window.UnitedRoadAndroid?.changeEngine){window.UnitedRoadAndroid.changeEngine();return}
+    showEngineOverlay("");
+  };
 
   let noteTimer=null;
   ["directorNotes","productionNotes"].forEach(id=>{
