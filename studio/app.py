@@ -177,7 +177,10 @@ def render(project_id: str, profile: str):
 
     def task():
         path = pipeline.render(project_id, profile)
-        return {"media": str(path.relative_to(store.project_dir(project_id)))}
+        result = {"media": str(path.relative_to(store.project_dir(project_id)))}
+        if profile != "final_master_4k":
+            result["qa"] = pipeline.review(project_id)
+        return result
     return submit("render", project_id, task)
 
 
