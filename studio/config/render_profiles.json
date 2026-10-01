@@ -1,8 +1,8 @@
 {
   "preview_fast": {
     "label": "Fast Preview",
-    "width": 1280,
-    "height": 720,
+    "width": 960,
+    "height": 540,
     "fps": 24,
     "crf": 24,
     "preset": "veryfast",
@@ -10,12 +10,25 @@
   },
   "preview_review": {
     "label": "Director Review",
-    "width": 1920,
-    "height": 1080,
-    "fps": 24,
-    "crf": 19,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "crf": 16,
     "preset": "medium",
-    "final_only": false
+    "audio_bitrate": "256k",
+    "final_only": false,
+    "purpose": "Primary review render for judging composition, lip sync, face and prop alignment, camera moves, cuts and overall animation quality."
+  },
+  "preview_motion": {
+    "label": "Motion Review 60",
+    "width": 1280,
+    "height": 720,
+    "fps": 60,
+    "crf": 17,
+    "preset": "medium",
+    "audio_bitrate": "256k",
+    "final_only": false,
+    "purpose": "Motion-focused review for walk cycles, blinks, mouth movement, camera tracking, choreography and fast action."
   },
   "final_master_4k": {
     "label": "Final Master 4K",
