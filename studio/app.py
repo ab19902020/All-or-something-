@@ -12,7 +12,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from .core.jobs import JobManager
-from .core.local_ai import ollama_available
+from .core.local_ai import describe_style, ollama_available
 from .core.local_image import comfy_available, generate as generate_local_image
 from .core.pipeline import PipelineError, StudioPipeline
 from .core.storage import ASSET_KINDS, ProjectStore
@@ -223,12 +223,19 @@ def generate_image(project_id: str, payload: dict = Body(...)):
     style_text = str(payload.get("style_description") or "").strip()
 
     def task():
+        effective_style = style_text
+        if not effective_style and project.style_references:
+            effective_style = describe_style(
+                [store.media_path(project_id, p) for p in project.style_references],
+                settings.get("ollama_url", "http://127.0.0.1:11434"),
+                settings.get("vision_model", "qwen2.5vl:7b"),
+            )
         dest = generate_local_image(
             store.project_dir(project_id) / "generated",
             settings.get("comfyui_url", "http://127.0.0.1:8188"),
             settings.get("comfy_checkpoint", ""),
             prompt,
-            style_description=style_text,
+            style_description=effective_style,
             negative=str(payload.get("negative") or "photorealistic, 3d render, malformed face, extra limbs, text, watermark"),
             width=int(payload.get("width") or 1024),
             height=int(payload.get("height") or 576),
