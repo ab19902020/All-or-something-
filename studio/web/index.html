@@ -2,11 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0c0f" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="United Road Studio" />
   <title>United Road Studio</title>
-  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <div id="engineOverlay" class="engine-overlay hidden">
+    <div class="engine-card">
+      <div class="brand compact">
+        <div class="brand-mark">UR</div>
+        <div><strong>United Road Studio</strong><span>Connect this phone to the animation engine</span></div>
+      </div>
+      <h2>Connect to Studio Engine</h2>
+      <p id="engineHelp">The mobile interface is ready. Enter the address of the computer/server running United Road Studio.</p>
+      <label class="field">
+        <span>Engine address</span>
+        <input id="engineUrlInput" inputmode="url" autocomplete="url" placeholder="http://192.168.1.50:8765" />
+      </label>
+      <div class="connect-actions">
+        <button id="connectEngineBtn" class="primary">Connect</button>
+        <button id="retryEngineBtn" class="secondary">Retry</button>
+      </div>
+      <div id="engineError" class="engine-error"></div>
+      <small>Phone and engine computer should be on the same Wi-Fi unless you deploy the engine to a private server.</small>
+    </div>
+  </div>
+
   <div class="app-shell">
     <aside class="sidebar">
       <div class="brand">
@@ -14,12 +41,15 @@
         <div><strong>United Road</strong><span>Animation Studio</span></div>
       </div>
       <button id="newProjectBtn" class="primary full">+ New Episode</button>
+      <button id="installBtn" class="secondary full hidden">Install on Android</button>
+      <button id="changeEngineBtn" class="secondary full mobile-engine hidden">Change Engine</button>
       <div class="section-label">Episodes</div>
       <div id="projectList" class="project-list"></div>
       <div class="sidebar-foot">
+        <div class="service-line"><span id="engineDot" class="dot"></span> Studio Engine</div>
         <div class="service-line"><span id="ollamaDot" class="dot"></span> Local Director</div>
         <div class="service-line"><span id="comfyDot" class="dot"></span> Local Image Lab</div>
-        <small>Runs on your machine. Cloud AI is not required.</small>
+        <small id="engineAddress">Waiting for engine…</small>
       </div>
     </aside>
 
@@ -37,8 +67,8 @@
 
       <section id="emptyState" class="empty-state">
         <div class="empty-icon">🎬</div>
-        <h2>Your local animation studio</h2>
-        <p>Upload your artwork and voiceovers, give the director your notes, build a review render, let the studio inspect its own work, then approve the 4K master.</p>
+        <h2>Your animation studio on Android</h2>
+        <p>Upload artwork and voiceovers from your phone, direct the episode, build a preview, inspect it, approve it, then render the 4K master.</p>
         <button id="emptyNewBtn" class="primary">Create your first episode</button>
       </section>
 
@@ -51,12 +81,13 @@
           <button data-target="build" class="step"><span>5</span>Build</button>
           <button data-target="review" class="step"><span>6</span>Review</button>
           <button data-target="master" class="step"><span>7</span>Master</button>
+          <button data-target="settingsPanel" class="step"><span>8</span>Settings</button>
         </nav>
 
         <section id="brief" class="panel active-panel">
           <div class="panel-head">
             <div><div class="eyebrow">EPISODE BRIEF</div><h2>Tell the studio what you want</h2></div>
-            <div class="badge">Autosaved locally</div>
+            <div class="badge">Autosaved</div>
           </div>
           <div class="grid two">
             <label class="field">
@@ -70,14 +101,12 @@
           </div>
           <div class="callout">
             <strong>Style-only reference rule</strong>
-            <span>Images uploaded as style references teach linework, color, shading and visual language. They are not treated as pose or composition references.</span>
+            <span>Style references teach linework, color, shading and visual language. They are not used as pose or composition references.</span>
           </div>
         </section>
 
         <section id="assets" class="panel">
-          <div class="panel-head">
-            <div><div class="eyebrow">ART DEPARTMENT</div><h2>Artwork & visual references</h2></div>
-          </div>
+          <div class="panel-head"><div><div class="eyebrow">ART DEPARTMENT</div><h2>Artwork & visual references</h2></div></div>
           <div class="grid three">
             <div class="upload-card">
               <h3>Characters</h3><p>Character sheets, poses, mouths, expressions and props.</p>
@@ -98,11 +127,10 @@
               <div id="styleList" class="asset-list"></div>
             </div>
           </div>
-
           <div class="subpanel">
-            <div class="subpanel-head"><div><h3>Local Image Lab</h3><p>Optional image generation through ComfyUI on your own machine.</p></div><span class="badge">No ChatGPT/Claude usage</span></div>
+            <div class="subpanel-head"><div><h3>Local Image Lab</h3><p>Optional image generation through ComfyUI on the engine machine.</p></div><span class="badge">Local</span></div>
             <div class="grid two">
-              <label class="field"><span>Image prompt</span><textarea id="imagePrompt" rows="4" placeholder="A new Old Trafford tunnel background in the established cut-out cartoon style..."></textarea></label>
+              <label class="field"><span>Image prompt</span><textarea id="imagePrompt" rows="4" placeholder="A new background in the established cut-out cartoon style..."></textarea></label>
               <label class="field"><span>Style description</span><textarea id="styleDescription" rows="4" placeholder="Flat 2D cut-out shapes, heavy ink outlines, limited shading..."></textarea></label>
             </div>
             <button id="generateImageBtn" class="secondary">Generate locally</button>
@@ -111,9 +139,7 @@
         </section>
 
         <section id="audio" class="panel">
-          <div class="panel-head">
-            <div><div class="eyebrow">VOICE DEPARTMENT</div><h2>Voiceovers & timing</h2></div>
-          </div>
+          <div class="panel-head"><div><div class="eyebrow">VOICE DEPARTMENT</div><h2>Voiceovers & timing</h2></div></div>
           <div class="upload-card wide">
             <input id="voiceoverFiles" type="file" accept="audio/*" multiple />
             <button data-upload="voiceover" class="secondary uploadBtn">Upload voiceovers</button>
@@ -127,24 +153,17 @@
         </section>
 
         <section id="direction" class="panel">
-          <div class="panel-head">
-            <div><div class="eyebrow">DIRECTOR</div><h2>Turn notes + dialogue into a shot plan</h2></div>
-          </div>
-          <div class="callout">
-            <strong>Local director</strong>
-            <span>If Ollama is available, a local model builds the shot plan. If it is not, Studio uses its deterministic offline director so the pipeline still works.</span>
-          </div>
+          <div class="panel-head"><div><div class="eyebrow">DIRECTOR</div><h2>Turn notes + dialogue into a shot plan</h2></div></div>
+          <div class="callout"><strong>Local director</strong><span>Ollama can build the shot plan. If unavailable, Studio uses deterministic offline direction.</span></div>
           <button id="planBtn" class="primary">Build direction plan</button>
           <pre id="planOutput" class="console">No direction plan built yet.</pre>
         </section>
 
         <section id="build" class="panel">
-          <div class="panel-head">
-            <div><div class="eyebrow">RENDER ROOM</div><h2>Build a proper review copy</h2></div>
-          </div>
+          <div class="panel-head"><div><div class="eyebrow">RENDER ROOM</div><h2>Build a review copy</h2></div></div>
           <div class="render-options">
             <label><input type="radio" name="previewProfile" value="preview_review" checked /> <strong>Director Review</strong><span>720p · 30fps · high-quality review</span></label>
-            <label><input type="radio" name="previewProfile" value="preview_motion" /> <strong>Motion Review</strong><span>720p · 60fps · animation timing check</span></label>
+            <label><input type="radio" name="previewProfile" value="preview_motion" /> <strong>Motion Review</strong><span>720p · 60fps · timing check</span></label>
             <label><input type="radio" name="previewProfile" value="preview_fast" /> <strong>Quick Draft</strong><span>540p · 24fps · fastest iteration</span></label>
           </div>
           <button id="renderBtn" class="primary large">Render Preview</button>
@@ -156,9 +175,7 @@
         </section>
 
         <section id="review" class="panel">
-          <div class="panel-head">
-            <div><div class="eyebrow">DIRECTOR REVIEW</div><h2>Watch it, then let Studio inspect itself</h2></div>
-          </div>
+          <div class="panel-head"><div><div class="eyebrow">DIRECTOR REVIEW</div><h2>Watch it and inspect it</h2></div></div>
           <div class="preview-wrap">
             <video id="previewVideo" controls playsinline></video>
             <div id="previewMissing" class="preview-missing">Render a preview to watch it here.</div>
@@ -176,10 +193,7 @@
             <span class="badge danger">4K locked until approval</span>
           </div>
           <div class="master-card">
-            <div>
-              <h3>3840 × 2160 · 60fps</h3>
-              <p>The final master is deliberately gated. The latest preview must pass self-review, then you approve the episode before the 4K button becomes available.</p>
-            </div>
+            <div><h3>3840 × 2160 · 60fps</h3><p>The latest preview must pass self-review, then you approve the episode before 4K is enabled.</p></div>
             <div class="master-actions">
               <button id="approveBtn" class="secondary">Approve Final Master</button>
               <button id="masterBtn" class="primary" disabled>Render 4K Master</button>
@@ -188,8 +202,8 @@
           <a id="masterLink" class="master-link hidden" target="_blank">Open finished 4K master</a>
         </section>
 
-        <section id="settingsPanel" class="panel settings-panel">
-          <div class="panel-head"><div><div class="eyebrow">SETTINGS</div><h2>Local engines</h2></div></div>
+        <section id="settingsPanel" class="panel">
+          <div class="panel-head"><div><div class="eyebrow">SETTINGS</div><h2>Engine settings</h2></div></div>
           <div class="grid two">
             <label class="field"><span>Ollama URL</span><input id="ollamaUrl" value="http://127.0.0.1:11434" /></label>
             <label class="field"><span>Director model</span><input id="directorModel" value="qwen2.5:7b" /></label>
@@ -208,6 +222,6 @@
   </div>
 
   <div id="toast" class="toast"></div>
-  <script src="/static/app.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
