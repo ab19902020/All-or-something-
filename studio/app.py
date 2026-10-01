@@ -8,6 +8,7 @@ import shutil
 import tempfile
 
 from fastapi import Body, FastAPI, File, HTTPException, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -24,7 +25,19 @@ store = ProjectStore()
 pipeline = StudioPipeline(store, STUDIO_ROOT)
 jobs = JobManager(workers=int(os.environ.get("URS_WORKERS", "2")))
 
-app = FastAPI(title="United Road Studio", version="0.1.0")
+app = FastAPI(title="United Road Studio", version="0.2.0")
+allowed_origins = ["null"]
+allowed_origins.extend(
+    origin.strip()
+    for origin in os.environ.get("URS_ALLOWED_ORIGINS", "").split(",")
+    if origin.strip()
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.mount("/static", StaticFiles(directory=WEB_ROOT), name="static")
 
 
@@ -49,9 +62,44 @@ def home():
     return FileResponse(WEB_ROOT / "index.html")
 
 
+@app.get("/app.js")
+def web_app_js():
+    return FileResponse(WEB_ROOT / "app.js", media_type="application/javascript")
+
+
+@app.get("/styles.css")
+def web_styles():
+    return FileResponse(WEB_ROOT / "styles.css", media_type="text/css")
+
+
+@app.get("/manifest.webmanifest")
+def web_manifest():
+    return FileResponse(WEB_ROOT / "manifest.webmanifest", media_type="application/manifest+json")
+
+
+@app.get("/sw.js")
+def service_worker():
+    return FileResponse(
+        WEB_ROOT / "sw.js",
+        media_type="application/javascript",
+        headers={"Service-Worker-Allowed": "/"},
+    )
+
+
+@app.get("/icon.svg")
+def web_icon():
+    return FileResponse(WEB_ROOT / "icon.svg", media_type="image/svg+xml")
+
+
 @app.get("/api/health")
 def health():
-    return {"ok": True, "workspace": str(store.root)}
+    return {
+        "ok": True,
+        "name": "United Road Studio Engine",
+        "version": "0.2.0",
+        "mobile_ready": True,
+        "workspace": str(store.root),
+    }
 
 
 @app.get("/api/projects")
