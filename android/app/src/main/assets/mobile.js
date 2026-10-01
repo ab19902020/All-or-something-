@@ -1,5 +1,5 @@
 const $=id=>document.getElementById(id);
-const state={project:null,assets:{characters:[],backgrounds:[],styles:[],voiceovers:[]},playing:false,raf:0,audioCtx:null,analyser:null,source:null,images:{characters:[],backgrounds:[]},approved:false};
+const state={project:null,assets:{characters:[],backgrounds:[],styles:[],voiceovers:[]},playing:false,raf:0,audioCtx:null,analyser:null,source:null,recordDest:null,images:{characters:[],backgrounds:[]},approved:false,rendering:false};
 const toast=m=>{const t=$("toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2200)};
 
 const DB_NAME="UnitedRoadStudioMobile",DB_VERSION=1;
@@ -51,7 +51,9 @@ async function restore(){
   if(a){
     for(const key of Object.keys(state.assets))state.assets[key]=(a[key]||[]).map(x=>new File([x.blob],x.name,{type:x.type,lastModified:x.lastModified}));
   }
-  $("status").textContent=state.approved?"APPROVED":"DRAFT";refreshLists();
+  $("status").textContent=state.approved?"APPROVED":"DRAFT";
+  $("renderMaster").disabled=!state.approved;
+  refreshLists();
 }
 async function loadImage(file){
   const url=URL.createObjectURL(file);
@@ -100,8 +102,11 @@ function setupAudioGraph(){
   if(state.audioCtx)return;
   state.audioCtx=new (window.AudioContext||window.webkitAudioContext)();
   state.analyser=state.audioCtx.createAnalyser();state.analyser.fftSize=512;
+  state.recordDest=state.audioCtx.createMediaStreamDestination();
   state.source=state.audioCtx.createMediaElementSource($("audio"));
-  state.source.connect(state.analyser);state.analyser.connect(state.audioCtx.destination);
+  state.source.connect(state.analyser);
+  state.analyser.connect(state.audioCtx.destination);
+  state.source.connect(state.recordDest);
 }
 async function playPreview(){
   if(!$("audio").src){await buildPreview();if(!$("audio").src)return}
@@ -129,7 +134,85 @@ async function runReview(){
   $("approve").disabled=!passed;
   toast(passed?"Review passed":"Review found blocking issues");
 }
-async function approve(){state.approved=true;await saveProject(true);$("status").textContent="APPROVED";toast("Episode approved")}
+async function approve(){state.approved=true;await saveProject(true);$("status").textContent="APPROVED";$("renderMaster").disabled=false;toast("Episode approved")}
+
+
+function chooseRecorderMime(){
+  const types=[
+    "video/webm;codecs=vp9,opus",
+    "video/webm;codecs=vp8,opus",
+    "video/webm"
+  ];
+  return types.find(t=>window.MediaRecorder&&MediaRecorder.isTypeSupported(t))||"";
+}
+function bytesToBase64(buffer){
+  const bytes=new Uint8Array(buffer);let binary="";const step=0x8000;
+  for(let i=0;i<bytes.length;i+=step)binary+=String.fromCharCode(...bytes.subarray(i,i+step));
+  return btoa(binary);
+}
+function safeTitle(){return (($("title").value||"United-Road-Episode").trim().replace(/[^A-Za-z0-9._-]+/g,"-").replace(/^-+|-+$/g,""))||"United-Road-Episode"}
+async function renderVideo(width,height,fps,kind){
+  if(state.rendering){toast("A render is already running");return}
+  if(!state.assets.characters.length||!state.assets.voiceovers.length){toast("Character artwork and a voiceover are required");return}
+  if(!window.MediaRecorder||!$("stage").captureStream){toast("This Android WebView does not support on-device recording yet");return}
+  if(!window.UnitedRoadAndroid?.beginExport){toast("Android export bridge is unavailable");return}
+
+  state.rendering=true;
+  const box=$("renderProgress"),p=box.querySelector("p");
+  p.textContent="Preparing "+kind+"…";
+  try{
+    await buildPreview();setupAudioGraph();await state.audioCtx.resume();
+    const canvas=$("stage"),oldW=canvas.width,oldH=canvas.height;
+    canvas.width=width;canvas.height=height;drawFrame(0,0);
+    const mime=chooseRecorderMime();
+    const canvasStream=canvas.captureStream(fps);
+    const combined=new MediaStream();
+    canvasStream.getVideoTracks().forEach(t=>combined.addTrack(t));
+    state.recordDest.stream.getAudioTracks().forEach(t=>combined.addTrack(t));
+    const recorder=new MediaRecorder(combined,mime?{mimeType:mime,videoBitsPerSecond:kind==="4K master"?28000000:8000000}:undefined);
+    const fileName=safeTitle()+(kind==="4K master"?"-4K-master.webm":"-720p-review.webm");
+    if(!window.UnitedRoadAndroid.beginExport(fileName,mime||"video/webm"))throw new Error("Android could not open the export file");
+
+    let writeChain=Promise.resolve();
+    recorder.ondataavailable=e=>{
+      if(!e.data||!e.data.size)return;
+      writeChain=writeChain.then(async()=>{
+        const b64=bytesToBase64(await e.data.arrayBuffer());
+        if(!window.UnitedRoadAndroid.appendExport(b64))throw new Error("Could not write video chunk");
+      });
+    };
+
+    const audio=$("audio");audio.pause();audio.currentTime=0;
+    let ended=false;
+    const stopWhenEnded=()=>{ended=true};audio.addEventListener("ended",stopWhenEnded,{once:true});
+    recorder.start(1000);
+    await audio.play();
+    const data=new Uint8Array(state.analyser.frequencyBinCount);
+    const started=performance.now();
+    await new Promise((resolve,reject)=>{
+      const tick=()=>{
+        if(ended){resolve();return}
+        state.analyser.getByteFrequencyData(data);let sum=0;for(const x of data)sum+=x;
+        const energy=Math.min(1,(sum/data.length)/90);drawFrame(audio.currentTime||0,energy);
+        const duration=Number.isFinite(audio.duration)&&audio.duration>0?audio.duration:1;
+        const percent=Math.min(99,Math.round((audio.currentTime/duration)*100));
+        p.textContent=kind+" rendering on phone — "+percent+"%";
+        state.raf=requestAnimationFrame(tick);
+      };tick();
+    });
+    cancelAnimationFrame(state.raf);audio.pause();
+    const stopped=new Promise(resolve=>recorder.addEventListener("stop",resolve,{once:true}));
+    recorder.stop();await stopped;await writeChain;
+    const location=window.UnitedRoadAndroid.finishExport();
+    canvas.width=oldW;canvas.height=oldH;drawFrame(0,0);
+    p.textContent=kind+" saved to Downloads/UnitedRoadStudio.";
+    toast(kind+" complete");
+    return location;
+  }catch(e){
+    try{window.UnitedRoadAndroid.finishExport()}catch{}
+    p.textContent="Render failed: "+e.message;toast("Render failed: "+e.message);
+  }finally{state.rendering=false}
+}
 
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".panel").forEach(x=>x.classList.toggle("active",x.id===b.dataset.panel))});
 $("saveProject").onclick=()=>saveProject(false);
@@ -139,6 +222,8 @@ $("playPreview").onclick=playPreview;
 $("stopPreview").onclick=stopPreview;
 $("runReview").onclick=runReview;
 $("approve").onclick=approve;
+$("exportPreview").onclick=()=>renderVideo(1280,720,30,"720p review");
+$("renderMaster").onclick=()=>{if(!state.approved){toast("Approve the episode first");return}renderVideo(3840,2160,60,"4K master")};
 let timer=null;["title","directorNotes","productionNotes"].forEach(id=>$(id).addEventListener("input",()=>{state.approved=false;$("status").textContent="DRAFT";clearTimeout(timer);timer=setTimeout(()=>saveProject(true).catch(()=>{}),800)}));
 
 (async()=>{await openDb();await restore();drawFrame(0,0)})().catch(e=>toast("Startup error: "+e.message));
