@@ -181,11 +181,13 @@ def render(project_id: str, profile: str):
         raise HTTPException(400, "Unknown render profile")
 
     def task():
-        path = pipeline.render(project_id, profile)
-        result = {"media": str(path.relative_to(store.project_dir(project_id)))}
-        if profile != "final_master_4k":
-            result["qa"] = pipeline.review(project_id)
-        return result
+        result = pipeline.render_review_loop(project_id, profile)
+        path = result["path"]
+        return {
+            "media": str(path.relative_to(store.project_dir(project_id))),
+            "qa": result.get("qa"),
+            "repair_attempts": result.get("repair_attempts", 0),
+        }
     return submit("render", project_id, task)
 
 
