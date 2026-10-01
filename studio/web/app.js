@@ -81,6 +81,13 @@ async function saveNotes(){
   $("statusPill").textContent=state.project.status.toUpperCase();toast("Notes saved");
 }
 $("saveNotesBtn").onclick=saveNotes;
+let noteTimer=null;
+["directorNotes","productionNotes"].forEach(id=>{
+  $(id).addEventListener("input",()=>{
+    clearTimeout(noteTimer);
+    noteTimer=setTimeout(()=>saveNotes().catch(()=>{}),900);
+  });
+});
 
 document.querySelectorAll(".uploadBtn").forEach(btn=>btn.onclick=async()=>{
   if(!state.project)return;
