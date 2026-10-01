@@ -106,3 +106,26 @@ A blocking QA failure returns the episode to Draft. The 4K approval button remai
 
     python -m compileall studio
     python -m unittest studio.tests.test_core -v
+
+
+## Android / phone use
+
+The browser interface now works on Android. The heavy animation engine still runs on the engine computer/server; the phone is the control surface. That keeps Whisper, ffmpeg, OpenCV, Ollama, ComfyUI and high-resolution rendering off the phone.
+
+On the engine computer run:
+
+    python -m studio.run --mobile
+
+Studio prints two addresses. Open the phone address on Android while both devices are on the same Wi-Fi.
+
+If you downloaded only studio/web/index.html and open it directly, it now shows a **Connect to Studio Engine** screen instead of dead buttons. Enter the same phone address printed by the engine.
+
+The interface is responsive for touch, supports phone image/audio uploads, preview playback, QA review and final approval.
+
+### Android APK
+
+An Android WebView controller also lives under android/. It supports Android file pickers for image/audio uploads and remembers the Studio Engine address.
+
+The GitHub workflow **United Road Studio Android APK** builds a debug APK artifact named **UnitedRoadStudio-Android**.
+
+The APK is intentionally a controller: production rendering remains on the engine computer/server. This is much more practical than trying to run 4K ffmpeg rendering, local vision models and ComfyUI inside the phone itself.
