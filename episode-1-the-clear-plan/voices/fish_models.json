@@ -1,0 +1,137 @@
+{
+ "michael-carrick": {
+  "id": "6718a8b753944f098b47d305a601e3c7",
+  "title": "AOS Michael Carrick (parody)",
+  "state": "trained",
+  "source": "anim-handover/episodes/the-handover/voiceovers/03-michael-carrick.mp3",
+  "repo": "ab19902020/AnimnationStuido- @ claude/ollies-episode-production-tdnt6j",
+  "quality": null,
+  "quality_passed": null
+ },
+ "bruno-fernandes": {
+  "id": "88aecbad4776441fa53134a0544c561c",
+  "title": "AOS Bruno Fernandes (parody)",
+  "state": "trained",
+  "source": "showtv/show TV/Bruno/Clony-AI-2Y1Gwqr8neTEo43q.mp3",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "quality": null,
+  "quality_passed": null
+ },
+ "harry-maguire": {
+  "id": "32d235d432934c7d90483dcc9c24fa3a",
+  "title": "AOS Harry Maguire (parody)",
+  "state": "trained",
+  "source": "showtv/show TV/harry m/Clony-AI-Kzk4F3tsMBLpnbPz.mp3",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "quality": null,
+  "quality_passed": null
+ },
+ "jason-wilcox": {
+  "id": "ca08dc712b0b423a8db638fed57d7e41",
+  "title": "AOS Jason Wilcox (parody)",
+  "state": "trained",
+  "source": "tv-mole/the-mole/episode/voiceovers/03-jason-wilcox.mp3",
+  "repo": "ab19902020/TV-show- @ claude/new-session-ow0mwl",
+  "quality": null,
+  "quality_passed": null
+ },
+ "lisandro-martinez": {
+  "id": "cd58f6ba83354fd1a77c62b12f5c81eb",
+  "title": "AOS Lisandro Martinez (parody)",
+  "state": "trained",
+  "source": "tv-mole/the-mole/episode/voiceovers/02-lisandro-martinez-1.mp3",
+  "repo": "ab19902020/TV-show- @ claude/new-session-ow0mwl",
+  "quality": null,
+  "quality_passed": null
+ },
+ "narrator": {
+  "id": "31f154b4905e471fb4c5931140c8e53f",
+  "title": "AOS Documentary Narrator",
+  "state": "trained",
+  "source": "tv-mole/the-mole/episode/voiceovers/01-narrator.mp3",
+  "repo": "ab19902020/TV-show- @ claude/new-session-ow0mwl",
+  "quality": null,
+  "quality_passed": null
+ },
+ "jim-ratcliffe": {
+  "id": "92d6713eeb69455c9385ba6f9fc08658",
+  "title": "AOS Jim Ratcliffe (parody)",
+  "state": "trained",
+  "source": "anim-handover/episodes/the-handover/voiceovers/01-jim-ratcliffe.mp3",
+  "repo": "ab19902020/AnimnationStuido- @ claude/ollies-episode-production-tdnt6j",
+  "quality": null,
+  "quality_passed": null
+ },
+ "omar-berrada": {
+  "id": "31539149ea1f42c2a7fcbc9529738496",
+  "title": "AOS Omar Berrada (parody)",
+  "state": "trained",
+  "source": "showtv/show TV/omar/Clony-AI-gpqmga8px6et6YNx.mp3",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "quality": null,
+  "quality_passed": null
+ },
+ "matheus-cunha": {
+  "id": "8c515774bbf24dd39dd8fa2798f74e28",
+  "title": "AOS Matheus Cunha (parody)",
+  "state": "trained",
+  "source": "showtv/show TV/cunha/Clony-AI-EmNDgOEtkRQOseFe.mp3",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "quality": null,
+  "quality_passed": null
+ },
+ "benjamin-sesko": {
+  "id": "37aa44daaa0b4a3697d290d1cd724d52",
+  "title": "AOS Benjamin Sesko (parody)",
+  "state": "trained",
+  "source": "showtv/show TV/sesko/Clony-AI-ntlzQcGzRUduDHjr (1).mp3",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "quality": null,
+  "quality_passed": null
+ },
+ "shea-lacey": {
+  "id": "287893dd9b674aa9b625611ace4176b9",
+  "title": "AOS Shea Lacey (parody)",
+  "state": "trained",
+  "source": "showtv/show TV/shea Lacey/Clony-AI-b4zq76b9IO6xK89v.mp3",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "quality": null,
+  "quality_passed": null
+ },
+ "mason-mount": {
+  "id": "0cd1178e960a4cdd937694e0d8168203",
+  "title": "AOS Mason Mount (parody)",
+  "state": "trained",
+  "source": "showtv/show TV/masson/Clony-AI-kuIrCNWgJWiwgK7D.mp3",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "quality": null,
+  "quality_passed": null
+ },
+ "producer": {
+  "id": "a303b13cbc0f4093a02d418ff8f32f1a",
+  "title": "AOS Documentary Producer (off camera)",
+  "state": "trained",
+  "source": "showtv/show TV/documentary voice/Clony-AI-ejJnYjNNsDz9iBn6.mp3",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "quality": null,
+  "quality_passed": null
+ },
+ "joel-glazer": {
+  "id": "17da66aa44bb4160957cef0dd0286429",
+  "title": "AOS Joel Glazer (parody)",
+  "state": "trained",
+  "source": "showtv/show TV/j glazer/Clony-AI-ecyktuuXcVQCHNGa.mp3",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "quality": null,
+  "quality_passed": null
+ },
+ "avram-glazer": {
+  "id": "1a0c7847afd24d26b19016853f4d5cdd",
+  "title": "AOS Avram Glazer (parody)",
+  "state": "trained",
+  "source": "showtv/show TV/a glazer/Clony-AI-VGllzn0mfCmq0W7T.mp3",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "quality": null,
+  "quality_passed": null
+ }
+}

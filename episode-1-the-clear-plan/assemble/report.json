@@ -1,0 +1,30 @@
+{
+ "boardroom": {
+  "frames": 5918,
+  "seconds": 197.26666666666668
+ },
+ "hull": {
+  "frames": 1412,
+  "seconds": 47.06666666666667
+ },
+ "mole": {
+  "frames": 6341,
+  "seconds": 211.36666666666667
+ },
+ "part_a": {
+  "frames": 5907,
+  "held_last_frame": 1,
+  "seconds": 196.9
+ },
+ "part_b": {
+  "frames": 7422,
+  "seconds": 247.4
+ },
+ "master": {
+  "file": "all_or_something_ep1_master.mp4",
+  "frames": 27000,
+  "seconds": 900.0,
+  "target_frames": 27000,
+  "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -14.1 LUFS\n    Threshold: -25.8 LUFS\n\n  Loudness range:\n    LRA:        14.0 LU\n    Threshold: -35.8 LUFS\n    LRA low:   -26.2 LUFS\n    LRA high:  -12.1 LUFS\n\n  True peak:\n    Peak:       -1.1 dBFS\n"
+ }
+}

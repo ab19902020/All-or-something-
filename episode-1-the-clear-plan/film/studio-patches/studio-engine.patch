@@ -1,0 +1,48 @@
+diff --git a/studio/film/art.py b/studio/film/art.py
+index e6e69c9..4149215 100644
+--- a/studio/film/art.py
++++ b/studio/film/art.py
+@@ -287,6 +287,8 @@ def make(cid, name, d):
+     if "image" in d:
+         part = np.asarray(Image.open(CHARACTERS / cid / d["image"]).convert("RGBA")).copy()
+         off, K = (0, 0), 1
++        if d.get("up"):                                 # a small cut-out drawing: upscaled like a sheet's
++            part, K = upscale_rgba(part), 4
+     elif "kit" in d:
+         crop, off = cut_kit(cid, d["kit"])
+         part = upscale_rgba(crop)
+diff --git a/studio/film/render.py b/studio/film/render.py
+index 4b20cee..e378fcc 100644
+--- a/studio/film/render.py
++++ b/studio/film/render.py
+@@ -355,6 +355,8 @@ def render_frame(f):
+             img = cv2.warpAffine(img, np.float32([[z, 0, OW / 2 * (1 - z) + sh], [0, z, OH / 2 * (1 - z)]]),
+                                  (OW, OH), borderMode=cv2.BORDER_REPLICATE)
+     img = G.captions(img, t, getattr(D, "CAPTIONS", []))
++    if X is not None and hasattr(X, "overlay"):              # the episode's own full-frame graphics over the picture
++        img = X.overlay(img, t, s)
+     if kind not in ("black", "title"):
+         img = G.finish(img, f)
+     return (np.clip(img, 0, 1) * 255 + 0.5).astype(np.uint8)
+diff --git a/studio/film/voices.py b/studio/film/voices.py
+index c71bee0..c280b5c 100644
+--- a/studio/film/voices.py
++++ b/studio/film/voices.py
+@@ -175,12 +175,14 @@ def build(out_dir, lines, maxgap=0.2, gaps=None, k=1.0, extra=None):
+ 
+ 
+ # ---------------------------------------------------------------- recordings with many lines in them
+-def stretches(y16, min_pause=0.35, top_db=38):
+-    """the speech in a recording, split where it pauses for at least min_pause s -> [[start, end]] (s)"""
++def stretches(y16, min_pause=0.35, top_db=38, longest=25.0):
++    """the speech in a recording, split where it pauses for at least min_pause s -> [[start, end]] (s). A stretch
++    never runs past `longest` s (Whisper hears only the first 30 s of a piece): a fast read with no long pauses is
++    split at its next short one"""
+     out = []
+     for a, b in librosa.effects.split(y16, top_db=top_db, frame_length=1024, hop_length=160):
+         a, b = a / 16000, b / 16000
+-        if out and a - out[-1][1] < min_pause:
++        if out and a - out[-1][1] < min_pause and b - out[-1][0] <= longest:
+             out[-1][1] = b
+         elif b - a >= 0.08:
+             out.append([a, b])

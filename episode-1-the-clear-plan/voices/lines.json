@@ -1,0 +1,314 @@
+[
+ {
+  "id": "H00",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Come on, boys, wake up! Concentrate, come on! Too easy! That's too easy! Again!"
+ },
+ {
+  "id": "H01",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Not ideal."
+ },
+ {
+  "id": "H02",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Not ideal?! He literally said set pieces. Five minutes before kickoff!"
+ },
+ {
+  "id": "H03",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "Two set pieces."
+ },
+ {
+  "id": "H04",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Then how have we conceded two?!"
+ },
+ {
+  "id": "H05",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "Execution?"
+ },
+ {
+  "id": "H06",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "It's one game. You can't judge a season after one game."
+ },
+ {
+  "id": "R01",
+  "speaker": "CUNHA",
+  "voice": "matheus-cunha",
+  "text": "Hat-trick. Captain."
+ },
+ {
+  "id": "R02",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "That's more like it."
+ },
+ {
+  "id": "R03",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Gentlemen, fantastic! This is the plan."
+ },
+ {
+  "id": "R04",
+  "speaker": "SESKO",
+  "voice": "benjamin-sesko",
+  "text": "Yes! I thought I scored the winner."
+ },
+ {
+  "id": "R05",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Positive point away from home."
+ },
+ {
+  "id": "R06",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "You did. For about eight minutes."
+ },
+ {
+  "id": "R07",
+  "speaker": "SESKO",
+  "voice": "benjamin-sesko",
+  "text": "Thanks, Harry."
+ },
+ {
+  "id": "R08",
+  "speaker": "MARTINEZ",
+  "voice": "lisandro-martinez",
+  "text": "I scored!"
+ },
+ {
+  "id": "R09",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Don't encourage him."
+ },
+ {
+  "id": "R10",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "European DNA."
+ },
+ {
+  "id": "R11",
+  "speaker": "MARTINEZ",
+  "voice": "lisandro-martinez",
+  "text": "We nearly scored."
+ },
+ {
+  "id": "R12",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Nearly does not count."
+ },
+ {
+  "id": "R13",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "It counts in expected goals."
+ },
+ {
+  "id": "R14",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "What? I've been listening to Jason."
+ },
+ {
+  "id": "R15",
+  "speaker": "LACEY",
+  "voice": "shea-lacey",
+  "text": "We were two-nil up. How have we lost?"
+ },
+ {
+  "id": "R16",
+  "speaker": "MOUNT",
+  "voice": "mason-mount",
+  "text": "You've learnt Manchester United very quickly."
+ },
+ {
+  "id": "R17",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Michael, do not say not ideal."
+ },
+ {
+  "id": "R18",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Not..."
+ },
+ {
+  "id": "R19",
+  "speaker": "CUNHA",
+  "voice": "matheus-cunha",
+  "text": "Good finish. Mine. Sorry."
+ },
+ {
+  "id": "R20",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Five points. From five games. And we are out of the League Cup."
+ },
+ {
+  "id": "R21",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Right. International break. Get away. Reset. Come back fresh."
+ },
+ {
+  "id": "R22",
+  "speaker": "PRODUCER",
+  "voice": "producer",
+  "text": "How would you describe the opening month?"
+ },
+ {
+  "id": "R23",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "There have been positives."
+ },
+ {
+  "id": "R24",
+  "speaker": "PRODUCER",
+  "voice": "producer",
+  "text": "Such as?"
+ },
+ {
+  "id": "R25",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Sabah."
+ },
+ {
+  "id": "N01",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "After the break, United returned refreshed. The results returned unchanged."
+ },
+ {
+  "id": "N02",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Madrid brought another defeat. Before Leeds, Lisandro began looking for answers closer to home."
+ },
+ {
+  "id": "C01",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Stay compact. Make them play in front of us."
+ },
+ {
+  "id": "B01",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "And when do we go?"
+ },
+ {
+  "id": "C02",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "When the moment is right."
+ },
+ {
+  "id": "M01",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "Is there a signal?"
+ },
+ {
+  "id": "C03",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "That wasn't it."
+ },
+ {
+  "id": "N03",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The plan had survived the meeting. It was finding the football more difficult."
+ },
+ {
+  "id": "C04",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "We need to be braver."
+ },
+ {
+  "id": "B02",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "So we go to them?"
+ },
+ {
+  "id": "C05",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Together."
+ },
+ {
+  "id": "B03",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Everyone?"
+ },
+ {
+  "id": "C06",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "That's usually what together means."
+ },
+ {
+  "id": "N04",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Four-one. The consolation was on the scoreboard. It had not reached the dressing room."
+ },
+ {
+  "id": "C07",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Not ideal."
+ },
+ {
+  "id": "B04",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Michael. We've used that one."
+ },
+ {
+  "id": "B05",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "We gave them space. We gave them time. By the fourth goal, I thought we were giving them the stadium tour."
+ },
+ {
+  "id": "B06",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "I just wanted us to make them uncomfortable. At the moment, that's only happening in here."
+ },
+ {
+  "id": "C08",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "I can draw the arrows. I can't carry eleven people along them."
+ },
+ {
+  "id": "C09",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "We'll review it."
+ }
+]
