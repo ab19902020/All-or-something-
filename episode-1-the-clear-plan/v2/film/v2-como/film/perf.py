@@ -23,7 +23,8 @@ L = json.loads(ep.path("lines.json").read_text())
 T = Marks(TL, L)
 m, ls, le, wt, we = T.m, T.ls, T.le, T.wt, T.we
 
-WHO = ["carrick", "bruno", "maguire", "licho", "mainoo", "zirkzee", "wilcox", "omar"]
+WHO = ["carrick", "bruno", "maguire", "licho", "mainoo", "zirkzee", "wilcox", "omar", "cunha"]   # cunha last: the
+# others' blinks are seeded by their place in this list and stay as they were
 SPK = {w: w for w in WHO}
 
 META = {
@@ -39,14 +40,20 @@ META = {
     "C16": ("irritated", "bruno", ["usually", "together"]),
     "C22": ("exhausted", "bruno", ["ideal"]),
     "C23": ("exhausted", "carrick", ["michael", "used"]),
-    "C25": ("frustrated", "reporter", ["space", "time", "fourth", "stadium", "tour"]),
-    "C26": ("quiet", "reporter", ["uncomfortable", "only", "here"]),
+    "C25": ("dry", "reporter", ["told", "not", "press", "honestly", "executed"]),
+    "C26": ("defensive", "reporter", ["tactics", "staff", "not", "me"]),
+    "C41": ("indignant", "carrick", ["forty", "michael", "five"]),
+    "C42": ("flat", "cunha", ["tactical", "decision"]),
+    "C43": ("angry", "carrick", ["one", "came", "off", "lost"]),
+    "C44": ("honest", "carrick", ["fair", "point"]),
+    "C45": ("dry", "maguire", ["thanks", "harry"]),
+    "C46": ("sarcastic", "carrick", ["warm", "everybody", "time"]),
     "C28": ("frustrated", "reporter", ["draw", "arrows", "carry", "eleven"]),
     "C29": ("quiet", "reporter", ["review"]),
     "C31": ("salesman", "cam", ["very", "clear", "plan"]),
 }
 BASE = dict(carrick=(-0.05, -0.05), bruno=(-0.15, -0.1), maguire=(0.15, 0.05), licho=(-0.1, 0.0), mainoo=(0.0, 0.0),
-            zirkzee=(0.0, 0.0), wilcox=(0.2, 0.25), omar=(0.1, 0.15))
+            zirkzee=(0.0, 0.0), wilcox=(0.2, 0.25), omar=(0.1, 0.15), cunha=(0.0, 0.0))
 
 SCREEN = ("dir", 0.0, -0.08, 0.0)                # the telly: where the camera is, a little up
 office = (m("cut_office"), m("cut_lake"))
@@ -88,7 +95,7 @@ LIDS = {"licho": [(m("whistle") + 0.3, office[1], 0.35, 0.2)],
         "bruno": [(le("C22"), le("C23") + 0.3, 0.28, 0.3), (m("cut_par1"), ls("C25"), 0.25, 0.4)],
         "carrick": [(m("cut_touch"), m("cut_board_ht"), 0.15, 0.3), (le("C28"), le("C29") + 0.3, 0.2, 0.3)]}
 NODS = {"carrick": [(wt("C05", "compact") + 0.05, 1, 1.5), (wt("C14", "together"), 1, 2.0)],
-        "bruno": [(wt("C25", "tour"), 1, 1.4)],
+        "bruno": [(wt("C25", "executed"), 1, 1.4)],
         "wilcox": [(le("C31") - 0.3, 1, 1.6)]}
 TURN = {"carrick": [(m("cut_c09") + 0.05, m("cut_c09") + 0.55, 0.0, -2.0)],
         "maguire": [(ls("C08") - 0.1, le("C08") + 0.3, 0.0, 4.0)],
@@ -98,7 +105,7 @@ FORCED = {"carrick": [le("C09") + 0.35, le("C29") + 0.9], "bruno": [le("C23") + 
 NOBLINK = {"carrick": [(m("cut_sees") + 0.3, m("cut_par1"))], "licho": [(m("cut_li_eyes"), m("cut_omar"))]}
 SHAKES = {"bruno": [(le("C23") - 0.4, 1, 0.08)]}
 REST = dict(carrick="bruno", bruno="carrick", maguire="carrick", licho="carrick", mainoo="carrick",
-            zirkzee="carrick", wilcox=SCREEN, omar=SCREEN)
+            zirkzee="carrick", wilcox=SCREEN, omar=SCREEN, cunha="carrick")
 
 PERF = Performance(TL, L, WHO, SPK, META, lambda lid: ep.path("lines", f"{lid}.wav"), base=BASE, gaze=GAZE,
                    expr=EXPR, nods=NODS, turn=TURN, forced=FORCED, noblink=NOBLINK, rest_target=REST,

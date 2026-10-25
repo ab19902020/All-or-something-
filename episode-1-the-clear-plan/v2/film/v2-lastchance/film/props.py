@@ -281,8 +281,9 @@ CREDITS = [
     ("", None, 30, None),
     ("Every voice: Fish Audio, cloned from the show's own character recordings. Not the real people.", "INTER", 32,
      (200, 200, 200)),
-    ("Results: mufcinfo.com, soccerbase.com, manutd.com. Como interviews paraphrased from Reuters, RTÉ, Sky Sports.",
+    ("Results: mufcinfo.com, soccerbase.com, manutd.com, Sky Sports. Interviews paraphrased from Reuters, RTÉ,",
      "INTER", 30, (200, 200, 200)),
+    ("Sky Sports, ESPN and Amazon Prime's coverage (13–25 October 2026).", "INTER", 30, (200, 200, 200)),
 ]
 
 

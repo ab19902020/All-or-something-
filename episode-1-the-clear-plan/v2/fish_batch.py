@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Every line of lines_v2.json in TAKES takes with its character's cloned voice, a few requests at once.
-FISH_API_KEY=... python3 v2/fish_batch.py OUT_DIR [--takes 2] [--only ID,ID] [--workers 4]"""
+FISH_API_KEY=... python3 v2/fish_batch.py OUT_DIR [--takes 2] [--only ID,ID] [--workers 4]
+A line's "say" is what the voice is given instead of the text; its "tag" (a delivery note in square brackets, e.g.
+"[calm, quiet, flat voice] ") goes in front and is not spoken."""
 import argparse, json, os, pathlib, sys
 from concurrent.futures import ThreadPoolExecutor
 HERE = pathlib.Path(__file__).resolve().parent
@@ -28,7 +30,7 @@ for ln in lines:
 
 def go(job):
     ln, dest = job
-    F.tts(key, models[ln["voice"]]["id"], ln.get("say", ln["text"]), dest, a.model)
+    F.tts(key, models[ln["voice"]]["id"], ln.get("tag", "") + ln.get("say", ln["text"]), dest, a.model)
     return dest.name
 
 with ThreadPoolExecutor(a.workers) as ex:

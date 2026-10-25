@@ -1,29 +1,151 @@
 {
+ "parts": [
+  {
+   "slug": "v2-meeting",
+   "frames": 3372,
+   "seconds": 112.4,
+   "pieces": [
+    [
+     "v2-meeting/v2-meeting.mp4",
+     0,
+     3372
+    ]
+   ]
+  },
+  {
+   "slug": "v2-month",
+   "frames": 5950,
+   "seconds": 198.333,
+   "pieces": [
+    [
+     "v2-month/build/master.mp4",
+     0,
+     2028
+    ],
+    [
+     "v2-month/build/month_cu.mp4",
+     2028,
+     2091
+    ],
+    [
+     "v2-month/build/master.mp4",
+     2091,
+     2619
+    ],
+    [
+     "v2-month/build/month_se.mp4",
+     2619,
+     2664
+    ],
+    [
+     "v2-month/build/master.mp4",
+     2664,
+     5950
+    ]
+   ]
+  },
+  {
+   "slug": "v3-upstairs",
+   "frames": 1914,
+   "seconds": 63.8,
+   "pieces": [
+    [
+     "v3-upstairs/v3-upstairs.mp4",
+     0,
+     1914
+    ]
+   ]
+  },
+  {
+   "slug": "v2-mole",
+   "frames": 5816,
+   "seconds": 193.867,
+   "pieces": [
+    [
+     "v2-mole/build/master.mp4",
+     0,
+     5816
+    ]
+   ]
+  },
+  {
+   "slug": "v2-como",
+   "frames": 4980,
+   "seconds": 166.0,
+   "pieces": [
+    [
+     "v2-como/build/master.mp4",
+     0,
+     2609
+    ],
+    [
+     "v2-como/build/como_tail.mp4",
+     2609,
+     4980
+    ]
+   ]
+  },
+  {
+   "slug": "v2-lastchance",
+   "frames": 1926,
+   "seconds": 64.2,
+   "pieces": [
+    [
+     "v2-lastchance/v2-lastchance.mp4",
+     0,
+     1926
+    ]
+   ]
+  },
+  {
+   "slug": "v3-bournemouth",
+   "frames": 2145,
+   "seconds": 71.5,
+   "pieces": [
+    [
+     "v3-bournemouth/build/bou_full_v1.mp4",
+     0,
+     1920
+    ],
+    [
+     "v3-bournemouth/build/bou_tail.mp4",
+     1920,
+     2145
+    ]
+   ]
+  },
+  {
+   "slug": "v2-lastchance",
+   "frames": 318,
+   "seconds": 10.6,
+   "pieces": [
+    [
+     "v2-lastchance/build/lc_credits.mp4",
+     1926,
+     2244
+    ]
+   ]
+  }
+ ],
  "master": {
   "file": "master.mp4",
-  "frames": 21650,
-  "seconds": 721.666667,
-  "mb": 558.4,
-  "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -14.1 LUFS\n    Threshold: -24.9 LUFS\n\n  Loudness range:\n    LRA:         4.4 LU\n    Threshold: -34.9 LUFS\n    LRA low:   -17.5 LUFS\n    LRA high:  -13.1 LUFS\n\n  True peak:\n    Peak:       -0.6 dBFS\n",
+  "frames": 26421,
+  "mb": 713.7,
+  "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -16.0 LUFS\n    Threshold: -27.0 LUFS\n\n  Loudness range:\n    LRA:         4.4 LU\n    Threshold: -37.0 LUFS\n    LRA low:   -19.6 LUFS\n    LRA high:  -15.2 LUFS\n\n  True peak:\n    Peak:       -1.4 dBFS\n",
   "black": [
-   "710.7 black_end:711.167 black_duration:0.466667 (Last Chance's smash to black before the end title)"
+   "798.167 black_end:798.6 black_duration:0.433333"
   ]
  },
  "episode": {
-  "file": "ALL_OR_SOMETHING_EP1_THE_CLEAR_PLAN_1080p.mp4",
-  "frames": 21650,
-  "seconds": 721.666667,
-  "mb": 93.1,
-  "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -14.5 LUFS\n    Threshold: -25.3 LUFS\n\n  Loudness range:\n    LRA:         4.4 LU\n    Threshold: -35.3 LUFS\n    LRA low:   -17.9 LUFS\n    LRA high:  -13.5 LUFS\n\n  True peak:\n    Peak:       -1.5 dBFS\n",
+  "file": "episode.mp4",
+  "frames": 26421,
+  "mb": 93.5,
+  "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -16.0 LUFS\n    Threshold: -27.0 LUFS\n\n  Loudness range:\n    LRA:         4.4 LU\n    Threshold: -37.0 LUFS\n    LRA low:   -19.6 LUFS\n    LRA high:  -15.2 LUFS\n\n  True peak:\n    Peak:       -1.5 dBFS\n",
   "black": [
-   "710.7 black_end:711.167 black_duration:0.466667 (Last Chance's smash to black before the end title)"
-  ]
+   "798.167 black_end:798.6 black_duration:0.433333"
+  ],
+  "video_kbps": 709
  },
- "segments": {
-  "v2-meeting": 3379,
-  "v2-month": 5950,
-  "v2-mole": 5816,
-  "v2-como": 4261,
-  "v2-lastchance": 2244
- }
+ "frames": 26421,
+ "seconds": 880.7
 }

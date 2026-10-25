@@ -61,6 +61,15 @@ SEQ = [
     ("gap", 0.5, "cut_c22"), ("line", "C22"),             # "Not ideal."
     ("gap", 0.3, "cut_c23"), ("line", "C23"),             # "Michael. We've used that one."
     ("gap", 0.3),
+    # ---- Cunha: taken off at half-time (Amad on); he has some feedback
+    ("gap", 0.2, "cut_c40"), ("line", "C40"),             # "Matheus Cunha had been taken off at half-time..."
+    ("gap", 0.15, "cut_c41"), ("line", "C41"),            # "Forty-five minutes, Michael? Forty-five?"
+    ("gap", 0.25, "cut_c42"), ("line", "C42"),            # "It was a tactical decision."
+    ("gap", 0.15, "cut_c43"), ("line", "C43"),            # "We were one-nil down. I came off. We lost four-one!"
+    ("gap", 0.45, "cut_c44"), ("line", "C44"),            # "To be fair, Michael, he's got a point."
+    ("gap", 0.35, "cut_c45"), ("line", "C45"),            # "Thanks, Harry."
+    ("gap", 0.2, "cut_c46"), ("line", "C46"),             # "Next time, take me off in the warm-up..."
+    ("gap", 0.4),
     ("gap", 1.3, "cut_sees"),                 # Carrick sees the documentary camera; the lens is lowered
     # ---- the interviews: the real positions, paraphrased by the narrator; then the parody
     ("gap", 0.2, "cut_par1"), ("line", "C24"),            # Bruno's position (the card, the narrator)

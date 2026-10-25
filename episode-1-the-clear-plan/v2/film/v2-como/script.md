@@ -26,9 +26,16 @@ that character's cloned Fish Audio voice (All-or-something-/episode-1-the-clear-
 [C21] NARRATOR: In stoppage time, Joshua Zirkzee scored. Four-one. The consolation was on the scoreboard. It had not reached the dressing room.
 [C22] CARRICK: Not ideal.
 [C23] BRUNO: Michael. We've used that one.
-[C24] NARRATOR: Afterwards, Bruno Fernandes questioned the decision to sit off Como rather than press man-to-man.
-[C25] BRUNO: We gave them space. We gave them time. By the fourth goal, I thought we were giving them the stadium tour.
-[C26] BRUNO: I just wanted us to make them uncomfortable. At the moment, that's only happening in here.
+[C40] NARRATOR: Matheus Cunha had been taken off at half-time. He had some feedback.
+[C41] CUNHA: Forty-five minutes, Michael? Forty-five?
+[C42] CARRICK: It was a tactical decision.
+[C43] CUNHA: We were one-nil down. I came off. We lost four-one!
+[C44] MAGUIRE: To be fair, Michael, he's got a point.
+[C45] CARRICK: Thanks, Harry.
+[C46] CUNHA: Next time, take me off in the warm-up. Save everybody time.
+[C24] NARRATOR: Afterwards, Bruno Fernandes said not pressing man-to-man had been the staff's decision. And that tactics were for the staff to answer, not him.
+[C25] BRUNO: We were told not to press. So we did not press. Honestly, it was very well executed.
+[C26] BRUNO: Tactics? Ask the staff. That one is not on me.
 [C27] NARRATOR: Michael Carrick said United had pressed after half-time, and that any system needs players to run.
 [C28] CARRICK: I can draw the arrows. I can't carry eleven people along them.
 [C29] CARRICK: We'll review it.

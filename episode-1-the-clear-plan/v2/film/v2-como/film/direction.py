@@ -49,12 +49,13 @@ def px_per_m(y):
 HEIGHT = dict(carrick=1.76, bruno=1.79, maguire=1.94, licho=1.75, mainoo=1.80, zirkzee=1.93, wilcox=1.78,
               omar=1.80, cunha=1.84)
 SEAT = dict(carrick=(600, 590), bruno=(1150, 612), maguire=(1000, 668), licho=(760, 668), mainoo=(880, 548),
-            zirkzee=(1060, 548), board=(420, 560))
+            zirkzee=(1060, 548), board=(420, 560), cunha=(1290, 570))
 DRAW = {"carrick": "michael-carrick:track", "bruno": "bruno-fernandes:full", "maguire": "harry-maguire:front",
         "licho": "lisandro-martinez:stand", "mainoo": "kobbie-mainoo:front", "zirkzee": "joshua-zirkzee:squad",
         "wilcox": "jason-wilcox:pockets", "omar": "omar-berrada:front", "cunha": "matheus-cunha:front"}
 C_EXPLAIN, C_ARMS, C_BACK = "michael-carrick:track_explain", "michael-carrick:arms", "michael-carrick:track_back"
 LI_POINT, LI_CROSS, WI_CROSS = "lisandro-martinez:point", "lisandro-martinez:crossarms", "jason-wilcox:crossarms"
+CU_POINT = "matheus-cunha:points"
 ALSO = [C_BACK]
 
 
@@ -123,6 +124,7 @@ SET = {
     "wilcox": dict(bg=("OF", 900, 280, 2.6, 3.0), eye=(960, 432)),
     "licho_of": dict(bg=("OF", 600, 300, 2.6, 3.0), eye=(900, 432)),
     "omar": dict(bg=("OF", 1250, 260, 2.6, 3.0), eye=(1000, 432)),
+    "cunha": dict(bg=("CW", 1330, 300, 2.7, 2.6), eye=(1040, 432)),
     "br_mz": dict(bg=("MZ", 1000, 330, 2.0, 3.4), eye=(1060, 438)),
     "ck_pr": dict(bg=("PR", 836, 300, 1.9, 3.2), eye=(900, 438)),
 }
@@ -206,6 +208,15 @@ SHOTS = finish([
          push=1.02),
     close(m("cut_c22"), "carrick", ed=112),
     close(m("cut_c23"), "bruno", ed=114),
+    # ---- Cunha
+    room(m("cut_c40"), ["bruno", "cunha", "maguire"], plate="CW2", extra=[actor("carrick", at=(520, 560))],
+         cam=(880, 430, 1.5), push=1.03),
+    close(m("cut_c41"), "cunha", ed=110, push=(1.0, 1.04)),
+    close(m("cut_c42"), "carrick", ed=112, push=(1.0, 1.0)),
+    close(m("cut_c43"), "cunha", ed=116, push=(1.0, 1.05)),
+    close(m("cut_c44"), "maguire", ed=112),
+    close(m("cut_c45"), "carrick", draw=C_ARMS, ed=114, push=(1.0, 1.0)),
+    close(m("cut_c46"), "cunha", ed=112, push=(1.0, 1.04)),
     close(m("cut_sees"), "carrick", ed=122, push=(1.0, 1.0), drift=0.2, tilt_down=(m("cut_sees") + 0.7, 0.45)),
     # ---- the interviews
     close(m("cut_par1"), "bruno", key="br_mz", ed=104, push=(1.0, 1.03), drift=0.15, grade="studio",
@@ -232,6 +243,7 @@ CAPTIONS = [
     (m("cut_c05") + 0.2, m("cut_c06") - 0.1, "place", "AWAY DRESSING ROOM", "Como. Before kick-off."),
     (m("cut_touch") + 0.2, ls("C11") + 1.6, "name", "MICHAEL CARRICK", "Head Coach. Clicking."),
     (wt("C21", "joshua"), wt("C21", "the", 1) - 0.15, "name", "JOSHUA ZIRKZEE", "Scorer. 90+1'."),
+    (m("cut_c41") + 0.1, le("C41") + 0.2, "name", "MATHEUS CUNHA", "Substituted at half-time."),
     (m("cut_bd") + 0.2, m("cut_laptop") - 0.1, "place", "THE BOARDROOM", "Late."),
 ]
 WHIPS = []

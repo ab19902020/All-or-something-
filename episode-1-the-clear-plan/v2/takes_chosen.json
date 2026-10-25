@@ -172,26 +172,25 @@
   "seconds": 2.46
  },
  "C24": {
-  "take": "C24_t2.wav",
-  "heard": "Afterwards, Bruno Fernandes questioned the decision to sit off Como rather than press man to man.",
+  "take": "C24_0_3.wav",
+  "heard": "Afterwards, Bruno Fernandes said not pressing man to man had been the staff's decision and that tactics were for the staff to answer, not him.",
   "wer": 0.0,
-  "speaker_similarity": 0.906,
-  "seconds": 6.32,
-  "note": "version 3: the new narrator"
+  "speaker_similarity": 0.916,
+  "seconds": 10.31
  },
  "C25": {
-  "take": "C25_t1.wav",
-  "heard": "We gave them space, we gave them time. By the fourth goal, I thought we were giving them the stadium tour.",
+  "take": "C25_0_1.wav",
+  "heard": "We were told not to press. So we did not press. Honestly, it was very well executed.",
   "wer": 0.0,
-  "speaker_similarity": 0.812,
-  "seconds": 7.29
+  "speaker_similarity": 0.844,
+  "seconds": 6.59
  },
  "C26": {
-  "take": "C26_t2.wav",
-  "heard": "I just wanted us to make them uncomfortable. At the moment, that's only happening in here.",
+  "take": "C26_0_2.wav",
+  "heard": "Tactics, ask the staff. That one is not on me.",
   "wer": 0.0,
-  "speaker_similarity": 0.818,
-  "seconds": 5.2
+  "speaker_similarity": 0.86,
+  "seconds": 3.81
  },
  "C27": {
   "take": "C27_t1.wav",
@@ -935,11 +934,12 @@
   "seconds": 4.92
  },
  "M04": {
-  "take": "M04_t1.wav",
+  "take": "M04_1_3.wav",
   "heard": "What's the plan?",
   "wer": 0.0,
-  "speaker_similarity": 0.595,
-  "seconds": 1.25
+  "speaker_similarity": 0.587,
+  "seconds": 1.02,
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  "M05": {
   "take": "M05_t2.wav",
@@ -964,11 +964,12 @@
   "seconds": 4.88
  },
  "M08": {
-  "take": "M08_t1.wav",
+  "take": "M08_0_3.wav",
   "heard": "Right. Yep. Okay. Jason, who are we signing?",
   "wer": 0.0,
-  "speaker_similarity": 0.773,
-  "seconds": 5.15
+  "speaker_similarity": 0.732,
+  "seconds": 4.55,
+  "tag": "[calm, quiet, flat voice] "
  },
  "M09": {
   "take": "M09_t1.wav",
@@ -978,11 +979,12 @@
   "seconds": 1.95
  },
  "M10": {
-  "take": "M10_t2.wav",
-  "heard": "I know, I'm just thinking. Another striker?",
+  "take": "M10_1_3.wav",
+  "heard": "I know, I'm just thinking. Another striker.",
   "wer": 0.0,
-  "speaker_similarity": 0.767,
-  "seconds": 3.39
+  "speaker_similarity": 0.681,
+  "seconds": 3.48,
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  "M11": {
   "take": "M11_t2.wav",
@@ -992,11 +994,12 @@
   "seconds": 0.88
  },
  "M12": {
-  "take": "M12_t1.wav",
+  "take": "M12_1_3.wav",
   "heard": "Left back.",
   "wer": 0.0,
-  "speaker_similarity": 0.402,
-  "seconds": 0.88
+  "speaker_similarity": 0.455,
+  "seconds": 0.98,
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  "M13": {
   "take": "M13_t2.wav",
@@ -1006,11 +1009,12 @@
   "seconds": 0.51
  },
  "M14": {
-  "take": "M14_t1.wav",
-  "heard": "Center back.",
-  "wer": 0.5,
-  "speaker_similarity": 0.42,
-  "seconds": 1.07
+  "take": "M14_1_1.wav",
+  "heard": "centre back",
+  "wer": 0.0,
+  "speaker_similarity": 0.463,
+  "seconds": 1.07,
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  "M15": {
   "take": "M15_x_t2.wav",
@@ -1020,11 +1024,12 @@
   "seconds": 0.51
  },
  "M16": {
-  "take": "M16_t1.wav",
+  "take": "M16_1_3.wav",
   "heard": "Another forward.",
   "wer": 0.0,
-  "speaker_similarity": 0.471,
-  "seconds": 1.3
+  "speaker_similarity": 0.481,
+  "seconds": 1.25,
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  "M17": {
   "take": "M17_t1.wav",
@@ -1034,11 +1039,12 @@
   "seconds": 1.11
  },
  "M18": {
-  "take": "M18_t1.wav",
+  "take": "M18_0_4.wav",
   "heard": "Goalkeeper",
   "wer": 0.0,
-  "speaker_similarity": 0.467,
-  "seconds": 0.98
+  "speaker_similarity": 0.546,
+  "seconds": 0.98,
+  "tag": "[calm, quiet, flat voice] "
  },
  "M19": {
   "take": "M19_t2.wav",
@@ -1048,11 +1054,12 @@
   "seconds": 0.79
  },
  "M20": {
-  "take": "M20_x_t3.wav",
+  "take": "M20_1_3.wav",
   "heard": "Fair enough.",
   "wer": 0.0,
-  "speaker_similarity": 0.458,
-  "seconds": 1.07
+  "speaker_similarity": 0.513,
+  "seconds": 1.02,
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  "M21": {
   "take": "M21_t1.wav",
@@ -1063,11 +1070,12 @@
   "note": "version 3: the new narrator"
  },
  "M22": {
-  "take": "M22_x_t1.wav",
+  "take": "M22_1_3.wav",
   "heard": "So how much have we got?",
   "wer": 0.0,
-  "speaker_similarity": 0.602,
-  "seconds": 1.3
+  "speaker_similarity": 0.633,
+  "seconds": 2.14,
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  "M23": {
   "take": "M23_t1.wav",
@@ -1077,11 +1085,12 @@
   "seconds": 2.28
  },
  "M24": {
-  "take": "M24_t1.wav",
+  "take": "M24_1_1.wav",
   "heard": "How much is a lot?",
   "wer": 0.0,
-  "speaker_similarity": 0.575,
-  "seconds": 1.76
+  "speaker_similarity": 0.556,
+  "seconds": 1.49,
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  "M25": {
   "take": "M25_t1.wav",
@@ -1091,11 +1100,12 @@
   "seconds": 1.67
  },
  "M26": {
-  "take": "M26_t1.wav",
+  "take": "M26_0_2.wav",
   "heard": "So sell to buy.",
   "wer": 0.0,
-  "speaker_similarity": 0.583,
-  "seconds": 2.14
+  "speaker_similarity": 0.555,
+  "seconds": 2.14,
+  "tag": "[calm, quiet, flat voice] "
  },
  "M27": {
   "take": "M27_t1.wav",
@@ -1105,11 +1115,12 @@
   "seconds": 3.25
  },
  "M28": {
-  "take": "M28_t1.wav",
+  "take": "M28_1_4.wav",
   "heard": "and the objectives.",
   "wer": 0.0,
-  "speaker_similarity": 0.655,
-  "seconds": 1.16
+  "speaker_similarity": 0.647,
+  "seconds": 1.44,
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  "M29": {
   "take": "M29_t2.wav",
@@ -1119,11 +1130,12 @@
   "seconds": 1.81
  },
  "M30": {
-  "take": "M30_t1.wav",
-  "heard": "Brilliant. Good meeting. Positive. So where's the money actually going?",
+  "take": "M30_0_3.wav",
+  "heard": "Brilliant, good meeting, positive. So where's the money actually going?",
   "wer": 0.0,
-  "speaker_similarity": 0.82,
-  "seconds": 5.8
+  "speaker_similarity": 0.787,
+  "seconds": 5.34,
+  "tag": "[calm, quiet, flat voice] "
  },
  "M31": {
   "take": "M31_t2.wav",
@@ -1140,11 +1152,12 @@
   "seconds": 0.46
  },
  "M33": {
-  "take": "M33_t2.wav",
-  "heard": "Glazer Dividends.",
+  "take": "M33_0_2.wav",
+  "heard": "Glazer Dividends",
   "wer": 0.0,
-  "speaker_similarity": 0.501,
-  "seconds": 1.63
+  "speaker_similarity": 0.535,
+  "seconds": 1.39,
+  "tag": "[calm, quiet, flat voice] "
  },
  "M34": {
   "take": "M34_t1.wav",
@@ -1219,11 +1232,12 @@
   "seconds": 1.02
  },
  "M44": {
-  "take": "M44_t1.wav",
-  "heard": "Cheers, brilliant, yep, good input.",
+  "take": "M44_0_3.wav",
+  "heard": "Cheers, brilliant. Yep, good input.",
   "wer": 0.0,
-  "speaker_similarity": 0.649,
-  "seconds": 3.2
+  "speaker_similarity": 0.601,
+  "seconds": 3.3,
+  "tag": "[calm, quiet, flat voice] "
  },
  "M45": {
   "take": "M45_t2.wav",
@@ -1541,5 +1555,373 @@
   "speaker_similarity": 0.917,
   "seconds": 6.22,
   "note": "version 3: the new narrator"
+ },
+ "B01": {
+  "take": "B01_0_1.wav",
+  "heard": "Four days later, Old Trafford, Bournemouth. One name was missing from the team sheet.",
+  "wer": 0.0,
+  "speaker_similarity": 0.896,
+  "seconds": 6.36
+ },
+ "B02": {
+  "take": "B02_0_1.wav",
+  "heard": "Michael, my name is not on here.",
+  "wer": 0.0,
+  "speaker_similarity": 0.733,
+  "seconds": 2.74
+ },
+ "B03": {
+  "take": "B03_1_1.wav",
+  "heard": "It's a pure football decision.",
+  "wer": 0.0,
+  "speaker_similarity": 0.628,
+  "seconds": 2.18
+ },
+ "B04": {
+  "take": "B04_0_1.wav",
+  "heard": "Is this because of what I said?",
+  "wer": 0.0,
+  "speaker_similarity": 0.648,
+  "seconds": 1.63
+ },
+ "B05": {
+  "take": "B05_1_2.wav",
+  "heard": "Tactics are for the staff Bruno, that one's not on me.",
+  "wer": 0.0,
+  "speaker_similarity": 0.783,
+  "seconds": 3.48
+ },
+ "B06": {
+  "take": "B06_0_2.wav",
+  "heard": "38 minutes, Ra Yan from a free kick 1-0",
+  "wer": 0.333,
+  "speaker_similarity": 0.866,
+  "seconds": 5.06
+ },
+ "B07": {
+  "take": "B07_0_2.wav",
+  "heard": "43. Leni Jorow slipped. Marcus Tavernier did not. 2-0.",
+  "wer": 0.273,
+  "speaker_similarity": 0.876,
+  "seconds": 6.59
+ },
+ "B08": {
+  "take": "B08_0_2.wav",
+  "heard": "At half time, Matthias Cunha came on. He had asked for more minutes.",
+  "wer": 0.077,
+  "speaker_similarity": 0.858,
+  "seconds": 4.88
+ },
+ "B09": {
+  "take": "B09_0_1.wav",
+  "heard": "71, Evan Nilsen 3-0 8 games without a win",
+  "wer": 0.333,
+  "speaker_similarity": 0.867,
+  "seconds": 5.8
+ },
+ "B10": {
+  "take": "B10_0_3.wav",
+  "heard": "At full time, the crowd sang Michael Carrick's name. Then they booed the players.",
+  "wer": 0.0,
+  "speaker_similarity": 0.891,
+  "seconds": 5.53
+ },
+ "B11": {
+  "take": "B11_0_2.wav",
+  "heard": "Who was marking Rayon?",
+  "wer": 0.25,
+  "speaker_similarity": 0.521,
+  "seconds": 1.63
+ },
+ "B12": {
+  "take": "B12_0_2.wav",
+  "heard": "I was on the bench.",
+  "wer": 0.0,
+  "speaker_similarity": 0.653,
+  "seconds": 1.11
+ },
+ "B13": {
+  "take": "B13_0_1.wav",
+  "heard": "I asked for minutes, not these minutes.",
+  "wer": 0.0,
+  "speaker_similarity": 0.8,
+  "seconds": 3.3
+ },
+ "B14": {
+  "take": "B14_0_1.wav",
+  "heard": "Can everyone just calm down?",
+  "wer": 0.0,
+  "speaker_similarity": 0.649,
+  "seconds": 1.63
+ },
+ "B15": {
+  "take": "B15_1_1.wav",
+  "heard": "Nobody's calm, Ben.",
+  "wer": 0.0,
+  "speaker_similarity": 0.658,
+  "seconds": 1.63
+ },
+ "B16": {
+  "take": "B16_1_2.wav",
+  "heard": "I'm calm.",
+  "wer": 0.0,
+  "speaker_similarity": 0.509,
+  "seconds": 0.93
+ },
+ "B17": {
+  "take": "B17_0_2.wav",
+  "heard": "If I was playing,",
+  "wer": 0.0,
+  "speaker_similarity": 0.644,
+  "seconds": 1.49
+ },
+ "B18": {
+  "take": "B18_1_2.wav",
+  "heard": "Don't start, it's upstairs, I said it, upstairs.",
+  "wer": 0.0,
+  "speaker_similarity": 0.769,
+  "seconds": 3.44
+ },
+ "B19": {
+  "take": "B19_0_1.wav",
+  "heard": "You said it on television.",
+  "wer": 0.0,
+  "speaker_similarity": 0.757,
+  "seconds": 1.58
+ },
+ "B20": {
+  "take": "B20_0_2.wav",
+  "heard": "So did I.",
+  "wer": 0.0,
+  "speaker_similarity": 0.414,
+  "seconds": 0.84
+ },
+ "B21": {
+  "take": "B21_0_1.wav",
+  "heard": "We know, Bruno.",
+  "wer": 0.0,
+  "speaker_similarity": 0.504,
+  "seconds": 1.3
+ },
+ "B22": {
+  "take": "B22e_0_3.wav",
+  "heard": "Enough, enough!",
+  "wer": 0.0,
+  "speaker_similarity": 0.338,
+  "seconds": 1.9,
+  "note": "\"Lads! Lads!\" came out as \"Lots, lots\" in every take; the line became \"Enough! Enough!\""
+ },
+ "B23": {
+  "take": "B23_0_2.wav",
+  "heard": "Look, it's...",
+  "wer": 0.0,
+  "speaker_similarity": 0.404,
+  "seconds": 1.95
+ },
+ "B24": {
+  "take": "B24_1_1.wav",
+  "heard": "not",
+  "wer": 0.0,
+  "speaker_similarity": 0.444,
+  "seconds": 0.7
+ },
+ "C40": {
+  "take": "C40_0_1.wav",
+  "heard": "Matthias Cunha had been taken off at half time. He had some feedback.",
+  "wer": 0.077,
+  "speaker_similarity": 0.883,
+  "seconds": 4.55
+ },
+ "C41": {
+  "take": "C41_0_2.wav",
+  "heard": "45 minutes, Michael. 45.",
+  "wer": 0.0,
+  "speaker_similarity": 0.819,
+  "seconds": 2.93
+ },
+ "C42": {
+  "take": "C42_0_2.wav",
+  "heard": "It was a tactical decision.",
+  "wer": 0.0,
+  "speaker_similarity": 0.621,
+  "seconds": 2.14
+ },
+ "C43": {
+  "take": "C43_0_1.wav",
+  "heard": "We were 1-0 down, I came off. We lost 4-1.",
+  "wer": 0.083,
+  "speaker_similarity": 0.756,
+  "seconds": 4.27
+ },
+ "C44": {
+  "take": "C44_0_3.wav",
+  "heard": "To be fair, Michael, he's got a point.",
+  "wer": 0.0,
+  "speaker_similarity": 0.79,
+  "seconds": 2.32
+ },
+ "C45": {
+  "take": "C45_0_1.wav",
+  "heard": "Thanks Harry.",
+  "wer": 0.0,
+  "speaker_similarity": 0.494,
+  "seconds": 0.98
+ },
+ "C46": {
+  "take": "C46_0_2.wav",
+  "heard": "Next time, take me off in the warm-up. Save everybody time.",
+  "wer": 0.0,
+  "speaker_similarity": 0.826,
+  "seconds": 4.5
+ },
+ "X01": {
+  "take": "X01_0_3.wav",
+  "heard": "Madrid 2-0 Afterwards, Lissandro Martinez stopped for a television interview.",
+  "wer": 0.2,
+  "speaker_similarity": 0.914,
+  "seconds": 5.94
+ },
+ "X02": {
+  "take": "X02_0_2.wav",
+  "heard": "He said the players expected more from upstairs and from the technical director.",
+  "wer": 0.0,
+  "speaker_similarity": 0.878,
+  "seconds": 4.69
+ },
+ "X03": {
+  "take": "X03_0_2.wav",
+  "heard": "Upstairs?",
+  "wer": 0.0,
+  "speaker_similarity": 0.511,
+  "seconds": 0.84
+ },
+ "X04": {
+  "take": "X04_0_3.wav",
+  "heard": "Upstairs.",
+  "wer": 0.0,
+  "speaker_similarity": 0.547,
+  "seconds": 0.93
+ },
+ "X05": {
+  "take": "X05_0_1.wav",
+  "heard": "Who's upstairs?",
+  "wer": 0.0,
+  "speaker_similarity": 0.573,
+  "seconds": 1.25
+ },
+ "X06": {
+  "take": "X06_0_1.wav",
+  "heard": "The technical director. I have to be honest, I am a defender. When I see danger, I say it.",
+  "wer": 0.0,
+  "speaker_similarity": 0.87,
+  "seconds": 5.15
+ },
+ "X07": {
+  "take": "X07_0_3.wav",
+  "heard": "The next day, he gave a second interview, just to be sure.",
+  "wer": 0.0,
+  "speaker_similarity": 0.854,
+  "seconds": 3.95
+ },
+ "X08": {
+  "take": "X08_0_2.wav",
+  "heard": "I am not going to close my mouth.",
+  "wer": 0.0,
+  "speaker_similarity": 0.699,
+  "seconds": 1.58
+ },
+ "X09": {
+  "take": "X09_0_1.wav",
+  "heard": "Upstairs, both interviews were watched several times.",
+  "wer": 0.0,
+  "speaker_similarity": 0.878,
+  "seconds": 4.23
+ },
+ "X10": {
+  "take": "X10_0_2.wav",
+  "heard": "Upstairs. Who's upstairs?",
+  "wer": 0.0,
+  "speaker_similarity": 0.645,
+  "seconds": 2.18
+ },
+ "X11": {
+  "take": "X11_0_3.wav",
+  "heard": "Technically, we are.",
+  "wer": 0.0,
+  "speaker_similarity": 0.676,
+  "seconds": 1.95
+ },
+ "X12": {
+  "take": "X12_0_1.wav",
+  "heard": "and the technical director.",
+  "wer": 0.0,
+  "speaker_similarity": 0.775,
+  "seconds": 1.67
+ },
+ "X13": {
+  "take": "X13_0_3.wav",
+  "heard": "Could be anyone Jim.",
+  "wer": 0.0,
+  "speaker_similarity": 0.594,
+  "seconds": 1.21
+ },
+ "X14": {
+  "take": "X14_0_1.wav",
+  "heard": "It's you, Jason.",
+  "wer": 0.0,
+  "speaker_similarity": 0.6,
+  "seconds": 1.11
+ },
+ "X15": {
+  "take": "X15_0_3.wav",
+  "heard": "In a sense.",
+  "wer": 0.0,
+  "speaker_similarity": 0.49,
+  "seconds": 0.84
+ },
+ "X16": {
+  "take": "X16_0_3.wav",
+  "heard": "Fine him, and I want a statement.",
+  "wer": 0.0,
+  "speaker_similarity": 0.778,
+  "seconds": 2.55
+ },
+ "X17": {
+  "take": "X17_0_1.wav",
+  "heard": "An apology.",
+  "wer": 0.0,
+  "speaker_similarity": 0.603,
+  "seconds": 0.79
+ },
+ "X18": {
+  "take": "X18_0_3.wav",
+  "heard": "A statement, with sorry in it, somewhere.",
+  "wer": 0.0,
+  "speaker_similarity": 0.751,
+  "seconds": 3.44
+ },
+ "X19": {
+  "take": "X19_0_2.wav",
+  "heard": "Lissandro Martinez met Jason Wilcox and Michael Carrick at Carrington. He was fined. A statement followed. Nobody could agree whether it was an apology.",
+  "wer": 0.045,
+  "speaker_similarity": 0.943,
+  "seconds": 11.15
+ },
+ "X20": {
+  "take": "X20_0_3.wav",
+  "heard": "Lissandro now had a new theory about upstairs.",
+  "wer": 0.143,
+  "speaker_similarity": 0.848,
+  "seconds": 3.02
+ },
+ "B25": {
+  "take": "B25_room.wav (layered)",
+  "parts": {
+   "a": "B25a_0_2.wav",
+   "b": "B25b_0_2.wav",
+   "c": "B25c_0_2.wav",
+   "d": "B25d_0_1.wav",
+   "e": "B25e_0_1.wav"
+  }
  }
 }

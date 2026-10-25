@@ -737,9 +737,9 @@ def credits(s, t):
 
 # ---------------------------------------------------------------- over the picture
 PARA1 = ("AFTER THE MATCH — BRUNO FERNANDES",
-         "Fernandes questioned the staff's decision to sit off Como rather than press man-to-man. He said it gave "
-         "the opposition confidence.",
-         "Paraphrase of post-match TNT Sports interview, reported by Reuters / RTÉ, 21 October 2026.")
+         "Fernandes said not pressing man-to-man had been a decision by the staff, and that tactical questions were "
+         "for the manager and the staff to answer, not for him.",
+         "Paraphrase of post-match interviews reported by Sky Sports, 22 October 2026.")
 PARA2 = ("CARRICK'S RESPONSE",
          "Carrick said United partly pressed man-to-man after half-time and conceded. He argued that any system "
          "still requires players to run and recover.",

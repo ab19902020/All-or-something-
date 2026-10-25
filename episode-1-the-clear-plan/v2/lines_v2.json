@@ -21,7 +21,8 @@
   "id": "M04",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "What's the plan?"
+  "text": "What's the plan?",
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  {
   "id": "M05",
@@ -45,7 +46,8 @@
   "id": "M08",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "Right. Yep. Okay. Jason... who are we signing?"
+  "text": "Right. Yep. Okay. Jason... who are we signing?",
+  "tag": "[calm, quiet, flat voice] "
  },
  {
   "id": "M09",
@@ -57,7 +59,8 @@
   "id": "M10",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "I know. I'm just thinking. Another striker?"
+  "text": "I know. I'm just thinking. Another striker?",
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  {
   "id": "M11",
@@ -69,7 +72,8 @@
   "id": "M12",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "Left-back?"
+  "text": "Left-back?",
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  {
   "id": "M13",
@@ -81,7 +85,8 @@
   "id": "M14",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "Centre-back?"
+  "text": "Centre-back?",
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  {
   "id": "M15",
@@ -93,7 +98,8 @@
   "id": "M16",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "Another forward?"
+  "text": "Another forward?",
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  {
   "id": "M17",
@@ -105,7 +111,8 @@
   "id": "M18",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "Goalkeeper?"
+  "text": "Goalkeeper?",
+  "tag": "[calm, quiet, flat voice] "
  },
  {
   "id": "M19",
@@ -117,7 +124,8 @@
   "id": "M20",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "Fair enough."
+  "text": "Fair enough.",
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  {
   "id": "M21",
@@ -129,7 +137,8 @@
   "id": "M22",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "So how much have we got?"
+  "text": "So how much have we got?",
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  {
   "id": "M23",
@@ -141,7 +150,8 @@
   "id": "M24",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "How much is a lot?"
+  "text": "How much is a lot?",
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  {
   "id": "M25",
@@ -153,7 +163,8 @@
   "id": "M26",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "So... sell to buy?"
+  "text": "So... sell to buy?",
+  "tag": "[calm, quiet, flat voice] "
  },
  {
   "id": "M27",
@@ -165,7 +176,8 @@
   "id": "M28",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "And the objectives?"
+  "text": "And the objectives?",
+  "tag": "[calm, low, deadpan, unimpressed] "
  },
  {
   "id": "M29",
@@ -177,7 +189,8 @@
   "id": "M30",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "Brilliant. Good meeting. Positive. So where's the money actually going?"
+  "text": "Brilliant. Good meeting. Positive. So where's the money actually going?",
+  "tag": "[calm, quiet, flat voice] "
  },
  {
   "id": "M31",
@@ -195,7 +208,8 @@
   "id": "M33",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "Glazer dividends?"
+  "text": "Glazer dividends?",
+  "tag": "[calm, quiet, flat voice] "
  },
  {
   "id": "M34",
@@ -261,7 +275,8 @@
   "id": "M44",
   "speaker": "CARRICK",
   "voice": "michael-carrick",
-  "text": "Cheers. Brilliant. Yep. Good input."
+  "text": "Cheers. Brilliant. Yep. Good input.",
+  "tag": "[calm, quiet, flat voice] "
  },
  {
   "id": "M45",
@@ -621,6 +636,127 @@
   "text": "Before Leeds, one man decided the problem was not the football. It was much closer to home."
  },
  {
+  "id": "X01",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Madrid. Two-nil. Afterwards, Lisandro Martinez stopped for a television interview.",
+  "say": "Madrid. Two-nil. Afterwards, Lisandro Martinez stopped for a television interview."
+ },
+ {
+  "id": "X02",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "He said the players expected more from upstairs. And from the technical director."
+ },
+ {
+  "id": "X03",
+  "speaker": "PRODUCER",
+  "voice": "producer",
+  "text": "Upstairs?"
+ },
+ {
+  "id": "X04",
+  "speaker": "MARTINEZ",
+  "voice": "lisandro-martinez",
+  "text": "Upstairs."
+ },
+ {
+  "id": "X05",
+  "speaker": "PRODUCER",
+  "voice": "producer",
+  "text": "Who's upstairs?"
+ },
+ {
+  "id": "X06",
+  "speaker": "MARTINEZ",
+  "voice": "lisandro-martinez",
+  "text": "The technical director. I have to be honest. I am a defender. When I see danger, I say it."
+ },
+ {
+  "id": "X07",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The next day, he gave a second interview. Just to be sure."
+ },
+ {
+  "id": "X08",
+  "speaker": "MARTINEZ",
+  "voice": "lisandro-martinez",
+  "text": "I am not going to close my mouth."
+ },
+ {
+  "id": "X09",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Upstairs, both interviews were watched. Several times."
+ },
+ {
+  "id": "X10",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "Upstairs. Who's upstairs?"
+ },
+ {
+  "id": "X11",
+  "speaker": "BERRADA",
+  "voice": "omar-berrada",
+  "text": "Technically... we are."
+ },
+ {
+  "id": "X12",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "And the technical director?"
+ },
+ {
+  "id": "X13",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Could be anyone, Jim."
+ },
+ {
+  "id": "X14",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "It's you, Jason."
+ },
+ {
+  "id": "X15",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "In a sense."
+ },
+ {
+  "id": "X16",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "Fine him. And I want a statement."
+ },
+ {
+  "id": "X17",
+  "speaker": "BERRADA",
+  "voice": "omar-berrada",
+  "text": "An apology?"
+ },
+ {
+  "id": "X18",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "A statement. With sorry in it. Somewhere."
+ },
+ {
+  "id": "X19",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Lisandro Martinez met Jason Wilcox and Michael Carrick at Carrington. He was fined. A statement followed. Nobody could agree whether it was an apology."
+ },
+ {
+  "id": "X20",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Lisandro now had a new theory about upstairs."
+ },
+ {
   "id": "C01",
   "speaker": "NARRATOR",
   "voice": "narrator",
@@ -759,22 +895,68 @@
   "text": "Michael. We've used that one."
  },
  {
+  "id": "C40",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Matheus Cunha had been taken off at half-time. He had some feedback."
+ },
+ {
+  "id": "C41",
+  "speaker": "CUNHA",
+  "voice": "matheus-cunha",
+  "text": "Forty-five minutes, Michael? Forty-five?",
+  "tag": "[angry, arguing, frustrated] "
+ },
+ {
+  "id": "C42",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "It was a tactical decision.",
+  "tag": "[calm, quiet, flat voice] "
+ },
+ {
+  "id": "C43",
+  "speaker": "CUNHA",
+  "voice": "matheus-cunha",
+  "text": "We were one-nil down. I came off. We lost four-one!",
+  "tag": "[angry, arguing, frustrated] "
+ },
+ {
+  "id": "C44",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "To be fair, Michael, he's got a point."
+ },
+ {
+  "id": "C45",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Thanks, Harry.",
+  "tag": "[calm, quiet, flat voice] "
+ },
+ {
+  "id": "C46",
+  "speaker": "CUNHA",
+  "voice": "matheus-cunha",
+  "text": "Next time, take me off in the warm-up. Save everybody time."
+ },
+ {
   "id": "C24",
   "speaker": "NARRATOR",
   "voice": "narrator",
-  "text": "Afterwards, Bruno Fernandes questioned the decision to sit off Como rather than press man-to-man."
+  "text": "Afterwards, Bruno Fernandes said not pressing man-to-man had been the staff's decision. And that tactics were for the staff to answer, not him."
  },
  {
   "id": "C25",
   "speaker": "BRUNO",
   "voice": "bruno-fernandes",
-  "text": "We gave them space. We gave them time. By the fourth goal, I thought we were giving them the stadium tour."
+  "text": "We were told not to press. So we did not press. Honestly, it was very well executed."
  },
  {
   "id": "C26",
   "speaker": "BRUNO",
   "voice": "bruno-fernandes",
-  "text": "I just wanted us to make them uncomfortable. At the moment, that's only happening in here."
+  "text": "Tactics? Ask the staff. That one is not on me."
  },
  {
   "id": "C27",
@@ -1173,19 +1355,267 @@
   "voice": "lisandro-martinez",
   "text": "It's a red shirt."
  },
- {"id": "K00", "speaker": "NARRATOR", "voice": "narrator", "text": "The morning after Como, the board asked to see Michael Carrick. This time, nobody brought a tablet."},
- {"id": "K01", "speaker": "RATCLIFFE", "voice": "jim-ratcliffe", "text": "Michael, we're very disappointed. The results haven't been what we expected. We've decided this is your last chance."},
- {"id": "K02", "speaker": "WILCOX", "voice": "jason-wilcox", "text": "And frankly, Michael, we backed you. Gave you everything you asked for."},
- {"id": "K03", "speaker": "CARRICK", "voice": "michael-carrick", "text": "You know what? Seeing as it's my last chance, I'm going to say something."},
- {"id": "K04", "speaker": "CARRICK", "voice": "michael-carrick", "text": "You haven't backed me! Three bloody midfielders! No striker! No left-back! No defensive cover! What the fuck was I supposed to do with that?"},
- {"id": "K05", "speaker": "BERRADA", "voice": "omar-berrada", "text": "We felt we'd assembled a very balanced squad."},
- {"id": "K06", "speaker": "CARRICK", "voice": "michael-carrick", "text": "Balanced?!"},
- {"id": "K07", "speaker": "CARRICK", "voice": "michael-carrick", "text": "You know what? It is what it is."},
- {"id": "K08", "speaker": "RATCLIFFE", "voice": "jim-ratcliffe", "text": "Oh, Michael. Before you go, one more thing."},
- {"id": "K09", "speaker": "CARRICK", "voice": "michael-carrick", "text": "What?"},
- {"id": "K10", "speaker": "RATCLIFFE", "voice": "jim-ratcliffe", "text": "We've asked someone to be on standby. Just in case."},
- {"id": "K11", "speaker": "CARRICK", "voice": "michael-carrick", "text": "You've already got someone?!"},
- {"id": "K12", "speaker": "OLE", "voice": "ole-gunnar-solskjaer", "text": "Hello, Michael!"},
- {"id": "K13", "speaker": "OLE", "voice": "ole-gunnar-solskjaer", "text": "Don't worry, Michael. I'm only on standby. I've done this before!"},
- {"id": "K14", "speaker": "CARRICK", "voice": "michael-carrick", "text": "Oh, you've got to be fucking joking!"}
+ {
+  "id": "K00",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The morning after Como, the board asked to see Michael Carrick. This time, nobody brought a tablet."
+ },
+ {
+  "id": "K01",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "Michael, we're very disappointed. The results haven't been what we expected. We've decided this is your last chance."
+ },
+ {
+  "id": "K02",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "And frankly, Michael, we backed you. Gave you everything you asked for."
+ },
+ {
+  "id": "K03",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "You know what? Seeing as it's my last chance, I'm going to say something."
+ },
+ {
+  "id": "K04",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "You haven't backed me! Three bloody midfielders! No striker! No left-back! No defensive cover! What the fuck was I supposed to do with that?"
+ },
+ {
+  "id": "K05",
+  "speaker": "BERRADA",
+  "voice": "omar-berrada",
+  "text": "We felt we'd assembled a very balanced squad."
+ },
+ {
+  "id": "K06",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Balanced?!"
+ },
+ {
+  "id": "K07",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "You know what? It is what it is."
+ },
+ {
+  "id": "K08",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "Oh, Michael. Before you go, one more thing."
+ },
+ {
+  "id": "K09",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "What?"
+ },
+ {
+  "id": "K10",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "We've asked someone to be on standby. Just in case."
+ },
+ {
+  "id": "K11",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "You've already got someone?!"
+ },
+ {
+  "id": "K12",
+  "speaker": "OLE",
+  "voice": "ole-gunnar-solskjaer",
+  "text": "Hello, Michael!"
+ },
+ {
+  "id": "K13",
+  "speaker": "OLE",
+  "voice": "ole-gunnar-solskjaer",
+  "text": "Don't worry, Michael. I'm only on standby. I've done this before!"
+ },
+ {
+  "id": "K14",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Oh, you've got to be fucking joking!"
+ },
+ {
+  "id": "B01",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Four days later. Old Trafford. Bournemouth. One name was missing from the team sheet."
+ },
+ {
+  "id": "B02",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Michael. My name is not on here."
+ },
+ {
+  "id": "B03",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "It's a pure football decision.",
+  "tag": "[calm, low, deadpan, unimpressed] "
+ },
+ {
+  "id": "B04",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Is this because of what I said?"
+ },
+ {
+  "id": "B05",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Tactics are for the staff, Bruno. That one's not on me.",
+  "tag": "[calm, low, deadpan, unimpressed] "
+ },
+ {
+  "id": "B06",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Thirty-eight minutes. Rayan, from a free kick. One-nil.",
+  "say": "Thirty-eight minutes. Rah-yan, from a free kick. One-nil."
+ },
+ {
+  "id": "B07",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Forty-three. Leny Yoro slipped. Marcus Tavernier did not. Two-nil."
+ },
+ {
+  "id": "B08",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "At half-time, Matheus Cunha came on. He had asked for more minutes."
+ },
+ {
+  "id": "B09",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Seventy-one. Evanilson. Three-nil. Eight games without a win."
+ },
+ {
+  "id": "B10",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "At full time, the crowd sang Michael Carrick's name. Then they booed the players."
+ },
+ {
+  "id": "B11",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "Who was marking Rayan?",
+  "tag": "[angry, arguing, frustrated] "
+ },
+ {
+  "id": "B12",
+  "speaker": "MARTINEZ",
+  "voice": "lisandro-martinez",
+  "text": "I was on the bench!",
+  "tag": "[angry, arguing, frustrated] "
+ },
+ {
+  "id": "B13",
+  "speaker": "CUNHA",
+  "voice": "matheus-cunha",
+  "text": "I asked for minutes. Not these minutes!",
+  "tag": "[angry, arguing, frustrated] "
+ },
+ {
+  "id": "B14",
+  "speaker": "SESKO",
+  "voice": "benjamin-sesko",
+  "text": "Can everyone just calm down?",
+  "tag": "[angry, arguing, frustrated] "
+ },
+ {
+  "id": "B15",
+  "speaker": "MOUNT",
+  "voice": "mason-mount",
+  "text": "Nobody's calm, Ben!"
+ },
+ {
+  "id": "B16",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "I'm calm!"
+ },
+ {
+  "id": "B17",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "If I was playing...",
+  "tag": "[angry, arguing, frustrated] "
+ },
+ {
+  "id": "B18",
+  "speaker": "MARTINEZ",
+  "voice": "lisandro-martinez",
+  "text": "Don't start! It's upstairs! I said it! Upstairs!"
+ },
+ {
+  "id": "B19",
+  "speaker": "CUNHA",
+  "voice": "matheus-cunha",
+  "text": "You said it on television!",
+  "tag": "[angry, arguing, frustrated] "
+ },
+ {
+  "id": "B20",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "So did I!",
+  "tag": "[angry, arguing, frustrated] "
+ },
+ {
+  "id": "B21",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "We know, Bruno!",
+  "tag": "[angry, arguing, frustrated] "
+ },
+ {
+  "id": "B22",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Enough! Enough!",
+  "tag": "[firm, loud but controlled] "
+ },
+ {
+  "id": "B23",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Look. It's...",
+  "tag": "[calm, quiet, flat voice] "
+ },
+ {
+  "id": "B24",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Not...",
+  "tag": "[calm, low, deadpan, unimpressed] "
+ },
+ {
+  "id": "B25",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "Don't!",
+  "tag": "[shouting] ",
+  "layered": [
+   "harry-maguire",
+   "lisandro-martinez",
+   "matheus-cunha",
+   "bruno-fernandes",
+   "benjamin-sesko"
+  ],
+  "note": "the whole room: five clones' takes of \"Don't!\", layered a few hundredths of a second apart"
+ }
 ]

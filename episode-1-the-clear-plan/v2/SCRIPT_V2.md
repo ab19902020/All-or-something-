@@ -1,4 +1,4 @@
-# ALL OR SOMETHING — Episode One: THE CLEAR PLAN (version 2)
+# ALL OR SOMETHING — Episode One: THE CLEAR PLAN (the final cut)
 
 **An animated parody.** Real results; the private scenes and dialogue are fictionalised. Version 2 remakes the whole
 episode in one pipeline: every character is the same drawing and the same cloned Fish Audio voice from the first
@@ -158,6 +158,37 @@ Line IDs: `[M..]` the meeting, `[H..]` Hull, `[R..]` the month, `[L...]` The Mol
 [R41] NARRATOR: In Madrid, Atlético scored inside the first minute. The reset had lasted one minute.
 [R42] NARRATOR: Before Leeds, one man decided the problem was not the football. It was much closer to home.
 
+## 3b. UPSTAIRS
+
+*After Atlético, before The Mole. Martínez's real words (Amazon Prime, 13 October 2026) are given by the narrator over
+a card that names its sources; what follows carries the PARODY DIALOGUE label. The board meeting is invented.*
+
+**INT. MIXED ZONE, MADRID. NIGHT.** Martínez in front of the interview board, a microphone in.
+
+[X01] NARRATOR: Madrid. Two-nil. Afterwards, Lisandro Martinez stopped for a television interview.
+[X02] NARRATOR: He said the players expected more from upstairs. And from the technical director.
+[X03] PRODUCER: Upstairs?
+[X04] MARTINEZ: Upstairs.
+[X05] PRODUCER: Who's upstairs?
+[X06] MARTINEZ: The technical director. I have to be honest. I am a defender. When I see danger, I say it.
+[X07] NARRATOR: The next day, he gave a second interview. Just to be sure.
+[X08] MARTINEZ: I am not going to close my mouth.
+
+**INT. THE BOARDROOM. MORNING.** Ratcliffe at the head of the table, Berrada, Wilcox.
+
+[X09] NARRATOR: Upstairs, both interviews were watched. Several times.
+[X10] RATCLIFFE: Upstairs. Who's upstairs?
+[X11] BERRADA: Technically... we are.
+[X12] RATCLIFFE: And the technical director?
+[X13] WILCOX: Could be anyone, Jim.
+[X14] RATCLIFFE: It's you, Jason.
+[X15] WILCOX: In a sense.
+[X16] RATCLIFFE: Fine him. And I want a statement.
+[X17] BERRADA: An apology?
+[X18] RATCLIFFE: A statement. With sorry in it. Somewhere.
+[X19] NARRATOR: Lisandro Martinez met Jason Wilcox and Michael Carrick at Carrington. He was fined. A statement followed. Nobody could agree whether it was an apology.
+[X20] NARRATOR: Lisandro now had a new theory about upstairs.
+
 ## 4. THE MOLE
 
 *The Mole, as written (L001–L060; the title sting and the next-episode teaser are not used). Every line re-voiced
@@ -204,9 +235,22 @@ removes a blue mug from the desk.*
 [C21] NARRATOR: In stoppage time, Joshua Zirkzee scored. Four-one. The consolation was on the scoreboard. It had not reached the dressing room.
 [C22] CARRICK: Not ideal.
 [C23] BRUNO: Michael. We've used that one.
-[C24] NARRATOR: Afterwards, Bruno Fernandes questioned the decision to sit off Como rather than press man-to-man.
-[C25] BRUNO: We gave them space. We gave them time. By the fourth goal, I thought we were giving them the stadium tour.
-[C26] BRUNO: I just wanted us to make them uncomfortable. At the moment, that's only happening in here.
+
+*Cunha was taken off at half-time (Amad on); reports said the two of them had words (Sky Sports, 22–23 October 2026).*
+
+[C40] NARRATOR: Matheus Cunha had been taken off at half-time. He had some feedback.
+[C41] CUNHA: Forty-five minutes, Michael? Forty-five?
+[C42] CARRICK: It was a tactical decision.
+[C43] CUNHA: We were one-nil down. I came off. We lost four-one!
+[C44] MAGUIRE: To be fair, Michael, he's got a point.
+[C45] CARRICK: Thanks, Harry.
+[C46] CUNHA: Next time, take me off in the warm-up. Save everybody time.
+
+*The interviews. Bruno's real position (Sky Sports, 22 October 2026) on the card; then PARODY DIALOGUE.*
+
+[C24] NARRATOR: Afterwards, Bruno Fernandes said not pressing man-to-man had been the staff's decision. And that tactics were for the staff to answer, not him.
+[C25] BRUNO: We were told not to press. So we did not press. Honestly, it was very well executed.
+[C26] BRUNO: Tactics? Ask the staff. That one is not on me.
 [C27] NARRATOR: Michael Carrick said United had pressed after half-time, and that any system needs players to run.
 [C28] CARRICK: I can draw the arrows. I can't carry eleven people along them.
 [C29] CARRICK: We'll review it.
@@ -247,4 +291,42 @@ morning after Como.*
 [K13] OLE: Don't worry, Michael. I'm only on standby. I've done this before!
 [K14] CARRICK: Oh, you've got to be fucking joking!
 
-*Carrick looks dead into the lens. Smash to black. ALL OR SOMETHING / LAST CHANCE. Credits.*
+*Carrick looks dead into the lens. Smash to black.*
+
+## 7. BOURNEMOUTH
+
+*Old Trafford, 25 October 2026: United 0–3 Bournemouth (Rayan 38', Tavernier 43', Evanilson 71'). Bruno left out
+after his Como comments (Carrick: "a pure football decision"); Cunha on at half-time; eight games without a win.*
+
+**INT. HOME DRESSING ROOM, OLD TRAFFORD. BEFORE KICK-OFF.** The team sheet on the board. Bruno reads it twice.
+
+[B01] NARRATOR: Four days later. Old Trafford. Bournemouth. One name was missing from the team sheet.
+[B02] BRUNO: Michael. My name is not on here.
+[B03] CARRICK: It's a pure football decision.
+[B04] BRUNO: Is this because of what I said?
+[B05] CARRICK: Tactics are for the staff, Bruno. That one's not on me.
+[B06] NARRATOR: Thirty-eight minutes. Rayan, from a free kick. One-nil.
+[B07] NARRATOR: Forty-three. Leny Yoro slipped. Marcus Tavernier did not. Two-nil.
+[B08] NARRATOR: At half-time, Matheus Cunha came on. He had asked for more minutes.
+[B09] NARRATOR: Seventy-one. Evanilson. Three-nil. Eight games without a win.
+[B10] NARRATOR: At full time, the crowd sang Michael Carrick's name. Then they booed the players.
+
+**INT. HOME DRESSING ROOM. FULL TIME.** Everyone. Everyone talking.
+
+[B11] MAGUIRE: Who was marking Rayan?
+[B12] MARTINEZ: I was on the bench!
+[B13] CUNHA: I asked for minutes. Not these minutes!
+[B14] SESKO: Can everyone just calm down?
+[B15] MOUNT: Nobody's calm, Ben!
+[B16] MAGUIRE: I'm calm!
+[B17] BRUNO: If I was playing...
+[B18] MARTINEZ: Don't start! It's upstairs! I said it! Upstairs!
+[B19] CUNHA: You said it on television!
+[B20] BRUNO: So did I!
+[B21] MAGUIRE: We know, Bruno!
+[B22] CARRICK: Enough! Enough!
+[B23] CARRICK: Look. It's...
+[B24] CARRICK: Not...
+[B25] MAGUIRE: Don't!
+
+*Carrick, mouth still open. ALL OR SOMETHING / LAST CHANCE. Credits.*

@@ -76,3 +76,16 @@ The final upgrade re-voiced all 59 narrator lines with the new narrator clone, a
 with the same clones as everywhere else (Ole's from *The Handover*). Each was generated twice and picked the same way;
 the few that came out wrong (Carrick's "Balanced?!" and "What?", the narrator's "caught") were generated four more
 times.
+
+## The final cut
+
+- **Carrick in the meeting.** His first takes there came out pitched up and pushed (median pitch 170–210 Hz, about
+  −11 LUFS, against 115–140 Hz and −13 to −15 LUFS everywhere else). Each of his 15 meeting lines was generated eight
+  more times with a delivery note in front of the text (`[calm, quiet, flat voice]` or `[calm, low, deadpan,
+  unimpressed]`; the note is not spoken), and the take used is the one heard word-perfect that sits in his normal
+  pitch and level, closest to his source recording. They now sit at 106–159 Hz. The note each take was made with is
+  the line's `tag` in [`../v2/lines_v2.json`](../v2/lines_v2.json).
+- **New lines:** *Upstairs* (X01–X20), Cunha's fallout at Como (C40–C46), Bruno's rewritten Como interview (C24–C26)
+  and *Bournemouth* (B01–B25): 52 new lines and 3 rewritten, with the same clones, three or four takes each (the row with an
+  `[angry, arguing, frustrated]` note on half of them), picked the same way. The room's "Don't!" (B25) is five clones'
+  takes laid over each other. 262 lines in all.

@@ -20,6 +20,100 @@ index e6e69c9..1ab39a2 100644
      elif "kit" in d:
          crop, off = cut_kit(cid, d["kit"])
          part = upscale_rgba(crop)
+diff --git a/studio/film/audio.py b/studio/film/audio.py
+index 8c46a36..508b1f8 100644
+--- a/studio/film/audio.py
++++ b/studio/film/audio.py
+@@ -6,7 +6,9 @@ that are electronic in life too (a card reader's beep), stings, and the master.
+     fetches more), named "<category>/<name>": "creaks/creak-short", "cloth/cloth-a"... Every cue is keyed to the
+     picture by the same timeline marks the shots and the acting use. No whooshes on cuts: cuts are hard cuts
+   - music: synthesised strings and piano for stings (the title), ducked under the dialogue
+-  - master: loudness to -16 LUFS integrated (EBU R128 / BS.1770 gating), a soft limit at -1 dBFS
++  - master: the effects and music trimmed and held under the dialogue (a level rider: no 400 ms stretch of either may
++    come louder than the dialogue's own level plus FX_CEIL / MUSIC_CEIL), the music ducked under every line, then
++    loudness to -16 LUFS integrated (EBU R128 / BS.1770 gating) and a soft-knee limit at -1 dBFS
+ 
+ An episode's film/sound.py builds its buses with these and ends with master(...):
+ 
+@@ -31,6 +33,11 @@ from studio.paths import SFX
+ SR = 48000
+ RNG = np.random.default_rng(2026)
+ 
++# the balance under the dialogue (dB): static trims of the effects/ambience buses and of the music, how far the music
++# dips under a line, and the ceilings for any 400 ms of either relative to the dialogue's integrated loudness
++FX_DB, MUSIC_DB, DUCK_DB = -2.0, -5.0, -12.0
++FX_CEIL, MUSIC_CEIL = -4.0, -9.0
++
+ 
+ def _tl():
+     from film.timeline import TL
+@@ -321,26 +328,56 @@ def lufs(x):
+     return float(-0.691 + 10 * np.log10(g.mean()))
+ 
+ 
+-def duck(dlg, depth_db=-7.0):
++def duck(dlg, depth_db=None):
+     """a gain curve that dips music under the dialogue"""
++    depth_db = DUCK_DB if depth_db is None else depth_db
+     env = lp(np.abs(dlg.x.mean(1)), 6, 1)
+-    g = 1.0 / (1.0 + 7.0 * np.clip(env / db(-26), 0, 1))
++    g = 1.0 / (1.0 + 12.0 * np.clip(env / db(-26), 0, 1))
+     return np.clip(g, db(depth_db), 1.0).astype(np.float32)
+ 
+ 
++def rider(x, ceiling):
++    """a gain curve holding every 400 ms of x at or under `ceiling` (LUFS, momentary): it starts to dip 200 ms ahead
++    of a loud moment and lets go over 300 ms, so a boom or a swell comes down whole rather than being chopped"""
++    hop = SR // 100
++    y = _k_weight(np.asarray(x, np.float64))
++    p = (y ** 2).sum(1) if y.ndim == 2 else y ** 2
++    c = np.concatenate([[0.0], np.cumsum(p)])
++    w = int(0.4 * SR)
++    idx = np.arange(0, len(p), hop)
++    a, b = np.clip(idx - w // 2, 0, len(p)), np.clip(idx + w // 2, 0, len(p))
++    ms = (c[b] - c[a]) / np.maximum(1, b - a)
++    g = np.minimum(0.0, ceiling - (-0.691 + 10 * np.log10(ms + 1e-12)))
++    from scipy.ndimage import minimum_filter1d, uniform_filter1d
++    g = uniform_filter1d(minimum_filter1d(g, 41), 30)
++    return db(np.interp(np.arange(len(p)) / hop, np.arange(len(g)), g)).astype(np.float32)
++
++
++def soft_limit(x, peak_db=-1.0, knee_db=-7.0):
++    """untouched below the knee; above it, a smooth curve that never passes the peak"""
++    pk, kn = db(peak_db), db(knee_db)
++    a = np.abs(x)
++    over = a > kn
++    y = x.copy()
++    y[over] = np.sign(x[over]) * (kn + (pk - kn) * np.tanh((a[over] - kn) / (pk - kn)))
++    return y
++
++
+ def master(dlg, buses=(), music=(), target=-16.0, out=None):
+-    """dialogue + other buses + music (ducked under the dialogue) -> loudness-normalised mix, soft-limited at
+-    -1 dBFS, the very end cut hard (10 ms) -> build/episode_audio.wav"""
++    """dialogue + other buses (trimmed, ridden under the dialogue's level) + music (trimmed, ridden, ducked under every
++    line) -> loudness-normalised mix, soft-knee limited at -1 dBFS, the very end cut hard (10 ms) ->
++    build/episode_audio.wav"""
+     mix = dlg.x.copy()
+-    for b in buses:
+-        mix += b.x
++    ld = lufs(dlg.x)
++    if buses:
++        fx = sum(b.x for b in buses) * db(FX_DB)
++        mix += fx * rider(fx, ld + FX_CEIL)[:, None]
+     if music:
+-        d = duck(dlg)[:, None]
+-        for b in music:
+-            mix += b.x * d
++        mu = sum(b.x for b in music) * db(MUSIC_DB)
++        mix += mu * (rider(mu, ld + MUSIC_CEIL) * duck(dlg))[:, None]
+     mix *= db(target - lufs(mix))
+     peak = db(-1)
+-    mix = np.tanh(mix / peak) * peak
++    mix = soft_limit(mix)
+     mix *= db(target - lufs(mix))                          # the limiter takes a little off: put it back
+     mix = np.clip(mix, -peak, peak)
+     mix[-int(0.01 * SR):] *= np.linspace(1, 0, int(0.01 * SR))[:, None]
 diff --git a/studio/film/cast.py b/studio/film/cast.py
 index e5400d0..6f1a602 100644
 --- a/studio/film/cast.py

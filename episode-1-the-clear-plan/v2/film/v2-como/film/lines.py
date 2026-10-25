@@ -16,7 +16,7 @@ VO = ep.DIR / "voiceovers"
 MAXGAP = 0.3           # pauses inside a line are trimmed to this
 GAPS = {}
 TEMPO = 1.0
-EXTRA = {"sabah": "S AA B AH", "kickoff": "K IH K AO F", "lisandro": "L IH S AE N D R OW",
+EXTRA = {"bournemouth": "B AO R N M AH TH", "rayan": "R AY AA N", "tavernier": "T AE V ER N IY ER", "evanilson": "EH V AH N IH L S AH N", "yoro": "Y AO R OW", "leny": "L EH N IY", "matheus": "M AH T EY AH S", "cunha": "K UW N Y AH", "sabah": "S AA B AH", "kickoff": "K IH K AO F", "lisandro": "L IH S AE N D R OW",
          "wilcox": "W IH L K AA K S", "berrada": "B EH R AA D AH", "sesko": "SH EH SH K OW",
          "carrington": "K AE R IH NG T AH N", "glazer": "G L EY Z ER", "atletico": "AE T L EH T IH K OW",
          "zirkzee": "Z ER K Z IY", "mbeumo": "AH M B OW M OW", "elland": "EH L AH N D", "paz": "P AE Z",

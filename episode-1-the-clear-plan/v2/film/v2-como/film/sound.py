@@ -95,6 +95,9 @@ def foley(bus):
     # the camera's own handling noise in the silence after the fourth
     A.ev(bus, "creaks/creak-small", m("cut_push") + 1.4, -50, semis=-6, lowpass=1200)
     A.ev(bus, "cloth/cloth-f", m("cut_push") + 2.1, -50)
+    # Cunha's arms: up for "Forty-five?", up again for "four-one!"
+    A.ev(bus, "cloth/cloth-d", m("cut_c41") + 0.05, -44, pan=0.2)
+    A.ev(bus, "cloth/cloth-e", m("cut_c43") + 0.05, -44, pan=0.2)
     A.ev(bus, "cloth/cloth-c", m("cut_sees") + 0.95, -44)                              # the lens comes down
     # the corridor: footsteps overlapping, then stopping; the board's wheels
     A.steps(bus, m("cut_corr") + 0.2, m("cut_corr") + 3.0, -40, pace=0.42, pan=-0.6, pan_to=-0.9)
