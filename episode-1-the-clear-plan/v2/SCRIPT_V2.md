@@ -219,3 +219,32 @@ removes a blue mug from the desk.*
 *CLEAR PLAN - FINAL - FINAL 2. Then A PLAN.*
 
 [C32] NARRATOR: The plan was saved. As final. Final two.
+
+## 6. LAST CHANCE
+
+*The Handover, re-made: the same boardroom, the same shots and the same beats, but Carrick is not sacked. The
+morning after Como.*
+
+[K00] NARRATOR: The morning after Como, the board asked to see Michael Carrick. This time, nobody brought a tablet.
+[K01] RATCLIFFE: Michael, we're very disappointed. The results haven't been what we expected. We've decided this is your last chance.
+[K02] WILCOX: And frankly, Michael, we backed you. Gave you everything you asked for.
+[K03] CARRICK: You know what? Seeing as it's my last chance, I'm going to say something.
+[K04] CARRICK: You haven't backed me! Three bloody midfielders! No striker! No left-back! No defensive cover! What the fuck was I supposed to do with that?
+[K05] BERRADA: We felt we'd assembled a very balanced squad.
+[K06] CARRICK: Balanced?!
+[K07] CARRICK: You know what? It is what it is.
+
+*He gets up and goes to the door.*
+
+[K08] RATCLIFFE: Oh, Michael. Before you go, one more thing.
+[K09] CARRICK: What?
+[K10] RATCLIFFE: We've asked someone to be on standby. Just in case.
+[K11] CARRICK: You've already got someone?!
+
+*The door clicks and swings in. Ole steps in, stops, waves.*
+
+[K12] OLE: Hello, Michael!
+[K13] OLE: Don't worry, Michael. I'm only on standby. I've done this before!
+[K14] CARRICK: Oh, you've got to be fucking joking!
+
+*Carrick looks dead into the lens. Smash to black. ALL OR SOMETHING / LAST CHANCE. Credits.*

@@ -1,17 +1,104 @@
 {
- "michael-carrick": {"title": "AOS Michael Carrick (parody)", "repo": "ab19902020/AnimnationStuido- @ claude/ollies-episode-production-tdnt6j", "file": "anim-handover/episodes/the-handover/voiceovers/03-michael-carrick.mp3", "note": "The Handover (Carrick sacked), the re-recorded take"},
- "bruno-fernandes": {"title": "AOS Bruno Fernandes (parody)", "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw", "file": "showtv/show TV/Bruno/Clony-AI-2Y1Gwqr8neTEo43q.mp3", "note": "Episode 1 recordings (show TV.zip)"},
- "harry-maguire": {"title": "AOS Harry Maguire (parody)", "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw", "file": "showtv/show TV/harry m/Clony-AI-Kzk4F3tsMBLpnbPz.mp3", "note": "Episode 1 recordings (show TV.zip)"},
- "jason-wilcox": {"title": "AOS Jason Wilcox (parody)", "repo": "ab19902020/TV-show- @ claude/new-session-ow0mwl", "file": "tv-mole/the-mole/episode/voiceovers/03-jason-wilcox.mp3", "note": "The Mole"},
- "lisandro-martinez": {"title": "AOS Lisandro Martinez (parody)", "repo": "ab19902020/TV-show- @ claude/new-session-ow0mwl", "file": "tv-mole/the-mole/episode/voiceovers/02-lisandro-martinez-1.mp3", "note": "The Mole"},
- "narrator": {"title": "AOS Documentary Narrator", "repo": "ab19902020/TV-show- @ claude/new-session-ow0mwl", "file": "tv-mole/the-mole/episode/voiceovers/01-narrator.mp3", "note": "The Mole"},
- "jim-ratcliffe": {"title": "AOS Jim Ratcliffe (parody)", "repo": "ab19902020/AnimnationStuido- @ claude/ollies-episode-production-tdnt6j", "file": "anim-handover/episodes/the-handover/voiceovers/01-jim-ratcliffe.mp3", "note": "The Handover"},
- "omar-berrada": {"title": "AOS Omar Berrada (parody)", "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw", "file": "showtv/show TV/omar/Clony-AI-gpqmga8px6et6YNx.mp3", "note": "Episode 1 recordings (show TV.zip)"},
- "matheus-cunha": {"title": "AOS Matheus Cunha (parody)", "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw", "file": "showtv/show TV/cunha/Clony-AI-EmNDgOEtkRQOseFe.mp3", "note": "Episode 1 recordings (show TV.zip)"},
- "benjamin-sesko": {"title": "AOS Benjamin Sesko (parody)", "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw", "file": "showtv/show TV/sesko/Clony-AI-ntlzQcGzRUduDHjr (1).mp3", "note": "Episode 1 recordings (show TV.zip)"},
- "shea-lacey": {"title": "AOS Shea Lacey (parody)", "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw", "file": "showtv/show TV/shea Lacey/Clony-AI-b4zq76b9IO6xK89v.mp3", "note": "Episode 1 recordings (show TV.zip)"},
- "mason-mount": {"title": "AOS Mason Mount (parody)", "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw", "file": "showtv/show TV/masson/Clony-AI-kuIrCNWgJWiwgK7D.mp3", "note": "Episode 1 recordings (show TV.zip, folder 'masson')"},
- "producer": {"title": "AOS Documentary Producer (off camera)", "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw", "file": "showtv/show TV/documentary voice/Clony-AI-ejJnYjNNsDz9iBn6.mp3", "note": "Episode 1 recordings (show TV.zip)"},
- "joel-glazer": {"title": "AOS Joel Glazer (parody)", "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw", "file": "showtv/show TV/j glazer/Clony-AI-ecyktuuXcVQCHNGa.mp3", "note": "Episode 1 recordings (show TV.zip)"},
- "avram-glazer": {"title": "AOS Avram Glazer (parody)", "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw", "file": "showtv/show TV/a glazer/Clony-AI-VGllzn0mfCmq0W7T.mp3", "note": "Episode 1 recordings (show TV.zip); only 3.4 s exists"}
+ "michael-carrick": {
+  "title": "AOS Michael Carrick (parody)",
+  "repo": "ab19902020/AnimnationStuido- @ claude/ollies-episode-production-tdnt6j",
+  "file": "anim-handover/episodes/the-handover/voiceovers/03-michael-carrick.mp3",
+  "note": "The Handover (Carrick sacked), the re-recorded take"
+ },
+ "bruno-fernandes": {
+  "title": "AOS Bruno Fernandes (parody)",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "file": "showtv/show TV/Bruno/Clony-AI-2Y1Gwqr8neTEo43q.mp3",
+  "note": "Episode 1 recordings (show TV.zip)"
+ },
+ "harry-maguire": {
+  "title": "AOS Harry Maguire (parody)",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "file": "showtv/show TV/harry m/Clony-AI-Kzk4F3tsMBLpnbPz.mp3",
+  "note": "Episode 1 recordings (show TV.zip)"
+ },
+ "jason-wilcox": {
+  "title": "AOS Jason Wilcox (parody)",
+  "repo": "ab19902020/TV-show- @ claude/new-session-ow0mwl",
+  "file": "tv-mole/the-mole/episode/voiceovers/03-jason-wilcox.mp3",
+  "note": "The Mole"
+ },
+ "lisandro-martinez": {
+  "title": "AOS Lisandro Martinez (parody)",
+  "repo": "ab19902020/TV-show- @ claude/new-session-ow0mwl",
+  "file": "tv-mole/the-mole/episode/voiceovers/02-lisandro-martinez-1.mp3",
+  "note": "The Mole"
+ },
+ "jim-ratcliffe": {
+  "title": "AOS Jim Ratcliffe (parody)",
+  "repo": "ab19902020/AnimnationStuido- @ claude/ollies-episode-production-tdnt6j",
+  "file": "anim-handover/episodes/the-handover/voiceovers/01-jim-ratcliffe.mp3",
+  "note": "The Handover"
+ },
+ "omar-berrada": {
+  "title": "AOS Omar Berrada (parody)",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "file": "showtv/show TV/omar/Clony-AI-gpqmga8px6et6YNx.mp3",
+  "note": "Episode 1 recordings (show TV.zip)"
+ },
+ "matheus-cunha": {
+  "title": "AOS Matheus Cunha (parody)",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "file": "showtv/show TV/cunha/Clony-AI-EmNDgOEtkRQOseFe.mp3",
+  "note": "Episode 1 recordings (show TV.zip)"
+ },
+ "benjamin-sesko": {
+  "title": "AOS Benjamin Sesko (parody)",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "file": "showtv/show TV/sesko/Clony-AI-ntlzQcGzRUduDHjr (1).mp3",
+  "note": "Episode 1 recordings (show TV.zip)"
+ },
+ "shea-lacey": {
+  "title": "AOS Shea Lacey (parody)",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "file": "showtv/show TV/shea Lacey/Clony-AI-b4zq76b9IO6xK89v.mp3",
+  "note": "Episode 1 recordings (show TV.zip)"
+ },
+ "mason-mount": {
+  "title": "AOS Mason Mount (parody)",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "file": "showtv/show TV/masson/Clony-AI-kuIrCNWgJWiwgK7D.mp3",
+  "note": "Episode 1 recordings (show TV.zip, folder 'masson')"
+ },
+ "producer": {
+  "title": "AOS Documentary Producer (off camera)",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "file": "showtv/show TV/documentary voice/Clony-AI-ejJnYjNNsDz9iBn6.mp3",
+  "note": "Episode 1 recordings (show TV.zip)"
+ },
+ "joel-glazer": {
+  "title": "AOS Joel Glazer (parody)",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "file": "showtv/show TV/j glazer/Clony-AI-ecyktuuXcVQCHNGa.mp3",
+  "note": "Episode 1 recordings (show TV.zip)"
+ },
+ "avram-glazer": {
+  "title": "AOS Avram Glazer (parody)",
+  "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "file": "showtv/show TV/a glazer/Clony-AI-VGllzn0mfCmq0W7T.mp3",
+  "note": "Episode 1 recordings (show TV.zip); only 3.4 s exists"
+ },
+ "narrator-mole": {
+  "title": "AOS Documentary Narrator",
+  "repo": "ab19902020/TV-show- @ claude/new-session-ow0mwl",
+  "file": "tv-mole/the-mole/episode/voiceovers/01-narrator.mp3",
+  "note": "The Mole (the narrator of version 2's first cut; replaced)"
+ },
+ "narrator": {
+  "title": "AOS Narrator (episode one)",
+  "repo": "uploaded in chat (copied to voices/sources/)",
+  "file": "uploads/narrator-Clony-AI-vJNSlVEBYbmnF9iU.mp3",
+  "note": "the episode's narrator, from the Clony AI recording the user supplied"
+ },
+ "ole-gunnar-solskjaer": {
+  "title": "AOS Ole Gunnar Solskjaer (parody)",
+  "repo": "ab19902020/AnimnationStuido- @ claude/ollies-episode-production-tdnt6j",
+  "file": "anim-handover/episodes/the-handover/voiceovers/05-ole-gunnar-solskjaer.mp3",
+  "note": "The Handover"
+ }
 }

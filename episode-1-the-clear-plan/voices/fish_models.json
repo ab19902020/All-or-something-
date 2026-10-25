@@ -44,15 +44,6 @@
   "quality": null,
   "quality_passed": null
  },
- "narrator": {
-  "id": "31f154b4905e471fb4c5931140c8e53f",
-  "title": "AOS Documentary Narrator",
-  "state": "trained",
-  "source": "tv-mole/the-mole/episode/voiceovers/01-narrator.mp3",
-  "repo": "ab19902020/TV-show- @ claude/new-session-ow0mwl",
-  "quality": null,
-  "quality_passed": null
- },
  "jim-ratcliffe": {
   "id": "92d6713eeb69455c9385ba6f9fc08658",
   "title": "AOS Jim Ratcliffe (parody)",
@@ -131,6 +122,33 @@
   "state": "trained",
   "source": "showtv/show TV/a glazer/Clony-AI-VGllzn0mfCmq0W7T.mp3",
   "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+  "quality": null,
+  "quality_passed": null
+ },
+ "narrator-mole": {
+  "id": "31f154b4905e471fb4c5931140c8e53f",
+  "title": "AOS Documentary Narrator",
+  "state": "trained",
+  "source": "tv-mole/the-mole/episode/voiceovers/01-narrator.mp3",
+  "repo": "ab19902020/TV-show- @ claude/new-session-ow0mwl",
+  "quality": null,
+  "quality_passed": null
+ },
+ "narrator": {
+  "id": "38127b71f1f24705817138aeeb97812d",
+  "title": "AOS Narrator (episode one)",
+  "state": "trained",
+  "source": "uploads/narrator-Clony-AI-vJNSlVEBYbmnF9iU.mp3",
+  "repo": "uploaded in chat (copied to voices/sources/)",
+  "quality": null,
+  "quality_passed": null
+ },
+ "ole-gunnar-solskjaer": {
+  "id": "86cc33a2041e43168345f79fdc509efc",
+  "title": "AOS Ole Gunnar Solskjaer (parody)",
+  "state": "trained",
+  "source": "anim-handover/episodes/the-handover/voiceovers/05-ole-gunnar-solskjaer.mp3",
+  "repo": "ab19902020/AnimnationStuido- @ claude/ollies-episode-production-tdnt6j",
   "quality": null,
   "quality_passed": null
  }

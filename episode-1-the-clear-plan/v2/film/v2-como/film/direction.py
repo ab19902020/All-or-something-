@@ -50,7 +50,7 @@ HEIGHT = dict(carrick=1.76, bruno=1.79, maguire=1.94, licho=1.75, mainoo=1.80, z
               omar=1.80, cunha=1.84)
 SEAT = dict(carrick=(600, 590), bruno=(1150, 612), maguire=(1000, 668), licho=(760, 668), mainoo=(880, 548),
             zirkzee=(1060, 548), board=(420, 560))
-DRAW = {"carrick": "michael-carrick:track", "bruno": "bruno-fernandes:front", "maguire": "harry-maguire:front",
+DRAW = {"carrick": "michael-carrick:track", "bruno": "bruno-fernandes:full", "maguire": "harry-maguire:front",
         "licho": "lisandro-martinez:stand", "mainoo": "kobbie-mainoo:front", "zirkzee": "joshua-zirkzee:squad",
         "wilcox": "jason-wilcox:pockets", "omar": "omar-berrada:front", "cunha": "matheus-cunha:front"}
 C_EXPLAIN, C_ARMS, C_BACK = "michael-carrick:track_explain", "michael-carrick:arms", "michael-carrick:track_back"
@@ -223,7 +223,6 @@ SHOTS = finish([
            table=3.9, push=(1.0, 1.04), drift=0.3, grade="studio"),
     insert(m("cut_laptop"), "laptop"),
     insert(m("cut_mugdark"), "mug_dark"),
-    insert(m("cut_credits"), "credits"),
 ], TL["total"])
 
 CAPTIONS = [

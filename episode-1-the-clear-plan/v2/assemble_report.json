@@ -1,23 +1,29 @@
 {
  "master": {
   "file": "master.mp4",
-  "frames": 19655,
-  "seconds": 655.166667,
-  "mb": 506.6,
-  "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -14.0 LUFS\n    Threshold: -24.9 LUFS\n\n  Loudness range:\n    LRA:         4.4 LU\n    Threshold: -34.9 LUFS\n    LRA low:   -17.4 LUFS\n    LRA high:  -13.0 LUFS\n\n  True peak:\n    Peak:       -1.2 dBFS\n",
-  "black": []
+  "frames": 21650,
+  "seconds": 721.666667,
+  "mb": 558.4,
+  "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -14.1 LUFS\n    Threshold: -24.9 LUFS\n\n  Loudness range:\n    LRA:         4.4 LU\n    Threshold: -34.9 LUFS\n    LRA low:   -17.5 LUFS\n    LRA high:  -13.1 LUFS\n\n  True peak:\n    Peak:       -0.6 dBFS\n",
+  "black": [
+   "710.7 black_end:711.167 black_duration:0.466667 (Last Chance's smash to black before the end title)"
+  ]
  },
  "episode": {
   "file": "ALL_OR_SOMETHING_EP1_THE_CLEAR_PLAN_1080p.mp4",
-  "frames": 19655,
-  "mb": 93.0,
-  "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -14.4 LUFS\n    Threshold: -25.3 LUFS\n\n  Loudness range:\n    LRA:         4.4 LU\n    Threshold: -35.3 LUFS\n    LRA low:   -17.8 LUFS\n    LRA high:  -13.4 LUFS\n\n  True peak:\n    Peak:       -1.4 dBFS\n",
-  "black": []
+  "frames": 21650,
+  "seconds": 721.666667,
+  "mb": 93.1,
+  "loudness_summary": "Summary:\n\n  Integrated loudness:\n    I:         -14.5 LUFS\n    Threshold: -25.3 LUFS\n\n  Loudness range:\n    LRA:         4.4 LU\n    Threshold: -35.3 LUFS\n    LRA low:   -17.9 LUFS\n    LRA high:  -13.5 LUFS\n\n  True peak:\n    Peak:       -1.5 dBFS\n",
+  "black": [
+   "710.7 black_end:711.167 black_duration:0.466667 (Last Chance's smash to black before the end title)"
+  ]
  },
  "segments": {
-  "v2-meeting": 3370,
-  "v2-month": 5980,
-  "v2-mole": 5776,
-  "v2-como": 4529
+  "v2-meeting": 3379,
+  "v2-month": 5950,
+  "v2-mole": 5816,
+  "v2-como": 4261,
+  "v2-lastchance": 2244
  }
 }

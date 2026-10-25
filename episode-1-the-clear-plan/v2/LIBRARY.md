@@ -1,7 +1,9 @@
 # What the film packages need in the studio library
 
-The four packages in [`film/`](film/) are filmed by AnimnationStuido- (`claude/ollies-episode-production-tdnt6j`)
-with the engine patch in [`../v1/film/studio-patches/studio-engine.patch`](../v1/film/studio-patches/studio-engine.patch).
+The five packages in [`film/`](film/) are filmed by AnimnationStuido- (`claude/ollies-episode-production-tdnt6j`)
+with the engine patch in [`studio-engine.patch`](studio-engine.patch) (it includes the first version's patch and adds
+the `lip_lt` mouth-line setting). *Last Chance* uses only what *The Handover* already uses there (the boardroom, its
+foley, Ole and his door).
 Everything else they use is already in that library, apart from the files below. Each one is a byte-for-byte copy of
 a file in one of the show's own repositories (checked by SHA-256), filed under `library/`:
 
@@ -17,8 +19,11 @@ a file in one of the show's own repositories (checked by SHA-256), filed under `
 | `characters/omar-berrada/reference/variants/city-hero.png` | `the-mole/library-overlay/characters/omar-berrada/reference/variants/` |
 | `fonts/Oswald.ttf`, `fonts/PermanentMarker-Regular.ttf` | Google Fonts (SIL Open Font License) |
 
-The three characters' drawing lists (`film.yaml`) as filmed are in [`library/characters/`](library/characters/):
-Wilcox and Martínez are filmed from the user's cut-out poses (the ones The Mole uses), Berrada from his model sheet.
+Seven characters' drawing lists (`film.yaml`) as filmed are in [`library/characters/`](library/characters/), to
+copy over the library's own: Wilcox and Martínez are filmed from the user's cut-out poses (the ones The Mole uses),
+Berrada from his model sheet; Bruno's adds `full`, the hero figure of his model sheet in the full Man United kit; and
+Bruno, Martínez, Cunha, Mount and Maguire carry `lip_lt`, the real half-thickness of their drawn mouth line (the
+engine otherwise measures the moustache into it and outlines every open mouth far too heavily).
 
 ## Rebuilding a package
 
@@ -31,5 +36,5 @@ python3 -m studio.film v2-month lines && python3 -m studio.film v2-month timelin
 python3 -m studio.film v2-month sound && python3 -m studio.film v2-month render
 ```
 
-(`M*` takes go to `v2-meeting`, `H*`/`R*` to `v2-month`, `L*` to `v2-mole`, `C*` to `v2-como`.) Then
-`python3 v2/assemble_v2.py --studio <AnimnationStuido-> --out OUT` joins the four.
+(`M*` takes go to `v2-meeting`, `H*`/`R*` to `v2-month`, `L*` to `v2-mole`, `C*` to `v2-como`, `K*` to
+`v2-lastchance`.) Then `python3 v2/assemble_v2.py --studio <AnimnationStuido-> --out OUT` joins the five.

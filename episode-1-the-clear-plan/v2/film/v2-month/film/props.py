@@ -272,8 +272,9 @@ def tab_dna(s, t):
     return img
 
 
-def fingers(img, x, y, side="R"):
-    """two drawn fingertips and a thumb gripping a device's edge at (x, y) (1920 layout)"""
+def fingers(img, x, y, side="R", down=False):
+    """two drawn fingertips and a thumb gripping a device's edge at (x, y) (1920 layout); down: the forearm runs
+    down out of the bottom of the frame (a device held up close to the lens) instead of out to the side"""
     im = Image.new("RGBA", (OW, OH), (0, 0, 0, 0))
     dr = ImageDraw.Draw(im)
     ink, w, skin = (24, 18, 20, 255), max(2, S(5)), (228, 176, 140, 255)
@@ -291,6 +292,9 @@ def fingers(img, x, y, side="R"):
     dr.line(hand + [hand[0]], fill=ink, width=w)
     sleeve = [(S(x + 140 * sg), S(y - 40)), (S(x + 330 * sg), S(y - 60)), (S(x + 360 * sg), S(y + 250)),
               (S(x + 200 * sg), S(y + 220))]
+    if down:                                             # wrist to the bottom edge, widening towards the lens
+        sleeve = [(S(x + 140 * sg), S(y - 40)), (S(x + 300 * sg), S(y + 60)), (S(x + 420 * sg), S(1120)),
+                  (S(x + 170 * sg), S(1120)), (S(x + 200 * sg), S(y + 220))]
     dr.polygon(sleeve, fill=(32, 34, 44, 255))
     dr.line(sleeve + [sleeve[0]], fill=ink, width=w)
     return C.over(img, C.premult(im))
@@ -350,7 +354,7 @@ def overlay(img, t, s):
     cv2.rectangle(msk, (S(box[0]), S(box[1])), (S(box[2]), S(box[3])), 1.0, -1)
     lay = cv2.GaussianBlur(lay, (0, 0), 1.2 * RS)                      # close to the lens: a touch soft
     img = img * (1 - msk[..., None]) + lay * msk[..., None]
-    return fingers(img, x, 520, side="L")
+    return fingers(img, x, 520, side="L", down=True)
 
 
 # ---------------------------------------------------------------- Lacey's shirt

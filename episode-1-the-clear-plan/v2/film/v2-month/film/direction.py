@@ -38,11 +38,11 @@ HEIGHT = dict(carrick=1.76, bruno=1.79, maguire=1.94, cunha=1.84, sesko=1.95, li
               mainoo=1.80, wilcox=1.78)
 SEAT = dict(carrick=(820, 592), bruno=(1165, 612), maguire=(540, 612), cunha=(1035, 548), mainoo=(640, 548),
             sesko=(420, 598), licho=(960, 645), mount=(1245, 600), wilcox=(478, 515), lacey=(1300, 560))
-DRAW = {"carrick": "michael-carrick:track", "bruno": "bruno-fernandes:front", "maguire": "harry-maguire:front",
+DRAW = {"carrick": "michael-carrick:track", "bruno": "bruno-fernandes:full", "maguire": "harry-maguire:front",
         "cunha": "matheus-cunha:front", "sesko": "benjamin-sesko:front", "licho": "lisandro-martinez:stand",
         "mount": "mason-mount:squad", "mainoo": "kobbie-mainoo:front", "wilcox": "jason-wilcox:clipboard"}
 C_EXPLAIN, C_ARMS = "michael-carrick:track_explain", "michael-carrick:arms"
-B_CLAP, CU_POINT, LI_POINT, SE_ARMS = ("bruno-fernandes:clap", "matheus-cunha:points", "lisandro-martinez:point",
+B_CLAP, CU_POINT, LI_POINT, SE_ARMS = ("bruno-fernandes:full", "matheus-cunha:points", "lisandro-martinez:point",
                                       "benjamin-sesko:arms-folded")
 LI_CROSS, LI_SHRUG = "lisandro-martinez:crossarms", "lisandro-martinez:shrug"
 ALSO = []

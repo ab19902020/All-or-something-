@@ -87,9 +87,8 @@ SEQ = [
     ("gap", 1.0, "type2"),                    # CLEAR deleted from the title
     ("gap", 1.3, "aplan"),                    # A PLAN
     ("gap", 0.9, "lid"),                      # he closes the laptop
-    ("gap", 1.8, "cut_mugdark"),              # the dark; the white mug lit
-    ("gap", 9.0, "cut_credits"),              # the credits
-]
+    ("gap", 2.2, "cut_mugdark"),              # the dark; the white mug lit (the last-chance meeting follows, then
+]                                             # the credits: episodes/v2-lastchance)
 
 TL = build(SEQ, L)
 

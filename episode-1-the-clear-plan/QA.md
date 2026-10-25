@@ -1,48 +1,56 @@
-# Checks on the finished episode (version 2)
+# Checks on the finished episode (final upgrade)
 
 ## The file
 
 | | Measured |
 |---|---|
 | Picture | 1920 × 1080, 30 fps, H.264, 4:2:0 |
-| Duration | 10:55.2 (655.17 s) (**19,655 frames**): meeting 3,370 · Hull and the month 5,980 · The Mole 5,776 · Leeds to the end 4,529 |
-| Sound | AAC stereo 48 kHz; **−14.4 LUFS** integrated (target −14; the delivered AAC is 0.4 dB under the −14.0 master mix so its true peak stays under −1), loudness range 4.4 LU, **true peak −1.4 dBFS** (target ≤ −1) |
-| Black | none (no black stretch of 0.2 s or more anywhere: every part opens and closes on picture) |
-| File | `ALL_OR_SOMETHING_EP1_THE_CLEAR_PLAN_1080p.mp4`, 93.0 MB (two-pass, to fit GitHub's 100 MB) |
+| Duration | 12:01.7 (721.67 s) (**21,650 frames**): meeting 3,379 · Hull and the month 5,950 · The Mole 5,816 · Leeds and Como 4,261 · Last Chance 2,244 |
+| Sound | AAC stereo 48 kHz; **−14.5 LUFS** integrated (target −14: the mix is −14.1 with its true peak held to −2.5, because AAC adds over a decibel to the limited peaks, and the delivered AAC is 0.4 dB under it), loudness range 4.4 LU, **true peak −1.5 dBFS** (target ≤ −1) |
+| Black | one, on purpose: Last Chance's 0.47 s smash to black on Carrick's last line before the end title (11:50.7), as in *The Handover*; every part opens and closes on picture |
+| File | `ALL_OR_SOMETHING_EP1_THE_CLEAR_PLAN_1080p.mp4`, 93.1 MB (two-pass, to fit GitHub's 100 MB) |
 
 ## Same character, same cut-out, same voice
 
 Stills from every scene were checked by eye (and frames either side of each join in the finished file): each
-character is drawn from one cut-out set from the first frame to the last (table in the [README](README.md)). The only
-footage kept from the earlier TV-show renders is the Hull match's two broadcast wides (the pitch from the stand, the
-players a few pixels tall, no faces), with their clock and score graphics corrected. Every one of the 195 lines is
-spoken by that character's Fish Audio clone: the narrator's 58 lines run through all four parts.
+character is drawn from one cut-out set from the first frame to the last (table in the [README](README.md)). Bruno is
+the full-kit figure everywhere he appears, from the Hull team talk to Como. The only footage kept from the earlier
+TV-show renders is the Hull match's two broadcast wides (the pitch from the stand, the players a few pixels tall, no
+faces), with their clock and score graphics corrected. Every one of the 210 lines is spoken by that character's Fish
+Audio clone: the new narrator's 59 lines run through all five parts.
+
+## Lip sync
+
+Every bearded or moustached face was rendered at its open vowels before and after the fix, straight from the face
+engine, and then cut from the finished video at Bruno's stressed words and first M/B/P in each of his lines (24
+moments across the Hull team talk, the touchline and the dressing room, and 16 more at Como): the open mouth now sits inside the beard as
+a drawn mouth with a normal outline, closes fully on M, B and P, and the beard around it no longer tears or shows a
+dark box. The face-engine check covered every pose of Martínez's (The Mole, the office, Como) and Cunha, Mount and
+Maguire too, and their open mouths in the finished parts were looked at in the stills.
 
 ## Every line heard in the final mixes (Whisper, `studio.film … check`)
 
 Each part's finished soundtrack was transcribed line by line and compared with the script.
 
-| Part | Lines | Heard as scripted | Flags (all spelling or homophones unless noted) |
+| Part | Lines | Heard as scripted | Flags (all spelling, numbers or translation) |
 |---|---:|---:|---|
 | The meeting | 45 | 44 | M14 "Centre-back?" heard as "Center back" |
-| Hull and the month | 58 | 54 | R02 Cunha's "Hat-trick" heard as "Hedrick" (his accent; his source recording is heard the same way); R24 "Brighton won three-two" as "Brighton 1 3 2"; R36 the producer's off-camera "Such as?" as "Such out?"; R37 "Sabah" as "Saba" |
-| The Mole | 60 | 58 | Leeds heard as "leads" throughout; L025 "Madre mia" translated by Whisper; L040 "Leeds are rubbish" as "Leads are rubbish" |
-| Leeds to the end | 32 | 31 | C01 "Elland Road. Bryan Mbeumo" as "Ellen Rode, Brian Mbomo" (names) |
+| Hull and the month | 58 | 55 | R02 Cunha's "Hat-trick" heard as "Hedrick" (his accent; his source recording is heard the same way); R24 "Brighton won three-two" as "Brighton 1 3 2"; R37 "Sabah" as "Sapa" |
+| The Mole | 60 | 57 | Martínez's Spanish is translated by Whisper (L025 "Madre mia", L056 "Vamos, Alexis. Vamos, hermano."); L040 "Leeds are rubbish" as "Leads are rubbish" |
+| Leeds and Como | 32 | 32 | |
+| Last Chance | 15 | 15 | |
 
-Numbers ("Seventeen", "four-nil") are heard as digits and are not counted as flags. Two problems the first check
-found were fixed before the final render: the Hull crowd was masking the narrator over both goals ("Hull scored" heard
-as "whole score"), so the crowd and the goal roar were brought down under him; and Maguire's "Execution?" blurred in
-the dressing-room reverb, so the line was generated again and the clearest take used (now heard exactly).
+Numbers ("Seventeen", "four-nil") are heard as digits and are not counted as flags.
 
 ## Takes
 
-Every line was generated twice with its character's clone; the take used is the one Whisper heard most accurately,
-then the one closest to the character's source recording (TitaNet speaker similarity). Lines that came out wrong
-were generated again: "Execution?" (heard as "Explication"), Wilcox's "You wouldn't understand" (came out as "would"),
-"Say it." (garbled), "Set pieces. Got it." (would not align word by word for the lip sync), "Sabah" (written
-"Sah-bah" so the voice says it properly), and seven very short lines whose first takes sounded least like the
-character. Every take used is in [`v2/takes/`](v2/takes/) with its scores in
-[`v2/takes_chosen.json`](v2/takes_chosen.json).
+Every line was generated at least twice with its character's clone; the take used is the one Whisper heard most
+accurately, then the one closest to the character's source recording (TitaNet speaker similarity). For this upgrade
+the narrator's 59 lines were generated again with the new narrator clone, and *Last Chance*'s 15 lines were new;
+the ones that came out wrong were generated four more times (Carrick's "Balanced?!" and "What?", and the narrator's
+"caught", which one take turned into "called"). Earlier fixes stand: "Execution?", Wilcox's "You wouldn't
+understand", "Say it.", "Set pieces. Got it.", "Sabah" (written "Sah-bah" so the voice says it properly). Every take
+used is in [`v2/takes/`](v2/takes/) with its scores in [`v2/takes_chosen.json`](v2/takes_chosen.json).
 
 ## Facts on screen and in the narration
 
@@ -56,4 +64,5 @@ Five points from the first five league games and out of the League Cup, as Bruno
 
 The two real post-match positions after Como are given by the narrator as paraphrase over cards that name their
 sources (no quotation marks, no imitation of the real interviews); the comic lines that follow carry the PARODY
-DIALOGUE label.
+DIALOGUE label. *Last Chance* is wholly fictional: no board meeting after Como is reported, and nothing in it is
+presented as fact.

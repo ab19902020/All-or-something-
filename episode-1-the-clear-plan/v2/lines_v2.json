@@ -1172,5 +1172,20 @@
   "speaker": "LISANDRO",
   "voice": "lisandro-martinez",
   "text": "It's a red shirt."
- }
+ },
+ {"id": "K00", "speaker": "NARRATOR", "voice": "narrator", "text": "The morning after Como, the board asked to see Michael Carrick. This time, nobody brought a tablet."},
+ {"id": "K01", "speaker": "RATCLIFFE", "voice": "jim-ratcliffe", "text": "Michael, we're very disappointed. The results haven't been what we expected. We've decided this is your last chance."},
+ {"id": "K02", "speaker": "WILCOX", "voice": "jason-wilcox", "text": "And frankly, Michael, we backed you. Gave you everything you asked for."},
+ {"id": "K03", "speaker": "CARRICK", "voice": "michael-carrick", "text": "You know what? Seeing as it's my last chance, I'm going to say something."},
+ {"id": "K04", "speaker": "CARRICK", "voice": "michael-carrick", "text": "You haven't backed me! Three bloody midfielders! No striker! No left-back! No defensive cover! What the fuck was I supposed to do with that?"},
+ {"id": "K05", "speaker": "BERRADA", "voice": "omar-berrada", "text": "We felt we'd assembled a very balanced squad."},
+ {"id": "K06", "speaker": "CARRICK", "voice": "michael-carrick", "text": "Balanced?!"},
+ {"id": "K07", "speaker": "CARRICK", "voice": "michael-carrick", "text": "You know what? It is what it is."},
+ {"id": "K08", "speaker": "RATCLIFFE", "voice": "jim-ratcliffe", "text": "Oh, Michael. Before you go, one more thing."},
+ {"id": "K09", "speaker": "CARRICK", "voice": "michael-carrick", "text": "What?"},
+ {"id": "K10", "speaker": "RATCLIFFE", "voice": "jim-ratcliffe", "text": "We've asked someone to be on standby. Just in case."},
+ {"id": "K11", "speaker": "CARRICK", "voice": "michael-carrick", "text": "You've already got someone?!"},
+ {"id": "K12", "speaker": "OLE", "voice": "ole-gunnar-solskjaer", "text": "Hello, Michael!"},
+ {"id": "K13", "speaker": "OLE", "voice": "ole-gunnar-solskjaer", "text": "Don't worry, Michael. I'm only on standby. I've done this before!"},
+ {"id": "K14", "speaker": "CARRICK", "voice": "michael-carrick", "text": "Oh, you've got to be fucking joking!"}
 ]

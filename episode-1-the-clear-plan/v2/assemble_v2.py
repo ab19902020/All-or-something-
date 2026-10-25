@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Assemble ALL OR SOMETHING, Episode One: THE CLEAR PLAN (version 2) from its four studio segments
+"""Assemble ALL OR SOMETHING, Episode One: THE CLEAR PLAN (version 2) from its five studio segments
 (AnimnationStuido- episodes/, filmed with studio/film; every character the same library cut-out and the same cloned
 Fish Audio voice throughout):
 
   1. v2-meeting   Carrington, the boardroom, the owners' call, the title
   2. v2-month     Hull (the team talk, the match, the dressing room) and the month of results to Leeds week
   3. v2-mole      The Mole, re-voiced line by line, without its title card and next-episode teaser
-  4. v2-como      Leeds, Como, the interviews, the clear plan, the credits
+  4. v2-como      Leeds, Como, the interviews, the clear plan
+  5. v2-lastchance  the morning after Como: The Handover re-made (Carrick's last chance, Ole on standby), the end
+                  title and the credits
 
 The segments are joined with hard cuts (each one opens on a line). Their sound, each mastered at -16 LUFS, is
 joined with a 10 ms fade either side of every join and brought to -14 LUFS integrated, true peak under -1.5 dBTP.
@@ -25,7 +27,7 @@ import numpy as np
 import soundfile as sf
 
 FPS, SR = 30, 48000
-SEGMENTS = ["v2-meeting", "v2-month", "v2-mole", "v2-como"]
+SEGMENTS = ["v2-meeting", "v2-month", "v2-mole", "v2-como", "v2-lastchance"]
 
 
 def run(cmd):
@@ -73,13 +75,14 @@ def main():
         rep[slug] = dict(source=str(src), frames=nf, seconds=nf / FPS)
         print(slug, nf, "frames", round(nf / FPS, 2), "s")
     sf.write(O / "mix_raw.wav", np.vstack(ys), SR, subtype="FLOAT")
-    # -14 LUFS integrated, true peak under -1.5 dBTP (two-pass loudnorm)
+    # -14 LUFS integrated, true peak under -2.5 dBTP (two-pass loudnorm): the limiter leaves many peaks at its ceiling
+    # and AAC adds over a decibel to them, so the ceiling sits low enough for the encoded files to stay under -1
     r = subprocess.run(["ffmpeg", "-v", "info", "-i", str(O / "mix_raw.wav"), "-af",
-                        "loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"],
+                        "loudnorm=I=-14:TP=-2.5:LRA=11:print_format=json", "-f", "null", "-"],
                        capture_output=True, text=True).stderr
     js = json.loads(r[r.rindex("{"):r.rindex("}") + 1])
     run(["ffmpeg", "-y", "-v", "error", "-i", str(O / "mix_raw.wav"), "-af",
-         f"loudnorm=I=-14:TP=-1.5:LRA=11:measured_I={js['input_i']}:measured_TP={js['input_tp']}:"
+         f"loudnorm=I=-14:TP=-2.5:LRA=11:measured_I={js['input_i']}:measured_TP={js['input_tp']}:"
          f"measured_LRA={js['input_lra']}:measured_thresh={js['input_thresh']}:offset={js['target_offset']}:linear=true",
          "-ar", str(SR), "-c:a", "pcm_s24le", str(O / "mix.wav")])
     # the master: the four pictures end to end, the mix under them

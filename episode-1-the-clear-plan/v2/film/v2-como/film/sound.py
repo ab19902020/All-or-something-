@@ -119,11 +119,6 @@ def music(bus):
     ch = A.strings([A.note("A2"), A.note("E3"), A.note("A3"), A.note("C4")], n + 1.0, 1.2, 1.2, 1400)[:int(n * A.SR)]
     y = np.stack([ch, ch], 1) * A.fade(int(n * A.SR), 1.0, 1.2)[:, None]
     bus.add(A.at_level(y, -33), a)
-    # the credits: the opening's chord, quietly, cut dead at the end
-    a, b = m("cut_credits"), TL["total"]
-    y = A.title_sting(b - a + 0.2)[:int((b - a) * A.SR)]
-    y *= A.fade(len(y), 0.4, 0.05)[:, None]
-    bus.add(A.at_level(y, -30), a)
 
 
 def main():
