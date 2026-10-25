@@ -56,3 +56,16 @@ most like the character's source recording (speaker-embedding similarity, TitaNe
   callback the script asks for; it was not regenerated.
 - The reused episodes (the boardroom, Hull, The Mole) keep their original recorded voices; only new dialogue was made
   with the clones.
+
+## Version 2
+
+Every line of the remake (195, The Mole's included) is in [`../v2/lines_v2.json`](../v2/lines_v2.json) and was made
+with [`../v2/fish_batch.py`](../v2/fish_batch.py) (several requests at once, two takes per line):
+
+```bash
+FISH_API_KEY=... python3 v2/fish_batch.py OUT_DIR --takes 2
+```
+
+A line's optional `say` field is what the voice is given when it differs from the script's spelling ("Sah-bah",
+"Sheshko"). The takes used are in [`../v2/takes/`](../v2/takes/), scored in
+[`../v2/takes_chosen.json`](../v2/takes_chosen.json).

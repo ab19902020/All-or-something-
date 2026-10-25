@@ -1,0 +1,1176 @@
+[
+ {
+  "id": "M01",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Manchester United. Twenty league titles. Three European Cups. One clear plan."
+ },
+ {
+  "id": "M02",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "This is the story of the plan."
+ },
+ {
+  "id": "M03",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Right, Michael. New season. New chapter. We've got a very clear plan."
+ },
+ {
+  "id": "M04",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "What's the plan?"
+ },
+ {
+  "id": "M05",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "One second."
+ },
+ {
+  "id": "M06",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The plan was on the tablet. The tablet was on three per cent."
+ },
+ {
+  "id": "M07",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Clarity. Alignment. Sustainability. Agility. Yeah?"
+ },
+ {
+  "id": "M08",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Right. Yep. Okay. Jason... who are we signing?"
+ },
+ {
+  "id": "M09",
+  "speaker": "BERRADA",
+  "voice": "omar-berrada",
+  "text": "Michael, we've invested significantly."
+ },
+ {
+  "id": "M10",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "I know. I'm just thinking. Another striker?"
+ },
+ {
+  "id": "M11",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "We've got options."
+ },
+ {
+  "id": "M12",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Left-back?"
+ },
+ {
+  "id": "M13",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "No."
+ },
+ {
+  "id": "M14",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Centre-back?"
+ },
+ {
+  "id": "M15",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "No."
+ },
+ {
+  "id": "M16",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Another forward?"
+ },
+ {
+  "id": "M17",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "You already asked that."
+ },
+ {
+  "id": "M18",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Goalkeeper?"
+ },
+ {
+  "id": "M19",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "We've got one."
+ },
+ {
+  "id": "M20",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Fair enough."
+ },
+ {
+  "id": "M21",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "In fairness, they did have one."
+ },
+ {
+  "id": "M22",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "So how much have we got?"
+ },
+ {
+  "id": "M23",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "At the moment... a lot."
+ },
+ {
+  "id": "M24",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "How much is a lot?"
+ },
+ {
+  "id": "M25",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Enough that we're not buying a striker."
+ },
+ {
+  "id": "M26",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "So... sell to buy?"
+ },
+ {
+  "id": "M27",
+  "speaker": "BERRADA",
+  "voice": "omar-berrada",
+  "text": "I would describe it as responsive squad optimisation."
+ },
+ {
+  "id": "M28",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "And the objectives?"
+ },
+ {
+  "id": "M29",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "And don't complain about the squad."
+ },
+ {
+  "id": "M30",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Brilliant. Good meeting. Positive. So where's the money actually going?"
+ },
+ {
+  "id": "M31",
+  "speaker": "BERRADA",
+  "voice": "omar-berrada",
+  "text": "Cash flow. Infrastructure."
+ },
+ {
+  "id": "M32",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "Debt."
+ },
+ {
+  "id": "M33",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Glazer dividends?"
+ },
+ {
+  "id": "M34",
+  "speaker": "BERRADA",
+  "voice": "omar-berrada",
+  "text": "Technically, there weren't any dividends paid this year."
+ },
+ {
+  "id": "M35",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "Funny you should mention them."
+ },
+ {
+  "id": "M36",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "United's co-owners joined the meeting. Remotely. Very remotely."
+ },
+ {
+  "id": "M37",
+  "speaker": "JOEL",
+  "voice": "joel-glazer",
+  "text": "Hello, everybody. Can you hear us? Michael! Good luck this season."
+ },
+ {
+  "id": "M38",
+  "speaker": "AVRAM",
+  "voice": "avram-glazer",
+  "text": "Michael, good luck this season."
+ },
+ {
+  "id": "M39",
+  "speaker": "JOEL",
+  "voice": "joel-glazer",
+  "text": "We're all really excited. Big season."
+ },
+ {
+  "id": "M40",
+  "speaker": "AVRAM",
+  "voice": "avram-glazer",
+  "text": "Need to run."
+ },
+ {
+  "id": "M41",
+  "speaker": "JOEL",
+  "voice": "joel-glazer",
+  "text": "Go United!"
+ },
+ {
+  "id": "M42",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The call lasted forty-one seconds. Thirty of them were about the microphone."
+ },
+ {
+  "id": "M43",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "Unfortunately."
+ },
+ {
+  "id": "M44",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Cheers. Brilliant. Yep. Good input."
+ },
+ {
+  "id": "M45",
+  "speaker": "RATCLIFFE",
+  "voice": "jim-ratcliffe",
+  "text": "Right. Hull. Don't lose."
+ },
+ {
+  "id": "H01",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Matchday one. Hull City away. Newly promoted. Fearless. Delighted to be there."
+ },
+ {
+  "id": "H02",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Newly promoted team. Crowd will be up for it. Do the basics. And most importantly: set pieces."
+ },
+ {
+  "id": "H03",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "Set pieces. Got it."
+ },
+ {
+  "id": "H04",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "He had got it."
+ },
+ {
+  "id": "H05",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Seventeen minutes in, Hull scored."
+ },
+ {
+  "id": "H06",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Come on, boys, wake up! Concentrate!"
+ },
+ {
+  "id": "H07",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Thirty-eight minutes in, they scored again."
+ },
+ {
+  "id": "H08",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Too easy! That's too easy!"
+ },
+ {
+  "id": "H09",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Hull two, United nil. The second half was goalless, which was later described as progress."
+ },
+ {
+  "id": "H10",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Not ideal."
+ },
+ {
+  "id": "H11",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Not ideal?! He literally said set pieces. Five minutes before kick-off!"
+ },
+ {
+  "id": "H12",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "Two set pieces."
+ },
+ {
+  "id": "H13",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Then how have we conceded two?!"
+ },
+ {
+  "id": "H14",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "Execution?",
+  "say": "Execution?"
+ },
+ {
+  "id": "H15",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "It's one game. You can't judge a season after one game."
+ },
+ {
+  "id": "H16",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "They could, however, judge the first one."
+ },
+ {
+  "id": "R01",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The following week, Ipswich came to Old Trafford. Bruno Fernandes scored a hat-trick."
+ },
+ {
+  "id": "R02",
+  "speaker": "CUNHA",
+  "voice": "matheus-cunha",
+  "text": "Hat-trick. Captain."
+ },
+ {
+  "id": "R03",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "That's more like it."
+ },
+ {
+  "id": "R04",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Gentlemen, fantastic! This is the plan."
+ },
+ {
+  "id": "R05",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The plan had been updated at full time."
+ },
+ {
+  "id": "R06",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Everton away. Benjamin Šeško scored in the eighty-eighth minute.",
+  "say": "Everton away. Benjamin Sheshko scored in the eighty-eighth minute."
+ },
+ {
+  "id": "R07",
+  "speaker": "SESKO",
+  "voice": "benjamin-sesko",
+  "text": "Yes! I thought I scored the winner."
+ },
+ {
+  "id": "R08",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "You did. For about eight minutes."
+ },
+ {
+  "id": "R09",
+  "speaker": "SESKO",
+  "voice": "benjamin-sesko",
+  "text": "Thanks, Harry."
+ },
+ {
+  "id": "R10",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Positive point away from home."
+ },
+ {
+  "id": "R11",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "It was a point. It was away from home."
+ },
+ {
+  "id": "R12",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "In Europe, Sabah were beaten four-nil. Lisandro Martínez scored the fourth."
+ },
+ {
+  "id": "R13",
+  "speaker": "MARTINEZ",
+  "voice": "lisandro-martinez",
+  "text": "I scored!"
+ },
+ {
+  "id": "R14",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Don't encourage him."
+ },
+ {
+  "id": "R15",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "European DNA."
+ },
+ {
+  "id": "R16",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Michael Carrick smiled. The documentary team checked the footage twice."
+ },
+ {
+  "id": "R17",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Then Manchester City. Erling Haaland scored once, which for him is a quiet afternoon."
+ },
+ {
+  "id": "R18",
+  "speaker": "MARTINEZ",
+  "voice": "lisandro-martinez",
+  "text": "We nearly scored."
+ },
+ {
+  "id": "R19",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Nearly does not count."
+ },
+ {
+  "id": "R20",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "It counts in expected goals."
+ },
+ {
+  "id": "R21",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "What? I've been listening to Jason."
+ },
+ {
+  "id": "R22",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The tablet was put on charge. Nobody remembers plugging it in."
+ },
+ {
+  "id": "R23",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The League Cup. Shea Lacey and Mason Mount had United two-nil up after ten minutes against Brighton."
+ },
+ {
+  "id": "R24",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Brighton won three-two."
+ },
+ {
+  "id": "R25",
+  "speaker": "LACEY",
+  "voice": "shea-lacey",
+  "text": "We were two-nil up. How have we lost?"
+ },
+ {
+  "id": "R26",
+  "speaker": "MOUNT",
+  "voice": "mason-mount",
+  "text": "You've learnt Manchester United very quickly."
+ },
+ {
+  "id": "R27",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Michael, do not say not ideal."
+ },
+ {
+  "id": "R28",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Not..."
+ },
+ {
+  "id": "R29",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "He didn't."
+ },
+ {
+  "id": "R30",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Fulham away. Lisandro Martínez scored again. Unfortunately, at the wrong end."
+ },
+ {
+  "id": "R31",
+  "speaker": "CUNHA",
+  "voice": "matheus-cunha",
+  "text": "Good finish. Mine. Sorry."
+ },
+ {
+  "id": "R32",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Five points. From five games. And we are out of the League Cup."
+ },
+ {
+  "id": "R33",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Right. International break. Get away. Reset. Come back fresh."
+ },
+ {
+  "id": "R34",
+  "speaker": "PRODUCER",
+  "voice": "producer",
+  "text": "How would you describe the opening month?"
+ },
+ {
+  "id": "R35",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "There have been positives."
+ },
+ {
+  "id": "R36",
+  "speaker": "PRODUCER",
+  "voice": "producer",
+  "text": "Such as?"
+ },
+ {
+  "id": "R37",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Sabah.",
+  "say": "Sah-bah."
+ },
+ {
+  "id": "R38",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Sabah have not commented."
+ },
+ {
+  "id": "R39",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "After the break, United returned refreshed. They led Tottenham until the ninety-second minute."
+ },
+ {
+  "id": "R40",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The results returned unchanged."
+ },
+ {
+  "id": "R41",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "In Madrid, Atlético scored inside the first minute. The reset had lasted one minute."
+ },
+ {
+  "id": "R42",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Before Leeds, one man decided the problem was not the football. It was much closer to home."
+ },
+ {
+  "id": "C01",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Elland Road. Bryan Mbeumo scored. Leeds equalised. One-one."
+ },
+ {
+  "id": "C02",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "At Carrington, three senior figures watched together. Purely professionally."
+ },
+ {
+  "id": "C03",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Nobody said anything. Everybody noticed."
+ },
+ {
+  "id": "C04",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Three days later: Como. A lake. A stadium. A plan."
+ },
+ {
+  "id": "C05",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Stay compact. Make them play in front of us."
+ },
+ {
+  "id": "C06",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "And when do we go?"
+ },
+ {
+  "id": "C07",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "When the moment is right."
+ },
+ {
+  "id": "C08",
+  "speaker": "MAGUIRE",
+  "voice": "harry-maguire",
+  "text": "Is there a signal?"
+ },
+ {
+  "id": "C09",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "That wasn't it."
+ },
+ {
+  "id": "C10",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Nico Paz scored after two minutes."
+ },
+ {
+  "id": "C11",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The plan had survived the meeting. It was finding the football more difficult."
+ },
+ {
+  "id": "C12",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "We need to be braver."
+ },
+ {
+  "id": "C13",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "So we go to them?"
+ },
+ {
+  "id": "C14",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Together."
+ },
+ {
+  "id": "C15",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Everyone?"
+ },
+ {
+  "id": "C16",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "That's usually what together means."
+ },
+ {
+  "id": "C17",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Forty-nine minutes. Two-nil. On the board, the arrows were perfect."
+ },
+ {
+  "id": "C18",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Fifty-seven. Paz again. Three-nil."
+ },
+ {
+  "id": "C19",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Seventy-six. Four-nil. The camera went looking for something heroic."
+ },
+ {
+  "id": "C20",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "It's still looking."
+ },
+ {
+  "id": "C21",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "In stoppage time, Joshua Zirkzee scored. Four-one. The consolation was on the scoreboard. It had not reached the dressing room."
+ },
+ {
+  "id": "C22",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "Not ideal."
+ },
+ {
+  "id": "C23",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "Michael. We've used that one."
+ },
+ {
+  "id": "C24",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Afterwards, Bruno Fernandes questioned the decision to sit off Como rather than press man-to-man."
+ },
+ {
+  "id": "C25",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "We gave them space. We gave them time. By the fourth goal, I thought we were giving them the stadium tour."
+ },
+ {
+  "id": "C26",
+  "speaker": "BRUNO",
+  "voice": "bruno-fernandes",
+  "text": "I just wanted us to make them uncomfortable. At the moment, that's only happening in here."
+ },
+ {
+  "id": "C27",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Michael Carrick said United had pressed after half-time, and that any system needs players to run."
+ },
+ {
+  "id": "C28",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "I can draw the arrows. I can't carry eleven people along them."
+ },
+ {
+  "id": "C29",
+  "speaker": "CARRICK",
+  "voice": "michael-carrick",
+  "text": "We'll review it."
+ },
+ {
+  "id": "C30",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The board was cleaned overnight. The words underneath it were not."
+ },
+ {
+  "id": "C31",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "We've got a very clear plan."
+ },
+ {
+  "id": "C32",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The plan was saved. As final. Final two."
+ },
+ {
+  "id": "L001",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Carrington. The beating heart of Manchester United."
+ },
+ {
+  "id": "L002",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "A place built on hard work, on loyalty, and on a deep, unshakeable hatred of Leeds."
+ },
+ {
+  "id": "L003",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "But one man believes the club has a mole."
+ },
+ {
+  "id": "L004",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Shhh. I am not here."
+ },
+ {
+  "id": "L005",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "I am a defender. My job is to smell danger before it happens."
+ },
+ {
+  "id": "L006",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "And this building smells of Leeds."
+ },
+ {
+  "id": "L007",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Jason Wilcox. Director of football. Look at his career."
+ },
+ {
+  "id": "L008",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Blackburn. He won the league against United."
+ },
+ {
+  "id": "L009",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Leeds. I don't need to explain."
+ },
+ {
+  "id": "L010",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Manchester City."
+ },
+ {
+  "id": "L011",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Southampton. Okay, Southampton is fine."
+ },
+ {
+  "id": "L012",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "This is not a CV. This is a criminal record."
+ },
+ {
+  "id": "L013",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Every day, he drinks his tea from a white mug. Why white, Jason? Why always white?"
+ },
+ {
+  "id": "L014",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "When United score, he claps like this."
+ },
+ {
+  "id": "L015",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "When Leeds score, I hear him in the toilet. Screaming."
+ },
+ {
+  "id": "L016",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "In twenty nineteen, Leeds were caught spying on another club's training ground."
+ },
+ {
+  "id": "L017",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Lisandro considers this a tutorial."
+ },
+ {
+  "id": "L018",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Day one of the surveillance operation."
+ },
+ {
+  "id": "L019",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Target is in the office. Target is drinking tea. White mug. Of course."
+ },
+ {
+  "id": "L020",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Absolutely. We're fully aligned. Red through and through. One club, one vision, one process."
+ },
+ {
+  "id": "L021",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "At two fifty-eight, the director of football locked his door."
+ },
+ {
+  "id": "L022",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "At two fifty-nine, he closed the blinds."
+ },
+ {
+  "id": "L023",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "And at three o'clock... he let it breathe."
+ },
+ {
+  "id": "L024",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Come on, Leeds. Come on, lads."
+ },
+ {
+  "id": "L025",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Madre mia."
+ },
+ {
+  "id": "L026",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Yes! Get in! Marching on together!"
+ },
+ {
+  "id": "L027",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "I knew it!"
+ },
+ {
+  "id": "L028",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The mole had been found. The plant did not survive."
+ },
+ {
+  "id": "L029",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Lisandro! This isn't what it looks like."
+ },
+ {
+  "id": "L030",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "It looks like Leeds."
+ },
+ {
+  "id": "L031",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "It's scouting. Data-led opposition scouting. I'm immersing myself in the enemy."
+ },
+ {
+  "id": "L032",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "In their shirt?"
+ },
+ {
+  "id": "L033",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Method scouting. It's very modern. You wouldn't understand, you were in a plant.",
+  "say": "Method scouting. It's very modern. You wouldn't understand. You were in a plant."
+ },
+ {
+  "id": "L034",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Turn around."
+ },
+ {
+  "id": "L035",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "You signed your own shirt?"
+ },
+ {
+  "id": "L036",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "It was a difficult time for me."
+ },
+ {
+  "id": "L037",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Oh, that's never a penalty, ref!"
+ },
+ {
+  "id": "L038",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Say it."
+ },
+ {
+  "id": "L039",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Say what?"
+ },
+ {
+  "id": "L040",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Leeds are rubbish."
+ },
+ {
+  "id": "L041",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Leeds are... really well coached, to be fair."
+ },
+ {
+  "id": "L042",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "He cannot say it. He is sick."
+ },
+ {
+  "id": "L043",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Mr Wilcox requested a right of reply."
+ },
+ {
+  "id": "L044",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "Slide one. My commitment to Manchester United, as a percentage. Up eleven percent on last season."
+ },
+ {
+  "id": "L045",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Up from what?"
+ },
+ {
+  "id": "L046",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "We don't need to get into the baseline."
+ },
+ {
+  "id": "L047",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "The presentation lasted seventy minutes."
+ },
+ {
+  "id": "L048",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Seventy minutes of PowerPoint. You know who else does this? Bielsa. Leeds. Case closed."
+ },
+ {
+  "id": "L049",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "I bleed red. I always have."
+ },
+ {
+  "id": "L050",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "There might be a bit of white in there. That's medical."
+ },
+ {
+  "id": "L051",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "So I go to the top. Omar will know what to do."
+ },
+ {
+  "id": "L052",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Omar! We have a mole!"
+ },
+ {
+  "id": "L053",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "I knew it."
+ },
+ {
+  "id": "L054",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "Omar Berrada joined United from Manchester City. Lisandro had not done the reading."
+ },
+ {
+  "id": "L055",
+  "speaker": "NARRATOR",
+  "voice": "narrator",
+  "text": "That night, Lisandro Martinez believed he was the last loyal man at Carrington."
+ },
+ {
+  "id": "L056",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "Vamos, Alexis. Vamos, hermano."
+ },
+ {
+  "id": "L057",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "I knew it!"
+ },
+ {
+  "id": "L058",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "It's Argentina! It's different!"
+ },
+ {
+  "id": "L059",
+  "speaker": "WILCOX",
+  "voice": "jason-wilcox",
+  "text": "He plays for Liverpool, Lisandro!"
+ },
+ {
+  "id": "L060",
+  "speaker": "LISANDRO",
+  "voice": "lisandro-martinez",
+  "text": "It's a red shirt."
+ }
+]

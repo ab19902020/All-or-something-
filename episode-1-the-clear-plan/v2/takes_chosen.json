@@ -1,0 +1,1368 @@
+{
+ "C01": {
+  "take": "C01_t1.wav",
+  "heard": "Ellen Rode, Brian Mbermo scored, Leeds equalised 1-1.",
+  "wer": 0.444,
+  "speaker_similarity": 0.866,
+  "seconds": 5.53
+ },
+ "C02": {
+  "take": "C02_t1.wav",
+  "heard": "At Carrington, three senior figures watched together, purely professionally.",
+  "wer": 0.0,
+  "speaker_similarity": 0.912,
+  "seconds": 5.11
+ },
+ "C03": {
+  "take": "C03_t2.wav",
+  "heard": "Nobody said anything. Everybody noticed.",
+  "wer": 0.0,
+  "speaker_similarity": 0.802,
+  "seconds": 3.39
+ },
+ "C04": {
+  "take": "C04_t2.wav",
+  "heard": "Three days later, Como. A lake, a stadium, a plan.",
+  "wer": 0.0,
+  "speaker_similarity": 0.824,
+  "seconds": 5.57
+ },
+ "C05": {
+  "take": "C05_t1.wav",
+  "heard": "Stay compact, make them play in front of us.",
+  "wer": 0.0,
+  "speaker_similarity": 0.774,
+  "seconds": 3.58
+ },
+ "C06": {
+  "take": "C06_t2.wav",
+  "heard": "And when do we go?",
+  "wer": 0.0,
+  "speaker_similarity": 0.504,
+  "seconds": 1.02
+ },
+ "C07": {
+  "take": "C07_t2.wav",
+  "heard": "when the moment is right.",
+  "wer": 0.0,
+  "speaker_similarity": 0.617,
+  "seconds": 1.53
+ },
+ "C08": {
+  "take": "C08_t1.wav",
+  "heard": "Is there a signal?",
+  "wer": 0.0,
+  "speaker_similarity": 0.521,
+  "seconds": 1.16
+ },
+ "C09": {
+  "take": "C09_t2.wav",
+  "heard": "That wasn't it.",
+  "wer": 0.0,
+  "speaker_similarity": 0.561,
+  "seconds": 1.07
+ },
+ "C10": {
+  "take": "C10_t2.wav",
+  "heard": "Nico Paz scored after two minutes.",
+  "wer": 0.0,
+  "speaker_similarity": 0.815,
+  "seconds": 2.74
+ },
+ "C11": {
+  "take": "C11_t2.wav",
+  "heard": "The plan had survived the meeting. It was finding the football more difficult.",
+  "wer": 0.0,
+  "speaker_similarity": 0.876,
+  "seconds": 4.55
+ },
+ "C12": {
+  "take": "C12_t2.wav",
+  "heard": "We need to be braver.",
+  "wer": 0.0,
+  "speaker_similarity": 0.565,
+  "seconds": 1.63
+ },
+ "C13": {
+  "take": "C13_t2.wav",
+  "heard": "So we go to them.",
+  "wer": 0.0,
+  "speaker_similarity": 0.509,
+  "seconds": 0.98
+ },
+ "C14": {
+  "take": "C14_t1.wav",
+  "heard": "Together",
+  "wer": 0.0,
+  "speaker_similarity": 0.456,
+  "seconds": 0.93
+ },
+ "C15": {
+  "take": "C15_t2.wav",
+  "heard": "Everyone?",
+  "wer": 0.0,
+  "speaker_similarity": 0.349,
+  "seconds": 0.6
+ },
+ "C16": {
+  "take": "C16_t2.wav",
+  "heard": "That's usually what together means.",
+  "wer": 0.0,
+  "speaker_similarity": 0.696,
+  "seconds": 2.0
+ },
+ "C17": {
+  "take": "C17_t2.wav",
+  "heard": "49 minutes 2-0. On the board, the arrows were perfect.",
+  "wer": 0.083,
+  "speaker_similarity": 0.898,
+  "seconds": 5.99
+ },
+ "C18": {
+  "take": "C18_t2.wav",
+  "heard": "57. Paz again. 3-0.",
+  "wer": 0.167,
+  "speaker_similarity": 0.806,
+  "seconds": 3.48
+ },
+ "C19": {
+  "take": "C19_t2.wav",
+  "heard": "76, 4-0 The camera went looking for something heroic.",
+  "wer": 0.091,
+  "speaker_similarity": 0.86,
+  "seconds": 5.06
+ },
+ "C20": {
+  "take": "C20_t2.wav",
+  "heard": "It's still looking.",
+  "wer": 0.0,
+  "speaker_similarity": 0.551,
+  "seconds": 1.44
+ },
+ "C21": {
+  "take": "C21_t2.wav",
+  "heard": "In stoppage time, Joshua Zierczi scored 4-1. The consolation was on the scoreboard. It had not reached the dressing room.",
+  "wer": 0.048,
+  "speaker_similarity": 0.926,
+  "seconds": 8.87
+ },
+ "C22": {
+  "take": "C22_t1.wav",
+  "heard": "Not ideal.",
+  "wer": 0.0,
+  "speaker_similarity": 0.523,
+  "seconds": 1.21
+ },
+ "C23": {
+  "take": "C23_t2.wav",
+  "heard": "Michael, we've used that one.",
+  "wer": 0.0,
+  "speaker_similarity": 0.751,
+  "seconds": 2.46
+ },
+ "C24": {
+  "take": "C24_t2.wav",
+  "heard": "Afterwards, Bruno Fernandes questioned the decision to sit off Como rather than press man to man.",
+  "wer": 0.0,
+  "speaker_similarity": 0.894,
+  "seconds": 6.5
+ },
+ "C25": {
+  "take": "C25_t1.wav",
+  "heard": "We gave them space, we gave them time. By the fourth goal, I thought we were giving them the stadium tour.",
+  "wer": 0.0,
+  "speaker_similarity": 0.812,
+  "seconds": 7.29
+ },
+ "C26": {
+  "take": "C26_t2.wav",
+  "heard": "I just wanted us to make them uncomfortable. At the moment, that's only happening in here.",
+  "wer": 0.0,
+  "speaker_similarity": 0.818,
+  "seconds": 5.2
+ },
+ "C27": {
+  "take": "C27_t1.wav",
+  "heard": "Michael Carrick said United had pressed after half-time and that any system needs players to run.",
+  "wer": 0.0,
+  "speaker_similarity": 0.895,
+  "seconds": 6.46
+ },
+ "C28": {
+  "take": "C28_t2.wav",
+  "heard": "I can draw the arrows, I can't carry eleven people along them.",
+  "wer": 0.0,
+  "speaker_similarity": 0.763,
+  "seconds": 3.72
+ },
+ "C29": {
+  "take": "C29_t2.wav",
+  "heard": "We'll review it.",
+  "wer": 0.0,
+  "speaker_similarity": 0.39,
+  "seconds": 1.02
+ },
+ "C30": {
+  "take": "C30_t2.wav",
+  "heard": "The board was cleaned overnight. The words underneath it were not.",
+  "wer": 0.0,
+  "speaker_similarity": 0.877,
+  "seconds": 4.27
+ },
+ "C31": {
+  "take": "C31_t1.wav",
+  "heard": "We've got a very clear plan.",
+  "wer": 0.0,
+  "speaker_similarity": 0.613,
+  "seconds": 1.67
+ },
+ "C32": {
+  "take": "C32_t2.wav",
+  "heard": "The plan was saved as final. Final two.",
+  "wer": 0.0,
+  "speaker_similarity": 0.848,
+  "seconds": 4.04
+ },
+ "H01": {
+  "take": "H01_t2.wav",
+  "heard": "Matchday one, Hull City away, newly promoted, fearless, delighted to be there.",
+  "wer": 0.0,
+  "speaker_similarity": 0.838,
+  "seconds": 6.83
+ },
+ "H02": {
+  "take": "H02_t1.wav",
+  "heard": "Newly promoted team, crowd will be up for it, do the basics and most importantly, set pieces.",
+  "wer": 0.0,
+  "speaker_similarity": 0.812,
+  "seconds": 7.06
+ },
+ "H03": {
+  "take": "H03_y_t2.wav",
+  "heard": "Set pieces. Got it.",
+  "wer": 0.0,
+  "speaker_similarity": null,
+  "seconds": null,
+  "note": "fourth batch; chosen because it aligns word by word"
+ },
+ "H04": {
+  "take": "H04_t2.wav",
+  "heard": "He had got it.",
+  "wer": 0.0,
+  "speaker_similarity": 0.65,
+  "seconds": 0.98
+ },
+ "H05": {
+  "take": "H05_t1.wav",
+  "heard": "Seventeen minutes in, Hull scored.",
+  "wer": 0.0,
+  "speaker_similarity": 0.827,
+  "seconds": 2.74
+ },
+ "H06": {
+  "take": "H06_t2.wav",
+  "heard": "Come on boys, wake up, concentrate.",
+  "wer": 0.0,
+  "speaker_similarity": 0.771,
+  "seconds": 2.79
+ },
+ "H07": {
+  "take": "H07_t2.wav",
+  "heard": "38 minutes in, they scored again.",
+  "wer": 0.0,
+  "speaker_similarity": 0.846,
+  "seconds": 3.11
+ },
+ "H08": {
+  "take": "H08_t2.wav",
+  "heard": "Too easy. That's too easy.",
+  "wer": 0.0,
+  "speaker_similarity": 0.564,
+  "seconds": 3.11
+ },
+ "H09": {
+  "take": "H09_t1.wav",
+  "heard": "Hull two, United nil. The second half was goalless, which was later described as progress.",
+  "wer": 0.0,
+  "speaker_similarity": 0.901,
+  "seconds": 6.64
+ },
+ "H10": {
+  "take": "H10_t1.wav",
+  "heard": "Not ideal.",
+  "wer": 0.0,
+  "speaker_similarity": 0.604,
+  "seconds": 1.3
+ },
+ "H11": {
+  "take": "H11_t1.wav",
+  "heard": "Not ideal. He literally said set pieces five minutes before kickoff.",
+  "wer": 0.167,
+  "speaker_similarity": 0.77,
+  "seconds": 5.34
+ },
+ "H12": {
+  "take": "H12_t2.wav",
+  "heard": "2 set pieces.",
+  "wer": 0.0,
+  "speaker_similarity": 0.578,
+  "seconds": 1.25
+ },
+ "H13": {
+  "take": "H13_t1.wav",
+  "heard": "Then how have we conceded two?",
+  "wer": 0.0,
+  "speaker_similarity": 0.676,
+  "seconds": 1.72
+ },
+ "H14": {
+  "take": "H14_z0.wav",
+  "heard": "execution",
+  "wer": 0.0,
+  "speaker_similarity": 0.506,
+  "note": "fifth batch: the first choice blurred in the room mix"
+ },
+ "H15": {
+  "take": "H15_t2.wav",
+  "heard": "It's one game. You can't judge a season after one game.",
+  "wer": 0.0,
+  "speaker_similarity": 0.789,
+  "seconds": 4.23
+ },
+ "H16": {
+  "take": "H16_t1.wav",
+  "heard": "They could, however, judge the first one.",
+  "wer": 0.0,
+  "speaker_similarity": 0.76,
+  "seconds": 2.6
+ },
+ "L001": {
+  "take": "L001_t1.wav",
+  "heard": "Carrington, the beating heart of Manchester United.",
+  "wer": 0.0,
+  "speaker_similarity": 0.762,
+  "seconds": 3.9
+ },
+ "L002": {
+  "take": "L002_t1.wav",
+  "heard": "A place built on hard work, on loyalty and on a deep unshakable hatred of leads.",
+  "wer": 0.154,
+  "speaker_similarity": 0.836,
+  "seconds": 6.64
+ },
+ "L003": {
+  "take": "L003_t2.wav",
+  "heard": "But one man believes the club has a mole.",
+  "wer": 0.0,
+  "speaker_similarity": 0.735,
+  "seconds": 3.11
+ },
+ "L004": {
+  "take": "L004_t2.wav",
+  "heard": "Shhh! I am not here.",
+  "wer": 0.0,
+  "speaker_similarity": 0.437,
+  "seconds": 1.76
+ },
+ "L005": {
+  "take": "L005_t2.wav",
+  "heard": "I am a defender. My job is to smell danger before it happens.",
+  "wer": 0.0,
+  "speaker_similarity": 0.856,
+  "seconds": 3.11
+ },
+ "L006": {
+  "take": "L006_t1.wav",
+  "heard": "And this building smells of Leeds.",
+  "wer": 0.0,
+  "speaker_similarity": 0.78,
+  "seconds": 1.9
+ },
+ "L007": {
+  "take": "L007_t2.wav",
+  "heard": "Jason Wilcox, director of football. Look at his career.",
+  "wer": 0.0,
+  "speaker_similarity": 0.787,
+  "seconds": 3.2
+ },
+ "L008": {
+  "take": "L008_t2.wav",
+  "heard": "Blackburn. He won the league against United.",
+  "wer": 0.0,
+  "speaker_similarity": 0.81,
+  "seconds": 2.6
+ },
+ "L009": {
+  "take": "L009_t1.wav",
+  "heard": "Leads, I don't need to explain.",
+  "wer": 0.167,
+  "speaker_similarity": 0.833,
+  "seconds": 1.81
+ },
+ "L010": {
+  "take": "L010_t1.wav",
+  "heard": "Manchester City",
+  "wer": 0.0,
+  "speaker_similarity": 0.675,
+  "seconds": 1.16
+ },
+ "L011": {
+  "take": "L011_t1.wav",
+  "heard": "Southampton, okay Southampton is fine",
+  "wer": 0.0,
+  "speaker_similarity": 0.764,
+  "seconds": 1.95
+ },
+ "L012": {
+  "take": "L012_t2.wav",
+  "heard": "This is not a CV, this is a criminal record.",
+  "wer": 0.0,
+  "speaker_similarity": 0.824,
+  "seconds": 2.55
+ },
+ "L013": {
+  "take": "L013_t1.wav",
+  "heard": "Every day he drinks his tea from a white mug. Why white, Jason? Why always white?",
+  "wer": 0.0,
+  "speaker_similarity": 0.865,
+  "seconds": 5.02
+ },
+ "L014": {
+  "take": "L014_t1.wav",
+  "heard": "When United score he claps like this.",
+  "wer": 0.0,
+  "speaker_similarity": 0.818,
+  "seconds": 1.9
+ },
+ "L015": {
+  "take": "L015_t1.wav",
+  "heard": "When Leeds score, I hear him in the toilet, screaming.",
+  "wer": 0.0,
+  "speaker_similarity": 0.868,
+  "seconds": 2.93
+ },
+ "L016": {
+  "take": "L016_t2.wav",
+  "heard": "In 2019, Leeds were caught spying on another club's training ground.",
+  "wer": 0.0,
+  "speaker_similarity": 0.882,
+  "seconds": 4.55
+ },
+ "L017": {
+  "take": "L017_t1.wav",
+  "heard": "Lissandro considers this a tutorial.",
+  "wer": 0.25,
+  "speaker_similarity": 0.863,
+  "seconds": 2.93
+ },
+ "L018": {
+  "take": "L018_t1.wav",
+  "heard": "Day 1 of the surveillance operation.",
+  "wer": 0.0,
+  "speaker_similarity": 0.82,
+  "seconds": 2.46
+ },
+ "L019": {
+  "take": "L019_t1.wav",
+  "heard": "Target is in the office. Target is drinking tea, white mug, of course.",
+  "wer": 0.0,
+  "speaker_similarity": 0.857,
+  "seconds": 3.58
+ },
+ "L020": {
+  "take": "L020_t2.wav",
+  "heard": "Absolutely, we're fully aligned, read through and through, one club, one vision, one process.",
+  "wer": 0.077,
+  "speaker_similarity": 0.8,
+  "seconds": 6.5
+ },
+ "L021": {
+  "take": "L021_t1.wav",
+  "heard": "At 2:58, the director of football locked his door.",
+  "wer": 0.0,
+  "speaker_similarity": 0.829,
+  "seconds": 3.58
+ },
+ "L022": {
+  "take": "L022_t2.wav",
+  "heard": "At 2:59 he closed the blinds.",
+  "wer": 0.0,
+  "speaker_similarity": 0.873,
+  "seconds": 3.11
+ },
+ "L023": {
+  "take": "L023_t2.wav",
+  "heard": "and at three o'clock he let it breathe",
+  "wer": 0.0,
+  "speaker_similarity": 0.751,
+  "seconds": 2.97
+ },
+ "L024": {
+  "take": "L024_t2.wav",
+  "heard": "Come on, lead. Come on, lads.",
+  "wer": 0.167,
+  "speaker_similarity": 0.598,
+  "seconds": 2.14
+ },
+ "L025": {
+  "take": "L025_t2.wav",
+  "heard": "Mother of me!",
+  "wer": 1.5,
+  "speaker_similarity": 0.58,
+  "seconds": 0.84
+ },
+ "L026": {
+  "take": "L026_t1.wav",
+  "heard": "Yes, get in, marching on together.",
+  "wer": 0.0,
+  "speaker_similarity": 0.739,
+  "seconds": 4.37
+ },
+ "L027": {
+  "take": "L027_t1.wav",
+  "heard": "I knew it!",
+  "wer": 0.0,
+  "speaker_similarity": 0.563,
+  "seconds": 0.74
+ },
+ "L028": {
+  "take": "L028_t1.wav",
+  "heard": "The mole had been found. The plant did not survive.",
+  "wer": 0.0,
+  "speaker_similarity": 0.839,
+  "seconds": 3.76
+ },
+ "L029": {
+  "take": "L029_t1.wav",
+  "heard": "Lissandro this isn't what it looks like",
+  "wer": 0.143,
+  "speaker_similarity": 0.798,
+  "seconds": 2.55
+ },
+ "L030": {
+  "take": "L030_t2.wav",
+  "heard": "It looks like leads.",
+  "wer": 0.25,
+  "speaker_similarity": 0.608,
+  "seconds": 1.02
+ },
+ "L031": {
+  "take": "L031_t1.wav",
+  "heard": "It's scouting. Data-led opposition scouting. I'm immersing myself in the enemy.",
+  "wer": 0.0,
+  "speaker_similarity": 0.852,
+  "seconds": 5.11
+ },
+ "L032": {
+  "take": "L032_t1.wav",
+  "heard": "in their shirt",
+  "wer": 0.0,
+  "speaker_similarity": 0.632,
+  "seconds": 0.84
+ },
+ "L033": {
+  "take": "L033_x_t2.wav",
+  "heard": "Method scouting. It's very modern. You wouldn't understand. You were in a plant.",
+  "wer": 0.0,
+  "speaker_similarity": 0.849,
+  "seconds": 4.64
+ },
+ "L034": {
+  "take": "L034_t1.wav",
+  "heard": "Turn around.",
+  "wer": 0.0,
+  "speaker_similarity": 0.558,
+  "seconds": 0.79
+ },
+ "L035": {
+  "take": "L035_t1.wav",
+  "heard": "You signed your own shirt?",
+  "wer": 0.0,
+  "speaker_similarity": 0.719,
+  "seconds": 1.3
+ },
+ "L036": {
+  "take": "L036_t1.wav",
+  "heard": "It was a difficult time for me.",
+  "wer": 0.0,
+  "speaker_similarity": 0.695,
+  "seconds": 1.81
+ },
+ "L037": {
+  "take": "L037_t1.wav",
+  "heard": "Oh, that's never a penalty ref.",
+  "wer": 0.0,
+  "speaker_similarity": 0.704,
+  "seconds": 2.46
+ },
+ "L038": {
+  "take": "L038_x_t3.wav",
+  "heard": "Say it",
+  "wer": 0.0,
+  "speaker_similarity": 0.507,
+  "seconds": 0.65
+ },
+ "L039": {
+  "take": "L039_x_t3.wav",
+  "heard": "Say what?",
+  "wer": 0.0,
+  "speaker_similarity": 0.476,
+  "seconds": 0.7
+ },
+ "L040": {
+  "take": "L040_t1.wav",
+  "heard": "Leads are rubbish.",
+  "wer": 0.333,
+  "speaker_similarity": 0.663,
+  "seconds": 1.21
+ },
+ "L041": {
+  "take": "L041_t2.wav",
+  "heard": "Leeds are really well coached to be fair.",
+  "wer": 0.0,
+  "speaker_similarity": 0.829,
+  "seconds": 3.11
+ },
+ "L042": {
+  "take": "L042_t2.wav",
+  "heard": "He cannot say it. He is sick.",
+  "wer": 0.0,
+  "speaker_similarity": 0.694,
+  "seconds": 1.81
+ },
+ "L043": {
+  "take": "L043_t2.wav",
+  "heard": "Mr. Wilcox requested a right of reply.",
+  "wer": 0.0,
+  "speaker_similarity": 0.762,
+  "seconds": 2.79
+ },
+ "L044": {
+  "take": "L044_t2.wav",
+  "heard": "Slide 1. My commitment to Manchester United as a percentage up 11% on last season.",
+  "wer": 0.067,
+  "speaker_similarity": 0.88,
+  "seconds": 5.76
+ },
+ "L045": {
+  "take": "L045_t1.wav",
+  "heard": "Up from what?",
+  "wer": 0.0,
+  "speaker_similarity": 0.556,
+  "seconds": 1.02
+ },
+ "L046": {
+  "take": "L046_t2.wav",
+  "heard": "We don't need to get into the baseline.",
+  "wer": 0.0,
+  "speaker_similarity": 0.679,
+  "seconds": 1.63
+ },
+ "L047": {
+  "take": "L047_t2.wav",
+  "heard": "The presentation lasted 70 minutes.",
+  "wer": 0.0,
+  "speaker_similarity": 0.852,
+  "seconds": 2.74
+ },
+ "L048": {
+  "take": "L048_t1.wav",
+  "heard": "70 minutes of PowerPoint. You know who else does this? Bielsa. Leeds. Case closed.",
+  "wer": 0.0,
+  "speaker_similarity": 0.913,
+  "seconds": 5.06
+ },
+ "L049": {
+  "take": "L049_t1.wav",
+  "heard": "I bleed red. I always have.",
+  "wer": 0.0,
+  "speaker_similarity": 0.561,
+  "seconds": 2.0
+ },
+ "L050": {
+  "take": "L050_t2.wav",
+  "heard": "There might be a bit of white in there. That's medical.",
+  "wer": 0.0,
+  "speaker_similarity": 0.844,
+  "seconds": 3.58
+ },
+ "L051": {
+  "take": "L051_t1.wav",
+  "heard": "So I go to the top, Omar will know what to do.",
+  "wer": 0.0,
+  "speaker_similarity": 0.771,
+  "seconds": 2.46
+ },
+ "L052": {
+  "take": "L052_t2.wav",
+  "heard": "Omar, we have a mole.",
+  "wer": 0.0,
+  "speaker_similarity": 0.539,
+  "seconds": 2.0
+ },
+ "L053": {
+  "take": "L053_t1.wav",
+  "heard": "I knew it.",
+  "wer": 0.0,
+  "speaker_similarity": 0.581,
+  "seconds": 0.84
+ },
+ "L054": {
+  "take": "L054_t1.wav",
+  "heard": "Omar Barada joined United from Manchester City. Lissandro had not done the reading.",
+  "wer": 0.154,
+  "speaker_similarity": 0.864,
+  "seconds": 5.11
+ },
+ "L055": {
+  "take": "L055_t2.wav",
+  "heard": "That night, Lissandro Martinez believed he was the last loyal man at Carrington.",
+  "wer": 0.077,
+  "speaker_similarity": 0.905,
+  "seconds": 5.11
+ },
+ "L056": {
+  "take": "L056_t2.wav",
+  "heard": "Let's go Alexis, let's go brother!",
+  "wer": 1.25,
+  "speaker_similarity": 0.808,
+  "seconds": 2.04
+ },
+ "L057": {
+  "take": "L057_x_t3.wav",
+  "heard": "I knew it!",
+  "wer": 0.0,
+  "speaker_similarity": 0.417,
+  "seconds": 0.88
+ },
+ "L058": {
+  "take": "L058_t1.wav",
+  "heard": "It's Argentina, it's different.",
+  "wer": 0.0,
+  "speaker_similarity": 0.793,
+  "seconds": 1.95
+ },
+ "L059": {
+  "take": "L059_t1.wav",
+  "heard": "He plays for Liverpool, Lissandro",
+  "wer": 0.2,
+  "speaker_similarity": 0.509,
+  "seconds": 2.28
+ },
+ "L060": {
+  "take": "L060_t1.wav",
+  "heard": "It's a red shirt.",
+  "wer": 0.0,
+  "speaker_similarity": 0.629,
+  "seconds": 1.02
+ },
+ "M01": {
+  "take": "M01_t2.wav",
+  "heard": "Manchester United, 20 league titles, three European Cups, one clear plan.",
+  "wer": 0.0,
+  "speaker_similarity": 0.865,
+  "seconds": 6.59
+ },
+ "M02": {
+  "take": "M02_t1.wav",
+  "heard": "This is the story of the plan.",
+  "wer": 0.0,
+  "speaker_similarity": 0.761,
+  "seconds": 2.23
+ },
+ "M03": {
+  "take": "M03_t1.wav",
+  "heard": "Right, Michael. New season, new chapter. We've got a very clear plan.",
+  "wer": 0.0,
+  "speaker_similarity": 0.844,
+  "seconds": 4.92
+ },
+ "M04": {
+  "take": "M04_t1.wav",
+  "heard": "What's the plan?",
+  "wer": 0.0,
+  "speaker_similarity": 0.595,
+  "seconds": 1.25
+ },
+ "M05": {
+  "take": "M05_t2.wav",
+  "heard": "One second.",
+  "wer": 0.0,
+  "speaker_similarity": 0.589,
+  "seconds": 0.98
+ },
+ "M06": {
+  "take": "M06_t1.wav",
+  "heard": "The plan was on the tablet. The tablet was on 3%.",
+  "wer": 0.154,
+  "speaker_similarity": 0.878,
+  "seconds": 4.13
+ },
+ "M07": {
+  "take": "M07_t1.wav",
+  "heard": "Clarity, alignment, sustainability, agility, yeah?",
+  "wer": 0.0,
+  "speaker_similarity": 0.825,
+  "seconds": 4.88
+ },
+ "M08": {
+  "take": "M08_t1.wav",
+  "heard": "Right. Yep. Okay. Jason, who are we signing?",
+  "wer": 0.0,
+  "speaker_similarity": 0.773,
+  "seconds": 5.15
+ },
+ "M09": {
+  "take": "M09_t1.wav",
+  "heard": "Michael, we've invested significantly.",
+  "wer": 0.0,
+  "speaker_similarity": 0.734,
+  "seconds": 1.95
+ },
+ "M10": {
+  "take": "M10_t2.wav",
+  "heard": "I know, I'm just thinking. Another striker?",
+  "wer": 0.0,
+  "speaker_similarity": 0.767,
+  "seconds": 3.39
+ },
+ "M11": {
+  "take": "M11_t2.wav",
+  "heard": "We've got options.",
+  "wer": 0.0,
+  "speaker_similarity": 0.555,
+  "seconds": 0.88
+ },
+ "M12": {
+  "take": "M12_t1.wav",
+  "heard": "Left back.",
+  "wer": 0.0,
+  "speaker_similarity": 0.402,
+  "seconds": 0.88
+ },
+ "M13": {
+  "take": "M13_t2.wav",
+  "heard": "No.",
+  "wer": 0.0,
+  "speaker_similarity": 0.517,
+  "seconds": 0.51
+ },
+ "M14": {
+  "take": "M14_t1.wav",
+  "heard": "Center back.",
+  "wer": 0.5,
+  "speaker_similarity": 0.42,
+  "seconds": 1.07
+ },
+ "M15": {
+  "take": "M15_x_t2.wav",
+  "heard": "No.",
+  "wer": 0.0,
+  "speaker_similarity": 0.465,
+  "seconds": 0.51
+ },
+ "M16": {
+  "take": "M16_t1.wav",
+  "heard": "Another forward.",
+  "wer": 0.0,
+  "speaker_similarity": 0.471,
+  "seconds": 1.3
+ },
+ "M17": {
+  "take": "M17_t1.wav",
+  "heard": "You already asked that.",
+  "wer": 0.0,
+  "speaker_similarity": 0.654,
+  "seconds": 1.11
+ },
+ "M18": {
+  "take": "M18_t1.wav",
+  "heard": "Goalkeeper",
+  "wer": 0.0,
+  "speaker_similarity": 0.467,
+  "seconds": 0.98
+ },
+ "M19": {
+  "take": "M19_t2.wav",
+  "heard": "We've got one.",
+  "wer": 0.0,
+  "speaker_similarity": 0.587,
+  "seconds": 0.79
+ },
+ "M20": {
+  "take": "M20_x_t3.wav",
+  "heard": "Fair enough.",
+  "wer": 0.0,
+  "speaker_similarity": 0.458,
+  "seconds": 1.07
+ },
+ "M21": {
+  "take": "M21_t2.wav",
+  "heard": "In fairness, they did have one.",
+  "wer": 0.0,
+  "speaker_similarity": 0.784,
+  "seconds": 2.18
+ },
+ "M22": {
+  "take": "M22_x_t1.wav",
+  "heard": "So how much have we got?",
+  "wer": 0.0,
+  "speaker_similarity": 0.602,
+  "seconds": 1.3
+ },
+ "M23": {
+  "take": "M23_t1.wav",
+  "heard": "At the moment, a lot.",
+  "wer": 0.0,
+  "speaker_similarity": 0.519,
+  "seconds": 2.28
+ },
+ "M24": {
+  "take": "M24_t1.wav",
+  "heard": "How much is a lot?",
+  "wer": 0.0,
+  "speaker_similarity": 0.575,
+  "seconds": 1.76
+ },
+ "M25": {
+  "take": "M25_t1.wav",
+  "heard": "Enough that we're not buying a striker.",
+  "wer": 0.0,
+  "speaker_similarity": 0.701,
+  "seconds": 1.67
+ },
+ "M26": {
+  "take": "M26_t1.wav",
+  "heard": "So sell to buy.",
+  "wer": 0.0,
+  "speaker_similarity": 0.583,
+  "seconds": 2.14
+ },
+ "M27": {
+  "take": "M27_t1.wav",
+  "heard": "I would describe it as responsive squad optimization.",
+  "wer": 0.125,
+  "speaker_similarity": 0.856,
+  "seconds": 3.25
+ },
+ "M28": {
+  "take": "M28_t1.wav",
+  "heard": "and the objectives.",
+  "wer": 0.0,
+  "speaker_similarity": 0.655,
+  "seconds": 1.16
+ },
+ "M29": {
+  "take": "M29_t2.wav",
+  "heard": "And don't complain about the squad.",
+  "wer": 0.0,
+  "speaker_similarity": 0.724,
+  "seconds": 1.81
+ },
+ "M30": {
+  "take": "M30_t1.wav",
+  "heard": "Brilliant. Good meeting. Positive. So where's the money actually going?",
+  "wer": 0.0,
+  "speaker_similarity": 0.82,
+  "seconds": 5.8
+ },
+ "M31": {
+  "take": "M31_t2.wav",
+  "heard": "cash flow, infrastructure",
+  "wer": 0.0,
+  "speaker_similarity": 0.681,
+  "seconds": 2.14
+ },
+ "M32": {
+  "take": "M32_t1.wav",
+  "heard": "Debt",
+  "wer": 0.0,
+  "speaker_similarity": 0.452,
+  "seconds": 0.46
+ },
+ "M33": {
+  "take": "M33_t2.wav",
+  "heard": "Glazer Dividends.",
+  "wer": 0.0,
+  "speaker_similarity": 0.501,
+  "seconds": 1.63
+ },
+ "M34": {
+  "take": "M34_t1.wav",
+  "heard": "Technically there weren't any dividends paid this year.",
+  "wer": 0.0,
+  "speaker_similarity": 0.843,
+  "seconds": 2.41
+ },
+ "M35": {
+  "take": "M35_t2.wav",
+  "heard": "Funny you should mention them.",
+  "wer": 0.0,
+  "speaker_similarity": 0.653,
+  "seconds": 1.35
+ },
+ "M36": {
+  "take": "M36_t2.wav",
+  "heard": "United's co-owners joined the meeting, remotely, very remotely.",
+  "wer": 0.0,
+  "speaker_similarity": 0.845,
+  "seconds": 5.2
+ },
+ "M37": {
+  "take": "M37_t2.wav",
+  "heard": "Hello everybody! Can you hear us? Michael, good luck this season!",
+  "wer": 0.0,
+  "speaker_similarity": 0.811,
+  "seconds": 4.23
+ },
+ "M38": {
+  "take": "M38_t1.wav",
+  "heard": "Michael, good luck this season.",
+  "wer": 0.0,
+  "speaker_similarity": 0.786,
+  "seconds": 1.95
+ },
+ "M39": {
+  "take": "M39_t1.wav",
+  "heard": "We're all really excited, big season!",
+  "wer": 0.0,
+  "speaker_similarity": 0.749,
+  "seconds": 2.23
+ },
+ "M40": {
+  "take": "M40_t1.wav",
+  "heard": "Need to run.",
+  "wer": 0.0,
+  "speaker_similarity": 0.534,
+  "seconds": 0.84
+ },
+ "M41": {
+  "take": "M41_t2.wav",
+  "heard": "Go United!",
+  "wer": 0.0,
+  "speaker_similarity": 0.473,
+  "seconds": 0.98
+ },
+ "M42": {
+  "take": "M42_t2.wav",
+  "heard": "The call lasted 41 seconds, 30 of them were about the microphone.",
+  "wer": 0.0,
+  "speaker_similarity": 0.875,
+  "seconds": 4.88
+ },
+ "M43": {
+  "take": "M43_t1.wav",
+  "heard": "unfortunately.",
+  "wer": 0.0,
+  "speaker_similarity": 0.683,
+  "seconds": 1.02
+ },
+ "M44": {
+  "take": "M44_t1.wav",
+  "heard": "Cheers, brilliant, yep, good input.",
+  "wer": 0.0,
+  "speaker_similarity": 0.649,
+  "seconds": 3.2
+ },
+ "M45": {
+  "take": "M45_t2.wav",
+  "heard": "Right, hull, don't lose.",
+  "wer": 0.0,
+  "speaker_similarity": 0.65,
+  "seconds": 2.14
+ },
+ "R01": {
+  "take": "R01_t2.wav",
+  "heard": "The following week, Ipswich came to Old Trafford. Bruno Fernandes scored a hat-trick.",
+  "wer": 0.0,
+  "speaker_similarity": 0.888,
+  "seconds": 5.67
+ },
+ "R02": {
+  "take": "R02_t1.wav",
+  "heard": "HETTRIK Captain",
+  "wer": 0.667,
+  "speaker_similarity": 0.685,
+  "seconds": 1.9
+ },
+ "R03": {
+  "take": "R03_t2.wav",
+  "heard": "That's more like it.",
+  "wer": 0.0,
+  "speaker_similarity": 0.621,
+  "seconds": 1.25
+ },
+ "R04": {
+  "take": "R04_t2.wav",
+  "heard": "Gentlemen, fantastic. This is the plan.",
+  "wer": 0.0,
+  "speaker_similarity": 0.773,
+  "seconds": 3.48
+ },
+ "R05": {
+  "take": "R05_t1.wav",
+  "heard": "The plan had been updated at full time.",
+  "wer": 0.0,
+  "speaker_similarity": 0.786,
+  "seconds": 2.65
+ },
+ "R06": {
+  "take": "R06_x_t1.wav",
+  "heard": "Everton away. Benjamin Sheshko scored in the 88th minute.",
+  "wer": 0.273,
+  "speaker_similarity": 0.858,
+  "seconds": 4.69
+ },
+ "R07": {
+  "take": "R07_t2.wav",
+  "heard": "Yes! I thought I scored the winner.",
+  "wer": 0.0,
+  "speaker_similarity": 0.77,
+  "seconds": 2.32
+ },
+ "R08": {
+  "take": "R08_t1.wav",
+  "heard": "You did for about 8 minutes.",
+  "wer": 0.0,
+  "speaker_similarity": 0.797,
+  "seconds": 2.14
+ },
+ "R09": {
+  "take": "R09_t1.wav",
+  "heard": "Thanks Harry.",
+  "wer": 0.0,
+  "speaker_similarity": 0.7,
+  "seconds": 1.11
+ },
+ "R10": {
+  "take": "R10_t1.wav",
+  "heard": "Positive point away from home.",
+  "wer": 0.0,
+  "speaker_similarity": 0.677,
+  "seconds": 2.14
+ },
+ "R11": {
+  "take": "R11_t1.wav",
+  "heard": "It was a point. It was away from home.",
+  "wer": 0.0,
+  "speaker_similarity": 0.833,
+  "seconds": 2.83
+ },
+ "R12": {
+  "take": "R12_t2.wav",
+  "heard": "In Europe, Sabah were beaten 4-0. Lisandro Martinez scored the fourth.",
+  "wer": 0.231,
+  "speaker_similarity": 0.877,
+  "seconds": 5.9
+ },
+ "R13": {
+  "take": "R13_t1.wav",
+  "heard": "I scored.",
+  "wer": 0.0,
+  "speaker_similarity": 0.627,
+  "seconds": 0.84
+ },
+ "R14": {
+  "take": "R14_t2.wav",
+  "heard": "Don't encourage him.",
+  "wer": 0.0,
+  "speaker_similarity": 0.582,
+  "seconds": 1.3
+ },
+ "R15": {
+  "take": "R15_t2.wav",
+  "heard": "European DNA",
+  "wer": 0.0,
+  "speaker_similarity": 0.522,
+  "seconds": 1.21
+ },
+ "R16": {
+  "take": "R16_t2.wav",
+  "heard": "Michael Carrick smiled. The documentary team checked the footage twice.",
+  "wer": 0.0,
+  "speaker_similarity": 0.882,
+  "seconds": 4.69
+ },
+ "R17": {
+  "take": "R17_t1.wav",
+  "heard": "Then Manchester City, Erling Haaland scored once, which for him is a quiet afternoon.",
+  "wer": 0.0,
+  "speaker_similarity": 0.916,
+  "seconds": 6.5
+ },
+ "R18": {
+  "take": "R18_t1.wav",
+  "heard": "We nearly scored.",
+  "wer": 0.0,
+  "speaker_similarity": 0.614,
+  "seconds": 1.02
+ },
+ "R19": {
+  "take": "R19_t2.wav",
+  "heard": "\"Nearly\" does not count.",
+  "wer": 0.0,
+  "speaker_similarity": 0.702,
+  "seconds": 1.49
+ },
+ "R20": {
+  "take": "R20_t1.wav",
+  "heard": "It counts in expected goals.",
+  "wer": 0.0,
+  "speaker_similarity": 0.529,
+  "seconds": 2.0
+ },
+ "R21": {
+  "take": "R21_t2.wav",
+  "heard": "What? I've been listening to Jason.",
+  "wer": 0.0,
+  "speaker_similarity": 0.713,
+  "seconds": 1.95
+ },
+ "R22": {
+  "take": "R22_t2.wav",
+  "heard": "The tablet was put on charge. Nobody remembers plugging it in.",
+  "wer": 0.0,
+  "speaker_similarity": 0.889,
+  "seconds": 4.23
+ },
+ "R23": {
+  "take": "R23_t1.wav",
+  "heard": "The League Cup Shea Lacey and Mason Mount had united 2-0 up after 10 minutes against Brighton.",
+  "wer": 0.059,
+  "speaker_similarity": 0.899,
+  "seconds": 7.52
+ },
+ "R24": {
+  "take": "R24_t1.wav",
+  "heard": "Brighton 132",
+  "wer": 0.5,
+  "speaker_similarity": 0.728,
+  "seconds": 2.0
+ },
+ "R25": {
+  "take": "R25_t1.wav",
+  "heard": "We were 2-0 up. How have we lost?",
+  "wer": 0.111,
+  "speaker_similarity": 0.785,
+  "seconds": 2.6
+ },
+ "R26": {
+  "take": "R26_t2.wav",
+  "heard": "You've learnt Manchester United very quickly.",
+  "wer": 0.0,
+  "speaker_similarity": 0.861,
+  "seconds": 2.28
+ },
+ "R27": {
+  "take": "R27_t2.wav",
+  "heard": "Michael, do not say not ideal.",
+  "wer": 0.0,
+  "speaker_similarity": 0.743,
+  "seconds": 2.32
+ },
+ "R28": {
+  "take": "R28_x_t1.wav",
+  "heard": "Not",
+  "wer": 0.0,
+  "speaker_similarity": 0.423,
+  "seconds": 0.74
+ },
+ "R29": {
+  "take": "R29_t2.wav",
+  "heard": "He didn't.",
+  "wer": 0.0,
+  "speaker_similarity": 0.577,
+  "seconds": 0.98
+ },
+ "R30": {
+  "take": "R30_t1.wav",
+  "heard": "Fulham away. Lissandro Martinez scored again. Unfortunately, at the wrong end.",
+  "wer": 0.25,
+  "speaker_similarity": 0.867,
+  "seconds": 6.46
+ },
+ "R31": {
+  "take": "R31_t1.wav",
+  "heard": "Good finish. Mine. Sorry.",
+  "wer": 0.0,
+  "speaker_similarity": 0.789,
+  "seconds": 2.6
+ },
+ "R32": {
+  "take": "R32_t1.wav",
+  "heard": "5 points from 5 games and we are out of the League Cup.",
+  "wer": 0.0,
+  "speaker_similarity": 0.849,
+  "seconds": 5.2
+ },
+ "R33": {
+  "take": "R33_t2.wav",
+  "heard": "Right, international break. Get away, reset, come back fresh.",
+  "wer": 0.0,
+  "speaker_similarity": 0.801,
+  "seconds": 6.27
+ },
+ "R34": {
+  "take": "R34_t1.wav",
+  "heard": "How would you describe the opening month?",
+  "wer": 0.0,
+  "speaker_similarity": 0.74,
+  "seconds": 2.14
+ },
+ "R35": {
+  "take": "R35_t2.wav",
+  "heard": "There have been positives.",
+  "wer": 0.0,
+  "speaker_similarity": 0.719,
+  "seconds": 1.81
+ },
+ "R36": {
+  "take": "R36_t1.wav",
+  "heard": "such as:",
+  "wer": 0.0,
+  "speaker_similarity": 0.53,
+  "seconds": 0.84
+ },
+ "R37": {
+  "take": "R37_x_t2.wav",
+  "heard": "Saba",
+  "wer": 1.0,
+  "speaker_similarity": 0.236,
+  "seconds": 0.79
+ },
+ "R38": {
+  "take": "R38_t2.wav",
+  "heard": "Sabah have not commented",
+  "wer": 0.0,
+  "speaker_similarity": 0.74,
+  "seconds": 2.0
+ },
+ "R39": {
+  "take": "R39_t2.wav",
+  "heard": "After the break, United returned refreshed. They led Tottenham until the 92nd minute.",
+  "wer": 0.071,
+  "speaker_similarity": 0.892,
+  "seconds": 6.46
+ },
+ "R40": {
+  "take": "R40_t1.wav",
+  "heard": "The results returned unchanged.",
+  "wer": 0.0,
+  "speaker_similarity": 0.782,
+  "seconds": 2.6
+ },
+ "R41": {
+  "take": "R41_t2.wav",
+  "heard": "In Madrid, Atletico scored inside the first minute. The reset had lasted one minute.",
+  "wer": 0.133,
+  "speaker_similarity": 0.898,
+  "seconds": 6.27
+ },
+ "R42": {
+  "take": "R42_t1.wav",
+  "heard": "Before Leeds, one man decided the problem was not the football. It was much closer to home.",
+  "wer": 0.0,
+  "speaker_similarity": 0.91,
+  "seconds": 6.04
+ }
+}
