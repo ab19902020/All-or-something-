@@ -1,0 +1,12 @@
+name: Gary Neville
+short: Neville
+role: self-appointed standards inspector (fictional satire)
+style: house
+height_cm: 180
+note: New inspector drawings matched to the existing Carrick and Bruno model sheets; original provisional casual kit retained.
+reference:
+  inspector-sheet.png: Four complete transparent inspector poses; new house-style artwork referenced to the Carrick and Bruno model sheets.
+outfits:
+  inspector:
+    description: Charcoal suit, white shirt, navy tie, blue lanyard, clipboard.
+    reference: reference/inspector-sheet.png

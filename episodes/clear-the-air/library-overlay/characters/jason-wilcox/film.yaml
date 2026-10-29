@@ -1,0 +1,33 @@
+drawings:
+  pockets:
+    image: reference/poses/pockets.png
+    up: true
+    x8: true
+    jaw: 2.7
+    faces: F
+    auto_holes: false
+  crossarms:
+    image: reference/poses/crossarms.png
+    up: true
+    x8: true
+    jaw: 2.7
+    faces: F
+    auto_holes: false
+  clipboard:
+    image: reference/poses/clipboard.png
+    up: true
+    jaw: 2.7
+    faces: R
+    auto_holes: false
+    marks:
+      mouth:
+      - 80
+      - 123
+      - 98
+      - 124
+      - 89
+      - 122
+      chin: 140
+      neck:
+      - 89
+      - 154

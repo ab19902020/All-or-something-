@@ -1,0 +1,34 @@
+drawings:
+  front:
+    sheet: reference/inspector-sheet.png
+    box: [30, 8, 415, 878]
+    faces: F
+    auto_holes: false
+    marks:
+      eyes: [[204,182,17,15], [262,181,17,15]]
+      mouth: [208,251,259,251,234,250]
+      chin: 302
+      neck: [230,329]
+      head: [105,17,348,316]
+  inspector:
+    sheet: reference/inspector-sheet.png
+    box: [466, 8, 835, 878]
+    faces: R
+    auto_holes: false
+    marks:
+      eyes: [[664,178,17,15], [715,174,11,14]]
+      mouth: [675,252,721,252,699,251]
+      chin: 302
+      neck: [657,328]
+      head: [525,17,755,316]
+  write:
+    sheet: reference/inspector-sheet.png
+    box: [918, 8, 1298, 878]
+    faces: R
+    auto_holes: false
+    marks:
+      eyes: [[1082,181,17,15], [1132,174,11,14]]
+      mouth: [1093,253,1141,253,1117,252]
+      chin: 303
+      neck: [1076,329]
+      head: [947,17,1175,316]

@@ -1,0 +1,61 @@
+drawings:
+  front:
+    kit: home/front
+    faces: F
+    marks:
+      mouth:
+      - 1305
+      - 277
+      - 1380
+      - 274
+      - 1341
+      - 281
+      chin: 330
+      neck:
+      - 1341
+      - 356
+  clap:
+    sheet: ../../reference/squad/manchester-united-squad.png
+    box:
+    - 18
+    - 183
+    - 195
+    - 538
+    faces: F
+  full:
+    sheet: reference/model-sheet.png
+    box:
+    - 14
+    - 126
+    - 322
+    - 902
+    jaw: 1.0
+    mouth_w: 0.9
+    lip_lt: 1.0
+    faces: F
+    auto_holes: false
+    holes:
+    - - 160
+      - 790
+    marks:
+      mouth:
+      - 171
+      - 348
+      - 214
+      - 347
+      - 192
+      - 345
+      chin: 393
+      neck:
+      - 192
+      - 412
+  point:
+    sheet: reference/model-sheet.png
+    box:
+    - 326
+    - 1180
+    - 550
+    - 1345
+    faces: F
+    auto_holes: false
+    extend: 0.4

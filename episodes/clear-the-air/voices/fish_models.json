@@ -1,0 +1,38 @@
+{
+  "michael-carrick": {
+    "id": "6718a8b753944f098b47d305a601e3c7",
+    "title": "AOS Michael Carrick (parody)",
+    "state": "trained",
+    "source": "anim-handover/episodes/the-handover/voiceovers/03-michael-carrick.mp3",
+    "repo": "ab19902020/AnimnationStuido- @ claude/ollies-episode-production-tdnt6j",
+    "quality": null,
+    "quality_passed": null
+  },
+  "bruno-fernandes": {
+    "id": "88aecbad4776441fa53134a0544c561c",
+    "title": "AOS Bruno Fernandes (parody)",
+    "state": "trained",
+    "source": "showtv/show TV/Bruno/Clony-AI-2Y1Gwqr8neTEo43q.mp3",
+    "repo": "ab19902020/TV-show- @ ccr-908989ca-q2zljw",
+    "quality": null,
+    "quality_passed": null
+  },
+  "jason-wilcox": {
+    "id": "ca08dc712b0b423a8db638fed57d7e41",
+    "title": "AOS Jason Wilcox (parody)",
+    "state": "trained",
+    "source": "tv-mole/the-mole/episode/voiceovers/03-jason-wilcox.mp3",
+    "repo": "ab19902020/TV-show- @ claude/new-session-ow0mwl",
+    "quality": null,
+    "quality_passed": null
+  },
+  "narrator": {
+    "id": "38127b71f1f24705817138aeeb97812d",
+    "title": "AOS Narrator (episode one)",
+    "state": "trained",
+    "source": "uploads/narrator-Clony-AI-vJNSlVEBYbmnF9iU.mp3",
+    "repo": "uploaded in chat (copied to voices/sources/)",
+    "quality": null,
+    "quality_passed": null
+  }
+}

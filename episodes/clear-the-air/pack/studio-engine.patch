@@ -1,0 +1,219 @@
+diff --git a/studio/film/art.py b/studio/film/art.py
+index e6e69c9..1ab39a2 100644
+--- a/studio/film/art.py
++++ b/studio/film/art.py
+@@ -23,6 +23,8 @@ Which drawings a character has is library/characters/<id>/film.yaml:
+   extend   a waist-up drawing's body continued down by this fraction of its height (it never ends in mid-air)
+   x8       a second upscale pass for small drawings seen large
+   marks    hand-set landmarks where detection can't see them (beards): {eyes, mouth, chin, neck, head}
++  lip_lt   the drawn mouth line's half thickness (sheet px) when the measured one is wrong (a moustache right over
++           the line is read as line, and the open mouth gets an outline as heavy as the moustache)
+   head     the head's box [x0, y0, x1, y1] (sheet px) if the automatic one (top of the figure) is wrong
+   plain    no face to animate (backs, walking poses seen small)
+   holes    points in paper the drawing encloses that the cut keeps (between an arm and the body)
+@@ -287,6 +289,8 @@ def make(cid, name, d):
+     if "image" in d:
+         part = np.asarray(Image.open(CHARACTERS / cid / d["image"]).convert("RGBA")).copy()
+         off, K = (0, 0), 1
++        if d.get("up"):                                 # a small cut-out drawing: upscaled like a sheet's
++            part, K = upscale_rgba(part), 4
+     elif "kit" in d:
+         crop, off = cut_kit(cid, d["kit"])
+         part = upscale_rgba(crop)
+diff --git a/studio/film/audio.py b/studio/film/audio.py
+index 8c46a36..508b1f8 100644
+--- a/studio/film/audio.py
++++ b/studio/film/audio.py
+@@ -6,7 +6,9 @@ that are electronic in life too (a card reader's beep), stings, and the master.
+     fetches more), named "<category>/<name>": "creaks/creak-short", "cloth/cloth-a"... Every cue is keyed to the
+     picture by the same timeline marks the shots and the acting use. No whooshes on cuts: cuts are hard cuts
+   - music: synthesised strings and piano for stings (the title), ducked under the dialogue
+-  - master: loudness to -16 LUFS integrated (EBU R128 / BS.1770 gating), a soft limit at -1 dBFS
++  - master: the effects and music trimmed and held under the dialogue (a level rider: no 400 ms stretch of either may
++    come louder than the dialogue's own level plus FX_CEIL / MUSIC_CEIL), the music ducked under every line, then
++    loudness to -16 LUFS integrated (EBU R128 / BS.1770 gating) and a soft-knee limit at -1 dBFS
+ 
+ An episode's film/sound.py builds its buses with these and ends with master(...):
+ 
+@@ -31,6 +33,11 @@ from studio.paths import SFX
+ SR = 48000
+ RNG = np.random.default_rng(2026)
+ 
++# the balance under the dialogue (dB): static trims of the effects/ambience buses and of the music, how far the music
++# dips under a line, and the ceilings for any 400 ms of either relative to the dialogue's integrated loudness
++FX_DB, MUSIC_DB, DUCK_DB = -2.0, -5.0, -12.0
++FX_CEIL, MUSIC_CEIL = -4.0, -9.0
++
+ 
+ def _tl():
+     from film.timeline import TL
+@@ -321,26 +328,56 @@ def lufs(x):
+     return float(-0.691 + 10 * np.log10(g.mean()))
+ 
+ 
+-def duck(dlg, depth_db=-7.0):
++def duck(dlg, depth_db=None):
+     """a gain curve that dips music under the dialogue"""
++    depth_db = DUCK_DB if depth_db is None else depth_db
+     env = lp(np.abs(dlg.x.mean(1)), 6, 1)
+-    g = 1.0 / (1.0 + 7.0 * np.clip(env / db(-26), 0, 1))
++    g = 1.0 / (1.0 + 12.0 * np.clip(env / db(-26), 0, 1))
+     return np.clip(g, db(depth_db), 1.0).astype(np.float32)
+ 
+ 
++def rider(x, ceiling):
++    """a gain curve holding every 400 ms of x at or under `ceiling` (LUFS, momentary): it starts to dip 200 ms ahead
++    of a loud moment and lets go over 300 ms, so a boom or a swell comes down whole rather than being chopped"""
++    hop = SR // 100
++    y = _k_weight(np.asarray(x, np.float64))
++    p = (y ** 2).sum(1) if y.ndim == 2 else y ** 2
++    c = np.concatenate([[0.0], np.cumsum(p)])
++    w = int(0.4 * SR)
++    idx = np.arange(0, len(p), hop)
++    a, b = np.clip(idx - w // 2, 0, len(p)), np.clip(idx + w // 2, 0, len(p))
++    ms = (c[b] - c[a]) / np.maximum(1, b - a)
++    g = np.minimum(0.0, ceiling - (-0.691 + 10 * np.log10(ms + 1e-12)))
++    from scipy.ndimage import minimum_filter1d, uniform_filter1d
++    g = uniform_filter1d(minimum_filter1d(g, 41), 30)
++    return db(np.interp(np.arange(len(p)) / hop, np.arange(len(g)), g)).astype(np.float32)
++
++
++def soft_limit(x, peak_db=-1.0, knee_db=-7.0):
++    """untouched below the knee; above it, a smooth curve that never passes the peak"""
++    pk, kn = db(peak_db), db(knee_db)
++    a = np.abs(x)
++    over = a > kn
++    y = x.copy()
++    y[over] = np.sign(x[over]) * (kn + (pk - kn) * np.tanh((a[over] - kn) / (pk - kn)))
++    return y
++
++
+ def master(dlg, buses=(), music=(), target=-16.0, out=None):
+-    """dialogue + other buses + music (ducked under the dialogue) -> loudness-normalised mix, soft-limited at
+-    -1 dBFS, the very end cut hard (10 ms) -> build/episode_audio.wav"""
++    """dialogue + other buses (trimmed, ridden under the dialogue's level) + music (trimmed, ridden, ducked under every
++    line) -> loudness-normalised mix, soft-knee limited at -1 dBFS, the very end cut hard (10 ms) ->
++    build/episode_audio.wav"""
+     mix = dlg.x.copy()
+-    for b in buses:
+-        mix += b.x
++    ld = lufs(dlg.x)
++    if buses:
++        fx = sum(b.x for b in buses) * db(FX_DB)
++        mix += fx * rider(fx, ld + FX_CEIL)[:, None]
+     if music:
+-        d = duck(dlg)[:, None]
+-        for b in music:
+-            mix += b.x * d
++        mu = sum(b.x for b in music) * db(MUSIC_DB)
++        mix += mu * (rider(mu, ld + MUSIC_CEIL) * duck(dlg))[:, None]
+     mix *= db(target - lufs(mix))
+     peak = db(-1)
+-    mix = np.tanh(mix / peak) * peak
++    mix = soft_limit(mix)
+     mix *= db(target - lufs(mix))                          # the limiter takes a little off: put it back
+     mix = np.clip(mix, -peak, peak)
+     mix[-int(0.01 * SR):] *= np.linspace(1, 0, int(0.01 * SR))[:, None]
+diff --git a/studio/film/cast.py b/studio/film/cast.py
+index e5400d0..6f1a602 100644
+--- a/studio/film/cast.py
++++ b/studio/film/cast.py
+@@ -53,7 +53,8 @@ class Cast:
+                                                                 ("paint" if sp.get("paint_eyes") else
+                                                                  sp.get("pupil_lift", True))),
+                               mouth_w=sp.get("mouth_w", 1.0), mouth_erase=sp.get("mouth_erase", False),
+-                              erase_band=sp.get("erase_band", 0.06), lid_reach=sp.get("lid_reach", 1.12))
++                              erase_band=sp.get("erase_band", 0.06), lid_reach=sp.get("lid_reach", 1.12),
++                              lip_lt=sp.get("lip_lt"))
+         em = np.mean([e[:2] for e in eyes], 0)
+         ed = abs(eyes[1][0] - eyes[0][0]) if len(eyes) == 2 else (fm["head"][2] - fm["head"][0]) / 4.24
+         if faces != "F" and len(eyes) == 2:
+diff --git a/studio/film/engine.py b/studio/film/engine.py
+index bb57ed3..efdc115 100644
+--- a/studio/film/engine.py
++++ b/studio/film/engine.py
+@@ -94,7 +94,7 @@ class Drawing:
+ 
+     def __init__(self, name, path, meta, mouth=None, chin=None, eyes=(), facing="front", neck=None, head=None,
+                  jaw=1.0, anchors=None, brow_gain=1.0, ink=None, lid=None, pupils=True, mouth_w=1.0,
+-                 mouth_erase=False, erase_band=0.06, lid_reach=1.12):
++                 mouth_erase=False, erase_band=0.06, lid_reach=1.12, lip_lt=None):
+         self.name = name
+         self.ox, self.oy = meta["off"]
+         self.S = meta.get("scale", 4)                    # part px per sheet px
+@@ -105,7 +105,7 @@ class Drawing:
+             self.u8[L] = cv2.resize(full, None, fx=L, fy=L, interpolation=cv2.INTER_AREA)
+         self.spec = dict(mouth=mouth, chin=chin, eyes=eyes, facing=facing, neck=neck, head=head, jaw=jaw,
+                          brow_gain=brow_gain, ink=ink, lid=lid, pupils=pupils, mouth_w=mouth_w,
+-                         mouth_erase=mouth_erase, erase_band=erase_band, lid_reach=lid_reach)
++                         mouth_erase=mouth_erase, erase_band=erase_band, lid_reach=lid_reach, lip_lt=lip_lt)
+         self.has_face = bool(mouth or eyes or head)
+         self._base = {}
+         self._face = {}
+@@ -179,7 +179,8 @@ class Drawing:
+         f = Face(sub, mouth=mo, chin=R(0, sp["chin"])[1] if sp["chin"] else None, eyes=ey, facing=sp["facing"],
+                  jaw=sp["jaw"], brow_gain=sp["brow_gain"], ink=sp["ink"], lid=sp["lid"], pupils=sp.get("pupils", True),
+                  mouth_w=sp.get("mouth_w", 1.0), mouth_erase=sp.get("mouth_erase", False),
+-                 erase_band=sp.get("erase_band", 0.06), lid_reach=sp.get("lid_reach", 1.12))
++                 erase_band=sp.get("erase_band", 0.06), lid_reach=sp.get("lid_reach", 1.12),
++                 lt=sp["lip_lt"] * s if sp.get("lip_lt") else None)
+         hb = None
+         if sp["head"]:
+             h0, h1 = R(sp["head"][0], sp["head"][1]), R(sp["head"][2], sp["head"][3])
+diff --git a/studio/film/face.py b/studio/film/face.py
+index 0f20c47..5054939 100644
+--- a/studio/film/face.py
++++ b/studio/film/face.py
+@@ -46,7 +46,7 @@ class Face:
+     (for a profile: xl..xr runs from the mouth corner to the lips' front)."""
+ 
+     def __init__(self, img, mouth=None, chin=None, eyes=(), facing="front", jaw=1.0, ink=None, lid=None, brow_gain=1.0,
+-                 pupils=True, mouth_w=1.0, mouth_erase=False, erase_band=0.06, lid_reach=1.12):
++                 pupils=True, mouth_w=1.0, mouth_erase=False, erase_band=0.06, lid_reach=1.12, lt=None):
+         self.img = img.astype(np.float32) / 255 if img.dtype == np.uint8 else img.astype(np.float32)
+         self.H, self.W = self.img.shape[:2]
+         self.mouth, self.chin, self.eyes = mouth, chin, sorted(tuple(e) for e in eyes)     # viewer's left first
+@@ -120,6 +120,8 @@ class Face:
+                 v = self.img[ya:yb, c - 1:c + 2, :3].mean(1).max(1)
+                 dark = v < 0.72 * np.percentile(v, 85)
+                 self.lt = max(1.0, 0.5 * float(dark.sum()))
++        if lt is not None:                      # given by hand (a moustache right over the line reads as line)
++            self.lt = max(1.0, float(lt))
+         # with a lift the drawn pupils are taken out of the drawing before any warp (a brow raised over an eye whose
+         # pupil touches the lid would otherwise drag the old pupil's edge up into the white), and always re-placed
+         self.src = self.img
+diff --git a/studio/film/render.py b/studio/film/render.py
+index 4b20cee..e378fcc 100644
+--- a/studio/film/render.py
++++ b/studio/film/render.py
+@@ -355,6 +355,8 @@ def render_frame(f):
+             img = cv2.warpAffine(img, np.float32([[z, 0, OW / 2 * (1 - z) + sh], [0, z, OH / 2 * (1 - z)]]),
+                                  (OW, OH), borderMode=cv2.BORDER_REPLICATE)
+     img = G.captions(img, t, getattr(D, "CAPTIONS", []))
++    if X is not None and hasattr(X, "overlay"):              # the episode's own full-frame graphics over the picture
++        img = X.overlay(img, t, s)
+     if kind not in ("black", "title"):
+         img = G.finish(img, f)
+     return (np.clip(img, 0, 1) * 255 + 0.5).astype(np.uint8)
+diff --git a/studio/film/voices.py b/studio/film/voices.py
+index c71bee0..c280b5c 100644
+--- a/studio/film/voices.py
++++ b/studio/film/voices.py
+@@ -175,12 +175,14 @@ def build(out_dir, lines, maxgap=0.2, gaps=None, k=1.0, extra=None):
+ 
+ 
+ # ---------------------------------------------------------------- recordings with many lines in them
+-def stretches(y16, min_pause=0.35, top_db=38):
+-    """the speech in a recording, split where it pauses for at least min_pause s -> [[start, end]] (s)"""
++def stretches(y16, min_pause=0.35, top_db=38, longest=25.0):
++    """the speech in a recording, split where it pauses for at least min_pause s -> [[start, end]] (s). A stretch
++    never runs past `longest` s (Whisper hears only the first 30 s of a piece): a fast read with no long pauses is
++    split at its next short one"""
+     out = []
+     for a, b in librosa.effects.split(y16, top_db=top_db, frame_length=1024, hop_length=160):
+         a, b = a / 16000, b / 16000
+-        if out and a - out[-1][1] < min_pause:
++        if out and a - out[-1][1] < min_pause and b - out[-1][0] <= longest:
+             out[-1][1] = b
+         elif b - a >= 0.08:
+             out.append([a, b])
