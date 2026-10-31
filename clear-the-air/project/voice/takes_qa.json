@@ -1,0 +1,1262 @@
+{
+ "A01_0_1.wav": {
+  "id": "A01",
+  "voice": "narrator",
+  "dur": 6.04,
+  "wer": 0.0,
+  "heard": "Carrington, a private meeting to clear the air. Jason had invited a camera crew.",
+  "sim": 0.91,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.411
+ },
+ "A01_0_2.wav": {
+  "id": "A01",
+  "voice": "narrator",
+  "dur": 5.57,
+  "wer": 0.0,
+  "heard": "Carrington, a private meeting to clear the air. Jason had invited a camera crew.",
+  "sim": 0.925,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.411
+ },
+ "A01_0_3.wav": {
+  "id": "A01",
+  "voice": "narrator",
+  "dur": 6.5,
+  "wer": 0.0,
+  "heard": "Carrington, a private meeting to clear the air. Jason had invited a camera crew.",
+  "sim": 0.908,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.402
+ },
+ "A01_1_1.wav": {
+  "id": "A01",
+  "voice": "narrator",
+  "dur": 5.8,
+  "wer": 0.0,
+  "heard": "Carrington. A private meeting to clear the air. Jason had invited a camera crew.",
+  "sim": 0.899,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.384
+ },
+ "A01_1_2.wav": {
+  "id": "A01",
+  "voice": "narrator",
+  "dur": 5.99,
+  "wer": 0.0,
+  "heard": "Carrington. A private meeting to clear the air. Jason had invited a camera crew.",
+  "sim": 0.885,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.398
+ },
+ "A01_1_3.wav": {
+  "id": "A01",
+  "voice": "narrator",
+  "dur": 5.85,
+  "wer": 0.0,
+  "heard": "Carrington, a private meeting to clear the air. Jason had invited a camera crew.",
+  "sim": 0.908,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.416
+ },
+ "A02_0_1.wav": {
+  "id": "A02",
+  "voice": "michael-carrick",
+  "dur": 5.15,
+  "wer": 0.0,
+  "heard": "Bruno, if you've got a problem with the tactics, tell me, not the television.",
+  "sim": 0.769,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.46
+ },
+ "A02_0_2.wav": {
+  "id": "A02",
+  "voice": "michael-carrick",
+  "dur": 4.88,
+  "wer": 0.0,
+  "heard": "Bruno, if you've got a problem with the tactics, tell me, not the television.",
+  "sim": 0.809,
+  "nearest_other": "harry-maguire",
+  "other_sim": 0.448
+ },
+ "A02_0_3.wav": {
+  "id": "A02",
+  "voice": "michael-carrick",
+  "dur": 5.85,
+  "wer": 0.0,
+  "heard": "Bruno, if you've got a problem with the tactics, tell me. Not the television.",
+  "sim": 0.862,
+  "nearest_other": "harry-maguire",
+  "other_sim": 0.47
+ },
+ "A02_1_1.wav": {
+  "id": "A02",
+  "voice": "michael-carrick",
+  "dur": 5.94,
+  "wer": 0.0,
+  "heard": "Bruno, if you've got a problem with the tactics, tell me. Not the television.",
+  "sim": 0.78,
+  "nearest_other": "harry-maguire",
+  "other_sim": 0.498
+ },
+ "A02_1_2.wav": {
+  "id": "A02",
+  "voice": "michael-carrick",
+  "dur": 5.48,
+  "wer": 0.0,
+  "heard": "Bruno, if you've got a problem with the tactics, tell me. Not the television.",
+  "sim": 0.806,
+  "nearest_other": "harry-maguire",
+  "other_sim": 0.51
+ },
+ "A02_1_3.wav": {
+  "id": "A02",
+  "voice": "michael-carrick",
+  "dur": 6.32,
+  "wer": 0.0,
+  "heard": "Bruno, if you've got a problem with the tactics, tell me. Not the television.",
+  "sim": 0.817,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.465
+ },
+ "A03_0_1.wav": {
+  "id": "A03",
+  "voice": "bruno-fernandes",
+  "dur": 3.11,
+  "wer": 0.0,
+  "heard": "I tried. You said your door was always open.",
+  "sim": 0.754,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.399
+ },
+ "A03_0_2.wav": {
+  "id": "A03",
+  "voice": "bruno-fernandes",
+  "dur": 3.11,
+  "wer": 0.0,
+  "heard": "I tried. You said your door was always open.",
+  "sim": 0.699,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.365
+ },
+ "A03_0_3.wav": {
+  "id": "A03",
+  "voice": "bruno-fernandes",
+  "dur": 3.44,
+  "wer": 0.0,
+  "heard": "I tried. You said your door was always open.",
+  "sim": 0.637,
+  "nearest_other": "matheus-cunha",
+  "other_sim": 0.336
+ },
+ "A03_1_1.wav": {
+  "id": "A03",
+  "voice": "bruno-fernandes",
+  "dur": 3.44,
+  "wer": 0.0,
+  "heard": "I tried, you said your door was always open.",
+  "sim": 0.683,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.341
+ },
+ "A03_1_2.wav": {
+  "id": "A03",
+  "voice": "bruno-fernandes",
+  "dur": 3.11,
+  "wer": 0.0,
+  "heard": "I tried. You said your door was always open.",
+  "sim": 0.709,
+  "nearest_other": "narrator",
+  "other_sim": 0.448
+ },
+ "A03_1_3.wav": {
+  "id": "A03",
+  "voice": "bruno-fernandes",
+  "dur": 3.11,
+  "wer": 0.0,
+  "heard": "I tried. You said your door was always open.",
+  "sim": 0.716,
+  "nearest_other": "matheus-cunha",
+  "other_sim": 0.341
+ },
+ "A04_0_1.wav": {
+  "id": "A04",
+  "voice": "michael-carrick",
+  "dur": 0.84,
+  "wer": 0.0,
+  "heard": "It is.",
+  "sim": 0.115,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.204
+ },
+ "A04_0_2.wav": {
+  "id": "A04",
+  "voice": "michael-carrick",
+  "dur": 0.84,
+  "wer": 0.0,
+  "heard": "It is.",
+  "sim": 0.16,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.132
+ },
+ "A04_0_3.wav": {
+  "id": "A04",
+  "voice": "michael-carrick",
+  "dur": 0.88,
+  "wer": 0.0,
+  "heard": "It is.",
+  "sim": 0.194,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.222
+ },
+ "A04_1_1.wav": {
+  "id": "A04",
+  "voice": "michael-carrick",
+  "dur": 0.7,
+  "wer": 0.0,
+  "heard": "It is.",
+  "sim": 0.171,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.178
+ },
+ "A04_1_2.wav": {
+  "id": "A04",
+  "voice": "michael-carrick",
+  "dur": 0.84,
+  "wer": 0.0,
+  "heard": "It is.",
+  "sim": 0.035,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.172
+ },
+ "A04_1_3.wav": {
+  "id": "A04",
+  "voice": "michael-carrick",
+  "dur": 0.93,
+  "wer": 0.0,
+  "heard": "It is.",
+  "sim": 0.176,
+  "nearest_other": "harry-maguire",
+  "other_sim": 0.197
+ },
+ "A05_0_1.wav": {
+  "id": "A05",
+  "voice": "bruno-fernandes",
+  "dur": 1.49,
+  "wer": 0.0,
+  "heard": "Jason was standing in it.",
+  "sim": 0.62,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.313
+ },
+ "A05_0_2.wav": {
+  "id": "A05",
+  "voice": "bruno-fernandes",
+  "dur": 1.81,
+  "wer": 0.0,
+  "heard": "Jason was standing in it.",
+  "sim": 0.744,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.414
+ },
+ "A05_0_3.wav": {
+  "id": "A05",
+  "voice": "bruno-fernandes",
+  "dur": 1.72,
+  "wer": 0.0,
+  "heard": "Jason was standing in it.",
+  "sim": 0.611,
+  "nearest_other": "narrator",
+  "other_sim": 0.325
+ },
+ "A05_1_1.wav": {
+  "id": "A05",
+  "voice": "bruno-fernandes",
+  "dur": 1.86,
+  "wer": 0.0,
+  "heard": "Jason was standing in it.",
+  "sim": 0.566,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.346
+ },
+ "A05_1_2.wav": {
+  "id": "A05",
+  "voice": "bruno-fernandes",
+  "dur": 1.67,
+  "wer": 0.0,
+  "heard": "Jason was standing in it.",
+  "sim": 0.53,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.237
+ },
+ "A05_1_3.wav": {
+  "id": "A05",
+  "voice": "bruno-fernandes",
+  "dur": 1.44,
+  "wer": 0.0,
+  "heard": "Jason was standing in it.",
+  "sim": 0.71,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.312
+ },
+ "A06_0_1.wav": {
+  "id": "A06",
+  "voice": "michael-carrick",
+  "dur": 3.11,
+  "wer": 0.333,
+  "heard": "Look, maybe I could have been clearer.",
+  "sim": 0.658,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.436
+ },
+ "A06_0_2.wav": {
+  "id": "A06",
+  "voice": "michael-carrick",
+  "dur": 3.58,
+  "wer": 0.333,
+  "heard": "Look, maybe I could have been clearer.",
+  "sim": 0.656,
+  "nearest_other": "ole-gunnar-solskjaer",
+  "other_sim": 0.41
+ },
+ "A06_0_3.wav": {
+  "id": "A06",
+  "voice": "michael-carrick",
+  "dur": 2.79,
+  "wer": 0.333,
+  "heard": "Look, maybe I could have been clearer.",
+  "sim": 0.689,
+  "nearest_other": "ole-gunnar-solskjaer",
+  "other_sim": 0.44
+ },
+ "A06_1_1.wav": {
+  "id": "A06",
+  "voice": "michael-carrick",
+  "dur": 2.74,
+  "wer": 0.333,
+  "heard": "Look, maybe I could have been clearer.",
+  "sim": 0.619,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.482
+ },
+ "A06_1_2.wav": {
+  "id": "A06",
+  "voice": "michael-carrick",
+  "dur": 2.18,
+  "wer": 0.333,
+  "heard": "Look, maybe I could have been clearer.",
+  "sim": 0.573,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.482
+ },
+ "A06_1_3.wav": {
+  "id": "A06",
+  "voice": "michael-carrick",
+  "dur": 2.69,
+  "wer": 0.333,
+  "heard": "Look, maybe I could have been clearer.",
+  "sim": 0.642,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.427
+ },
+ "A07_0_1.wav": {
+  "id": "A07",
+  "voice": "bruno-fernandes",
+  "dur": 2.6,
+  "wer": 0.0,
+  "heard": "And maybe I shouldn't have said it on telly.",
+  "sim": 0.644,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.36
+ },
+ "A07_0_2.wav": {
+  "id": "A07",
+  "voice": "bruno-fernandes",
+  "dur": 2.09,
+  "wer": 0.0,
+  "heard": "And maybe I shouldn't have said it on telly.",
+  "sim": 0.599,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.351
+ },
+ "A07_0_3.wav": {
+  "id": "A07",
+  "voice": "bruno-fernandes",
+  "dur": 2.09,
+  "wer": 0.0,
+  "heard": "And maybe I shouldn't have said it on telly.",
+  "sim": 0.651,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.331
+ },
+ "A07_1_1.wav": {
+  "id": "A07",
+  "voice": "bruno-fernandes",
+  "dur": 2.09,
+  "wer": 0.0,
+  "heard": "And maybe I shouldn't have said it on telly.",
+  "sim": 0.63,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.368
+ },
+ "A07_1_2.wav": {
+  "id": "A07",
+  "voice": "bruno-fernandes",
+  "dur": 2.41,
+  "wer": 0.0,
+  "heard": "and maybe I shouldn't have said it on telly.",
+  "sim": 0.681,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.386
+ },
+ "A07_1_3.wav": {
+  "id": "A07",
+  "voice": "bruno-fernandes",
+  "dur": 2.0,
+  "wer": 0.0,
+  "heard": "And maybe I shouldn't have said it on telly.",
+  "sim": 0.625,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.327
+ },
+ "A08_0_1.wav": {
+  "id": "A08",
+  "voice": "michael-carrick",
+  "dur": 1.16,
+  "wer": 0.0,
+  "heard": "So we're all right.",
+  "sim": 0.428,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.297
+ },
+ "A08_0_2.wav": {
+  "id": "A08",
+  "voice": "michael-carrick",
+  "dur": 1.3,
+  "wer": 0.0,
+  "heard": "So we're all right.",
+  "sim": 0.427,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.328
+ },
+ "A08_0_3.wav": {
+  "id": "A08",
+  "voice": "michael-carrick",
+  "dur": 1.3,
+  "wer": 0.5,
+  "heard": "So we're alright?",
+  "sim": 0.392,
+  "nearest_other": "harry-maguire",
+  "other_sim": 0.24
+ },
+ "A08_1_1.wav": {
+  "id": "A08",
+  "voice": "michael-carrick",
+  "dur": 1.11,
+  "wer": 0.5,
+  "heard": "So we're alright.",
+  "sim": 0.421,
+  "nearest_other": "narrator",
+  "other_sim": 0.232
+ },
+ "A08_1_2.wav": {
+  "id": "A08",
+  "voice": "michael-carrick",
+  "dur": 1.3,
+  "wer": 0.0,
+  "heard": "So we're all right",
+  "sim": 0.429,
+  "nearest_other": "harry-maguire",
+  "other_sim": 0.33
+ },
+ "A08_1_3.wav": {
+  "id": "A08",
+  "voice": "michael-carrick",
+  "dur": 1.11,
+  "wer": 0.5,
+  "heard": "So we're alright?",
+  "sim": 0.22,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.128
+ },
+ "A09_0_1.wav": {
+  "id": "A09",
+  "voice": "bruno-fernandes",
+  "dur": 3.34,
+  "wer": 0.0,
+  "heard": "Yes, I still think the tactics were shit.",
+  "sim": 0.671,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.347
+ },
+ "A09_0_2.wav": {
+  "id": "A09",
+  "voice": "bruno-fernandes",
+  "dur": 3.58,
+  "wer": 0.0,
+  "heard": "Yes, I still think the tactics were shit.",
+  "sim": 0.752,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.405
+ },
+ "A09_0_3.wav": {
+  "id": "A09",
+  "voice": "bruno-fernandes",
+  "dur": 3.11,
+  "wer": 0.0,
+  "heard": "Yes, I still think the tactics were shit.",
+  "sim": 0.725,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.357
+ },
+ "A09_1_1.wav": {
+  "id": "A09",
+  "voice": "bruno-fernandes",
+  "dur": 2.93,
+  "wer": 0.0,
+  "heard": "Yes, I still think the tactics were shit.",
+  "sim": 0.693,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.43
+ },
+ "A09_1_2.wav": {
+  "id": "A09",
+  "voice": "bruno-fernandes",
+  "dur": 3.44,
+  "wer": 0.0,
+  "heard": "Yes, I still think the tactics were shit.",
+  "sim": 0.736,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.346
+ },
+ "A09_1_3.wav": {
+  "id": "A09",
+  "voice": "bruno-fernandes",
+  "dur": 3.3,
+  "wer": 0.0,
+  "heard": "Yes, I still think the tactics were shit.",
+  "sim": 0.731,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.395
+ },
+ "A10_0_1.wav": {
+  "id": "A10",
+  "voice": "michael-carrick",
+  "dur": 3.9,
+  "wer": 0.0,
+  "heard": "Aye, but now you've told me indoors. Progress.",
+  "sim": 0.793,
+  "nearest_other": "harry-maguire",
+  "other_sim": 0.418
+ },
+ "A10_0_2.wav": {
+  "id": "A10",
+  "voice": "michael-carrick",
+  "dur": 3.76,
+  "wer": 0.125,
+  "heard": "Eh, but now you've told me indoors. Progress.",
+  "sim": 0.747,
+  "nearest_other": "harry-maguire",
+  "other_sim": 0.47
+ },
+ "A10_0_3.wav": {
+  "id": "A10",
+  "voice": "michael-carrick",
+  "dur": 3.85,
+  "wer": 0.0,
+  "heard": "Aye, but now you've told me indoors. Progress.",
+  "sim": 0.732,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.415
+ },
+ "A10_1_1.wav": {
+  "id": "A10",
+  "voice": "michael-carrick",
+  "dur": 4.09,
+  "wer": 0.0,
+  "heard": "Aye, but now you've told me indoors. Progress.",
+  "sim": 0.759,
+  "nearest_other": "harry-maguire",
+  "other_sim": 0.396
+ },
+ "A10_1_2.wav": {
+  "id": "A10",
+  "voice": "michael-carrick",
+  "dur": 3.62,
+  "wer": 0.0,
+  "heard": "Aye, but now you've told me indoors. Progress.",
+  "sim": 0.787,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.44
+ },
+ "A10_1_3.wav": {
+  "id": "A10",
+  "voice": "michael-carrick",
+  "dur": 3.62,
+  "wer": 0.0,
+  "heard": "Aye, but now you've told me indoors. Progress.",
+  "sim": 0.745,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.408
+ },
+ "A11_0_1.wav": {
+  "id": "A11",
+  "voice": "bruno-fernandes",
+  "dur": 2.28,
+  "wer": 0.0,
+  "heard": "Jason, what are you doing?",
+  "sim": 0.633,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.33
+ },
+ "A11_0_2.wav": {
+  "id": "A11",
+  "voice": "bruno-fernandes",
+  "dur": 2.14,
+  "wer": 0.0,
+  "heard": "Jason, what are you doing?",
+  "sim": 0.666,
+  "nearest_other": "narrator",
+  "other_sim": 0.325
+ },
+ "A11_0_3.wav": {
+  "id": "A11",
+  "voice": "bruno-fernandes",
+  "dur": 2.28,
+  "wer": 0.0,
+  "heard": "Jason, what are you doing?",
+  "sim": 0.649,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.295
+ },
+ "A11_1_1.wav": {
+  "id": "A11",
+  "voice": "bruno-fernandes",
+  "dur": 2.14,
+  "wer": 0.0,
+  "heard": "Jason, what are you doing?",
+  "sim": 0.652,
+  "nearest_other": "gary-neville",
+  "other_sim": 0.339
+ },
+ "A11_1_2.wav": {
+  "id": "A11",
+  "voice": "bruno-fernandes",
+  "dur": 2.18,
+  "wer": 0.0,
+  "heard": "Jason, what are you doing?",
+  "sim": 0.686,
+  "nearest_other": "matheus-cunha",
+  "other_sim": 0.364
+ },
+ "A11_1_3.wav": {
+  "id": "A11",
+  "voice": "bruno-fernandes",
+  "dur": 2.32,
+  "wer": 0.0,
+  "heard": "Jason, what are you doing?",
+  "sim": 0.638,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.308
+ },
+ "A12_0_1.wav": {
+  "id": "A12",
+  "voice": "jason-wilcox",
+  "dur": 2.28,
+  "wer": 0.0,
+  "heard": "Clearing the air, it's on the agenda.",
+  "sim": 0.739,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.341
+ },
+ "A12_0_2.wav": {
+  "id": "A12",
+  "voice": "jason-wilcox",
+  "dur": 2.6,
+  "wer": 0.286,
+  "heard": "Clear in the air, it's on the agenda.",
+  "sim": 0.774,
+  "nearest_other": "producer",
+  "other_sim": 0.381
+ },
+ "A12_0_3.wav": {
+  "id": "A12",
+  "voice": "jason-wilcox",
+  "dur": 2.23,
+  "wer": 0.0,
+  "heard": "Clearing the air, it's on the agenda.",
+  "sim": 0.714,
+  "nearest_other": "producer",
+  "other_sim": 0.405
+ },
+ "A12_1_1.wav": {
+  "id": "A12",
+  "voice": "jason-wilcox",
+  "dur": 2.32,
+  "wer": 0.0,
+  "heard": "Clearing the air, it's on the agenda.",
+  "sim": 0.772,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.359
+ },
+ "A12_1_2.wav": {
+  "id": "A12",
+  "voice": "jason-wilcox",
+  "dur": 2.37,
+  "wer": 0.286,
+  "heard": "Clear in the air, it's on the agenda.",
+  "sim": 0.651,
+  "nearest_other": "producer",
+  "other_sim": 0.289
+ },
+ "A12_1_3.wav": {
+  "id": "A12",
+  "voice": "jason-wilcox",
+  "dur": 2.46,
+  "wer": 0.286,
+  "heard": "Clear in the air, it's on the agenda.",
+  "sim": 0.705,
+  "nearest_other": "producer",
+  "other_sim": 0.33
+ },
+ "A13_0_1.wav": {
+  "id": "A13",
+  "voice": "michael-carrick",
+  "dur": 1.39,
+  "wer": 0.0,
+  "heard": "That's air freshener.",
+  "sim": 0.542,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.367
+ },
+ "A13_0_2.wav": {
+  "id": "A13",
+  "voice": "michael-carrick",
+  "dur": 1.63,
+  "wer": 0.333,
+  "heard": "That air freshener.",
+  "sim": 0.607,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.486
+ },
+ "A13_0_3.wav": {
+  "id": "A13",
+  "voice": "michael-carrick",
+  "dur": 1.44,
+  "wer": 0.0,
+  "heard": "That's air freshener.",
+  "sim": 0.519,
+  "nearest_other": "narrator",
+  "other_sim": 0.303
+ },
+ "A13_1_1.wav": {
+  "id": "A13",
+  "voice": "michael-carrick",
+  "dur": 1.3,
+  "wer": 0.0,
+  "heard": "That's air freshener.",
+  "sim": 0.658,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.345
+ },
+ "A13_1_2.wav": {
+  "id": "A13",
+  "voice": "michael-carrick",
+  "dur": 1.25,
+  "wer": 0.0,
+  "heard": "That's air freshener.",
+  "sim": 0.524,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.329
+ },
+ "A13_1_3.wav": {
+  "id": "A13",
+  "voice": "michael-carrick",
+  "dur": 1.16,
+  "wer": 0.0,
+  "heard": "That's air freshener.",
+  "sim": 0.519,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.304
+ },
+ "A14_0_1.wav": {
+  "id": "A14",
+  "voice": "jason-wilcox",
+  "dur": 1.11,
+  "wer": 0.0,
+  "heard": "Fresh start",
+  "sim": 0.522,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.382
+ },
+ "A14_0_2.wav": {
+  "id": "A14",
+  "voice": "jason-wilcox",
+  "dur": 0.98,
+  "wer": 0.0,
+  "heard": "Fresh start",
+  "sim": 0.453,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.382
+ },
+ "A14_0_3.wav": {
+  "id": "A14",
+  "voice": "jason-wilcox",
+  "dur": 1.02,
+  "wer": 0.0,
+  "heard": "Fresh start!",
+  "sim": 0.418,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.263
+ },
+ "A14_1_1.wav": {
+  "id": "A14",
+  "voice": "jason-wilcox",
+  "dur": 0.84,
+  "wer": 0.0,
+  "heard": "Fresh start",
+  "sim": 0.394,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.414
+ },
+ "A14_1_2.wav": {
+  "id": "A14",
+  "voice": "jason-wilcox",
+  "dur": 0.88,
+  "wer": 0.0,
+  "heard": "Fresh start",
+  "sim": 0.461,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.35
+ },
+ "A14_1_3.wav": {
+  "id": "A14",
+  "voice": "jason-wilcox",
+  "dur": 0.98,
+  "wer": 0.0,
+  "heard": "Fresh start",
+  "sim": 0.48,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.342
+ },
+ "A15_0_1.wav": {
+  "id": "A15",
+  "voice": "michael-carrick",
+  "dur": 2.69,
+  "wer": 0.0,
+  "heard": "Next time, just come straight to me.",
+  "sim": 0.762,
+  "nearest_other": "narrator",
+  "other_sim": 0.411
+ },
+ "A15_0_2.wav": {
+  "id": "A15",
+  "voice": "michael-carrick",
+  "dur": 2.6,
+  "wer": 0.0,
+  "heard": "Next time, just come straight to me.",
+  "sim": 0.763,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.44
+ },
+ "A15_0_3.wav": {
+  "id": "A15",
+  "voice": "michael-carrick",
+  "dur": 3.02,
+  "wer": 0.0,
+  "heard": "Next time, just come straight to me.",
+  "sim": 0.772,
+  "nearest_other": "narrator",
+  "other_sim": 0.398
+ },
+ "A15_1_1.wav": {
+  "id": "A15",
+  "voice": "michael-carrick",
+  "dur": 2.46,
+  "wer": 0.0,
+  "heard": "Next time, just come straight to me.",
+  "sim": 0.747,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.445
+ },
+ "A15_1_2.wav": {
+  "id": "A15",
+  "voice": "michael-carrick",
+  "dur": 2.6,
+  "wer": 0.0,
+  "heard": "Next time, just come straight to me.",
+  "sim": 0.774,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.443
+ },
+ "A15_1_3.wav": {
+  "id": "A15",
+  "voice": "michael-carrick",
+  "dur": 2.74,
+  "wer": 0.0,
+  "heard": "Next time, just come straight to me.",
+  "sim": 0.768,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.407
+ },
+ "A16_0_1.wav": {
+  "id": "A16",
+  "voice": "bruno-fernandes",
+  "dur": 1.49,
+  "wer": 0.333,
+  "heard": "Move JSON first.",
+  "sim": 0.555,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.354
+ },
+ "A16_0_2.wav": {
+  "id": "A16",
+  "voice": "bruno-fernandes",
+  "dur": 1.58,
+  "wer": 0.333,
+  "heard": "Move JSON first.",
+  "sim": 0.589,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.319
+ },
+ "A16_0_3.wav": {
+  "id": "A16",
+  "voice": "bruno-fernandes",
+  "dur": 1.58,
+  "wer": 0.333,
+  "heard": "Move JSON first.",
+  "sim": 0.57,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.312
+ },
+ "A16_1_1.wav": {
+  "id": "A16",
+  "voice": "bruno-fernandes",
+  "dur": 1.16,
+  "wer": 0.0,
+  "heard": "Move Jason first.",
+  "sim": 0.555,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.335
+ },
+ "A16_1_2.wav": {
+  "id": "A16",
+  "voice": "bruno-fernandes",
+  "dur": 1.35,
+  "wer": 0.333,
+  "heard": "Move JSON first.",
+  "sim": 0.601,
+  "nearest_other": "lisandro-martinez",
+  "other_sim": 0.327
+ },
+ "A16_1_3.wav": {
+  "id": "A16",
+  "voice": "bruno-fernandes",
+  "dur": 1.3,
+  "wer": 0.333,
+  "heard": "Move JSON first.",
+  "sim": 0.533,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.324
+ },
+ "A17_0_1.wav": {
+  "id": "A17",
+  "voice": "gary-neville",
+  "dur": 1.67,
+  "wer": 0.0,
+  "heard": "Surprise standards inspection",
+  "sim": 0.666,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.308
+ },
+ "A17_0_2.wav": {
+  "id": "A17",
+  "voice": "gary-neville",
+  "dur": 1.86,
+  "wer": 0.0,
+  "heard": "Surprise standards inspection",
+  "sim": 0.577,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.397
+ },
+ "A17_0_3.wav": {
+  "id": "A17",
+  "voice": "gary-neville",
+  "dur": 1.67,
+  "wer": 0.0,
+  "heard": "Surprise standards inspection",
+  "sim": 0.648,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.296
+ },
+ "A17_1_1.wav": {
+  "id": "A17",
+  "voice": "gary-neville",
+  "dur": 1.81,
+  "wer": 0.333,
+  "heard": "Surprise standard inspection.",
+  "sim": 0.659,
+  "nearest_other": "narrator",
+  "other_sim": 0.294
+ },
+ "A17_1_2.wav": {
+  "id": "A17",
+  "voice": "gary-neville",
+  "dur": 1.72,
+  "wer": 0.0,
+  "heard": "Surprise standards inspection",
+  "sim": 0.691,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.344
+ },
+ "A17_1_3.wav": {
+  "id": "A17",
+  "voice": "gary-neville",
+  "dur": 1.95,
+  "wer": 0.0,
+  "heard": "Surprise standards inspection.",
+  "sim": 0.71,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.316
+ },
+ "A18_0_1.wav": {
+  "id": "A18",
+  "voice": "jason-wilcox",
+  "dur": 1.67,
+  "wer": 0.25,
+  "heard": "Larry, you're not Ofsted.",
+  "sim": 0.736,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.378
+ },
+ "A18_0_2.wav": {
+  "id": "A18",
+  "voice": "jason-wilcox",
+  "dur": 1.95,
+  "wer": 0.0,
+  "heard": "Gary, you're not Ofsted.",
+  "sim": 0.628,
+  "nearest_other": "producer",
+  "other_sim": 0.196
+ },
+ "A18_0_3.wav": {
+  "id": "A18",
+  "voice": "jason-wilcox",
+  "dur": 1.9,
+  "wer": 0.0,
+  "heard": "Gary, you're not Ofsted.",
+  "sim": 0.695,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.329
+ },
+ "A18_1_1.wav": {
+  "id": "A18",
+  "voice": "jason-wilcox",
+  "dur": 1.49,
+  "wer": 0.0,
+  "heard": "Gary, you're not Ofsted?",
+  "sim": 0.569,
+  "nearest_other": "producer",
+  "other_sim": 0.253
+ },
+ "A18_1_2.wav": {
+  "id": "A18",
+  "voice": "jason-wilcox",
+  "dur": 1.67,
+  "wer": 0.0,
+  "heard": "Gary, you're not Ofsted.",
+  "sim": 0.623,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.315
+ },
+ "A18_1_3.wav": {
+  "id": "A18",
+  "voice": "jason-wilcox",
+  "dur": 1.58,
+  "wer": 0.0,
+  "heard": "Gary, you're not Ofsted.",
+  "sim": 0.586,
+  "nearest_other": "producer",
+  "other_sim": 0.322
+ },
+ "A19_0_1.wav": {
+  "id": "A19",
+  "voice": "gary-neville",
+  "dur": 1.07,
+  "wer": 0.0,
+  "heard": "Who's in charge here?",
+  "sim": 0.715,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.279
+ },
+ "A19_0_2.wav": {
+  "id": "A19",
+  "voice": "gary-neville",
+  "dur": 1.25,
+  "wer": 0.0,
+  "heard": "Who's in charge here?",
+  "sim": 0.639,
+  "nearest_other": "narrator",
+  "other_sim": 0.239
+ },
+ "A19_0_3.wav": {
+  "id": "A19",
+  "voice": "gary-neville",
+  "dur": 1.3,
+  "wer": 0.0,
+  "heard": "Who's in charge here?",
+  "sim": 0.619,
+  "nearest_other": "narrator",
+  "other_sim": 0.305
+ },
+ "A19_1_1.wav": {
+  "id": "A19",
+  "voice": "gary-neville",
+  "dur": 1.21,
+  "wer": 0.0,
+  "heard": "Who's in charge here?",
+  "sim": 0.698,
+  "nearest_other": "ole-gunnar-solskjaer",
+  "other_sim": 0.289
+ },
+ "A19_1_2.wav": {
+  "id": "A19",
+  "voice": "gary-neville",
+  "dur": 1.21,
+  "wer": 0.0,
+  "heard": "Who's in charge here?",
+  "sim": 0.625,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.282
+ },
+ "A19_1_3.wav": {
+  "id": "A19",
+  "voice": "gary-neville",
+  "dur": 1.07,
+  "wer": 0.0,
+  "heard": "Who's in charge here?",
+  "sim": 0.669,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.247
+ },
+ "A20_0_1.wav": {
+  "id": "A20",
+  "voice": "jason-wilcox",
+  "dur": 1.49,
+  "wer": 0.0,
+  "heard": "It's a collaborative structure.",
+  "sim": 0.635,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.364
+ },
+ "A20_0_2.wav": {
+  "id": "A20",
+  "voice": "jason-wilcox",
+  "dur": 1.49,
+  "wer": 0.0,
+  "heard": "It's a collaborative structure.",
+  "sim": 0.579,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.469
+ },
+ "A20_0_3.wav": {
+  "id": "A20",
+  "voice": "jason-wilcox",
+  "dur": 1.63,
+  "wer": 0.0,
+  "heard": "It's a collaborative structure.",
+  "sim": 0.598,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.371
+ },
+ "A20_1_1.wav": {
+  "id": "A20",
+  "voice": "jason-wilcox",
+  "dur": 1.49,
+  "wer": 0.0,
+  "heard": "It's a collaborative structure.",
+  "sim": 0.606,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.321
+ },
+ "A20_1_2.wav": {
+  "id": "A20",
+  "voice": "jason-wilcox",
+  "dur": 1.49,
+  "wer": 0.0,
+  "heard": "It's a collaborative structure.",
+  "sim": 0.535,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.295
+ },
+ "A20_1_3.wav": {
+  "id": "A20",
+  "voice": "jason-wilcox",
+  "dur": 1.67,
+  "wer": 0.0,
+  "heard": "It's a collaborative structure.",
+  "sim": 0.623,
+  "nearest_other": "producer",
+  "other_sim": 0.358
+ },
+ "A21_0_1.wav": {
+  "id": "A21",
+  "voice": "gary-neville",
+  "dur": 1.11,
+  "wer": 0.0,
+  "heard": "Special measures",
+  "sim": 0.702,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.266
+ },
+ "A21_0_2.wav": {
+  "id": "A21",
+  "voice": "gary-neville",
+  "dur": 1.11,
+  "wer": 0.0,
+  "heard": "Special measures.",
+  "sim": 0.621,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.349
+ },
+ "A21_0_3.wav": {
+  "id": "A21",
+  "voice": "gary-neville",
+  "dur": 1.02,
+  "wer": 0.0,
+  "heard": "Special measures",
+  "sim": 0.626,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.269
+ },
+ "A21_1_1.wav": {
+  "id": "A21",
+  "voice": "gary-neville",
+  "dur": 1.02,
+  "wer": 0.0,
+  "heard": "Special measures",
+  "sim": 0.614,
+  "nearest_other": "matheus-cunha",
+  "other_sim": 0.286
+ },
+ "A21_1_2.wav": {
+  "id": "A21",
+  "voice": "gary-neville",
+  "dur": 1.11,
+  "wer": 0.0,
+  "heard": "Special measures",
+  "sim": 0.644,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.412
+ },
+ "A21_1_3.wav": {
+  "id": "A21",
+  "voice": "gary-neville",
+  "dur": 1.02,
+  "wer": 0.0,
+  "heard": "Special measures",
+  "sim": 0.709,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.339
+ }
+}

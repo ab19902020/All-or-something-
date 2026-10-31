@@ -151,5 +151,14 @@
   "repo": "ab19902020/AnimnationStuido- @ claude/ollies-episode-production-tdnt6j",
   "quality": null,
   "quality_passed": null
+ },
+ "gary-neville": {
+  "id": "ac703e6eaf354ef8b7a768a9f76d4db2",
+  "title": "AOS Gary Neville (parody)",
+  "state": "trained",
+  "source": "episode-1-the-clear-plan/voices/sources/gary-neville-overcrap-02.mp3",
+  "repo": "ab19902020/AnimnationStuido- @ claude/goldbridge-carragher-video-1r65tj (copied to voices/sources/)",
+  "quality": null,
+  "quality_passed": null
  }
 }

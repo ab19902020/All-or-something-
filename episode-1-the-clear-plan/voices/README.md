@@ -23,6 +23,7 @@ of that character's existing voice uploads (not all of them). The models are lis
 | Joel Glazer | `17da66aa44bb4160957cef0dd0286429` | Episode 1 recordings, `j glazer/Clony-AI-ecyktuuXcVQCHNGa.mp3` |
 | Avram Glazer | `1a0c7847afd24d26b19016853f4d5cdd` | Episode 1 recordings, `a glazer/Clony-AI-VGllzn0mfCmq0W7T.mp3` (only 3.4 s exists, so this clone is the weakest) |
 | Ole Gunnar Solskjær | `86cc33a2041e43168345f79fdc509efc` | *The Handover*, `05-ole-gunnar-solskjaer.mp3` |
+| Gary Neville | `ac703e6eaf354ef8b7a768a9f76d4db2` | the Overcrap Daily video *Consistently Shit*, `02-gary-neville.mp3` (9.9 s; AnimnationStuido- `claude/goldbridge-carragher-video-1r65tj`), kept in [`sources/`](sources/) as `gary-neville-overcrap-02.mp3`; made for [*Clear the Air*](../../clear-the-air/) |
 
 "Episode 1 recordings" are the Clony AI clips in `show TV.zip` (TV-show- repo); *The Mole* is on TV-show-
 `claude/new-session-ow0mwl`; *The Handover* is on AnimnationStuido- `claude/ollies-episode-production-tdnt6j`.

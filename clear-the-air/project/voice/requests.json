@@ -1,0 +1,275 @@
+[
+ {
+  "id": "A01",
+  "voice": "narrator",
+  "speaker": "NARRATOR",
+  "text": "Carrington. A private meeting to clear the air. Jason had invited a camera crew.",
+  "note": "grave, understated",
+  "tags": [
+   "[grave, understated documentary narration] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "01_narrator.wav"
+ },
+ {
+  "id": "A02",
+  "voice": "michael-carrick",
+  "speaker": "CARRICK",
+  "text": "Bruno, if you've got a problem with the tactics, tell me. Not the television.",
+  "note": "quiet, firm",
+  "tags": [
+   "[quiet, firm, calm, understated, never shouting] ",
+   "[calm, quiet, flat voice] "
+  ],
+  "takes": 3,
+  "file": "02_carrick.wav"
+ },
+ {
+  "id": "A03",
+  "voice": "bruno-fernandes",
+  "speaker": "BRUNO",
+  "text": "I tried. You said your door was always open.",
+  "note": "earnest, defensive",
+  "tags": [
+   "[earnest, defensive] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "03_bruno.wav"
+ },
+ {
+  "id": "A04",
+  "voice": "michael-carrick",
+  "speaker": "CARRICK",
+  "text": "It is.",
+  "note": "plainly",
+  "tags": [
+   "[plainly, calm, understated, never shouting] ",
+   "[calm, quiet, flat voice] "
+  ],
+  "takes": 3,
+  "file": "04_carrick.wav"
+ },
+ {
+  "id": "A05",
+  "voice": "bruno-fernandes",
+  "speaker": "BRUNO",
+  "text": "Jason was standing in it.",
+  "note": "dry glance towards Jason",
+  "tags": [
+   "[dry glance towards Jason] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "05_bruno.wav"
+ },
+ {
+  "id": "A06",
+  "voice": "michael-carrick",
+  "speaker": "CARRICK",
+  "text": "Look. Maybe I could've been clearer.",
+  "note": "reasonable",
+  "tags": [
+   "[reasonable, calm, understated, never shouting] ",
+   "[calm, quiet, flat voice] "
+  ],
+  "takes": 3,
+  "file": "06_carrick.wav"
+ },
+ {
+  "id": "A07",
+  "voice": "bruno-fernandes",
+  "speaker": "BRUNO",
+  "text": "And maybe I shouldn't have said it on telly.",
+  "note": "softens",
+  "tags": [
+   "[softens] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "07_bruno.wav"
+ },
+ {
+  "id": "A08",
+  "voice": "michael-carrick",
+  "speaker": "CARRICK",
+  "text": "So we're all right?",
+  "note": "tentative",
+  "tags": [
+   "[tentative, calm, understated, never shouting] ",
+   "[calm, quiet, flat voice] "
+  ],
+  "takes": 3,
+  "file": "08_carrick.wav"
+ },
+ {
+  "id": "A09",
+  "voice": "bruno-fernandes",
+  "speaker": "BRUNO",
+  "text": "Yes. I still think the tactics were shit.",
+  "note": "sincere",
+  "tags": [
+   "[sincere] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "09_bruno.wav"
+ },
+ {
+  "id": "A10",
+  "voice": "michael-carrick",
+  "speaker": "CARRICK",
+  "text": "Aye. But now you've told me indoors. Progress.",
+  "note": "dry warmth",
+  "tags": [
+   "[dry warmth, calm, understated, never shouting] ",
+   "[calm, quiet, flat voice] "
+  ],
+  "takes": 3,
+  "file": "10_carrick.wav"
+ },
+ {
+  "id": "A11",
+  "voice": "bruno-fernandes",
+  "speaker": "BRUNO",
+  "text": "Jason. What are you doing?",
+  "note": "baffled",
+  "tags": [
+   "[baffled] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "11_bruno.wav"
+ },
+ {
+  "id": "A12",
+  "voice": "jason-wilcox",
+  "speaker": "WILCOX",
+  "text": "Clearing the air. It's on the agenda.",
+  "note": "matter-of-fact",
+  "tags": [
+   "[matter-of-fact] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "12_wilcox.wav"
+ },
+ {
+  "id": "A13",
+  "voice": "michael-carrick",
+  "speaker": "CARRICK",
+  "text": "That's air freshener.",
+  "note": "deadpan",
+  "tags": [
+   "[deadpan, calm, understated, never shouting] ",
+   "[calm, quiet, flat voice] "
+  ],
+  "takes": 3,
+  "file": "13_carrick.wav"
+ },
+ {
+  "id": "A14",
+  "voice": "jason-wilcox",
+  "speaker": "WILCOX",
+  "text": "Fresh start.",
+  "note": "corporate pride",
+  "tags": [
+   "[corporate pride] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "14_wilcox.wav"
+ },
+ {
+  "id": "A15",
+  "voice": "michael-carrick",
+  "speaker": "CARRICK",
+  "text": "Next time, just come straight to me.",
+  "note": "low, sincere",
+  "tags": [
+   "[low, sincere, calm, understated, never shouting] ",
+   "[calm, quiet, flat voice] "
+  ],
+  "takes": 3,
+  "file": "15_carrick.wav"
+ },
+ {
+  "id": "A16",
+  "voice": "bruno-fernandes",
+  "speaker": "BRUNO",
+  "text": "Move Jason first.",
+  "note": "small smile",
+  "tags": [
+   "[small smile] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "16_bruno.wav"
+ },
+ {
+  "id": "A17",
+  "voice": "gary-neville",
+  "speaker": "GARY",
+  "text": "Surprise standards inspection.",
+  "note": "brisk authority",
+  "tags": [
+   "[brisk authority] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "17_gary.wav"
+ },
+ {
+  "id": "A18",
+  "voice": "jason-wilcox",
+  "speaker": "WILCOX",
+  "text": "Gary, you're not Ofsted.",
+  "note": "irritated",
+  "tags": [
+   "[irritated] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "18_wilcox.wav"
+ },
+ {
+  "id": "A19",
+  "voice": "gary-neville",
+  "speaker": "GARY",
+  "text": "Who's in charge here?",
+  "note": "interrogative",
+  "tags": [
+   "[interrogative] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "19_gary.wav"
+ },
+ {
+  "id": "A20",
+  "voice": "jason-wilcox",
+  "speaker": "WILCOX",
+  "text": "It's a collaborative structure.",
+  "note": "quiet panic",
+  "tags": [
+   "[quiet panic] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "20_wilcox.wav"
+ },
+ {
+  "id": "A21",
+  "voice": "gary-neville",
+  "speaker": "GARY",
+  "text": "Special measures.",
+  "note": "flat verdict",
+  "tags": [
+   "[flat verdict] ",
+   ""
+  ],
+  "takes": 3,
+  "file": "21_gary.wav"
+ }
+]

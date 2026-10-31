@@ -1,0 +1,13 @@
+MANDATORY VOICEOVER PROVIDER: FISH AUDIO API (called AudioFish by the creator)
+
+Generate every spoken line through the Fish Audio API: Carrick, Bruno, Jason Wilcox, Gary Neville and the narrator. Use the existing cloned character voices associated with the All or Something project. Do not substitute another TTS provider, generic voices or browser speech synthesis.
+
+Before generation, inspect the repository's existing Fish Audio integration and voice configuration. Resolve each character to its actual saved Fish Audio voice/reference ID. Verify the mapping against existing episode audio. Never guess or invent IDs. For the narrator, use the established series narrator voice. If any mapping is missing, identify the missing character and resolve it before producing that voice.
+
+Use the creator's Fish Audio API credential through a private environment variable or the project's existing secret configuration. This ZIP deliberately contains no API key. If the execution environment lacks the credential, request secure configuration; do not claim the credential is included here. Never commit credentials, print them in logs, or include them in exported project files.
+
+Use the repository's working API client and verify its current request format against official Fish Audio documentation before changing integration code. Use 03_Voice_Cues.csv as the authoritative ordered script. Pass only dialogue as spoken text. Delivery instructions are direction, not literal speech; use only performance controls supported by the selected Fish Audio model.
+
+Generate one audio file per cue using the suggested filenames, converting decoded output to WAV if necessary rather than merely renaming compressed audio. Listen to every take for correct voice, accent, wording and pronunciation. Regenerate errors using the same verified voice ID. Measure actual audio durations, then animate and subtitle to the resulting files. Do not accelerate voices to meet estimated scene times.
+
+Include a non-secret generation manifest recording cue ID, character, actual voice/reference ID, model, output filename and measured duration. Keep clean dialogue stems with the editable project. Voice generation is a required production step; this writing ZIP does not contain generated audio or claim any API calls have already been made.

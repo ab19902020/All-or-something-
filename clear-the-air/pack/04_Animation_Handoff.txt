@@ -1,0 +1,11 @@
+MANDATORY: Use the Fish Audio API for ALL voiceovers and the existing cloned character voices. Read 05_Fish_Audio_API_Requirements.txt before production.
+
+Produce the All or Something short CLEAR THE AIR from this pack. Read 01_Screenplay.md and 02_Production_Notes.md completely. Follow the exact dialogue in 03_Voice_Cues.csv; the per-character text files are convenient spoken-only copies.
+
+Preserve the approved series artwork and existing production pipeline. Inspect the current repository and approved reference episode before assembly. Historical paths in the notes are leads, not confirmation that current assets exist. Use complete PNG character poses, existing mouth animation, no SVGs or detached limbs. Do not substitute a slideshow for the directed animated performance.
+
+The central story is a real thaw between Carrick and Bruno. Jason remains in the background managing appearances. Both men pointing at Jason together pays off their reconciliation. Gary arrives only at the end. Keep the doorway sidestep, air freshener, handshake, prepared announcement and last accidental spray.
+
+Record dialogue first with the project's established available voice presets, measure durations, then build the edit. Never invent voice IDs, report unrendered work as complete, or put credentials into files. Use square-bracket notes only for performance direction, never spoken dialogue. Aim for 85–90 seconds; permit up to 95 if needed for natural delivery. Produce captions from final audio, not estimated timing.
+
+Deliver the final portrait 1080x1920 MP4, editable project, used assets, clean dialogue stems and subtitle file. Check the final export on a phone for caption safety, facial consistency and intelligible speech. If essential assets or voices cannot be accessed, identify exactly what is missing rather than claiming a finished video.

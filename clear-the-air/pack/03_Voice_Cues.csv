@@ -1,0 +1,22 @@
+cue_id,character,delivery_not_spoken,dialogue,suggested_audio_filename
+01,NARRATOR,"grave, understated",Carrington. A private meeting to clear the air. Jason had invited a camera crew.,01_narrator.wav
+02,CARRICK,"quiet, firm","Bruno, if you've got a problem with the tactics, tell me. Not the television.",02_carrick.wav
+03,BRUNO,"earnest, defensive",I tried. You said your door was always open.,03_bruno.wav
+04,CARRICK,plainly,It is.,04_carrick.wav
+05,BRUNO,dry glance towards Jason,Jason was standing in it.,05_bruno.wav
+06,CARRICK,reasonable,Look. Maybe I could've been clearer.,06_carrick.wav
+07,BRUNO,softens,And maybe I shouldn't have said it on telly.,07_bruno.wav
+08,CARRICK,tentative,So we're all right?,08_carrick.wav
+09,BRUNO,sincere,Yes. I still think the tactics were shit.,09_bruno.wav
+10,CARRICK,dry warmth,Aye. But now you've told me indoors. Progress.,10_carrick.wav
+11,BRUNO,baffled,Jason. What are you doing?,11_bruno.wav
+12,WILCOX,matter-of-fact,Clearing the air. It's on the agenda.,12_wilcox.wav
+13,CARRICK,deadpan,That's air freshener.,13_carrick.wav
+14,WILCOX,corporate pride,Fresh start.,14_wilcox.wav
+15,CARRICK,"low, sincere","Next time, just come straight to me.",15_carrick.wav
+16,BRUNO,small smile,Move Jason first.,16_bruno.wav
+17,GARY,brisk authority,Surprise standards inspection.,17_gary.wav
+18,WILCOX,irritated,"Gary, you're not Ofsted.",18_wilcox.wav
+19,GARY,interrogative,Who's in charge here?,19_gary.wav
+20,WILCOX,quiet panic,It's a collaborative structure.,20_wilcox.wav
+21,GARY,flat verdict,Special measures.,21_gary.wav

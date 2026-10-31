@@ -1,0 +1,10 @@
+# Drawings this character is filmed in (studio/film/art.py): each is cut whole from its sheet, upscaled 4x and
+# given face landmarks. Check build/film/bruno-fernandes_check.jpg after any change.
+drawings:
+  front: {kit: home/front, faces: F, marks: {mouth: [1305, 277, 1380, 274, 1341, 281], chin: 330, neck: [1341, 356]}}
+  clap: {sheet: ../../reference/squad/manchester-united-squad.png, box: [18, 183, 195, 538], faces: F}     # the squad sheet
+  full: {sheet: reference/model-sheet.png, box: [14, 126, 322, 902], jaw: 1.0, mouth_w: 0.9, lip_lt: 1.0, faces: F, auto_holes: false, holes: [[160, 790]], marks: {mouth: [171, 348, 214, 347, 192, 345], chin: 393, neck: [192, 412]}}   # the model sheet's hero: the full Man United kit (crest, adidas, captain's armband)
+  # the model sheet's upper-body gesture poses, the same full kit as `full`: for a seated framing (a table in front)
+  point: {sheet: reference/model-sheet.png, box: [632, 1186, 774, 1328], faces: L, x8: true, jaw: 0.75, mouth_w: 1.6, lip_lt: 0.5, crisp: 0.6, head: [700, 1192, 768, 1286], marks: {eyes: [[730.0, 1246.0, 5.5, 5.0], [750.0, 1244.3, 4.6, 5.0]], mouth: [733, 1266, 745, 1265, 739, 1267], chin: 1284, neck: [735, 1290]}}
+  talk: {sheet: reference/model-sheet.png, box: [914, 1186, 1066, 1328], faces: F, x8: true, jaw: 0.75, mouth_w: 1.6, lip_lt: 0.5, crisp: 0.6, head: [962, 1190, 1030, 1284], marks: {eyes: [[989.7, 1243.5, 6.0, 5.5], [1005.5, 1241.0, 5.0, 5.0]], mouth: [994, 1265, 1006, 1264, 1000, 1266], chin: 1283, neck: [998, 1290]}}
+  shrug: {sheet: reference/model-sheet.png, box: [1066, 1186, 1214, 1328], faces: F, x8: true, jaw: 0.75, mouth_w: 1.6, lip_lt: 0.5, crisp: 0.6, head: [1108, 1190, 1178, 1284], marks: {eyes: [[1133.3, 1244.3, 6.0, 5.5], [1150.8, 1243.5, 5.0, 5.0]], mouth: [1136, 1266, 1151, 1265, 1143, 1268], chin: 1283, neck: [1143, 1290]}}
