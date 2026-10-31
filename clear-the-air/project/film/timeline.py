@@ -18,10 +18,8 @@ SEQ = [
     ("gap", 0.2, "cut_a04"), ("line", "A04"),             # "It is."
     ("gap", 0.4, "cut_a05"), ("line", "A05"),             # "Jason was standing in it."
     # ---- the door
-    ("gap", 0.25, "cut_door"),                            # Wilcox in the doorway, the camera eases in
-    ("gap", 0.8, "shuffle"),                              # six inches sideways
-    ("gap", 0.6),
-    ("gap", 0.7, "still_there"),                          # still mostly in the doorway
+    ("gap", 0.1),
+    ("gap", 1.85, "cut_door"),                            # smash cut: the doorway. Bruno tries; Jason blocks
     # ---- an honest exchange
     ("gap", 0.2, "cut_a06"), ("line", "A06"),             # "Look. Maybe I could've been clearer."
     ("gap", 0.3, "cut_a07"), ("line", "A07"),             # "And maybe I shouldn't have said it on telly."

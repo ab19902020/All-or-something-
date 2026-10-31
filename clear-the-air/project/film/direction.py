@@ -20,13 +20,15 @@ T = Marks(TL, L)
 m, ls, le, wt = T.m, T.ls, T.le, T.wt
 
 PLATES = {"OF": "documentary/ceo-office", "OF2": "documentary/ceo-office", "OW": "aos/office",
-          "OW2": "aos/office", "OWD": "aos/office", "OWD2": "aos/office"}
+          "OW2": "aos/office", "OWD": "aos/office", "OWD2": "aos/office", "OWW": "aos/office", "OWW2": "aos/office"}
 
 # the desk and what stands on it (1x plate px, from Como's office)
 DESK = [(268, 486), (1416, 498), (1416, 592), (1292, 600), (1292, 795), (348, 795), (348, 600), (268, 566)]
-ON_DESK = [[(476, 424), (676, 424), (676, 498), (476, 498)], [(1028, 428), (1178, 428), (1178, 518), (1028, 518)],
-           [(962, 452), (1024, 452), (1024, 528), (962, 528)], [(1178, 452), (1318, 452), (1318, 528), (1178, 528)],
-           [(396, 466), (472, 466), (472, 498), (396, 498)]]
+ON_DESK = [[(1070, 432), (1173, 432), (1160, 490), (1056, 490)],                    # the laptop's screen
+           [(970, 475), (1022, 475), (1022, 492), (970, 492)],                       # the pen pot
+           [(1211, 457), (1306, 457), (1306, 484), (1188, 484), (1188, 476), (1211, 476)],   # the books' top
+           [(396, 466), (472, 466), (472, 498), (396, 498)], [(476, 424), (676, 424), (676, 498), (476, 498)]]
+# (each the object's own outline, so nothing of the chair or the wall behind it is laid over a body)
 FRONT = [(0, 481), (268, 486), (1416, 498), (1672, 501), (1672, 941), (0, 941)]     # the desk and all before it
 OCCL = {"OF": {"desk": [FRONT] + ON_DESK}, "OF2": {"desk": [FRONT] + ON_DESK}}
 DESK_Y = 494
@@ -59,13 +61,13 @@ END_JASON = ("wilcox", "jason-wilcox:pockets", (1186, 314), 21.5)
 
 
 def master(t, cam=None, push=1.03, carrick=None, bruno=None, jason=True, plate="OF", props=(), drift=0.35, ck=CK,
-           br=BR, ed=ED_CB):
+           br=BR, ed=ED_CB, **kw):
     acts = [("carrick", carrick or DRAW["carrick"], ck, ed, False), ("bruno", bruno or DRAW["bruno"], br, ed, False)]
     if jason:
         acts = [("wilcox", jason if isinstance(jason, str) else DRAW["wilcox"], JW, ED_J, False)] + acts
     c0 = cam or M_CAM
     layers = [("actors", acts)] + [("props", p) for p in props] + [("occl", "desk")]
-    return world(t, plate, c0, (c0[0], c0[1], c0[2] * push), layers=layers, drift=drift, grade="studio")
+    return world(t, plate, c0, (c0[0], c0[1], c0[2] * push), layers=layers, drift=drift, grade="studio", **kw)
 
 
 def back_master(t, props, cam=None, push=1.03, carrick=None, bruno=None, plate="OF", drift=0.35):
@@ -82,7 +84,7 @@ SET = {
     "bruno": dict(bg=("OF", 1290, 330, 3.9, 1.6), fg=("OF", "desk", 1300, DESK_Y, 4.3, 0.0), eye=(1060, 1300)),
     "wilcox": dict(bg=("OF", 1215, 280, 4.4, 2.4), fg=("OF", "desk", 1200, DESK_Y, 4.6, 1.2), eye=(940, 1100),
                    table=5.6),                                    # he stands behind the desk: its edge at his hip
-    "gary": dict(bg=("OWD2", 1372, 330, 5.4, 2.6), fg=("OF", "desk", 1240, DESK_Y, 4.6, 1.6), eye=(960, 1030)),
+    "gary": dict(bg=("OWW2", 1330, 330, 5.4, 2.6), fg=("OF", "desk", 1240, DESK_Y, 4.6, 1.6), eye=(960, 1030)),
 }
 
 
@@ -96,9 +98,10 @@ def close(t, who, draw=None, ed=250.0, push=(1.0, 1.03), drift=0.5, table=None, 
                   push=push, drift=drift, grade="studio", **kw)
 
 
-DOOR_CAM = (1366, 368, 7.0)
-DOOR_JASON = ("wilcox", "jason-wilcox:pockets", (1371, 296), 28.0)
-DOOR_GARY = ("gary", "gary-neville:standing", (1369.3, 284.9), 25.44)      # plain: placed by the head's centre
+DOOR_CAM = (1330, 352, 7.6)                    # close on the doorway
+DOOR_JASON = ("wilcox", "jason-wilcox:pockets", (1330, 288), 30.0)       # filling the doorway
+DOOR_BRUNO = ("bruno", "bruno-fernandes:full", (1330, 296), 25.0)        # behind him, in the corridor
+DOOR_GARY = ("gary", "gary-neville:standing", (1330, 268), 30.0)      # plain: placed by the head's centre
 
 SHOTS = finish([
     # ---- a private conversation
@@ -109,8 +112,8 @@ SHOTS = finish([
     close(m("cut_a04"), "carrick", ed=286, push=(1.0, 1.0)),
     close(m("cut_a05"), "bruno", ed=286, push=(1.0, 1.0)),
     # ---- the door
-    world(m("cut_door"), "OWD", DOOR_CAM, (DOOR_CAM[0], DOOR_CAM[1], DOOR_CAM[2] * 1.07), layers=[("props", "door_jason")],
-          drift=0.2, grade="studio"),
+    world(m("cut_door"), "OWW", DOOR_CAM, (DOOR_CAM[0], DOOR_CAM[1], DOOR_CAM[2] * 1.05), layers=[("props", "door_jason")],
+          drift=0.0, grade="studio", ease="out"),
     # ---- an honest exchange
     close(m("cut_a06"), "carrick", draw=C_EXPLAIN, ed=276),
     close(m("cut_a07"), "bruno", ed=300, push=(1.0, 1.03)),
@@ -125,9 +128,9 @@ SHOTS = finish([
     master(m("cut_a11"), plate="OF2", cam=(1186, 386, 5.5), push=1.02, jason=J_PHONE,
            props=["can_jason"]),
     close(m("cut_a12"), "wilcox", draw=J_POINT, ed=240, eye=(500, 1080), props=["can"]),
-    close(m("cut_a13"), "carrick", ed=286, push=(1.0, 1.0)),
+    close(m("cut_a13"), "carrick", ed=286, push=(1.0, 1.0), mist=m("cut_a13") - 0.3),     # it reaches him
     close(m("cut_a14"), "wilcox", draw=J_PHONE, ed=300, props=["can"], push=(1.0, 1.0)),           # the advert
-    master(m("cut_look"), plate="OF2", cam=(1186, 388, 5.8), push=1.06, jason=J_PHONE, drift=0.15,
+    master(m("cut_look"), plate="OF2", cam=(1186, 388, 5.8), push=1.06, jason=J_PHONE, drift=0.15, mist=m("cut_look") - 0.5,
            props=["can_jason"]),
     # ---- the reconciliation
     close(m("cut_a15"), "carrick", ed=292, push=(1.0, 1.03)),
@@ -137,7 +140,7 @@ SHOTS = finish([
     close(m("cut_card2"), "wilcox", draw=J_CLIP, ed=270, props=["card"], card_up=m("cut_card2") + 0.1,
           push=(1.0, 1.04)),
     # ---- standards inspection
-    world(m("cut_gary"), "OWD2", DOOR_CAM, (DOOR_CAM[0], DOOR_CAM[1], DOOR_CAM[2] * 1.03), layers=[("props", "door_gary")],
+    world(m("cut_gary"), "OWW2", DOOR_CAM, (DOOR_CAM[0], DOOR_CAM[1], DOOR_CAM[2] * 1.03), layers=[("props", "door_gary")],
           drift=0.1, grade="studio"),
     close(m("cut_a17"), "gary", ed=250, props=["lanyard"], table=G_DESK),
     close(m("cut_a18"), "wilcox", ed=280, draw=J_CROSS, push=(1.0, 1.02)),

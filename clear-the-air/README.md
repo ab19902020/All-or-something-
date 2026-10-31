@@ -6,7 +6,7 @@ voices and the same office as Episode One.
 
 | | |
 |---|---|
-| **The film** | [`ALL_OR_SOMETHING_CLEAR_THE_AIR_1080x1920.mp4`](ALL_OR_SOMETHING_CLEAR_THE_AIR_1080x1920.mp4): 1080 × 1920, 30 fps, 1:13.4, H.264 + AAC, no subtitles |
+| **The film** | [`ALL_OR_SOMETHING_CLEAR_THE_AIR_1080x1920.mp4`](ALL_OR_SOMETHING_CLEAR_THE_AIR_1080x1920.mp4): 1080 × 1920, 30 fps, 1:13.0, H.264 + AAC, no subtitles |
 | **Voices** | [`voice/`](voice/): the 21 cues as WAV, under the pack's file names (`01_narrator.wav` … `21_gary.wav`) |
 | **Generation manifest** | [`generation_manifest.json`](generation_manifest.json): every cue's character, Fish Audio reference ID, model, delivery tag, take, file, measured duration and checksum. No credentials |
 | **Stems** | [`stems/`](stems/): `dialogue.wav`, `effects.wav` (room, city, foley), `music.wav`, 48 kHz 32-bit float, each at its level in the mix (before the limiter), so together they rebuild it |
@@ -18,10 +18,10 @@ voices and the same office as Episode One.
 |---|---|
 | 0:00 | **UNITED ROAD ORIGINAL.** Carrington, the manager's office. Carrick and Bruno at the desk, Jason behind them with the board: CLEAR THE AIR / *no leaks*. Narrator: *"A private meeting to clear the air. Jason had invited a camera crew."* Jason waves the camera in. |
 | 0:06 | Carrick: *"Bruno, if you've got a problem with the tactics, tell me. Not the television."* Bruno: *"I tried. You said your door was always open."* *"It is."* *"Jason was standing in it."* |
-| 0:18 | The doorway: Jason, in it. He shuffles six inches sideways. He is still mostly in the doorway. |
+| 0:18 | Smash cut, close on the doorway: Jason fills it, smiling at the camera. Behind him Bruno tries to get past on the left (Jason sidesteps), on the right (Jason sidesteps), then jumps to see over him (Jason goes up on his toes). Squeak, squeak, thud. |
 | 0:20 | The honest exchange: *"Maybe I could've been clearer." "And maybe I shouldn't have said it on telly." "So we're all right?" "Yes. I still think the tactics were shit." "Aye. But now you've told me indoors. Progress."* A tiny, reluctant smile. |
 | 0:35 | Behind them, the board gets its tick: **RESOLVED**. Jason, at arm's length, finger on the nozzle of a blue can: *Pssht. Pssht.* |
-| 0:39 | *"Jason. What are you doing?" "Clearing the air. It's on the agenda." "That's air freshener." "Fresh start."* (the can held up by his face, like an advert). The first look they have ever shared. |
+| 0:39 | *"Jason. What are you doing?" "Clearing the air. It's on the agenda." "That's air freshener." "Fresh start."* (the can held up by his face, like an advert). The haze reaches Carrick, then drifts through the first look they have ever shared. |
 | 0:48 | *"Next time, just come straight to me." "Move Jason first."* The handshake. Jason raises the tablet for the camera: **UNITED BEHIND THE MANAGER**. |
 | 0:56 | The door bangs open: Gary Neville steps into the doorway, lanyard (STANDARDS, *Inspector, self-appointed*). *"Surprise standards inspection." "Gary, you're not Ofsted." "Who's in charge here?"* Two fingers jab into the frame at Jason, together: Carrick's from one side, Bruno's from the other, either side of his UNITED BEHIND THE MANAGER tablet. He looks at one, then the other. *"It's a collaborative structure."* |
 | 1:06 | Gary's clipboard: Doorway OBSTRUCTED ✗, Air FRESHENED ✓, Communication TELEVISED ✗, Who's in charge **?** *"Special measures."* Stamp: **SPECIAL MEASURES**. |
@@ -58,7 +58,7 @@ for each cue is in the manifest.
 | Gary Neville | Overcrap Daily's house-style Gary (the Pass Mic model sheet, the drawing *Consistently Shit* uses): `standing` in the doorway (shown exactly as drawn: he doesn't speak there) and `arms` for all three of his lines (new film entries) | the lanyard and the clipboard are drawn props, and the hand writing on the clipboard is his own kit hand drawing; the badge says STANDARDS / *Inspector (self-appointed)*, not a real Ofsted badge |
 
 The office is Episode One's (Como's) office, from the desk's side, with the wide angle of the same room for the
-door; the board, the can, the tablet, the clipboard and the stamp are drawn into the shots. The handshake close-up
+door (the office's narrow door is replaced there by a wide open doorway with a corridor behind it, so Jason can stand in it and Bruno can try to get past him, and Gary arrives through the same doorway); the board, the can, the tablet, the clipboard and the stamp are drawn into the shots. Carrick and Bruno sit behind the desk with only the real outlines of the laptop, the pen pot and the books in front of them, so their bodies are whole. The handshake close-up
 and the two pointing fingers use Carrick's and Bruno's own kit hand drawings.
 
 **Lip sync.** Every mouth is driven by the line's own phonemes (a frame ahead of the sound, closures held for the
@@ -81,8 +81,8 @@ front, and the doorway shots fill the height with the standing figure.
 - **No subtitles.** The only text over the picture is the opening UNITED ROAD ORIGINAL mark and the CARRINGTON place
   title, kept inside the phone-safe area (x 90–900, y 180–1500; the app's buttons sit down the right edge), and the
   end card.
-- **Length: 1:13.4, not the pack's 85–90 s.** The pack's times were estimates; with every voice at its natural pace
-  and every comic pause the pack asks for held (0.4–0.8 s after the doorway sidestep, 0.5 s after "Progress", 0.6 s
+- **Length: 1:13, not the pack's 85–90 s.** The pack's times were estimates; with every voice at its natural pace
+  and every comic pause the pack asks for held (the doorway dance, 0.5 s after "Progress", 0.6 s
   after "Fresh start", a full second on the two of them pointing), the scene plays in 73 seconds. Filling the rest
   with dead air or slower reads would have flattened the jokes.
 

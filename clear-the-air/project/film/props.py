@@ -119,12 +119,46 @@ def door_open(img4):
     return np.clip(out, 0, 255).astype(np.uint8)
 
 
+DOORW = (1240, 124, 1420, 548)             # the doorway the short uses (1x plate px): wide enough to be stood in
+
+
+def doorway(img4):
+    """the wide angle with its door replaced by a wide open doorway: a lit corridor beyond (back wall, side walls,
+    floor, a ceiling light), the leaf swung back inside on the left, a dark frame"""
+    out = img4.astype(np.float32)
+    x0, y0, x1, y1 = (v * 4 for v in DOORW)
+    w, h = x1 - x0, y1 - y0
+    yy = np.linspace(0, 1, h)[:, None]
+    cor = np.zeros((h, w, 3), np.float32)
+    cor[:] = (np.float32([214, 208, 196])[None, None, :] * (1.02 - 0.18 * yy)[:, :, None])  # the back wall
+    fy = int(h * 0.80)
+    cor[fy:] = np.float32([128, 124, 120])                                            # the floor
+    side = int(w * 0.16)
+    for xs, sgn in ((0, 1), (w - side, -1)):                                          # the side walls, in shadow
+        poly = np.int32([[xs if sgn > 0 else w, 0], [xs + side if sgn > 0 else w - side, int(h * 0.1)],
+                         [xs + side if sgn > 0 else w - side, fy], [xs if sgn > 0 else w, h]])
+        m = np.zeros((h, w), np.uint8)
+        cv2.fillPoly(m, [poly], 1)
+        cor[m > 0] *= 0.72
+    cv2.rectangle(cor, (int(w * 0.38), int(h * 0.035)), (int(w * 0.62), int(h * 0.06)), (250, 248, 236), -1)   # light
+    cv2.line(cor, (side, fy), (w - side, fy), (90, 86, 84), 6)
+    out[y0:y1, x0:x1] = cor
+    leaf = np.int32([[x0 + 4, y0 + 4], [x0 + side + 20, y0 + 60], [x0 + side + 20, y1 - 50], [x0 + 4, y1]])
+    cv2.fillPoly(out, [leaf], (42, 40, 46))
+    cv2.polylines(out, [leaf], True, (14, 12, 14), 8, cv2.LINE_AA)
+    cv2.rectangle(out, (x0 - 14, y0 - 14), (x1 + 14, y1 + 4), (36, 34, 38), 28)                      # the frame
+    cv2.rectangle(out, (x0 - 28, y0 - 28), (x1 + 28, y1 + 4), (12, 10, 12), 6, cv2.LINE_AA)
+    return np.clip(out, 0, 255).astype(np.uint8)
+
+
 @functools.lru_cache(maxsize=8)
 def plate_image(k):
     if k in ("OF", "OF2"):
         return board(_up("documentary/ceo-office"), QUAD_OF, resolved=k == "OF2")
-    if k in ("OW", "OW2", "OWD", "OWD2"):
-        img = board(_up("aos/office"), QUAD_OW, resolved=k in ("OW2", "OWD2"))
+    if k in ("OW", "OW2", "OWD", "OWD2", "OWW", "OWW2"):
+        img = board(_up("aos/office"), QUAD_OW, resolved=k in ("OW2", "OWD2", "OWW2"))
+        if k.startswith("OWW"):
+            return doorway(img)
         return door_open(img) if k.startswith("OWD") else img
     return None
 
@@ -151,15 +185,46 @@ def ease(u):
     return u * u * (3 - 2 * u)
 
 
+# the doorway dance (seconds after the cut): Bruno tries to get past, Jason blocks him, every time
+DODGE = [(0.20, "bruno", "left"), (0.36, "jason", "left"), (0.62, "bruno", "right"), (0.76, "jason", "right"),
+         (1.02, "bruno", "jump"), (1.10, "jason", "tiptoe")]
+DOOR_X = (DOORW[0] + DOORW[2]) / 2
+
+
+def snap(u, d):
+    """a quick move: there in d seconds, a little overshoot, settled"""
+    if u <= 0:
+        return 0.0
+    v = u / d
+    return 1 + 0.12 * math.sin(math.pi * min(1.0, (v - 1) / 0.8)) * math.exp(-(v - 1) * 2) if v >= 1 else ease(v)
+
+
 def door_jason(img, s, t, M, sc):
-    """Wilcox in the doorway; on `shuffle` he moves six inches sideways (towards the board) and stops, still mostly in
-    the doorway"""
-    from film.direction import DOOR_JASON
-    who, draw, (x, y), ed_p = DOOR_JASON
-    u = ease((t - m("shuffle")) / 0.55)
-    x -= 24 * u
-    y -= 4 * math.sin(math.pi * u)
-    img, _ = draw_world_actor(img, s, t, M, sc, who, draw, (x, y), ed_p)
+    """the doorway, close: Jason stands in it, smiling at the camera; behind him Bruno tries left, then right, then
+    jumps to see over; Jason sidesteps, sidesteps, and goes up on his toes. He never stops smiling"""
+    from film.direction import DOOR_JASON, DOOR_BRUNO
+    u = t - s["t"]
+    bx, by = DOOR_X, DOOR_BRUNO[2][1]
+    jx, jy = DOOR_X, DOOR_JASON[2][1]
+    bl, br = snap(u - 0.20, 0.10), snap(u - 0.62, 0.10)
+    bx += -70 * bl + 140 * br
+    jx += -36 * snap(u - 0.36, 0.09) + 72 * snap(u - 0.76, 0.09)
+    jump = u - 1.02
+    if jump > 0:
+        bx += (DOOR_X + 36 - bx) * ease(jump / 0.12)                # back behind him, and up
+        by -= 92 * math.sin(math.pi * min(1.0, jump / 0.42))
+    tip = u - 1.10
+    if tip > 0:
+        jy -= 42 * ease(tip / 0.08) * (1 - ease((tip - 0.32) / 0.12))
+    # Bruno, in the corridor: only what the doorway shows of him
+    b_img, _ = draw_world_actor(img.copy(), s, t, M, sc, "bruno", DOOR_BRUNO[1], (bx, by), DOOR_BRUNO[3])
+    x0, y0 = M[0, 0] * DOORW[0] + M[0, 2], M[1, 1] * DOORW[1] + M[1, 2]
+    x1, y1 = M[0, 0] * DOORW[2] + M[0, 2], M[1, 1] * DOORW[3] + M[1, 2]
+    m = np.zeros((OH, OW), np.float32)
+    m[max(0, int(y0)):int(y1), max(0, int(x0)):int(x1)] = 1.0
+    m = cv2.GaussianBlur(m, (0, 0), 1.0)[..., None]
+    img = img * (1 - m) + b_img * m
+    img, _ = draw_world_actor(img, s, t, M, sc, "wilcox", DOOR_JASON[1], (jx, jy), DOOR_JASON[3])
     return img
 
 
@@ -168,7 +233,7 @@ def door_gary(img, s, t, M, sc):
     a small settle, then stands there, inspecting"""
     from film.direction import DOOR_GARY
     who, draw, (x, y), ed_p = DOOR_GARY
-    u = (t - s["t"]) / 0.28
+    u = (t - s["t"]) / 0.22
     if u < 1:
         x += 34 * (1 - ease(u)) ** 2
         y -= 5 * math.sin(math.pi * max(0.0, u))
@@ -834,8 +899,28 @@ def caption_now(t):
     return None
 
 
+def mist(img, t, t0, way=-1):
+    """the freshener's haze drifting through the shot: soft, pale blue, gone in two seconds"""
+    u = t - t0
+    if not 0 <= u <= 2.2:
+        return img
+    rng = np.random.default_rng(7)
+    im, dr = layer()
+    S = OW / 1080
+    for j in range(9):
+        y = OH * (0.22 + 0.32 * rng.random())
+        r = S * (110 + 120 * rng.random()) * (1 + 0.35 * u)
+        x = OW * (0.5 - way * 0.75) + way * OW * (0.55 + 0.25 * rng.random()) * u - way * j * 60 * S
+        a = int(150 * (1 - (u / 2.2) ** 2) * (0.6 + 0.4 * rng.random()))
+        dr.ellipse((x - r, y - 0.6 * r, x + r, y + 0.6 * r), fill=(205, 228, 245, a))
+    m = cv2.GaussianBlur(C.premult(im), (0, 0), 22 * S)
+    return img * (1 - m[..., 3:4]) + m[..., :3]
+
+
 def overlay(img, t, s):
     S = OW / 1080
+    if s.get("mist") is not None:
+        img = mist(img, t, s["mist"])
     if s.get("fingers"):                     # over the desk too: the two of them reach in from the camera's side
         lay = np.zeros((OH, OW, 4), np.float32)
         fingers(lay, s, t, s["eye"][0] * RS, s["eye"][1] * RS, s["ed"] * RS * s["push"][0], None)

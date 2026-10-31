@@ -40,9 +40,16 @@ def foley(bus):
     # the opening: a chair creaks; Wilcox's arm
     A.ev(bus, "creaks/creak-small", 1.2, -54, semis=-4)
     A.ev(bus, "cloth/cloth-b", wt("A01", "jason") + 0.1, -46)
-    # the door: the six-inch shuffle
-    A.steps(bus, m("shuffle"), m("shuffle") + 0.5, -46, pace=0.22, pan=0.3)
-    A.ev(bus, "cloth/cloth-c", m("shuffle") + 0.05, -48, pan=0.3)
+    # the doorway dance: a trainer squeak and a sleeve on every dodge and every block
+    from film.props import DODGE
+    for dt, who, way in DODGE:
+        t0 = m("cut_door") + dt
+        pan = -0.3 if way == "left" else 0.3 if way == "right" else 0.0
+        if way in ("left", "right"):
+            A.ev(bus, "creaks/creak-small", t0 + 0.02, -42 if who == "jason" else -46, semis=14, highpass=2500,
+                 dur=0.09, pan=pan)
+        A.ev(bus, "cloth/cloth-c" if who == "bruno" else "cloth/cloth-b", t0, -44, pan=pan)
+    A.ev(bus, "impacts/tom-hit", m("cut_door") + 1.45, -44, semis=-12, lowpass=500)          # Bruno lands
     # the tick: the marker squeaks, then RESOLVED
     for k in range(3):
         A.ev(bus, "creaks/creak-small", m("cut_tick") + 0.15 + 0.13 * k, -44, semis=12, highpass=2000, dur=0.12)

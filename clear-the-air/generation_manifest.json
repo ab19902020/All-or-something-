@@ -128,7 +128,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "69165c269eeb34700d0427463baa130c395e6a7022cf3e4ee128717d7c4ad4ea",
-   "in_film_at_s": 20.25
+   "in_film_at_s": 19.85
   },
   {
    "cue_id": "07",
@@ -149,7 +149,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "e584831ba290d032f9cddb9c74dc582854d7f8d3c89f5f1f056d75ed3b4a164d",
-   "in_film_at_s": 22.967
+   "in_film_at_s": 22.567
   },
   {
    "cue_id": "08",
@@ -170,7 +170,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "8c3175a414acdba0a1692f1b30149c86c00db7ec13ddde58378d6b068feb6418",
-   "in_film_at_s": 25.567
+   "in_film_at_s": 25.167
   },
   {
    "cue_id": "09",
@@ -191,7 +191,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "6e8830936c61c0991a1642e7b1fe7a765faa5b20512156f9b7f210c714d5bf37",
-   "in_film_at_s": 26.764
+   "in_film_at_s": 26.364
   },
   {
    "cue_id": "10",
@@ -212,7 +212,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "983fddf0efbfcafe4ef58d556db2479a7ccbf0b49d4ee0a9691ce71fae51ba4a",
-   "in_film_at_s": 30.434
+   "in_film_at_s": 30.034
   },
   {
    "cue_id": "11",
@@ -233,7 +233,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "e2a899e3aad997bbfc18d21c934dfd2a7ce76873970a7c36136a15f39bad9ae7",
-   "in_film_at_s": 38.774
+   "in_film_at_s": 38.374
   },
   {
    "cue_id": "12",
@@ -254,7 +254,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "445700387ea5465fbb6cc27f86c26bacbbd482b00add4c9b617f472a68f72444",
-   "in_film_at_s": 40.704
+   "in_film_at_s": 40.304
   },
   {
    "cue_id": "13",
@@ -275,7 +275,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "c9d99efc36e5d34366c19ab586720d4740b99530f4b043dc6302ab67a42a60a2",
-   "in_film_at_s": 43.174
+   "in_film_at_s": 42.774
   },
   {
    "cue_id": "14",
@@ -296,7 +296,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "1852069f35af8c21b7cbe3e9d54c89f38b6448401919e4e84758afcfbc05b989",
-   "in_film_at_s": 44.653
+   "in_film_at_s": 44.253
   },
   {
    "cue_id": "15",
@@ -317,7 +317,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "7d870e9ea7d9868af61dddde6746ca1a7828ea80dd078925476d3e19bbea0085",
-   "in_film_at_s": 47.843
+   "in_film_at_s": 47.443
   },
   {
    "cue_id": "16",
@@ -338,7 +338,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "1a95d3b4265afc93b7e6d54853935e44e68ad4ef8ae6e11a5201ca9468adf456",
-   "in_film_at_s": 50.508
+   "in_film_at_s": 50.108
   },
   {
    "cue_id": "17",
@@ -359,7 +359,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "0bd41fb6d556e3ec1c2d0a4af01471641cc3b62703c700a8c47fa62db6c194a3",
-   "in_film_at_s": 57.208
+   "in_film_at_s": 56.808
   },
   {
    "cue_id": "18",
@@ -380,7 +380,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "fddc1deb71e819514bea3d20b29742167d5433d41b377656c6aa11d19ca6f2d7",
-   "in_film_at_s": 59.398
+   "in_film_at_s": 58.998
   },
   {
    "cue_id": "19",
@@ -401,7 +401,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "213fa7e33ce906ee9448797abcb60c4363d73ff23df06761fb763efd3c6f3b8d",
-   "in_film_at_s": 61.438
+   "in_film_at_s": 61.038
   },
   {
    "cue_id": "20",
@@ -422,7 +422,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "a3316cb419af35953ba4980108c57bb6f82dfcbd8fa03f8ff14f95bd560e16cb",
-   "in_film_at_s": 64.138
+   "in_film_at_s": 63.738
   },
   {
    "cue_id": "21",
@@ -443,7 +443,7 @@
    "sample_rate": 44100,
    "channels": 1,
    "sha256": "fb6277982e0e0cbe225dfc11ee35eabc102a23161e32e6cf3028b29c862c91b0",
-   "in_film_at_s": 67.368
+   "in_film_at_s": 66.968
   }
  ]
 }
