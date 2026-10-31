@@ -93,7 +93,15 @@ front, and the doorway shots fill the height with the standing figure.
 
 ## Checks
 
-CHECKS_PENDING
+Measured on the finished MP4 (1080 × 1920, 30 fps, 83.7 s, 57 MB):
+
+- **Every line heard back from the film's soundtrack (Whisper):** all 26 as scripted; the only differences are
+  spellings (*"could've"* heard as *"could have"*, *"hairdryer"* as *"hair dryer"*).
+- **Loudness:** −14.0 LUFS integrated, true peak −1.1 dBTP.
+- **Lip sync:** [`lips.jpg`](lips.jpg), every speaking close-up at its stressed words and closures.
+- **Every shot:** checked at three frames each for framing, the desk line, the props and the movement (the doorway
+  dance, the tick and RESOLVED, the tablet, Gary's step in, Bruno's palms, the jab, the pen, the stamp, the
+  handshake).
 
 ## Publishing copy
 
