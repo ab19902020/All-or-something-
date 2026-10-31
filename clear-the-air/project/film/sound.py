@@ -50,39 +50,42 @@ def foley(bus):
                  dur=0.09, pan=pan)
         A.ev(bus, "cloth/cloth-c" if who == "bruno" else "cloth/cloth-b", t0, -44, pan=pan)
     A.ev(bus, "impacts/tom-hit", m("cut_door") + 1.45, -44, semis=-12, lowpass=500)          # Bruno lands
+
     # the tick: the marker squeaks, then RESOLVED
     for k in range(3):
-        A.ev(bus, "creaks/creak-small", m("cut_tick") + 0.15 + 0.13 * k, -44, semis=12, highpass=2000, dur=0.12)
+        A.ev(bus, "creaks/creak-small", m("cut_tick") + 0.12 + 0.12 * k, -44, semis=12, highpass=2000, dur=0.12)
     for k in range(6):
-        A.ev(bus, "creaks/creak-small", m("cut_tick") + 0.68 + 0.09 * k, -47, semis=11, highpass=2000, dur=0.08)
-    # the sprays
-    A.ev(bus, "cloth/cloth-a", m("cut_spray") + 0.1, -48)
-    bus.add(spray(0.42, -34), m("psst1"))
-    bus.add(spray(0.42, -34), m("psst2"))
-    A.ev(bus, "foley/pen-click-b", m("cut_a14") - 0.1, -50, semis=-6)                  # the can set down, proudly
-    # the handshake
-    A.ev(bus, "cloth/cloth-d", m("cut_shake") + 0.05, -44)
-    A.ev(bus, "foley/clap-single", m("cut_shake") + 0.18, -46, semis=-7, lowpass=1800)
-    A.ev(bus, "cloth/cloth-e", m("cut_shake") + 0.55, -48)
-    # the card: a rustle as it goes up
-    A.ev(bus, "paper/paper-handle", m("cut_card") + 0.35, -46)
-    # the door bangs open on Gary
+        A.ev(bus, "creaks/creak-small", m("cut_tick") + 0.55 + 0.08 * k, -47, semis=11, highpass=2000, dur=0.08)
+    # the tablet turned to the lens
+    A.ev(bus, "paper/paper-handle", m("cut_card2") + 0.1, -48)
+    # the door bangs open on Gary; he steps in
     A.ev(bus, "doors/door-shut", m("cut_gary") - 0.02, -30, semis=-3)
     A.ev(bus, "impacts/tom-hit", m("cut_gary") - 0.02, -36, semis=-8, lowpass=900)
-    A.steps(bus, m("cut_gary") + 0.35, m("cut_gary") + 0.9, -44, pace=0.26, pan=0.4)
+    A.steps(bus, m("cut_gary") + 0.05, m("cut_gary") + 0.6, -44, pace=0.24, pan=0.3)
+    # the inspection: a pen note after each verdict
+    for t0 in (le("G01") + 0.15, le("G04") + 0.1, le("G06") + 0.1, le("G07") + 0.1, le("G08") + 0.1):
+        for k in range(3):
+            A.ev(bus, "foley/pen-click-a", t0 + 0.06 * k, -52, semis=9 + k, highpass=1500, dur=0.05)
+    # Bruno's arms: up, in one go
+    A.ev(bus, "cloth/cloth-a", m("cut_arms") + 0.16, -40)
+    A.ev(bus, "cloth/cloth-d", m("cut_arms") + 0.2, -44)
     # the point: two sleeves at once
     A.ev(bus, "cloth/cloth-f", m("cut_point") + 0.1, -40, pan=-0.35)
     A.ev(bus, "cloth/cloth-b", m("cut_point") + 0.11, -40, pan=0.35)
-    A.ev(bus, "paper/paper-lower", m("cut_a20") + 0.1, -48)                              # the card comes down
     # the clipboard: the pen, line by line; the stamp
-    for i in range(4):
+    from film.props import CHECK
+    for i in range(len(CHECK)):
         t0 = m("cut_write") + 0.15 + 0.33 * i
         for k in range(3):
             A.ev(bus, "foley/pen-click-a", t0 + 0.06 * k, -50, semis=9 + k, highpass=1500, dur=0.05)
     A.ev(bus, "impacts/tom-hit", m("cut_stamp") + 0.08, -30, semis=-4, lowpass=1400)
     A.ev(bus, "paper/paper-short", m("cut_stamp") + 0.1, -44)
-    # the last, accidental spray, small, under the table
-    bus.add(spray(0.25, -44), m("psst3"))
+    # the handshake; Gary's last note
+    A.ev(bus, "cloth/cloth-d", m("cut_shake") + 0.05, -44)
+    A.ev(bus, "foley/clap-single", m("cut_shake") + 0.18, -46, semis=-7, lowpass=1800)
+    A.ev(bus, "cloth/cloth-e", m("cut_shake") + 0.55, -48)
+    for k in range(4):
+        A.ev(bus, "foley/pen-click-a", le("G09") + 0.1 + 0.06 * k, -50, semis=8 + k, highpass=1500, dur=0.05)
 
 
 def music(bus):

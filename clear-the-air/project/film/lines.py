@@ -14,9 +14,9 @@ SPEAKER = {"CARRICK": "carrick", "BRUNO": "bruno", "MAGUIRE": "maguire", "CUNHA"
 SCRIPT = ep.DIR / "script.md"
 VO = ep.DIR / "voiceovers"
 MAXGAP = 0.3           # pauses inside a line are trimmed to this
-GAPS = {}
+GAPS = {"G07": 0.7, "G09": 0.6, "G01": 0.4}      # the comic pauses inside a line, kept
 TEMPO = 1.0
-EXTRA = {"ofsted": "AO F S T EH D", "telly": "T EH L IY", "freshener": "F R EH SH AH N ER", "bournemouth": "B AO R N M AH TH", "rayan": "R AY AA N", "tavernier": "T AE V ER N IY ER", "evanilson": "EH V AH N IH L S AH N", "yoro": "Y AO R OW", "leny": "L EH N IY", "matheus": "M AH T EY AH S", "cunha": "K UW N Y AH", "sabah": "S AA B AH", "kickoff": "K IH K AO F", "lisandro": "L IH S AE N D R OW",
+EXTRA = {"ofsted": "AO F S T EH D", "hairdryer": "HH EH R D R AY ER", "telly": "T EH L IY", "freshener": "F R EH SH AH N ER", "bournemouth": "B AO R N M AH TH", "rayan": "R AY AA N", "tavernier": "T AE V ER N IY ER", "evanilson": "EH V AH N IH L S AH N", "yoro": "Y AO R OW", "leny": "L EH N IY", "matheus": "M AH T EY AH S", "cunha": "K UW N Y AH", "sabah": "S AA B AH", "kickoff": "K IH K AO F", "lisandro": "L IH S AE N D R OW",
          "wilcox": "W IH L K AA K S", "berrada": "B EH R AA D AH", "sesko": "SH EH SH K OW",
          "carrington": "K AE R IH NG T AH N", "glazer": "G L EY Z ER", "atletico": "AE T L EH T IH K OW",
          "zirkzee": "Z ER K Z IY", "mbeumo": "AH M B OW M OW", "elland": "EH L AH N D", "paz": "P AE Z",

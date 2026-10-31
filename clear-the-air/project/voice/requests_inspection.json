@@ -1,0 +1,11 @@
+[
+ {"id": "G01", "voice": "gary-neville", "text": "No. I'm worse.", "tags": ["[dry, deadpan, matter-of-fact] ", "[brisk, flat, unimpressed] "], "takes": 3},
+ {"id": "G02", "voice": "gary-neville", "text": "Manager. Where's the hairdryer?", "tags": ["[brisk inspector, unimpressed] ", "[dry, pointed question] "], "takes": 3},
+ {"id": "G03", "voice": "michael-carrick", "text": "The what?", "tags": ["[calm, quiet, flat voice, puzzled] ", "[deadpan, calm, understated, never shouting] "], "takes": 3},
+ {"id": "G04", "voice": "gary-neville", "text": "When I played here, the manager had a hairdryer. You've got a laptop.", "tags": ["[dry, disappointed, matter-of-fact] ", "[unimpressed inspector, slightly scornful] "], "takes": 3},
+ {"id": "G05", "voice": "gary-neville", "text": "Captain.", "tags": ["[brisk, flat] ", "[dry, expectant] "], "takes": 3},
+ {"id": "G06", "voice": "gary-neville", "text": "There it is.", "tags": ["[quiet, dry, satisfied] ", "[deadpan, almost bored] "], "takes": 3},
+ {"id": "G07", "voice": "gary-neville", "text": "One, talk. Two, listen. Three... photo. Course it is.", "tags": ["[reading slowly, then weary, unimpressed] ", "[dry, deadpan, reading aloud] "], "takes": 3},
+ {"id": "G08", "voice": "gary-neville", "text": "United behind the manager. Says the man stood in the doorway.", "tags": ["[dry, scornful, unimpressed] ", "[deadpan, pointed] "], "takes": 3},
+ {"id": "G09", "voice": "gary-neville", "text": "Handshake... limp.", "tags": ["[flat, almost bored, writing a note] ", "[dry, deadpan] "], "takes": 3}
+]

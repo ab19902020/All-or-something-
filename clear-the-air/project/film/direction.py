@@ -43,12 +43,12 @@ G_CROSS = "gary-neville:crossed"
 ALSO = []
 
 EYES = {
-    "carrick": dict(bruno=(0.55, 0.04, 0.18), wilcox=(0.62, -0.18, 0.2), gary=(0.85, -0.04, 0.3),
-                    can=(0.7, -0.2, 0.22)),
+    "carrick": dict(bruno=(0.55, 0.04, 0.08), wilcox=(0.62, -0.18, 0.09), gary=(0.7, -0.08, 0.12)),   # small turns
     "bruno": dict(carrick=(-0.55, 0.04, -0.18), wilcox=(-0.35, -0.2, -0.12), gary=(0.6, -0.04, 0.22),
                   table=(-0.1, 0.6, -0.03)),
     "wilcox": dict(carrick=(-0.55, 0.12, -0.18), bruno=(0.45, 0.12, 0.15), gary=(0.85, 0.0, 0.3)),
-    "gary": dict(wilcox=(-0.55, 0.05, -0.18), room=(-0.35, 0.08, -0.1), clip=(0.05, 0.7, 0.0)),
+    "gary": dict(wilcox=(-0.55, 0.05, -0.18), room=(-0.35, 0.08, -0.1), clip=(0.05, 0.7, 0.0),
+                 carrick=(-0.6, 0.12, -0.2), bruno=(0.6, 0.12, 0.2), board=(0.55, -0.35, 0.16)),
 }
 EYES_FIRST = True
 
@@ -84,6 +84,7 @@ SET = {
     "bruno": dict(bg=("OF", 1290, 330, 3.9, 1.6), fg=("OF", "desk", 1300, DESK_Y, 4.3, 0.0), eye=(1060, 1300)),
     "wilcox": dict(bg=("OF", 1215, 280, 4.4, 2.4), fg=("OF", "desk", 1200, DESK_Y, 4.6, 1.2), eye=(940, 1100),
                    table=5.6),                                    # he stands behind the desk: its edge at his hip
+    "gary_board": dict(bg=("OF2", 1290, 300, 5.0, 2.0), fg=("OF", "desk", 1240, DESK_Y, 4.6, 1.6), eye=(760, 1030)),
     "gary": dict(bg=("OWW2", 1330, 330, 5.4, 2.6), fg=("OF", "desk", 1240, DESK_Y, 4.6, 1.6), eye=(960, 1030)),
 }
 
@@ -107,51 +108,52 @@ SHOTS = finish([
     # ---- a private conversation
     master(0.0, cam=(1186, 380, 4.6), push=1.08, drift=0.25),
     master(wt("A01", "jason") - 0.08, cam=(1190, 380, 5.2), push=1.04, jason=J_POINT),       # he waves the camera in
-    close(m("cut_a02"), "carrick", ed=270),
+    close(m("cut_a02"), "carrick", ed=270, drift=0.2),
     close(m("cut_a03"), "bruno", ed=270),
-    close(m("cut_a04"), "carrick", ed=286, push=(1.0, 1.0)),
+    close(m("cut_a04"), "carrick", ed=286, push=(1.0, 1.0), drift=0.15),
     close(m("cut_a05"), "bruno", ed=286, push=(1.0, 1.0)),
     # ---- the door
     world(m("cut_door"), "OWW", DOOR_CAM, (DOOR_CAM[0], DOOR_CAM[1], DOOR_CAM[2] * 1.05), layers=[("props", "door_jason")],
           drift=0.0, grade="studio", ease="out"),
     # ---- an honest exchange
-    close(m("cut_a06"), "carrick", draw=C_EXPLAIN, ed=276),
+    close(m("cut_a06"), "carrick", draw=C_EXPLAIN, ed=276, drift=0.2),
     close(m("cut_a07"), "bruno", ed=300, push=(1.0, 1.03)),
-    master(m("cut_a08"), cam=(1186, 388, 5.7), push=1.02, drift=0.3),
+    master(m("cut_a08"), cam=(1186, 388, 5.7), push=1.02, drift=0.2),
     close(m("cut_a09"), "bruno", ed=292, push=(1.0, 1.04)),
-    close(m("cut_a10"), "carrick", ed=298, push=(1.0, 1.05)),
+    close(m("cut_a10"), "carrick", ed=298, push=(1.0, 1.04), drift=0.15),
     close(m("cut_smile"), "bruno", ed=310, push=(1.0, 1.0), drift=0.2),
-    # ---- clearing the air
     insert(m("cut_tick"), "tick"),
-    close(m("cut_spray"), "wilcox", draw=J_POINT, ed=236, eye=(500, 1080), push=(1.0, 1.02), props=["can"],
-          pssts=[m("psst1"), m("psst2")]),                                       # at arm's length: pssht, pssht
-    master(m("cut_a11"), plate="OF2", cam=(1186, 386, 5.5), push=1.02, jason=J_PHONE,
-           props=["can_jason"]),
-    close(m("cut_a12"), "wilcox", draw=J_POINT, ed=240, eye=(500, 1080), props=["can"]),
-    close(m("cut_a13"), "carrick", ed=286, push=(1.0, 1.0), mist=m("cut_a13") - 0.3),     # it reaches him
-    close(m("cut_a14"), "wilcox", draw=J_PHONE, ed=300, props=["can"], push=(1.0, 1.0)),           # the advert
-    master(m("cut_look"), plate="OF2", cam=(1186, 388, 5.8), push=1.06, jason=J_PHONE, drift=0.15, mist=m("cut_look") - 0.5,
-           props=["can_jason"]),
-    # ---- the reconciliation
-    close(m("cut_a15"), "carrick", ed=292, push=(1.0, 1.03)),
-    close(m("cut_a16"), "bruno", ed=292, push=(1.0, 1.03)),
-    insert(m("cut_shake"), "shake"),
-    back_master(m("cut_card"), ["card_world"], plate="OF2", cam=(1186, 386, 5.4), push=0.97),
     close(m("cut_card2"), "wilcox", draw=J_CLIP, ed=270, props=["card"], card_up=m("cut_card2") + 0.1,
-          push=(1.0, 1.04)),
-    # ---- standards inspection
+          push=(1.0, 1.04)),                                       # to camera: UNITED BEHIND THE MANAGER
+    # ---- halfway: the standards inspection
     world(m("cut_gary"), "OWW2", DOOR_CAM, (DOOR_CAM[0], DOOR_CAM[1], DOOR_CAM[2] * 1.03), layers=[("props", "door_gary")],
           drift=0.1, grade="studio"),
     close(m("cut_a17"), "gary", ed=250, props=["lanyard"], table=G_DESK),
     close(m("cut_a18"), "wilcox", ed=280, draw=J_CROSS, push=(1.0, 1.02)),
+    close(m("cut_g01"), "gary", ed=300, eye=(960, 1000), props=["lanyard"], push=(1.0, 1.0), table=G_DESK,
+          drift=0.0),                                              # closer: "No. I'm worse."
+    close(m("cut_g02"), "gary", ed=262, eye=(1040, 1030), props=["lanyard"], push=(1.0, 1.03), table=G_DESK),
+    close(m("cut_g03"), "carrick", ed=300, push=(1.0, 1.0), drift=0.1),
+    close(m("cut_g04"), "gary", ed=262, eye=(1040, 1030), props=["lanyard"], push=(1.0, 1.04), table=G_DESK),
+    close(m("cut_g05"), "gary", ed=262, eye=(880, 1030), props=["lanyard"], push=(1.0, 1.0), table=G_DESK),
+    close(m("cut_arms"), "bruno", ed=270, push=(1.0, 1.0), drift=0.0, props=["arms_up"],
+          arms_t=m("cut_arms") + 0.2),                                       # both palms up: there it is
+    close(m("cut_g06"), "gary", ed=280, eye=(880, 1020), props=["lanyard"], push=(1.0, 1.0), table=G_DESK, drift=0.0),
+    close(m("cut_g07"), "gary", key="gary_board", ed=250, props=["lanyard"], push=(1.0, 1.04), table=G_DESK),
     close(m("cut_a19"), "gary", ed=262, eye=(1000, 1010), props=["lanyard"], push=(1.0, 1.04), table=G_DESK),
     close(m("cut_point"), "wilcox", draw=J_CLIP, ed=270, eye=(850, 1000), props=["card"], fingers=True, push=(1.0, 1.0),
           drift=0.0, jab=m("cut_point") + 0.12),                     # the reverse: two fingers, together, at him
     close(m("cut_a20"), "wilcox", draw=J_SHRUG, ed=280, push=(1.0, 0.98)),
+    close(m("cut_g08"), "gary", ed=262, eye=(1000, 1010), props=["lanyard"], push=(1.0, 1.05), table=G_DESK),
     insert(m("cut_write"), "clip"),
     close(m("cut_a21"), "gary", ed=270, props=["lanyard"], push=(1.0, 1.0), drift=0.1, table=G_DESK),
     insert(m("cut_stamp"), "stamp"),
-    back_master(m("cut_end"), ["puff_world"], plate="OF2", cam=(1186, 390, 5.6), push=1.01, carrick=C_TRACK),
+    # ---- on the same side
+    master(m("cut_look"), plate="OF2", cam=(1186, 388, 5.8), push=1.05, drift=0.1),
+    close(m("cut_a15"), "carrick", ed=292, push=(1.0, 1.03), drift=0.15),
+    close(m("cut_a16"), "bruno", ed=292, push=(1.0, 1.03)),
+    insert(m("cut_shake"), "shake"),
+    close(m("cut_g09"), "gary", ed=270, eye=(960, 1030), props=["lanyard"], push=(1.0, 1.02), table=G_DESK, drift=0.0),
     insert(m("cut_black"), "end"),
 ], TL["total"])
 WHIPS = []

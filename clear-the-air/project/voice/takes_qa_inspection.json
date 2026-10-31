@@ -1,0 +1,542 @@
+{
+ "G01_0_1.wav": {
+  "id": "G01",
+  "voice": "gary-neville",
+  "dur": 2.28,
+  "wer": 0.0,
+  "heard": "No, I'm worse.",
+  "sim": 0.685,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.311
+ },
+ "G01_0_2.wav": {
+  "id": "G01",
+  "voice": "gary-neville",
+  "dur": 1.81,
+  "wer": 0.0,
+  "heard": "No, I'm worse.",
+  "sim": 0.69,
+  "nearest_other": "joel-glazer",
+  "other_sim": 0.292
+ },
+ "G01_0_3.wav": {
+  "id": "G01",
+  "voice": "gary-neville",
+  "dur": 1.67,
+  "wer": 0.0,
+  "heard": "No, I'm worse.",
+  "sim": 0.579,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.268
+ },
+ "G01_1_1.wav": {
+  "id": "G01",
+  "voice": "gary-neville",
+  "dur": 1.58,
+  "wer": 0.0,
+  "heard": "No, I'm worse.",
+  "sim": 0.662,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.278
+ },
+ "G01_1_2.wav": {
+  "id": "G01",
+  "voice": "gary-neville",
+  "dur": 1.81,
+  "wer": 0.0,
+  "heard": "No, I'm worse.",
+  "sim": 0.522,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.335
+ },
+ "G01_1_3.wav": {
+  "id": "G01",
+  "voice": "gary-neville",
+  "dur": 1.76,
+  "wer": 0.0,
+  "heard": "No, I'm worse.",
+  "sim": 0.59,
+  "nearest_other": "joel-glazer",
+  "other_sim": 0.325
+ },
+ "G02_0_1.wav": {
+  "id": "G02",
+  "voice": "gary-neville",
+  "dur": 2.04,
+  "wer": 0.5,
+  "heard": "Manager, where's the hair dryer?",
+  "sim": 0.658,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.262
+ },
+ "G02_0_2.wav": {
+  "id": "G02",
+  "voice": "gary-neville",
+  "dur": 2.28,
+  "wer": 0.5,
+  "heard": "Manager, where's the hair dryer?",
+  "sim": 0.559,
+  "nearest_other": "joel-glazer",
+  "other_sim": 0.232
+ },
+ "G02_0_3.wav": {
+  "id": "G02",
+  "voice": "gary-neville",
+  "dur": 2.32,
+  "wer": 0.5,
+  "heard": "Manager, where's the hair dryer?",
+  "sim": 0.642,
+  "nearest_other": "joel-glazer",
+  "other_sim": 0.34
+ },
+ "G02_1_1.wav": {
+  "id": "G02",
+  "voice": "gary-neville",
+  "dur": 2.23,
+  "wer": 0.5,
+  "heard": "Manager, where's the hair dryer?",
+  "sim": 0.684,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.343
+ },
+ "G02_1_2.wav": {
+  "id": "G02",
+  "voice": "gary-neville",
+  "dur": 2.23,
+  "wer": 0.0,
+  "heard": "Manager, where's the hairdryer?",
+  "sim": 0.622,
+  "nearest_other": "joel-glazer",
+  "other_sim": 0.376
+ },
+ "G02_1_3.wav": {
+  "id": "G02",
+  "voice": "gary-neville",
+  "dur": 2.23,
+  "wer": 0.75,
+  "heard": "Manager, where's their hair dryer?",
+  "sim": 0.726,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.318
+ },
+ "G03_0_1.wav": {
+  "id": "G03",
+  "voice": "michael-carrick",
+  "dur": 1.16,
+  "wer": 0.0,
+  "heard": "The what.",
+  "sim": 0.362,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.249
+ },
+ "G03_0_2.wav": {
+  "id": "G03",
+  "voice": "michael-carrick",
+  "dur": 0.88,
+  "wer": 0.0,
+  "heard": "The what.",
+  "sim": 0.249,
+  "nearest_other": "narrator",
+  "other_sim": 0.166
+ },
+ "G03_0_3.wav": {
+  "id": "G03",
+  "voice": "michael-carrick",
+  "dur": 0.98,
+  "wer": 0.0,
+  "heard": "the what",
+  "sim": 0.211,
+  "nearest_other": "matheus-cunha",
+  "other_sim": 0.18
+ },
+ "G03_1_1.wav": {
+  "id": "G03",
+  "voice": "michael-carrick",
+  "dur": 1.07,
+  "wer": 0.0,
+  "heard": "The what?",
+  "sim": 0.16,
+  "nearest_other": "bruno-fernandes",
+  "other_sim": 0.175
+ },
+ "G03_1_2.wav": {
+  "id": "G03",
+  "voice": "michael-carrick",
+  "dur": 0.93,
+  "wer": 0.0,
+  "heard": "The what",
+  "sim": 0.183,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.189
+ },
+ "G03_1_3.wav": {
+  "id": "G03",
+  "voice": "michael-carrick",
+  "dur": 0.84,
+  "wer": 0.0,
+  "heard": "The what.",
+  "sim": 0.193,
+  "nearest_other": "matheus-cunha",
+  "other_sim": 0.241
+ },
+ "G04_0_1.wav": {
+  "id": "G04",
+  "voice": "gary-neville",
+  "dur": 3.58,
+  "wer": 0.182,
+  "heard": "When I played here, the manager had a hair dryer. You've got a laptop.",
+  "sim": 0.751,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.329
+ },
+ "G04_0_2.wav": {
+  "id": "G04",
+  "voice": "gary-neville",
+  "dur": 3.81,
+  "wer": 0.182,
+  "heard": "When I played here, the manager had a hair dryer. You've got a laptop.",
+  "sim": 0.764,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.3
+ },
+ "G04_0_3.wav": {
+  "id": "G04",
+  "voice": "gary-neville",
+  "dur": 3.81,
+  "wer": 0.182,
+  "heard": "When I played here, the manager had a hair dryer. You've got a laptop.",
+  "sim": 0.782,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.302
+ },
+ "G04_1_1.wav": {
+  "id": "G04",
+  "voice": "gary-neville",
+  "dur": 3.76,
+  "wer": 0.182,
+  "heard": "When I played here the manager had a hair dryer. You've got a laptop.",
+  "sim": 0.806,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.314
+ },
+ "G04_1_2.wav": {
+  "id": "G04",
+  "voice": "gary-neville",
+  "dur": 3.39,
+  "wer": 0.182,
+  "heard": "When I played here, the manager had a hair dryer. You've got a laptop.",
+  "sim": 0.81,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.308
+ },
+ "G04_1_3.wav": {
+  "id": "G04",
+  "voice": "gary-neville",
+  "dur": 3.44,
+  "wer": 0.182,
+  "heard": "When I played here, the manager had a hair dryer, you've got a laptop.",
+  "sim": 0.782,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.32
+ },
+ "G05_0_1.wav": {
+  "id": "G05",
+  "voice": "gary-neville",
+  "dur": 0.56,
+  "wer": 0.0,
+  "heard": "Captain.",
+  "sim": 0.514,
+  "nearest_other": "joel-glazer",
+  "other_sim": 0.19
+ },
+ "G05_0_2.wav": {
+  "id": "G05",
+  "voice": "gary-neville",
+  "dur": 0.56,
+  "wer": 3.0,
+  "heard": "Captain. Captain. Captain. Captain",
+  "sim": 0.44,
+  "nearest_other": "mason-mount",
+  "other_sim": 0.201
+ },
+ "G05_0_3.wav": {
+  "id": "G05",
+  "voice": "gary-neville",
+  "dur": 0.56,
+  "wer": 0.0,
+  "heard": "Captain",
+  "sim": 0.564,
+  "nearest_other": "jason-wilcox",
+  "other_sim": 0.244
+ },
+ "G05_1_1.wav": {
+  "id": "G05",
+  "voice": "gary-neville",
+  "dur": 0.51,
+  "wer": 0.0,
+  "heard": "Captain.",
+  "sim": 0.522,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.24
+ },
+ "G05_1_2.wav": {
+  "id": "G05",
+  "voice": "gary-neville",
+  "dur": 0.6,
+  "wer": 0.0,
+  "heard": "Captain",
+  "sim": 0.551,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.228
+ },
+ "G05_1_3.wav": {
+  "id": "G05",
+  "voice": "gary-neville",
+  "dur": 0.65,
+  "wer": 0.0,
+  "heard": "Captain",
+  "sim": 0.549,
+  "nearest_other": "narrator",
+  "other_sim": 0.204
+ },
+ "G06_0_1.wav": {
+  "id": "G06",
+  "voice": "gary-neville",
+  "dur": 0.88,
+  "wer": 0.0,
+  "heard": "There it is.",
+  "sim": 0.39,
+  "nearest_other": "narrator",
+  "other_sim": 0.21
+ },
+ "G06_0_2.wav": {
+  "id": "G06",
+  "voice": "gary-neville",
+  "dur": 0.84,
+  "wer": 0.333,
+  "heard": "There is",
+  "sim": 0.456,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.27
+ },
+ "G06_0_3.wav": {
+  "id": "G06",
+  "voice": "gary-neville",
+  "dur": 0.51,
+  "wer": 0.333,
+  "heard": "There he is.",
+  "sim": 0.266,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.206
+ },
+ "G06_1_1.wav": {
+  "id": "G06",
+  "voice": "gary-neville",
+  "dur": 0.7,
+  "wer": 0.333,
+  "heard": "There is.",
+  "sim": 0.381,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.317
+ },
+ "G06_1_2.wav": {
+  "id": "G06",
+  "voice": "gary-neville",
+  "dur": 0.84,
+  "wer": 0.0,
+  "heard": "There it is.",
+  "sim": 0.497,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.265
+ },
+ "G06_1_3.wav": {
+  "id": "G06",
+  "voice": "gary-neville",
+  "dur": 0.74,
+  "wer": 0.333,
+  "heard": "There is",
+  "sim": 0.384,
+  "nearest_other": "matheus-cunha",
+  "other_sim": 0.172
+ },
+ "G07_0_1.wav": {
+  "id": "G07",
+  "voice": "gary-neville",
+  "dur": 4.69,
+  "wer": 0.0,
+  "heard": "One talk, two listen, three photo, course it is.",
+  "sim": 0.754,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.322
+ },
+ "G07_0_2.wav": {
+  "id": "G07",
+  "voice": "gary-neville",
+  "dur": 5.48,
+  "wer": 0.0,
+  "heard": "1. Talk 2. Listen 3. Photo Course it is",
+  "sim": 0.791,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.299
+ },
+ "G07_0_3.wav": {
+  "id": "G07",
+  "voice": "gary-neville",
+  "dur": 5.15,
+  "wer": 0.0,
+  "heard": "1. Talk 2. Listen 3. Photo Course It Is",
+  "sim": 0.772,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.312
+ },
+ "G07_1_1.wav": {
+  "id": "G07",
+  "voice": "gary-neville",
+  "dur": 4.92,
+  "wer": 0.0,
+  "heard": "1. Talk 2. Listen 3. Photo Course it is",
+  "sim": 0.682,
+  "nearest_other": "omar-berrada",
+  "other_sim": 0.311
+ },
+ "G07_1_2.wav": {
+  "id": "G07",
+  "voice": "gary-neville",
+  "dur": 4.78,
+  "wer": 0.0,
+  "heard": "1. Talk 2. Listen 3. Photo Course it is",
+  "sim": 0.797,
+  "nearest_other": "joel-glazer",
+  "other_sim": 0.282
+ },
+ "G07_1_3.wav": {
+  "id": "G07",
+  "voice": "gary-neville",
+  "dur": 5.29,
+  "wer": 0.111,
+  "heard": "One, talk. Two, listen. Three, photo. Of course it is.",
+  "sim": 0.743,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.326
+ },
+ "G08_0_1.wav": {
+  "id": "G08",
+  "voice": "gary-neville",
+  "dur": 3.3,
+  "wer": 0.0,
+  "heard": "United behind the manager, says the man stood in the doorway.",
+  "sim": 0.775,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.271
+ },
+ "G08_0_2.wav": {
+  "id": "G08",
+  "voice": "gary-neville",
+  "dur": 3.48,
+  "wer": 0.0,
+  "heard": "United behind the manager, says the man stood in the doorway.",
+  "sim": 0.675,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.339
+ },
+ "G08_0_3.wav": {
+  "id": "G08",
+  "voice": "gary-neville",
+  "dur": 3.44,
+  "wer": 0.0,
+  "heard": "United behind the manager, says the man stood in the doorway.",
+  "sim": 0.748,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.282
+ },
+ "G08_1_1.wav": {
+  "id": "G08",
+  "voice": "gary-neville",
+  "dur": 3.11,
+  "wer": 0.0,
+  "heard": "United behind the manager, says the man stood in the doorway.",
+  "sim": 0.842,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.244
+ },
+ "G08_1_2.wav": {
+  "id": "G08",
+  "voice": "gary-neville",
+  "dur": 3.72,
+  "wer": 0.0,
+  "heard": "United behind the manager, says the man stood in the doorway.",
+  "sim": 0.8,
+  "nearest_other": "narrator",
+  "other_sim": 0.265
+ },
+ "G08_1_3.wav": {
+  "id": "G08",
+  "voice": "gary-neville",
+  "dur": 3.99,
+  "wer": 0.0,
+  "heard": "United behind the manager Says the man stood in the doorway",
+  "sim": 0.729,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.292
+ },
+ "G09_0_1.wav": {
+  "id": "G09",
+  "voice": "gary-neville",
+  "dur": 1.76,
+  "wer": 1.0,
+  "heard": "Hand shake. Limp.",
+  "sim": 0.632,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.296
+ },
+ "G09_0_2.wav": {
+  "id": "G09",
+  "voice": "gary-neville",
+  "dur": 1.9,
+  "wer": 0.0,
+  "heard": "Handshake. Limp.",
+  "sim": 0.585,
+  "nearest_other": "narrator",
+  "other_sim": 0.261
+ },
+ "G09_0_3.wav": {
+  "id": "G09",
+  "voice": "gary-neville",
+  "dur": 1.67,
+  "wer": 0.0,
+  "heard": "Handshake. Limp.",
+  "sim": 0.669,
+  "nearest_other": "joel-glazer",
+  "other_sim": 0.305
+ },
+ "G09_1_1.wav": {
+  "id": "G09",
+  "voice": "gary-neville",
+  "dur": 1.9,
+  "wer": 0.0,
+  "heard": "Handshake. Limp.",
+  "sim": 0.654,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.278
+ },
+ "G09_1_2.wav": {
+  "id": "G09",
+  "voice": "gary-neville",
+  "dur": 1.49,
+  "wer": 0.0,
+  "heard": "Handshake, limp.",
+  "sim": 0.622,
+  "nearest_other": "avram-glazer",
+  "other_sim": 0.263
+ },
+ "G09_1_3.wav": {
+  "id": "G09",
+  "voice": "gary-neville",
+  "dur": 1.53,
+  "wer": 0.0,
+  "heard": "handshake limp",
+  "sim": 0.691,
+  "nearest_other": "shea-lacey",
+  "other_sim": 0.251
+ }
+}

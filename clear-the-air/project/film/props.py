@@ -565,6 +565,41 @@ def kit_hand_pts(who, part, rot, scale):
     return a, (*tr(*wrist[:2]), wrist[2] * scale), tr(*tip)
 
 
+def arms_up(lay, s, t, ex, ey, ed, st):
+    """Bruno's arms go up: both open palms (his kit hands) snap up either side of his face, forearms from behind the
+    desk; a little overshoot, then held"""
+    u = t - s.get("arms_t", s["t"] + 0.2)
+    if u <= 0:
+        return
+    k = snap(u, 0.11)
+    lw = max(2, int(9 * OW / 1080))
+    skin = hand_skin("bruno")
+    for part, rot, side in (("open_palm_R", 14, -1), ("open_palm_L", -14, 1)):
+        a, (wx, wy, ww), (tx, ty) = kit_hand_pts("bruno", part, rot, round(2.6 * ed / 157, 3))
+        gx, gy = ex + side * 2.45 * ed, ey - 0.75 * ed + (1 - k) * 4.5 * ed        # the fingertips' place, rising
+        ox, oy = gx - tx, gy - ty
+        W0, H0 = ox + wx, oy + wy
+        ex0, ey0 = ex + side * 2.9 * ed, ey + 5.5 * ed                              # the elbow, behind the desk
+        dx, dy = ex0 - W0, ey0 - H0
+        n = math.hypot(dx, dy)
+        nx, ny = -dy / n, dx / n
+        h0, h1 = ww * 0.55, ww * 0.75
+        im, dr = layer()
+        q = [(W0 + nx * h0, H0 + ny * h0), (ex0 + nx * h1, ey0 + ny * h1), (ex0 - nx * h1, ey0 - ny * h1),
+             (W0 - nx * h0, H0 - ny * h0)]
+        dr.polygon(q, fill=skin)
+        dr.line(q + [q[0]], fill=INK, width=lw, joint="curve")
+        arm = C.premult(im)
+        lay[:] = lay * (1 - arm[..., 3:4]) + arm
+        x0, y0 = int(round(ox)), int(round(oy))
+        H, W = a.shape[:2]
+        ys, xs = max(0, y0), max(0, x0)
+        ye, xe = min(OH, y0 + H), min(OW, x0 + W)
+        if ye > ys and xe > xs:
+            hh = a[ys - y0:ye - y0, xs - x0:xe - x0]
+            lay[ys:ye, xs:xe] = lay[ys:ye, xs:xe] * (1 - hh[..., 3:4]) + hh
+
+
 def fingers(lay, s, t, ex, ey, ed, st):
     """two pointing fingers jab into the frame at him, together: Carrick's (black club tracksuit, red stripe) from
     the bottom left, Bruno's (bare forearm, red kit sleeve) from the bottom right"""
@@ -701,8 +736,9 @@ def shake(s, t):
     return out
 
 
-CHECK = [("Doorway", "OBSTRUCTED", False), ("Air", "FRESHENED", True), ("Communication", "TELEVISED", False),
-         ("Who's in charge", "?", False)]
+CHECK = [("Doorway", "OBSTRUCTED", False), ("Hairdryer", "MISSING", False), ("Captain's arms", "UP", True),
+         ("Step 3", "PHOTO", False), ("Who's in charge", "?", False)]
+ROW = 160                                    # the checklist's line spacing (1080-wide px)
 
 
 def clipboard(t, t0, stamp=None):
@@ -720,7 +756,7 @@ def clipboard(t, t0, stamp=None):
     dr.text((x0 + 90 * S, y0 + 200 * S), "Carrington  ·  Manager's office", font=f2, fill=(90, 90, 96, 255))
     u = t - t0
     for i, (what, verdict, ok) in enumerate(CHECK):
-        y = y0 + 330 * S + i * 190 * S
+        y = y0 + 330 * S + i * ROW * S
         dr.text((x0 + 90 * S, y), what, font=f2, fill=(24, 24, 28, 255))
         dr.line([(x0 + 90 * S, y + 120 * S), (x1 - 90 * S, y + 120 * S)], fill=(200, 200, 205, 255), width=int(3 * S))
         k = ease((u - 0.15 - 0.33 * i) / 0.25)
@@ -802,10 +838,10 @@ def clip(s, t):
     img = clipboard(t, s["t"])
     S = OW / 1080
     u = t - s["t"] - 0.15
-    i = min(3, int(u / 0.33)) if u > 0 else 0
+    i = min(len(CHECK) - 1, int(u / 0.33)) if u > 0 else 0
     w = ((u % 0.33) / 0.25) if u > 0 and i < 4 else 0.0
     hx = 330 * S + 380 * S * ease(w)
-    hy = 300 * S + 330 * S + i * 190 * S + 60 * S
+    hy = 300 * S + 330 * S + i * ROW * S + 60 * S
     if 0 < w < 1:
         hy += 7 * S * math.sin(2 * math.pi * 11 * u)                 # the scribble
     return pen_hand(img, (hx, hy), "gary", "fist_R", 35, 1.7, L=320)
