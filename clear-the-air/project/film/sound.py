@@ -64,8 +64,8 @@ def foley(bus):
     A.ev(bus, "impacts/tom-hit", m("cut_gary") - 0.02, -36, semis=-8, lowpass=900)
     A.steps(bus, m("cut_gary") + 0.35, m("cut_gary") + 0.9, -44, pace=0.26, pan=0.4)
     # the point: two sleeves at once
-    A.ev(bus, "cloth/cloth-f", m("cut_point") + 0.02, -42, pan=-0.2)
-    A.ev(bus, "cloth/cloth-b", m("cut_point") + 0.04, -42, pan=0.2)
+    A.ev(bus, "cloth/cloth-f", m("cut_point") + 0.1, -40, pan=-0.35)
+    A.ev(bus, "cloth/cloth-b", m("cut_point") + 0.11, -40, pan=0.35)
     A.ev(bus, "paper/paper-lower", m("cut_a20") + 0.1, -48)                              # the card comes down
     # the clipboard: the pen, line by line; the stamp
     for i in range(4):

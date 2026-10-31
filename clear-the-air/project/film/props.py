@@ -162,10 +162,17 @@ def door_jason(img, s, t, M, sc):
 
 
 def door_gary(img, s, t, M, sc):
-    """Gary, in the open door: suit, lanyard"""
+    """Gary, in the open door: suit, lanyard. He arrives with the bang: a quick step in from beside the door frame and
+    a small settle, then stands there, inspecting"""
     from film.direction import DOOR_GARY
-    who, draw, eye, ed_p = DOOR_GARY
-    img, Ms = draw_world_actor(img, s, t, M, sc, who, draw, eye, ed_p)
+    who, draw, (x, y), ed_p = DOOR_GARY
+    u = (t - s["t"]) / 0.28
+    if u < 1:
+        x += 34 * (1 - ease(u)) ** 2
+        y -= 5 * math.sin(math.pi * max(0.0, u))
+    else:
+        y += 1.6 * math.sin(math.pi * min(1.0, (u - 1) / 1.2)) * math.exp(-(u - 1) * 0.8)      # the settle
+    img, Ms = draw_world_actor(img, s, t, M, sc, who, draw, (x, y), ed_p)
     return lanyard_at(img, Ms, draw)
 
 
@@ -184,9 +191,9 @@ def card_jason(img, s, t, M, sc):
 
 
 def can_jason(img, s, t, M, sc):
-    """the can in Wilcox's raised hand, behind them (the master's actor, in the phone pose)"""
+    """the can held up by Wilcox's face, behind them (the master's actor, in the phone pose: an advert)"""
     from film.direction import JW, ED_J, J_PHONE
-    return C.over(img, can_layer(jason_matrix(M, sc, JW, ED_J, J_PHONE), t, []))
+    return C.over(img, can_layer(jason_matrix(M, sc, JW, ED_J, J_PHONE), t, [], J_PHONE))
 
 
 def card_world(img, s, t, M, sc):
@@ -263,7 +270,7 @@ def lanyard_layer(Ms, draw):
     mk = _j.loads((BUILD / "film" / cid / "marks.json").read_text())[name]
     d, info = CAST.get(draw)
     nx, ny = mk["neck"] if mk.get("neck") else (info["anchor"][0], info["anchor"][1] + 2.6 * info["ed"])
-    ed = info["ed"]
+    ed = mk["eyes"][1][0] - mk["eyes"][0][0] if mk.get("eyes") else info["ed"]      # the same size on any drawing
 
     def P(x, y):
         return Ms[0, 0] * x + Ms[0, 2], Ms[1, 1] * y + Ms[1, 2]
@@ -302,27 +309,37 @@ def lanyard(lay, s, t, ex, ey, ed, st):
     lay[:] = lay * (1 - a[..., 3:4]) + a
 
 
-CAN = (37, 30, 67, 104)                     # the can in the phone pose's raised hand (sheet px): over the phone
+CAN = {                                      # the can in his hand (sheet px): x0, y0, x1, y1, nozzle, spray way
+    "jason-wilcox:phone": ((37, 30, 67, 104), "up", (-1.0, -0.6)),        # held up by his face, like an advert
+    "jason-wilcox:point": ((201, 127, 229, 192), "finger", (1.0, -0.45)),  # at arm's length, finger on the nozzle
+}
 
 
-def can_layer(Ms, t, pssts):
-    """the blue air freshener (FRESH) held up by his ear, nozzle up; a puff out to the side on each psst"""
+def can_layer(Ms, t, pssts, draw="jason-wilcox:phone"):
+    """the blue air freshener (FRESH) in his hand; a puff from the nozzle on each psst"""
     def P(x, y):
         return Ms[0, 0] * x + Ms[0, 2], Ms[1, 1] * y + Ms[1, 2]
     k = abs(Ms[0, 0])
-    x0, y0, x1, y1 = CAN
+    (x0, y0, x1, y1), nozzle, (vx, vy) = CAN[draw]
     (ax, ay), (bx, by) = P(x0, y0), P(x1, y1)
     ax, bx = min(ax, bx), max(ax, bx)
+    if Ms[0, 0] < 0:
+        vx = -vx
     im, dr = layer()
     lw = max(2, int(1.6 * k))
-    dr.rounded_rectangle((ax, ay + 8 * k, bx, by), radius=int(4 * k), fill=(40, 110, 210, 255), outline=INK, width=lw)
-    dr.rectangle((ax + lw, ay + 30 * k, bx - lw, ay + 52 * k), fill=(250, 250, 250, 255))
-    f = fnt(C.BEBAS, 15 * k)
+    top = ay + 8 * k if nozzle == "up" else ay
+    dr.rounded_rectangle((ax, top, bx, by), radius=int(4 * k), fill=(40, 110, 210, 255), outline=INK, width=lw)
+    dr.rectangle((ax + lw, top + 22 * k, bx - lw, top + 44 * k), fill=(250, 250, 250, 255))
+    f = fnt(C.BEBAS, 15 * k * (bx - ax) / (30 * k))
     tw = dr.textlength("FRESH", font=f)
-    dr.text(((ax + bx) / 2 - tw / 2, ay + 33 * k), "FRESH", font=f, fill=(40, 110, 210, 255))
+    dr.text(((ax + bx) / 2 - tw / 2, top + 25 * k), "FRESH", font=f, fill=(40, 110, 210, 255))
     cx = (ax + bx) / 2
-    dr.rounded_rectangle((cx - 7 * k, ay, cx + 7 * k, ay + 10 * k), radius=int(2 * k), fill=(220, 220, 226, 255),
-                         outline=INK, width=lw)
+    if nozzle == "up":
+        dr.rounded_rectangle((cx - 7 * k, ay, cx + 7 * k, ay + 10 * k), radius=int(2 * k), fill=(220, 220, 226, 255),
+                             outline=INK, width=lw)
+        nx, ny = cx - 4 * k * (1 if vx < 0 else -1), ay
+    else:                                    # the cap is under his fingertip: the spray leaves just past it
+        nx, ny = P(228, 121)
     out = C.premult(im)
     for pk in pssts:
         u = (t - pk) / 0.8
@@ -330,8 +347,8 @@ def can_layer(Ms, t, pssts):
             im, dr = layer()
             for j in range(6):
                 r = k * (5 + 22 * u) * (1 + 0.25 * j)
-                px = cx - k * (10 + 12 * j) * (0.5 + u)
-                py = ay - k * (6 + 5 * j) * (0.6 + u)
+                px = nx + vx * k * (10 + 12 * j) * (0.5 + u)
+                py = ny + vy * k * (10 + 12 * j) * (0.5 + u)
                 dr.ellipse((px - r, py - r, px + r, py + r), fill=(160, 210, 240, int(150 * (1 - u) ** 0.8)))
             puff = cv2.GaussianBlur(C.premult(im), (0, 0), max(1.0, 3 * k))
             out = out * (1 - puff[..., 3:4]) + puff
@@ -344,7 +361,7 @@ def can(lay, s, t, ex, ey, ed, st):
     d, info = CAST.get(s["draw"])
     Ms = R.actor_matrix(info, ex, ey, ed / info["ed"], s.get("mirror", False), st.get("lean", 0.0),
                         st.get("sink", 0.0))
-    a = can_layer(Ms, t, s.get("pssts", []))
+    a = can_layer(Ms, t, s.get("pssts", []), s["draw"])
     lay[:] = lay * (1 - a[..., 3:4]) + a
 
 
@@ -441,6 +458,105 @@ def kit_hand(who, part, rot, scale):
     c = cols[0] + 6 if side == 0 else cols[-1] - 6
     rows = np.nonzero(a[:, c, 3] > 0.5)[0]
     return a, (float(c), float(rows.mean()), float(rows[-1] - rows[0]))
+
+
+@functools.lru_cache(maxsize=8)
+def kit_hand_pts(who, part, rot, scale):
+    """a kit hand drawn upright (wrist at the bottom), rotated `rot` degrees anticlockwise and scaled: premultiplied
+    RGBA, its wrist (x, y, width) and its fingertip (x, y) in that image"""
+    import yaml
+    from studio.episode.upscale import x4
+    from studio.paths import CHARACTERS
+    base = CHARACTERS / HANDS[who]
+    im = np.array(Image.open(f"{base}.png").convert("RGBA"))
+    x, y = yaml.safe_load(open(f"{base}.yaml"))["parts"][part][0]
+    n, lab, st, _ = cv2.connectedComponentsWithStats((im[..., 3] > 20).astype(np.uint8), 8)
+    X, Y, W, H, _ = st[lab[y, x]]
+    pad = 8
+    crop = np.zeros((H + 2 * pad, W + 2 * pad, 4), np.uint8)
+    crop[pad:pad + H, pad:pad + W] = im[Y:Y + H, X:X + W]
+    mine = lab[Y:Y + H, X:X + W] == lab[y, x]
+    crop[pad:pad + H, pad:pad + W, 3] *= mine
+    xs = np.nonzero(mine[-4:].any(0))[0]                       # the wrist: the bottom rows
+    wrist = (pad + (xs[0] + xs[-1]) / 2, pad + H - 2, xs[-1] - xs[0])
+    top = np.nonzero(mine[2])[0]                               # the fingertip: the top rows
+    tip = (pad + top.mean(), pad + 2)
+    rgb = x4(cv2.cvtColor(crop[..., :3], cv2.COLOR_RGB2BGR))[..., ::-1]
+    al = cv2.resize(crop[..., 3], (rgb.shape[1], rgb.shape[0]), interpolation=cv2.INTER_CUBIC)
+    big = Image.fromarray(np.dstack([rgb, al]).astype(np.uint8), "RGBA")
+    c0 = (big.width / 2, big.height / 2)
+    big = big.rotate(rot, expand=True, resample=Image.BICUBIC)
+    c1 = (big.width / 2, big.height / 2)
+    k = scale / 4
+    big = big.resize((int(big.width * k), int(big.height * k)), Image.LANCZOS)
+    a = np.asarray(big, np.float32) / 255
+    a[..., :3] *= a[..., 3:4]
+    ca, sa = math.cos(math.radians(rot)), math.sin(math.radians(rot))
+
+    def tr(px, py):                                           # sheet px -> the rotated, scaled image
+        dx, dy = px * 4 - c0[0], py * 4 - c0[1]
+        return ((ca * dx + sa * dy + c1[0]) * k, (-sa * dx + ca * dy + c1[1]) * k)
+    return a, (*tr(*wrist[:2]), wrist[2] * scale), tr(*tip)
+
+
+def fingers(lay, s, t, ex, ey, ed, st):
+    """two pointing fingers jab into the frame at him, together: Carrick's (black club tracksuit, red stripe) from
+    the bottom left, Bruno's (bare forearm, red kit sleeve) from the bottom right"""
+    t0 = s.get("jab", s["t"] + 0.15)
+    u = (t - t0) / 0.17
+    if u <= 0:
+        return
+    k = 1.0 + 0.09 * math.sin(math.pi * min(1.0, u)) if u < 1 else 1.0         # a little overshoot, then still
+    go = 1 - (1 - min(1.0, u)) ** 3
+    lw = max(2, int(9 * OW / 1080))
+    for who, part, rot, aim, sleeve_col in (("carrick", "point_R", -38, (-1.3, 1.45), (30, 30, 34, 255)),
+                                            ("bruno", "point_L", 38, (2.35, 1.1), None)):   # either side of the tablet
+        tall = 2.3 * ed
+        a, (wx, wy, ww), (tx, ty) = kit_hand_pts(who, part, rot, round(tall / (207 if who == "carrick" else 157), 3))
+        dx, dy = tx - wx, ty - wy
+        n = math.hypot(dx, dy)
+        ux, uy = dx / n, dy / n                                 # the way the finger points
+        gx, gy = ex + aim[0] * ed, ey + aim[1] * ed             # where the fingertip stops: just short of him
+        travel = (1 - go) * 2.2 * ed - (k - 1) * 1.5 * ed
+        ox, oy = gx - tx - ux * travel, gy - ty - uy * travel   # the hand image's top-left
+        im, dr = layer()
+        W0, H0 = ox + wx, oy + wy                               # the wrist on screen
+        far = (W0 - ux * 3.2 * OH, H0 - uy * 3.2 * OH)
+        nx, ny = -uy, ux
+        h0, h1 = ww * 0.62, ww * 1.1
+
+        def quad(a0, a1, w0, w1):
+            p0 = (W0 - ux * a0, H0 - uy * a0)
+            p1 = (W0 - ux * a1, H0 - uy * a1)
+            return [(p0[0] + nx * w0, p0[1] + ny * w0), (p1[0] + nx * w1, p1[1] + ny * w1),
+                    (p1[0] - nx * w1, p1[1] - ny * w1), (p0[0] - nx * w0, p0[1] - ny * w0)]
+        L = 3.2 * OH
+        if sleeve_col:                                          # Carrick: the tracksuit sleeve to the cuff
+            q = quad(-0.15 * ww, L, h0 * 1.1, h1 * 1.4)
+            dr.polygon(q, fill=sleeve_col)
+            dr.line(q + [q[0]], fill=INK, width=lw, joint="curve")
+            dr.line([(W0 - ux * 0.5 * ww + nx * h0 * 0.55, H0 - uy * 0.5 * ww + ny * h0 * 0.55),
+                     (far[0] + nx * h1 * 0.8, far[1] + ny * h1 * 0.8)], fill=(205, 30, 36, 255), width=int(lw * 1.6))
+            c = quad(-0.15 * ww, 0.35 * ww, h0 * 1.15, h0 * 1.2)
+            dr.polygon(c, fill=(46, 46, 52, 255))
+            dr.line(c + [c[0]], fill=INK, width=lw, joint="curve")
+        else:                                                   # Bruno: the bare forearm, then the kit sleeve
+            q = quad(-0.1 * ww, L, h0, h1 * 1.2)
+            dr.polygon(q, fill=hand_skin("bruno"))
+            dr.line(q + [q[0]], fill=INK, width=lw, joint="curve")
+            sv = quad(1.7 * ww, L, h1 * 1.25, h1 * 1.5)
+            dr.polygon(sv, fill=(205, 28, 36, 255))
+            dr.line(sv + [sv[0]], fill=INK, width=lw, joint="curve")
+            dr.line([sv[0], sv[3]], fill=(250, 250, 250, 255), width=int(lw * 2.2))
+        arm = C.premult(im)
+        lay[:] = lay * (1 - arm[..., 3:4]) + arm
+        x0, y0 = int(round(ox)), int(round(oy))
+        H, W = a.shape[:2]
+        ys, xs = max(0, y0), max(0, x0)
+        ye, xe = min(OH, y0 + H), min(OW, x0 + W)
+        if ye > ys and xe > xs:
+            hh = a[ys - y0:ye - y0, xs - x0:xe - x0]
+            lay[ys:ye, xs:xe] = lay[ys:ye, xs:xe] * (1 - hh[..., 3:4]) + hh
 
 
 def hand_skin(who):
@@ -677,6 +793,10 @@ def caption_now(t):
 
 def overlay(img, t, s):
     S = OW / 1080
+    if s.get("fingers"):                     # over the desk too: the two of them reach in from the camera's side
+        lay = np.zeros((OH, OW, 4), np.float32)
+        fingers(lay, s, t, s["eye"][0] * RS, s["eye"][1] * RS, s["ed"] * RS * s["push"][0], None)
+        img = img * (1 - lay[..., 3:4]) + lay[..., :3]
     im, dr = layer()
     # the United Road mark, small, at the opening
     if t < 3.4:
@@ -692,14 +812,4 @@ def overlay(img, t, s):
         dr.rectangle((92 * S, 290 * S, 100 * S, 400 * S), fill=(218, 22, 30, int(255 * k)))
         dr.text((118 * S, 286 * S), "CARRINGTON", font=f1, fill=(255, 255, 255, int(255 * k)))
         dr.text((120 * S, 360 * S), "The manager's office. Private.", font=f2, fill=(230, 230, 230, int(255 * k)))
-    # the captions: two lines at most, bold white with a dark outline
-    text = caption_now(t)
-    if text and t < m("cut_black"):
-        f, lines, px = caption(text, dr)
-        lh = px * 74 / 58
-        y0 = CAP_Y * OH - len(lines) * lh / 2
-        for i, ln in enumerate(lines):
-            tw = dr.textlength(ln, font=f)
-            dr.text((CAP_X - tw / 2, y0 + i * lh), ln, font=f, fill=(255, 255, 255, 255), stroke_width=int(7 * S),
-                    stroke_fill=(10, 10, 14, 255))
     return C.over(img, C.premult(im))

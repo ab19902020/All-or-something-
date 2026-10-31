@@ -61,7 +61,10 @@ GAZE = {
     "wilcox": [(wt("A01", "jason") - 0.1, m("cut_a02"), "cam"),                              # beckoning the camera
                (m("cut_door"), m("cut_a06"), ("dir", -0.15, 0.05, -0.05)),
                (m("cut_spray"), m("cut_a11"), ("dir", 0.5, -0.4, 0.15)),                     # up into the air
-               (m("cut_card"), m("cut_gary"), "cam")],
+               (m("cut_card"), m("cut_gary"), "cam"),
+               (m("cut_point") + 0.35, m("cut_point") + 0.75, ("dir", -0.55, 0.45, -0.12)),   # one finger...
+               (m("cut_point") + 0.75, m("cut_point") + 1.15, ("dir", 0.55, 0.45, 0.12)),    # ...the other
+               (m("cut_point") + 1.15, m("cut_a20"), "cam")],
     "gary": [(m("cut_write"), m("cut_a21") + 0.2, "clip")],
 }
 EXPR = {
@@ -70,7 +73,8 @@ EXPR = {
     "carrick": [(le("A10") - 0.6, m("cut_smile"), 0.1, 0.3, 0.2), (m("cut_look"), m("cut_a15"), 0.5, -0.35, 0.15),
                 (m("cut_end"), TL["total"], 0.2, -0.3, 0.3)],
     "wilcox": [(m("cut_spray"), m("cut_a11"), 0.3, 0.45, 0.3), (m("cut_a14"), le("A14") + 0.6, 0.35, 0.6, 0.15),
-               (m("cut_a18"), le("A18") + 0.3, -0.5, 0.45, 0.15), (m("cut_a20"), le("A20") + 0.3, 0.75, -0.3, 0.1)],
+               (m("cut_a18"), le("A18") + 0.3, -0.5, 0.45, 0.15), (m("cut_point") + 0.3, m("cut_a20"), 0.6, -0.25, 0.12),
+               (m("cut_a20"), le("A20") + 0.3, 0.75, -0.3, 0.1)],
     "gary": [(m("cut_a21"), le("A21") + 0.4, -0.2, -0.1, 0.3)],
 }
 LIDS = {"carrick": [(m("cut_end"), TL["total"], 0.3, 0.3)], "bruno": [(m("cut_end"), TL["total"], 0.25, 0.3)],
