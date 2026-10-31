@@ -88,7 +88,16 @@ front, and the doorway shots fill the height with the standing figure.
 
 ## Checks
 
-The film and its checks (every line heard back from the finished mix, the lip sheet, loudness and true peak on the MP4) are added with the render.
+Measured on the finished MP4 (1080 × 1920, 30 fps, 73.4 s, 51 MB):
+
+- **Every line heard back from the film's soundtrack (Whisper):** all 21 as scripted (word error 0.00), except
+  A06, where *"could've"* is heard as *"could have"*.
+- **Loudness:** −14.0 LUFS integrated, true peak −1.2 dBTP.
+- **Lip sync:** [`lips.jpg`](lips.jpg), every speaking close-up at its stressed words and closures; and frame-by-frame
+  strips of a line per character were checked while the mouth settings were tuned.
+- **Every shot:** checked at three frames each for framing, the desk line, the props and the movement (the doorway
+  sidestep, the sprays, the tick and RESOLVED, the handshake pumps, the tablet, Gary's step in, the jab, the pen, the
+  stamp).
 
 ## Publishing copy
 
