@@ -52,14 +52,21 @@ for each cue is in the manifest.
 
 | Character | Drawing | In this short |
 |---|---|---|
-| Michael Carrick | `michael-carrick`, black club tracksuit (`arms`, `track_explain`, `point`, `track`) | as in Episode One |
+| Michael Carrick | `michael-carrick`, black club tracksuit (`arms`, `track_explain`, `track`) | as in Episode One |
 | Bruno Fernandes | `bruno-fernandes:full`, the full Man United kit, in every shot (his model sheet's upper-body `talk`, `point` and `shrug` also have film entries now, but their mouths don't sync as cleanly as the main drawing's, so they are not used) | the pointing hand is his kit hand drawing |
-| Jason Wilcox | `jason-wilcox` cut-out poses in the black tracksuit: `pockets`, `clipboard` (the tablet), `phone` (the can by his face), `point` (the can at arm's length), `crossarms`, `shrug` (`shrug` and `point` are new film entries) | always behind the desk, as in the wides |
-| Gary Neville | Overcrap Daily's house-style Gary (the Pass Mic model sheet, the drawing *Consistently Shit* uses): `standing` in the doorway (shown exactly as drawn: he doesn't speak there) and `arms` for all three of his lines (new film entries) | the lanyard and the clipboard are drawn props; the badge says STANDARDS / *Inspector (self-appointed)*, not a real Ofsted badge |
+| Jason Wilcox | `jason-wilcox` cut-out poses in the black tracksuit: `pockets`, `clipboard` (the tablet), `phone` (the can by his face), `point` (the can at arm's length), `crossarms`, `shrug` (`shrug` and `point` are new film entries) | always behind the desk, as in the wides; the hand ticking the board wears his tracksuit sleeve (he has no kit hand sheet, so the hand is drawn from Carrick's) |
+| Gary Neville | Overcrap Daily's house-style Gary (the Pass Mic model sheet, the drawing *Consistently Shit* uses): `standing` in the doorway (shown exactly as drawn: he doesn't speak there) and `arms` for all three of his lines (new film entries) | the lanyard and the clipboard are drawn props, and the hand writing on the clipboard is his own kit hand drawing; the badge says STANDARDS / *Inspector (self-appointed)*, not a real Ofsted badge |
 
 The office is Episode One's (Como's) office, from the desk's side, with the wide angle of the same room for the
 door; the board, the can, the tablet, the clipboard and the stamp are drawn into the shots. The handshake close-up
 and the two pointing fingers use Carrick's and Bruno's own kit hand drawings.
+
+**Lip sync.** Every mouth is driven by the line's own phonemes (a frame ahead of the sound, closures held for the
+M, B and P) and opens with its loudness, as in Episode One. For the bigger portrait close-ups the openings were
+checked frame by frame and made clearer: Bruno's mouth now opens properly inside the beard (`jaw` 1.0 → 1.7),
+Carrick's a little wider (1.6 → 1.9), and Gary's lip line, which had drawn every half-open mouth as a dark bar, is
+thin again (`lip_lt` 0.4 at 8×, `jaw` 1.6). Only drawings whose mouths sync cleanly are used for a speaking line;
+the settings are in [`project/library/characters/`](project/library/characters/).
 
 **Framed for a phone.** The three-shots are tight (Carrick and Bruno at the desk, Jason between and behind them,
 the board over Bruno's shoulder), the close-ups fill the frame from the head to below the chest with the desk in

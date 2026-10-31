@@ -1,0 +1,19 @@
+# Drawings this character is filmed in (studio/film/art.py): each is cut whole from its sheet, upscaled 4x and
+# given face landmarks. Check build/film/michael-carrick_check.jpg after any change.
+drawings:
+  front: {kit: casual/front, faces: F, marks: {mouth: [1284, 290, 1369, 287, 1326, 293], chin: 335, neck: [1326, 372]}}
+  # All or Something: the black club tracksuit (model sheet), small drawings, so a second upscale pass
+  track: {sheet: reference/model-sheet.png, box: [28, 108, 228, 534], jaw: 1.6, mouth_erase: true, faces: F, x8: true, auto_holes: false, holes: [[125, 465]], brow_gain: 1.3, pupil_lift: 0.3, look0: [0.0, -0.15], stand_h: 409,
+         marks: {eyes: [[129.7, 200.2, 9.0, 6.4], [156.6, 200.2, 8.2, 6.4]], mouth: [130.8, 232.4, 152.5, 231.8, 141.6, 230.2], chin: 252.8, neck: [141.6, 267.7], head: [65.5, 118.5, 185.6, 273.6]}}
+  track_q34: {sheet: reference/model-sheet.png, box: [256, 108, 446, 534], jaw: 1.6, mouth_erase: true, faces: R, x8: true, auto_holes: false, holes: [[355, 465]],
+              brow_gain: 1.3, pupil_lift: 0.3, stand_h: 409, ed: 26.9,
+              marks: {eyes: [[363.9, 199.1, 9.0, 7.9], [387.7, 198.1, 7.4, 7.8]], mouth: [365.5, 229.8, 385, 229.5, 375, 229.6], chin: 250.6, neck: [374.9, 265.2], head: [297, 118, 409, 273]}}
+  track_back: {sheet: reference/model-sheet.png, box: [898, 108, 1088, 534], faces: B, plain: true, x8: true, auto_holes: false, holes: [[993, 465]],
+               ed: 26.9, stand_h: 409}
+  track_explain: {sheet: reference/model-sheet.png, box: [122, 1200, 280, 1348], jaw: 1.9, mouth_erase: true, faces: R, x8: true, auto_holes: false, ed: 15.8, paint_eyes: true,
+                  brow_gain: 1.5, marks: {eyes: [[203, 1248.3, 6.2, 3.4], [216.8, 1248.3, 5.1, 3.4]], mouth: [203, 1264.4, 216.5, 1264.4, 210, 1264.8], chin: 1277, neck: [206, 1286], head: [176, 1200, 230, 1282]}}   # arms out (waist up: only behind a table)
+  # waist-up gestures (only behind the table, which hides where they end)
+  arms: {sheet: reference/model-sheet.png, box: [34, 1197, 115, 1350], jaw: 1.9, mouth_erase: true, faces: F, x8: true, auto_holes: false, brow_gain: 1.3, pupil_lift: 0.3,
+         marks: {eyes: [[75, 1245.5, 5.5, 3.5], [90, 1245.5, 5.5, 3.5]], mouth: [74.5, 1262, 84.5, 1262, 79.5, 1261.2], chin: 1272, neck: [80, 1280], head: [56, 1199, 104, 1272]}}   # arms crossed
+  point: {sheet: reference/model-sheet.png, box: [281, 1198, 425, 1354], jaw: 1.6, mouth_erase: true, faces: F, x8: true, auto_holes: false, brow_gain: 1.3, paint_eyes: true,
+          marks: {eyes: [[334, 1245.5, 5.5, 3.5], [349.5, 1245.5, 5.5, 3.5]], mouth: [333, 1262, 343.5, 1262, 338, 1261.2], chin: 1272, neck: [339, 1280], head: [310, 1199, 362, 1274]}}   # pointing to screen right

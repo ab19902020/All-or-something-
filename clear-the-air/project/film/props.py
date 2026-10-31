@@ -54,6 +54,8 @@ def _up(name):
     return upscaled(BACKGROUNDS / f"{name}.png", 4.0)[..., ::-1].copy()       # RGB uint8, 4x
 
 
+TICK = [(62, 872), (102, 918), (178, 832)]                       # on the board (board px): the tick, RESOLVED
+RES_AT, RES_PX = (200, 846), 60
 QUAD_OF = [(1236, 141), (1399, 101), (1399, 414), (1236, 404)]     # the board's white face, 1x plate px
 QUAD_OW = [(1043, 213), (1213, 202), (1212, 418), (1044, 416)]
 DOOR = [(1339, 150), (1403, 147), (1403, 546), (1339, 548)]       # the door in the wide angle
@@ -75,8 +77,8 @@ def board(img4, quad, resolved=False):
     dr.text((70, 640), "2. LISTEN", font=f2, fill=(28, 36, 70))
     dr.text((70, 740), "3. PHOTO", font=f2, fill=(28, 36, 70))
     if resolved:
-        dr.line([(70, 880), (120, 935), (210, 830)], fill=(30, 140, 60), width=16, joint="curve")
-        dr.text((235, 845), "RESOLVED", font=f3, fill=(30, 140, 60))
+        dr.line(TICK, fill=(30, 140, 60), width=16, joint="curve")
+        dr.text(RES_AT, "RESOLVED", font=fnt(C.MARKER, RES_PX), fill=(30, 140, 60))
     src = np.float32([[0, 0], [bw, 0], [bw, bh], [0, bh]])
     dst = np.float32(quad) * 4
     T = cv2.getPerspectiveTransform(src, dst)
@@ -385,48 +387,47 @@ def sleeve(dr, pts, base, stripes=None, w=6):
 
 def tick(s, t):
     """close on the board: a hand in a black tracksuit sleeve ticks it and RESOLVED appears"""
-    z = 9.0
-    img, M = plate_view("OF", 1318, 262, z)
+    z = 8.6
+    img, M = plate_view("OF", 1318, 292, z)                      # the whole board, RESOLVED included
     u = (t - s["t"]) / max(0.1, s["end"] - s["t"])
 
     def P(x, y):
         return M[0, 0] * x + M[0, 2], M[1, 1] * y + M[1, 2]
-    a, b, c = (P(*board_pt(QUAD_OF, x, y)) for x, y in ((70, 880), (120, 935), (210, 830)))   # where OF2 has it
-    path = [a, b, c]
-    k = ease((u - 0.1) / 0.35)
+    a, b, c = (P(*board_pt(QUAD_OF, x, y)) for x, y in TICK)          # where OF2 has it
+    k = ease((u - 0.08) / 0.3)
     im, dr = layer()
     pts = [a] if k <= 0 else ([a, (a[0] + (b[0] - a[0]) * min(1, 2 * k), a[1] + (b[1] - a[1]) * min(1, 2 * k))] +
                               ([(b[0] + (c[0] - b[0]) * (2 * k - 1), b[1] + (c[1] - b[1]) * (2 * k - 1))] if k > 0.5 else []))
     if len(pts) > 1:
-        dr.line(pts, fill=(30, 140, 60, 255), width=int(0.022 * OW), joint="curve")
-    rk = ease((u - 0.5) / 0.3)
+        dr.line(pts, fill=(30, 140, 60, 255), width=int(0.02 * OW), joint="curve")
+    rk = ease((u - 0.4) / 0.32)                                          # written by 72%: then it is read
+    x0, y0 = P(*board_pt(QUAD_OF, *RES_AT))
+    x1b, _ = P(*board_pt(QUAD_OF, RES_AT[0] + 300, RES_AT[1]))
+    px_ = (x1b - x0) / 300 * RES_PX
     if rk > 0:
-        x0, y0 = P(*board_pt(QUAD_OF, 235, 845))
-        x1b, _ = P(*board_pt(QUAD_OF, 235 + 300, 845))
-        f = fnt(C.MARKER, (x1b - x0) / 300 * 86)                       # the size OF2's RESOLVED has on screen
+        f = fnt(C.MARKER, px_)                                           # the size OF2's RESOLVED has on screen
         tw = dr.textlength("RESOLVED", font=f)
-        rev = int(tw * rk)
-        tmp = Image.new("RGBA", (int(tw) + 10, int(0.13 * OW)), (0, 0, 0, 0))
+        tmp = Image.new("RGBA", (int(tw) + 10, int(px_ * 1.6)), (0, 0, 0, 0))
         ImageDraw.Draw(tmp).text((0, 0), "RESOLVED", font=f, fill=(30, 140, 60, 255))
-        tmp = tmp.crop((0, 0, max(1, rev), tmp.size[1]))
+        tmp = tmp.crop((0, 0, max(1, int(tw * rk)), tmp.size[1]))
         im.alpha_composite(tmp, (int(x0), int(y0)))
     img = C.over(img, C.premult(im))
-    # the hand with the marker, following the pen
-    rx, ry = P(*board_pt(QUAD_OF, 235, 845))
-    pen = pts[-1] if k < 1 else (rx + (P(*board_pt(QUAD_OF, 520, 845))[0] - rx) * rk, ry + 0.04 * OW)
-    hx, hy = pen
-    im, dr = layer()
-    S = OW / 1080
-    sleeve(dr, [(hx + 60 * S, hy + 70 * S), (hx + 520 * S, hy + 380 * S), (hx + 520 * S, hy + 700 * S),
-                (hx + 10 * S, hy + 220 * S)], (26, 26, 30, 255),
-           [((hx + 120 * S, hy + 130 * S), (hx + 520 * S, hy + 420 * S))], int(6 * S))
-    dr.ellipse((hx - 30 * S, hy - 10 * S, hx + 110 * S, hy + 120 * S), fill=SKIN, outline=INK, width=int(6 * S))
-    dr.line([(hx, hy), (hx + 60 * S, hy + 50 * S)], fill=(30, 140, 60, 255), width=int(22 * S))
-    dr.line([(hx, hy), (hx + 60 * S, hy + 50 * S)], fill=INK, width=int(4 * S))
-    return C.over(img, C.premult(im))
+    # the hand with the marker, following the tip (Wilcox's black tracksuit sleeve, the club's red stripe)
+    if k < 1:
+        tip = pts[-1]
+    else:
+        f = fnt(C.MARKER, px_)
+        tw = dr.textlength("RESOLVED", font=f)
+        tip = (x0 + tw * rk, y0 + px_ * 0.75 + px_ * 0.18 * math.sin(2 * math.pi * 9 * (t - s["t"])) * (rk < 1))
+    if u > 0.8:                                                          # done: the hand leaves the board
+        dxo = (u - 0.8) / 0.2
+        tip = (tip[0] + 600 * OW / 1080 * ease(dxo), tip[1] + 500 * OW / 1080 * ease(dxo))
+    return pen_hand(img, tip, "carrick", "fist_R", 35, 1.9, L=230, sleeve_col=(26, 26, 30, 255),
+                    stripe=(200, 28, 34, 255), ink=(30, 140, 60, 255))
 
 
-HANDS = {"carrick": "michael-carrick/kit/casual/hands", "bruno": "bruno-fernandes/kit/home/hands"}
+HANDS = {"carrick": "michael-carrick/kit/casual/hands", "bruno": "bruno-fernandes/kit/home/hands",
+         "gary": "gary-neville/kit/casual/hands"}
 
 
 @functools.lru_cache(maxsize=8)
@@ -688,19 +689,61 @@ def clipboard(t, t0, stamp=None):
     return img
 
 
+def pen_hand(img, tip, who, part, rot, scale, pen=(0.5, -0.866), L=250, sleeve_col=(24, 24, 28, 255),
+             stripe=None, ink=(40, 70, 160, 255), corner=None):
+    """a kit hand round a pen (or marker) whose tip is at `tip`; the sleeve runs from the wrist to `corner`"""
+    S = OW / 1080
+    L = L * S
+    hx, hy = tip
+    px, py = pen
+    a, (wx, wy, ww), (tx, ty) = kit_hand_pts(who, part, rot, round(scale * S, 3))
+    gx, gy = hx + px * 0.58 * L, hy + py * 0.58 * L                  # the fist's centre, on the pen
+    ox, oy = gx - (wx + tx) / 2, gy - (wy + ty) / 2
+    W0, H0 = ox + wx, oy + wy
+    im, dr = layer()
+    lw = int(7 * S)
+    cx, cy = corner or (OW + 200 * S, OH + 120 * S)
+    dx, dy = cx - W0, cy - H0
+    n = math.hypot(dx, dy)
+    nx, ny = -dy / n, dx / n
+    h0, h1 = ww * 0.6, ww * 0.95
+    q = [(W0 + nx * h0, H0 + ny * h0), (W0 + dx + nx * h1, H0 + dy + ny * h1), (W0 + dx - nx * h1, H0 + dy - ny * h1),
+         (W0 - nx * h0, H0 - ny * h0)]
+    dr.polygon(q, fill=sleeve_col)
+    dr.line(q + [q[0]], fill=INK, width=lw, joint="curve")
+    if stripe:
+        dr.line([(W0 + nx * h0 * 0.5 + dx * 0.08, H0 + ny * h0 * 0.5 + dy * 0.08),
+                 (W0 + dx + nx * h1 * 0.5, H0 + dy + ny * h1 * 0.5)], fill=stripe, width=int(14 * S))
+    top = (hx + px * L, hy + py * L)
+    dr.line([(hx, hy), top], fill=INK, width=int(22 * S))
+    dr.line([(hx + px * 8 * S, hy + py * 8 * S), (hx + px * (L - 6 * S), hy + py * (L - 6 * S))], fill=ink,
+            width=int(12 * S))
+    dr.line([(hx, hy), (hx + px * 22 * S, hy + py * 22 * S)], fill=(200, 200, 205, 255) if ink[1] < 100 else ink,
+            width=int(9 * S))
+    out = C.over(img, C.premult(im))
+    x0, y0 = int(round(ox)), int(round(oy))
+    H, W = a.shape[:2]
+    ys, xs = max(0, y0), max(0, x0)
+    ye, xe = min(OH, y0 + H), min(OW, x0 + W)
+    if ye > ys and xe > xs:
+        hh = a[ys - y0:ye - y0, xs - x0:xe - x0]
+        out[ys:ye, xs:xe] = out[ys:ye, xs:xe] * (1 - hh[..., 3:4]) + hh[..., :3]
+    return out
+
+
 def clip(s, t):
-    """Gary's checklist, filled in without looking up: a hand in a black jacket sleeve writing"""
+    """Gary's checklist, filled in without looking up: his own hand (the kit's fist) round a pen, the black jacket
+    sleeve to the corner of the frame; a quick scribble on each line"""
     img = clipboard(t, s["t"])
     S = OW / 1080
-    i = min(3, int((t - s["t"] - 0.15) / 0.33)) if t > s["t"] + 0.15 else 0
-    hx = 330 * S + 380 * S * ease(((t - s["t"] - 0.15) % 0.33) / 0.25)
+    u = t - s["t"] - 0.15
+    i = min(3, int(u / 0.33)) if u > 0 else 0
+    w = ((u % 0.33) / 0.25) if u > 0 and i < 4 else 0.0
+    hx = 330 * S + 380 * S * ease(w)
     hy = 300 * S + 330 * S + i * 190 * S + 60 * S
-    im, dr = layer()
-    sleeve(dr, [(hx + 60 * S, hy + 70 * S), (hx + 420 * S, hy + 330 * S), (hx + 380 * S, hy + 470 * S),
-                (hx + 10 * S, hy + 170 * S)], (24, 24, 28, 255), None, int(7 * S))
-    dr.ellipse((hx - 50 * S, hy - 20 * S, hx + 100 * S, hy + 130 * S), fill=SKIN, outline=INK, width=int(7 * S))
-    dr.line([(hx - 30 * S, hy - 10 * S), (hx + 40 * S, hy + 60 * S)], fill=(30, 30, 34, 255), width=int(16 * S))
-    return C.over(img, C.premult(im))
+    if 0 < w < 1:
+        hy += 7 * S * math.sin(2 * math.pi * 11 * u)                 # the scribble
+    return pen_hand(img, (hx, hy), "gary", "fist_R", 35, 1.7, L=320)
 
 
 def stamp(s, t):

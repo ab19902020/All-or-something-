@@ -8,6 +8,6 @@ drawings:
   # poses as drawn, arms and hands complete; the face acts on the drawing. Boxes and marks for arms, crossed and shrug
   # as Overcrap's (claude/goldbridge-carragher-video-1r65tj)
   standing: {sheet: reference/model-sheet.png, box: [22, 108, 137, 376], faces: F, x8: true, plain: true, crisp: 0.6}   # as drawn: he never speaks in it
-  arms: {sheet: reference/model-sheet.png, box: [20, 638, 110, 778], faces: F, x8: true, head: [36, 644, 93, 714], marks: {eyes: [[60.7, 685.4, 4.6, 3.4], [77.1, 685.4, 4.6, 3.4]], mouth: [62.6, 706.9, 75.4, 706.6, 69, 706], chin: 714.3, neck: [69, 722]}, ed: 15.0, jaw: 1.25, crisp: 0.6}
+  arms: {sheet: reference/model-sheet.png, box: [20, 638, 110, 778], faces: F, x8: true, head: [36, 644, 93, 714], marks: {eyes: [[60.7, 685.4, 4.6, 3.4], [77.1, 685.4, 4.6, 3.4]], mouth: [62.6, 706.9, 75.4, 706.6, 69, 706], chin: 714.3, neck: [69, 722]}, ed: 15.0, jaw: 1.6, lip_lt: 0.4, crisp: 0.6}
   crossed: {sheet: reference/model-sheet.png, box: [352, 634, 446, 778], faces: F, x8: true, head: [374, 641, 437, 716], marks: {eyes: [[395, 683.8, 5.6, 3.5], [411.9, 683.1, 3.4, 3.4]], mouth: [400, 703.5, 411.9, 704.4, 405.6, 705.4], chin: 713.5, neck: [405, 720]}, ed: 15.5, jaw: 1.25, crisp: 0.6}
   shrug: {sheet: reference/model-sheet.png, box: [438, 639, 558, 778], faces: F, x8: true, head: [470, 645, 524, 717], marks: {eyes: [[494.6, 690.7, 6.6, 3.2], [512.9, 686.7, 3.9, 3.4]], mouth: [504, 710.3, 517, 707.1, 510.7, 707.4], chin: 717, neck: [510, 724]}, ed: 15.4, jaw: 1.25, crisp: 0.6}
