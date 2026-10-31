@@ -88,7 +88,7 @@ front, and the doorway shots fill the height with the standing figure.
 
 ## Checks
 
-Measured on the finished MP4 (1080 × 1920, 30 fps, 73.4 s, 51 MB):
+Measured on the finished MP4 (1080 × 1920, 30 fps, 73.0 s, 52 MB):
 
 - **Every line heard back from the film's soundtrack (Whisper):** all 21 as scripted (word error 0.00), except
   A06, where *"could've"* is heard as *"could have"*.
