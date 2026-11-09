@@ -6,7 +6,7 @@ Villa.
 
 | | |
 |---|---|
-| **The video** | [`WHY_UNITED_ARE_FAILING_1080x1920.mp4`](WHY_UNITED_ARE_FAILING_1080x1920.mp4): 1080 × 1920, 30 fps, 60.0 s, H.264 + AAC, −14.6 LUFS, true peak −1.5 dBTP |
+| **The video** | [`WHY_UNITED_ARE_FAILING_1080x1920.mp4`](WHY_UNITED_ARE_FAILING_1080x1920.mp4): 1080 × 1920, 30 fps, 61.4 s, H.264 + AAC 256k, −14.6 LUFS, true peak −1.7 dBTP |
 | **Voice** | [`voice/voiceover.wav`](voice/voiceover.wav) (the clean voice track), [`voice/mix.wav`](voice/mix.wav) (the full mix) |
 | **Project** | [`project/`](project/): `make.py` draws every frame, `audio.py` builds the soundtrack, `bd_vo.py` assembles the voice track; the voice requests, takes scores, picks and word timings |
 
@@ -24,6 +24,15 @@ Villa.
 | 0:42 | *Ratcliffe runs the football, owns under a third, and the fans are turning on both.* | RATCLIFFE RUNS THE FOOTBALL; the ownership ring, ~29% INEOS, the Glazer family the majority; the crowd turning red |
 | 0:48 | *Sunday's banner: we don't want a new stadium. We want the owners out.* | the banner, painted on as it is read |
 | 0:53 | *It isn't one coach. It's the shape on the pitch, and the structure above it.* | THE STRUCTURE over THE SHAPE; end card |
+
+## The sound
+
+Every line is its Fish Audio take whole: nothing is cut inside a line, each is trimmed only at its quiet ends with
+soft fades, and the lines sit on a faint room tone (an earlier version shortened the pauses inside lines and spliced
+at non-silent points, and its master limiter waveshaped the voice's peaks: both made it glitchy, and both are gone).
+Under the voice: a synthesised pulse-and-pad bed, ducked under every line, smooth whooshes on the scene changes,
+hits on the slams, ticks on the counters, the crowd under the banner. Mastered with a look-ahead limiter (ffmpeg
+`alimiter`), no clipping or waveshaping.
 
 ## The facts behind it
 

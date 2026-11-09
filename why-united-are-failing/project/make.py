@@ -14,7 +14,7 @@ FONTS = "/home/user/src/anim-handover/library/fonts"
 W, H, FPS = 1080, 1920, 30
 WORDS = json.load(open(f"{D}/words.json"))
 TIMES = {x[0]: (x[1], x[2]) for x in json.load(open(f"{D}/vo_times.json"))}
-TOTAL = 60.0
+TOTAL = round(TIMES["V11"][1] + 1.25, 2)                 # the last line, then the end card
 
 BG = (10, 12, 18)
 RED = (218, 30, 46)

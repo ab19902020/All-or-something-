@@ -17,17 +17,16 @@ RNG = np.random.default_rng(5)
 
 
 def whoosh(dur=0.5, level=-30, rise=True):
+    """air moving past: one continuous noise, band-passed once, its brightness and level swelling smoothly"""
     n = int(dur * SR)
-    y = RNG.standard_normal(n).astype(np.float32)
-    out = np.zeros(n, np.float32)
-    seg = n // 8
-    for k in range(8):                                        # a band sweeping up (or down)
-        u = k / 7 if rise else 1 - k / 7
-        lo = 300 + 2600 * u
-        part = A.bp(y[k * seg:(k + 1) * seg + 1], lo, lo * 2.2).astype(np.float32)
-        out[k * seg:k * seg + len(part)] = part[:len(out[k * seg:k * seg + len(part)])]
-    env = np.sin(np.linspace(0, np.pi, n)) ** 1.5
-    return A.at_level(np.stack([out * env, out * env * 0.9], 1), level)
+    y = RNG.standard_normal(n + 2048).astype(np.float32)
+    lo = A.bp(y, 300, 1600).astype(np.float32)[2048:]
+    hi = A.bp(y, 1600, 7000).astype(np.float32)[2048:]
+    u = np.linspace(0, 1, n, dtype=np.float32)
+    mix = (1 - u) * lo + u * hi if rise else u * lo + (1 - u) * hi
+    env = np.sin(np.pi * u) ** 2
+    out = mix * env
+    return A.at_level(np.stack([out, out * 0.92], 1), level)
 
 
 def sub_hit(level=-22, f=48):
@@ -52,6 +51,7 @@ def pulse_bed():
         y[i:i + m] += (0.9 if k % 4 == 0 else 0.6) * thump[:len(y[i:i + m])]
         j = int((t + beat / 2) * SR)
         h = A.bp(RNG.standard_normal(int(0.05 * SR)), 6000, 12000) * np.exp(-np.arange(int(0.05 * SR)) / SR * 70)
+        h[:96] *= np.linspace(0, 1, 96)
         y[j:j + len(h)] += 0.12 * h[:len(y[j:j + len(h)])]
         t += beat
         k += 1
@@ -113,7 +113,26 @@ def main():
     te = M.TIMES["V11"][1] + 0.35
     fx.add(sub_hit(-24, 44), te)
     mus.add(pulse_bed(), 0.0)
-    A.master(dlg, [fx], [mus], target=-14.0, out=f"{D}/mix.wav")
+    master(dlg, fx, mus)
+
+
+def master(dlg, fx, mus, target=-14.0):
+    """the studio's mix (effects ridden under the voice, music ducked under every line), normalised, then a clean
+    look-ahead limiter (ffmpeg alimiter: smooth attack and release, no waveshaping) to -1.5 dBFS"""
+    import subprocess
+    ld = A.lufs(dlg.x)
+    mix = dlg.x.copy()
+    e = fx.x * A.db(A.FX_DB)
+    mix += e * A.rider(e, ld + A.FX_CEIL)[:, None]
+    m = mus.x * A.db(A.MUSIC_DB)
+    mix += m * (A.rider(m, ld + A.MUSIC_CEIL) * A.duck(dlg))[:, None]
+    mix *= A.db(target + 0.6 - A.lufs(mix))
+    sf.write(f"{D}/pre.wav", mix.astype(np.float32), SR, subtype="FLOAT")
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", f"{D}/pre.wav", "-af",
+                    "alimiter=limit=0.80:attack=5:release=80:level=disabled,afade=t=out:st=%.2f:d=0.6" % (TOTAL - 0.6),
+                    "-c:a", "pcm_s24le", f"{D}/mix.wav"], check=True)
+    y, _ = sf.read(f"{D}/mix.wav")
+    print(f"mix.wav {len(y) / SR:.2f}s  {A.lufs(y):.1f} LUFS  peak {20 * np.log10(np.abs(y).max()):.1f} dBFS")
 
 
 if __name__ == "__main__":
