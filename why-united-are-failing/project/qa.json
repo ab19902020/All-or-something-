@@ -1,0 +1,332 @@
+{
+ "V01_0_1.wav": {
+  "id": "V01",
+  "voice": "narrator",
+  "dur": 4.09,
+  "wer": 0.0,
+  "heard": "Manchester United are 18th in the relegation zone.",
+  "sim": 0.885,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.413
+ },
+ "V01_0_2.wav": {
+  "id": "V01",
+  "voice": "narrator",
+  "dur": 4.37,
+  "wer": 0.0,
+  "heard": "Manchester United are 18th in the relegation zone.",
+  "sim": 0.864,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.402
+ },
+ "V01_0_3.wav": {
+  "id": "V01",
+  "voice": "narrator",
+  "dur": 4.27,
+  "wer": 0.0,
+  "heard": "Manchester United are 18th in the relegation zone.",
+  "sim": 0.903,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.42
+ },
+ "V02_0_1.wav": {
+  "id": "V02",
+  "voice": "narrator",
+  "dur": 7.15,
+  "wer": 0.059,
+  "heard": "Eight points from ten games. Eight league games without a win, equaling their worst ever Premier League run.",
+  "sim": 0.905,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.411
+ },
+ "V02_0_2.wav": {
+  "id": "V02",
+  "voice": "narrator",
+  "dur": 7.11,
+  "wer": 0.0,
+  "heard": "8 points from 10 games. 8 league games without a win, equalling their worst ever Premier League run.",
+  "sim": 0.919,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.387
+ },
+ "V02_0_3.wav": {
+  "id": "V02",
+  "voice": "narrator",
+  "dur": 7.94,
+  "wer": 0.0,
+  "heard": "Eight points from ten games. Eight league games without a win, equalling their worst ever Premier League run.",
+  "sim": 0.912,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.394
+ },
+ "V03_0_1.wav": {
+  "id": "V03",
+  "voice": "narrator",
+  "dur": 5.85,
+  "wer": 0.0,
+  "heard": "Start on the pitch. Carrick's 4-2-3-1 becomes a 3-1-6 with the ball.",
+  "sim": 0.883,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.462
+ },
+ "V03_0_2.wav": {
+  "id": "V03",
+  "voice": "narrator",
+  "dur": 5.53,
+  "wer": 0.0,
+  "heard": "Start on the pitch. Carrick's 4-2-3-1 becomes a 3-1-6 with the ball.",
+  "sim": 0.897,
+  "nearest_other": "bruno-fernandes",
+  "other_sim": 0.436
+ },
+ "V03_0_3.wav": {
+  "id": "V03",
+  "voice": "narrator",
+  "dur": 5.57,
+  "wer": 0.0,
+  "heard": "Start on the pitch. Carrick's 4-2-3-1 becomes a 3-1-6 with the ball.",
+  "sim": 0.874,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.386
+ },
+ "V04_0_1.wav": {
+  "id": "V04",
+  "voice": "narrator",
+  "dur": 7.11,
+  "wer": 0.0,
+  "heard": "Six men ahead of it, one man holding. Lose it and there's a canyon between the press and the back four.",
+  "sim": 0.883,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.395
+ },
+ "V04_0_2.wav": {
+  "id": "V04",
+  "voice": "narrator",
+  "dur": 7.34,
+  "wer": 0.0,
+  "heard": "Six men ahead of it, one man holding. Lose it and there's a canyon between the press and the back four.",
+  "sim": 0.897,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.415
+ },
+ "V04_0_3.wav": {
+  "id": "V04",
+  "voice": "narrator",
+  "dur": 7.76,
+  "wer": 0.0,
+  "heard": "Six men ahead of it, one man holding. Lose it, and there's a canyon between the press and the back four.",
+  "sim": 0.893,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.402
+ },
+ "V05_0_1.wav": {
+  "id": "V05",
+  "voice": "narrator",
+  "dur": 6.78,
+  "wer": 0.062,
+  "heard": "Against Villa, 2-0 down inside four minutes. Full-backs high, two centre-backs left alone.",
+  "sim": 0.897,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.378
+ },
+ "V05_0_2.wav": {
+  "id": "V05",
+  "voice": "narrator",
+  "dur": 6.97,
+  "wer": 0.062,
+  "heard": "Against Villa, 2-0 down inside four minutes. Full-backs high, two centre-backs left alone.",
+  "sim": 0.889,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.404
+ },
+ "V05_0_3.wav": {
+  "id": "V05",
+  "voice": "narrator",
+  "dur": 6.97,
+  "wer": 0.062,
+  "heard": "Against Villa, 2-0 down inside four minutes. Full-backs high, two centre-backs left alone.",
+  "sim": 0.895,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.422
+ },
+ "V06_0_1.wav": {
+  "id": "V06",
+  "voice": "narrator",
+  "dur": 5.15,
+  "wer": 0.0,
+  "heard": "26 shots at home and still three expected goals conceded.",
+  "sim": 0.869,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.385
+ },
+ "V06_0_2.wav": {
+  "id": "V06",
+  "voice": "narrator",
+  "dur": 4.55,
+  "wer": 0.0,
+  "heard": "26 shots at home and still three expected goals conceded.",
+  "sim": 0.859,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.415
+ },
+ "V06_0_3.wav": {
+  "id": "V06",
+  "voice": "narrator",
+  "dur": 4.6,
+  "wer": 0.0,
+  "heard": "26 shots at home and still three expected goals conceded.",
+  "sim": 0.893,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.422
+ },
+ "V07_0_1.wav": {
+  "id": "V07",
+  "voice": "narrator",
+  "dur": 5.34,
+  "wer": 0.0,
+  "heard": "30 conceded this season, more than any team in Europe's top five leagues.",
+  "sim": 0.901,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.423
+ },
+ "V07_0_2.wav": {
+  "id": "V07",
+  "voice": "narrator",
+  "dur": 5.11,
+  "wer": 0.0,
+  "heard": "30 conceded this season, more than any team in Europe's top five leagues.",
+  "sim": 0.88,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.427
+ },
+ "V07_0_3.wav": {
+  "id": "V07",
+  "voice": "narrator",
+  "dur": 5.43,
+  "wer": 0.0,
+  "heard": "30 conceded this season. More than any team in Europe's top five leagues.",
+  "sim": 0.897,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.434
+ },
+ "V08_0_1.wav": {
+  "id": "V08",
+  "voice": "narrator",
+  "dur": 9.71,
+  "wer": 0.0,
+  "heard": "Then look upstairs. The Glazers bought this club with borrowed money in 2005. Twenty years on, the club is still paying for it.",
+  "sim": 0.908,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.402
+ },
+ "V08_0_2.wav": {
+  "id": "V08",
+  "voice": "narrator",
+  "dur": 9.43,
+  "wer": 0.0,
+  "heard": "Then look upstairs. The Glazers bought this club with borrowed money in 2005. Twenty years on, the club is still paying for it.",
+  "sim": 0.918,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.388
+ },
+ "V08_0_3.wav": {
+  "id": "V08",
+  "voice": "narrator",
+  "dur": 10.03,
+  "wer": 0.0,
+  "heard": "Then look upstairs. The Glazers bought this club with borrowed money in 2005. Twenty years on, the club is still paying for it.",
+  "sim": 0.914,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.419
+ },
+ "V09_0_1.wav": {
+  "id": "V09",
+  "voice": "narrator",
+  "dur": 5.39,
+  "wer": 0.0,
+  "heard": "Ratcliffe runs the football, owns under a third and the fans are turning on both.",
+  "sim": 0.847,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.413
+ },
+ "V09_0_2.wav": {
+  "id": "V09",
+  "voice": "narrator",
+  "dur": 6.22,
+  "wer": 0.0,
+  "heard": "Ratcliffe runs the football, owns under a third and the fans are turning on both.",
+  "sim": 0.862,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.347
+ },
+ "V09_0_3.wav": {
+  "id": "V09",
+  "voice": "narrator",
+  "dur": 6.18,
+  "wer": 0.0,
+  "heard": "Ratcliffe runs the football, owns under a third and the fans are turning on both.",
+  "sim": 0.851,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.419
+ },
+ "V10_0_1.wav": {
+  "id": "V10",
+  "voice": "narrator",
+  "dur": 5.25,
+  "wer": 0.0,
+  "heard": "Sunday's banner: We don't want a new stadium, we want the owners out.",
+  "sim": 0.883,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.363
+ },
+ "V10_0_2.wav": {
+  "id": "V10",
+  "voice": "narrator",
+  "dur": 5.53,
+  "wer": 0.0,
+  "heard": "Sunday's banner: We don't want a new stadium, we want the owners out.",
+  "sim": 0.891,
+  "nearest_other": "jim-ratcliffe",
+  "other_sim": 0.404
+ },
+ "V10_0_3.wav": {
+  "id": "V10",
+  "voice": "narrator",
+  "dur": 5.39,
+  "wer": 0.0,
+  "heard": "Sunday's banner: We don't want a new stadium, we want the owners out.",
+  "sim": 0.878,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.365
+ },
+ "V11_0_1.wav": {
+  "id": "V11",
+  "voice": "narrator",
+  "dur": 5.39,
+  "wer": 0.0,
+  "heard": "It isn't one coach, it's the shape on the pitch and the structure above it.",
+  "sim": 0.88,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.396
+ },
+ "V11_0_2.wav": {
+  "id": "V11",
+  "voice": "narrator",
+  "dur": 5.02,
+  "wer": 0.0,
+  "heard": "It isn't one coach, it's the shape on the pitch and the structure above it.",
+  "sim": 0.868,
+  "nearest_other": "michael-carrick",
+  "other_sim": 0.375
+ },
+ "V11_0_3.wav": {
+  "id": "V11",
+  "voice": "narrator",
+  "dur": 5.34,
+  "wer": 0.0,
+  "heard": "It isn't one coach, it's the shape on the pitch and the structure above it.",
+  "sim": 0.892,
+  "nearest_other": "narrator-mole",
+  "other_sim": 0.393
+ }
+}

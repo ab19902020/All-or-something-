@@ -1,0 +1,101 @@
+[
+ {
+  "id": "V01",
+  "voice": "narrator",
+  "text": "Manchester United are eighteenth. In the relegation zone.",
+  "tags": [
+   "[confident, punchy sports analysis, measured] "
+  ],
+  "takes": 3
+ },
+ {
+  "id": "V02b",
+  "voice": "narrator",
+  "text": "Eight points from ten games. Eight league games without a win.",
+  "tags": [
+   "[confident, punchy sports analysis, measured] "
+  ],
+  "takes": 3
+ },
+ {
+  "id": "V03",
+  "voice": "narrator",
+  "text": "Start on the pitch. Carrick's four-two-three-one becomes a three-one-six with the ball.",
+  "tags": [
+   "[analytical, clear, brisk] "
+  ],
+  "takes": 3
+ },
+ {
+  "id": "V04",
+  "voice": "narrator",
+  "text": "Six men ahead of it, one man holding. Lose it, and there's a canyon between the press and the back four.",
+  "tags": [
+   "[analytical, clear, brisk] "
+  ],
+  "takes": 3
+ },
+ {
+  "id": "V05",
+  "voice": "narrator",
+  "text": "Against Villa, two-nil down inside four minutes. Full-backs high, two centre-backs left alone.",
+  "tags": [
+   "[analytical, clear, brisk] "
+  ],
+  "takes": 3
+ },
+ {
+  "id": "V06",
+  "voice": "narrator",
+  "text": "Twenty-six shots at home, and still three expected goals conceded.",
+  "tags": [
+   "[dry, pointed] "
+  ],
+  "takes": 3
+ },
+ {
+  "id": "V07",
+  "voice": "narrator",
+  "text": "Thirty conceded this season. More than any team in Europe's top five leagues.",
+  "tags": [
+   "[dry, pointed] "
+  ],
+  "takes": 3
+ },
+ {
+  "id": "V08",
+  "voice": "narrator",
+  "text": "Then look upstairs. The Glazers bought this club with borrowed money in 2005. Twenty years on, the club is still paying for it.",
+  "tags": [
+   "[serious, weighty, measured] "
+  ],
+  "takes": 3
+ },
+ {
+  "id": "V09",
+  "voice": "narrator",
+  "text": "Ratcliffe runs the football, owns under a third, and the fans are turning on both.",
+  "tags": [
+   "[serious, weighty, measured] "
+  ],
+  "takes": 3
+ },
+ {
+  "id": "V10",
+  "voice": "narrator",
+  "text": "Sunday's banner: we don't want a new stadium. We want the owners out.",
+  "tags": [
+   "[serious, quoting, firm] "
+  ],
+  "takes": 3
+ },
+ {
+  "id": "V11",
+  "voice": "narrator",
+  "text": "It isn't one coach. It's the shape on the pitch, and the structure above it.",
+  "tags": [
+   "[firm, conclusive, measured] "
+  ],
+  "takes": 3
+ }
+]
